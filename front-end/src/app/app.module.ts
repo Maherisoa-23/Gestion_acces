@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { VisitDashboardComponent } from './visit-dashboard/visit-dashboard.component';
 import { ListActiveVisitComponent } from './visit-dashboard/list-active-visit/list-active-visit.component';
 import { VisitComponent } from './visit-dashboard/list-active-visit/visit/visit.component';
+import { NavBarComponent } from './visit-dashboard/nav-bar/nav-bar.component';
+import { SideBarComponent } from './visit-dashboard/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VisitDashboardComponent,
     ListActiveVisitComponent,
-    VisitComponent
+    VisitComponent,
+    NavBarComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,
