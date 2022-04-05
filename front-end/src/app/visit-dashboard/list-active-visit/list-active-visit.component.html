@@ -1,59 +1,16 @@
-<!-- Button trigger modal -->
-<button
-  type="button"
-  class="btn btn-primary float-right m-2"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
-  (click)="addClick()"
-  data-backdrop="static"
-  data-keyboard="false"
->
-  Add Visit
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">l</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <app-add-visit *ngIf="ActivatedAddVisit"></app-add-visit>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="content-wrapper" style="min-height: 681px">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+  <app-add-visit></app-add-visit>
   <section class="content">
     <ul class="list-group">
 
-      <app-visit  *ngFor="let item of visitsList"
-                       [visit_id]="item.visit_id"
-                       [visitor_first_name]="item.visitor_first_name"
-                       [visitor_last_name]="item.visitor_last_name"
-                       [motif]="item.motif"
-                       [CIN]="item.CIN"
-                       [date_of_entry]="item.date_of_entry"
-                       ></app-visit>
+      <app-visit *ngFor="let item of visitsList" [visit_id]="item.visit_id"
+        [visitor_first_name]="item.visitor_first_name" [visitor_last_name]="item.visitor_last_name" [motif]="item.motif"
+        [CIN]="item.CIN" [date_of_entry]="item.date_of_entry"></app-visit>
     </ul>
   </section>
 </div>
