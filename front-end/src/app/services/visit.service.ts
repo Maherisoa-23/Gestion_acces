@@ -18,6 +18,10 @@ export class VisitService {
     return this.http.post(this.APIUrl + '/visit/',val);
   }
 
+  deleteVisit(id: number) {
+    return this.http.delete(this.APIUrl + '/visit/' + id);
+  }
+
   updateVisit(val: any) {
     return this.http.put(this.APIUrl + '/visit/',val);
   }

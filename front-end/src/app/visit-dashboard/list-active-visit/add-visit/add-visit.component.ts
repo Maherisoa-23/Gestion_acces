@@ -23,11 +23,13 @@ export class AddVisitComponent implements OnInit {
       visitor_first_name: this.visitor_first_name,
       visitor_last_name: this.visitor_last_name,
       motif : this.motif,
-      CIN : this.CIN,
+      CIN : this.CIN
     }
 
     this.service.addVisit(val).subscribe(res=>{
-      alert(res.toString)
+      alert(res.toString())
     });
   }
+
+  
 }

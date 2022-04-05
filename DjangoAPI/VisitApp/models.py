@@ -9,6 +9,6 @@ class Visits(models.Model) :
     visitor_last_name = models.CharField(max_length=50)
     motif = models.CharField(max_length=200)
     CIN = models.IntegerField()
-    date_of_entry = models.DateTimeField(default=datetime.now, blank=True)
-    exit_time = models.DateTimeField(default=datetime.now, blank=True, null=True)
+    date_of_entry = models.DateTimeField(blank=True, default=datetime.now())
+    exit_time = models.CharField(null=True, max_length=100)
     

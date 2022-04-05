@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
   selector: 'app-visit',
@@ -13,9 +14,17 @@ export class VisitComponent implements OnInit {
   @Input() motif = ""
   @Input() CIN = 0
   @Input() date_of_entry = ""
-  constructor() { }
+  constructor(private service : VisitService) { }
 
   ngOnInit(): void {
+  }
+
+  exit() {
+    if(confirm("Vous êtes sûs?")) {
+      this.service.deleteVisit(this.visit_id).subscribe(data=> {
+        alert(data.toString())
+      })
+    }
   }
 
 }
