@@ -8,6 +8,7 @@ import { ListActiveVisitComponent } from './visit-dashboard/list-active-visit/li
 import { VisitComponent } from './visit-dashboard/list-active-visit/visit/visit.component';
 import { NavBarComponent } from './visit-dashboard/nav-bar/nav-bar.component';
 import { SideBarComponent } from './visit-dashboard/side-bar/side-bar.component';
+import { AddVisitComponent } from './visit-dashboard/list-active-visit/add-visit/add-visit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SideBarComponent } from './visit-dashboard/side-bar/side-bar.component'
     ListActiveVisitComponent,
     VisitComponent,
     NavBarComponent,
-    SideBarComponent
+    SideBarComponent,
+    AddVisitComponent
   ],
   imports: [
     BrowserModule,
