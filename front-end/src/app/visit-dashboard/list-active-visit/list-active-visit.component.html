@@ -45,8 +45,15 @@
 <div class="content-wrapper" style="min-height: 681px">
   <section class="content">
     <ul class="list-group">
-      <app-visit></app-visit>
-      <app-visit></app-visit>
+
+      <app-visit  *ngFor="let item of visitsList"
+                       [visit_id]="item.visit_id"
+                       [visitor_first_name]="item.visitor_first_name"
+                       [visitor_last_name]="item.visitor_last_name"
+                       [motif]="item.motif"
+                       [CIN]="item.CIN"
+                       [date_of_entry]="item.date_of_entry"
+                       ></app-visit>
     </ul>
   </section>
 </div>

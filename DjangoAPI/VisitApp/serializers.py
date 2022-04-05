@@ -10,5 +10,6 @@ class Visit_serializer(serializers.ModelSerializer):
                   'visitor_first_name',
                   'visitor_last_name',
                   'motif',
-                  'CIN'
+                  'CIN',
+                  'date_of_entry'
                   )
