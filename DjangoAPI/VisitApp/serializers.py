@@ -6,7 +6,7 @@ from VisitApp.models import Visits
 class Visit_serializer(serializers.ModelSerializer):
     class Meta:
         model = Visits
-        fields = ('visitor_id',
+        fields = ('visit_id',
                   'visitor_first_name',
                   'visitor_last_name',
                   'motif',
