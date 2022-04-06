@@ -14,6 +14,7 @@ import { AddVisitComponent } from './visit-dashboard/list-active-visit/add-visit
 
 import { VisitService } from './services/visit.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 
 
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VisitComponent,
     NavBarComponent,
     SideBarComponent,
-    AddVisitComponent
+    AddVisitComponent,
+    AuthentificationComponent
   ],
   imports: [
     BrowserModule,
