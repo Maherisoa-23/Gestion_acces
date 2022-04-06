@@ -9,7 +9,7 @@ class Visits(models.Model) :
     visitor_last_name = models.CharField(max_length=50)
     motif = models.CharField(max_length=200)
     CIN = models.IntegerField()
-    date_of_entry = models.DateTimeField(blank=True, default=datetime.now())
+    date_of_entry = models.CharField(max_length=100)
     exit_time = models.CharField(null=True, max_length=100)
     
 class Visits_register(models.Model) :
