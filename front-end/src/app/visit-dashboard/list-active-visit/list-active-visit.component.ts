@@ -7,21 +7,20 @@ import { VisitService } from 'src/app/services/visit.service';
   styleUrls: ['./list-active-visit.component.css'],
 })
 export class ListActiveVisitComponent implements OnInit {
-  constructor(private service:VisitService) { }
+  constructor(private service: VisitService) {}
 
-  visitsList:any = [];
+  visitsList: any = [];
 
   ngOnInit(): void {
     this.refreshVisitsList();
   }
-  refreshVisitsList(){
-    this.service.getVisitsList().subscribe(
-      data => {
-        this.visitsList = data;
-      });
+  refreshVisitsList() {
+    this.service.getVisitsList().subscribe((data) => {
+      this.visitsList = data;
+    });
   }
 
   ActivatedAddVisit: boolean = false;
-  visite: any;  
+  visite: any;
   addClick() {}
 }

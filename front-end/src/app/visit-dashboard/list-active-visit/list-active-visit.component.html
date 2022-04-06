@@ -1,16 +1,34 @@
 <div class="content-wrapper" style="min-height: 681px">
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
     Nouvelle visite
   </button>
 
   <app-add-visit></app-add-visit>
   <section class="content">
-    <ul class="list-group">
-
-      <app-visit *ngFor="let item of visitsList" [visit_id]="item.visit_id"
-        [visitor_first_name]="item.visitor_first_name" [visitor_last_name]="item.visitor_last_name" [motif]="item.motif"
-        [CIN]="item.CIN" [date_of_entry]="item.date_of_entry"></app-visit>
-    </ul>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom visiteur</th>
+          <th>Motif</th>
+          <th>Date et heure d entree</th>
+        </tr>
+      </thead>
+      <tbody class="mt-2">
+        <tr *ngFor="let item of visitsList">
+          <td>{{ item.visit_id }}</td>
+          <td>{{ item.visitor_first_name }}</td>
+          <td>{{ item.motif }}</td>
+          <td>{{ item.date_of_entry }}</td>
+          <button class="btn btn-danger">Sortir</button>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </div>
