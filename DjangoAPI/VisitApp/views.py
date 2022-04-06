@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
 from VisitApp.models import Visits,Visits_register
-from VisitApp.serializers import Visit_serializer,Visits_register_serializer
+from VisitApp.serializers import Visit_serializer, Visits_register_serializer
 
 
 # Create your views here.
