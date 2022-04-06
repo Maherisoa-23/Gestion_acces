@@ -37,19 +37,21 @@ export class ListActiveVisitComponent implements OnInit {
       CIN: this.CIN,
       date_of_entry: this.date,
     };
-
+    
     this.service.addVisit(val).subscribe((res) => {
       alert(res.toString());
     });
     this.refreshVisitsList();
+    this.refreshVisitsList();
   }
 
-  exit() {
+  exit(item : any) {
     if (confirm('Vous êtes sûs?')) {
-      this.service.deleteVisit(this.visit_id).subscribe((data) => {
+      this.service.deleteVisit(item.visit_id).subscribe((data) => {
         alert(data.toString());
       });
     }
+    this.refreshVisitsList();
     this.refreshVisitsList();
   }
 }

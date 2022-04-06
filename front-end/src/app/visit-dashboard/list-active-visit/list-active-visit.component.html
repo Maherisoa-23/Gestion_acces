@@ -99,7 +99,7 @@
           <td>{{ item.visitor_first_name }}</td>
           <td>{{ item.motif }}</td>
           <td>{{ item.date_of_entry | date: "dd-MM-yyyy h:m a" }}</td>
-          <button class="btn btn-danger" (click)="exit()">Sortir</button>
+          <button class="btn btn-danger" (click)="exit(item)">Sortir</button>
         </tr>
       </tbody>
     </table>
