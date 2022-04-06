@@ -4,8 +4,8 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
-from VisitApp.models import Visits
-from VisitApp.serializers import Visit_serializer
+from VisitApp.models import Visits,Visits_register
+from VisitApp.serializers import Visit_serializer,Visits_register_serializer
 
 
 # Create your views here.
@@ -35,3 +35,17 @@ def visit_API(request: HttpRequest, id=0):
         visit.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def visit_register_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        visits_register = Visits_register.objects.all()
+        visits_register_serializer = Visits_register_serializer(visits_register, many=True)
+        return JsonResponse(visits_register_serializer.data, safe=False)
+    elif request.method== 'POST':
+        visit_data = JSONParser().parse(request)
+        visit_serializer = Visits_register_serializer(data=visit_data)
+        if visit_serializer.is_valid():
+            visit_serializer.save()
+            return JsonResponse("Added successfully to visit register",safe=False)
+        return JsonResponse("failded to add", safe= False)
