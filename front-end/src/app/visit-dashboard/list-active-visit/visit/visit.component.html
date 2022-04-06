@@ -1,15 +1,17 @@
 <li class="list-group-item">
-    <div class="card">
-      <div class="card-header">Numero de la visite : {{visit_id}}</div>
-      <div class="card-body">
-        <h5 >Nom du visiteur: {{visitor_first_name}}</h5><br>
-        <h5 >Date et heure d'entree: {{date_of_entry}}</h5><br>
-        <h5>Motif:</h5><br>
-        <p class="card-text">
-          {{motif}}
-        </p>
-        <button class="btn btn-danger" (click)="exit()">Sortir</button>
-      </div>
+  <div class="card">
+    <div class="card-header">Numero de la visite : {{ visit_id }}</div>
+    <div class="card-body">
+      <h5>Nom du visiteur: {{ visitor_first_name }}</h5>
+      <br />
+      <h5>Date et heure d'entree: {{ date_of_entry }}</h5>
+      <br />
+      <h5>Motif:</h5>
+      <br />
+      <p class="card-text">
+        {{ motif }}
+      </p>
+      <button class="btn btn-danger" (click)="exit()">Sortir</button>
     </div>
-  </li>
-  
+  </div>
+</li>
