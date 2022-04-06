@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'VisitApp.apps.VisitappConfig'
+    'VisitApp.apps.VisitappConfig',
+    'authApp.apps.AuthappConfig'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
