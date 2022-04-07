@@ -1,13 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h2 class="text-center text-dark mt-5">Login Form</h2>
-      <div class="text-center mb-5 text-dark">Made with bootstrap</div>
+      <h2 class="text-center text-dark mt-5">Gestion Acces</h2>
+      <div class="text-center mb-5 text-dark">OMNIS Madagascar</div>
       <div class="card my-5">
-        <form class="card-body cardbody-color p-lg-5">
+        <form
+          class="card-body cardbody-color p-lg-5"
+          (ngSubmit)="onSubmit(f)"
+          #f="ngForm"
+        >
           <div class="text-center">
             <img
-              src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+              src="../../../assets/images/OMNISS.jpg"
               class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
               width="200px"
               alt="profile"
@@ -20,6 +24,9 @@
               class="form-control"
               id="Username"
               aria-describedby="emailHelp"
+              name="Username"
+              ngModel
+              required
               placeholder="User Name"
             />
           </div>
@@ -28,6 +35,9 @@
               type="password"
               class="form-control"
               id="password"
+              name="password"
+              ngModel
+              required
               placeholder="password"
             />
           </div>
@@ -37,13 +47,10 @@
               class="btn btn-color px-5 mb-5 w-100"
               *ngIf="!authStatus"
               (click)="onSignIn()"
+              [disabled]="f.invalid"
             >
               Login
             </button>
-          </div>
-          <div id="emailHelp" class="form-text text-center mb-5 text-dark">
-            Not Registered?
-            <a href="#" class="text-dark fw-bold"> Create an Account</a>
           </div>
         </form>
       </div>

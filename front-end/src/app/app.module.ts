@@ -18,11 +18,15 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { AccueilComponent } from './accueil/accueil.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'accueil', component: AccueilComponent },
+  { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent },
   { path: 'authenetification', component: AuthentificationComponent },
   { path: '', component: AuthentificationComponent },
+  { path: 'not-found', component: ErrorComponent },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({
@@ -36,6 +40,7 @@ const appRoutes: Routes = [
     AddVisitComponent,
     AuthentificationComponent,
     AccueilComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [VisitService, AuthService],
+  providers: [VisitService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
