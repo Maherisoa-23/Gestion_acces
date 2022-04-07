@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitDashboardComponent } from './visit-dashboard/visit-dashboard.component';
@@ -15,8 +15,14 @@ import { AddVisitComponent } from './visit-dashboard/list-active-visit/add-visit
 import { VisitService } from './services/visit.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationComponent } from './authentification/authentification.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const appRoutes: Routes = [
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'authenetification', component: AuthentificationComponent },
+  { path: '', component: AuthentificationComponent },
+];
 
 @NgModule({
   declarations: [
@@ -27,18 +33,18 @@ import { AuthentificationComponent } from './authentification/authentification.c
     NavBarComponent,
     SideBarComponent,
     AddVisitComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [
-    VisitService
-  ],
-  bootstrap: [AppComponent]
+  providers: [VisitService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
