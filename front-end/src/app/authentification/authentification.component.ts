@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -10,17 +10,37 @@ import { NgForm } from '@angular/forms';
 export class AuthentificationComponent implements OnInit {
   authStatus!: boolean;
   authName!: string;
+  @Input() numero_matricule : string = "";
+  @Input() password : string = "";
+
+  usersList : any = []
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.usersList = this.refreshUsersList()
     this.authStatus = this.authService.isAuth;
   }
 
-  onSignIn() {
-    this.authService.signIn().then(() => {
-      this.authStatus = this.authService.isAuth;
-      this.router.navigate(['accueil']);
+  refreshUsersList() {
+    this.authService.getUsersList().subscribe((data) => {
+      this.usersList = data;
     });
+  }
+
+  onSignIn() {
+    for (let index = 0; index < this.usersList.length; index++) {
+      const element = this.usersList[index];
+      if (element.numero_matricule == this.numero_matricule && element.password == this.password) {
+        alert("bienvenu " + element.user_first_name)
+        this.authService.signIn().then(() => {
+          this.authStatus = this.authService.isAuth;
+          this.router.navigate(['accueil']);
+        });
+        break;
+      }
+    }
+
   }
   onSubmit(form: NgForm) {
     const name = form.value['Username'];

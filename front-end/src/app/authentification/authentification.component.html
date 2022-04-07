@@ -24,10 +24,9 @@
               class="form-control"
               id="Username"
               aria-describedby="emailHelp"
-              name="Username"
-              ngModel
+              name="numero_matricule"
               required
-              placeholder="User Name"
+              [(ngModel)]="numero_matricule"
             />
           </div>
           <div class="mb-3">
@@ -36,9 +35,8 @@
               class="form-control"
               id="password"
               name="password"
-              ngModel
               required
-              placeholder="password"
+              [(ngModel)]="password"
             />
           </div>
           <div class="text-center">
