@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [VisitService],
+  providers: [VisitService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

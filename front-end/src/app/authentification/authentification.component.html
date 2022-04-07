@@ -32,7 +32,12 @@
             />
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-color px-5 mb-5 w-100">
+            <button
+              type="submit"
+              class="btn btn-color px-5 mb-5 w-100"
+              *ngIf="!authStatus"
+              (click)="onSignIn()"
+            >
               Login
             </button>
           </div>
