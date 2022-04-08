@@ -48,10 +48,4 @@ export class AuthentificationComponent implements OnInit {
     const password = form.value['password'];
     this.authName = name;
   }
-
-  onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-    this.router.navigate(['authentification']);
-  }
 }
