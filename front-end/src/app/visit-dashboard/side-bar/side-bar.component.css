@@ -5,3 +5,7 @@
   border: 1 px solid black;
   border-radius: 20px;
 }
+.couleur {
+  background-color: #5d54a4;
+  position: fixed;
+}

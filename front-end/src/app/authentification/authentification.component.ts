@@ -10,15 +10,15 @@ import { NgForm } from '@angular/forms';
 export class AuthentificationComponent implements OnInit {
   authStatus!: boolean;
   authName!: string;
-  @Input() numero_matricule : string = "";
-  @Input() password : string = "";
+  @Input() numero_matricule: string = '';
+  @Input() password: string = '';
 
-  usersList : any = []
+  usersList: any = [];
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.usersList = this.refreshUsersList()
+    this.usersList = this.refreshUsersList();
     this.authStatus = this.authService.isAuth;
   }
 
@@ -31,17 +31,19 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
-      if (element.numero_matricule == this.numero_matricule && element.password == this.password) {
-        alert("bienvenu " + element.user_first_name)
+      if (
+        element.numero_matricule == this.numero_matricule &&
+        element.password == this.password
+      ) {
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
-          this.authService.userName = element.user_first_name + " " + element.user_last_name
+          this.authService.userName =
+            element.user_first_name + ' ' + element.user_last_name;
           this.router.navigate(['accueil']);
         });
         break;
       }
     }
-
   }
   onSubmit(form: NgForm) {
     const name = form.value['Username'];

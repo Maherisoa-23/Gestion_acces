@@ -1,18 +1,23 @@
 <a class="nav-link" data-widget="pushmenu" href="#" role="button"
   ><i class="fas fa-bars"></i
 ></a>
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <img
-    src="../../../assets/images/logoOmnis.png"
-    class="img-fluid LogoOmnis"
-  />
+<aside class="main-sidebar couleur elevation-4">
+  <img src="../../../assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
   <div class="sidebar">
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <i class="fas fa-user-alt fa-md"></i>
-      <div class="info">
-        <a href="#" class="d-block">{{userName}}</a>
-      </div>
-    </div>
+    <ul
+      class="nav nav-pills nav-sidebar flex-column"
+      data-widget="treeview"
+      role="menu"
+      data-accordion="false"
+    >
+      <li class="nav-item">
+        <a href="../calendar.html" class="nav-link" style="color: white">
+          <i class="fas fa-user-alt fa-md mr-2"></i>
+          <p>{{ userName }}</p>
+        </a>
+      </li>
+    </ul>
+    <hr />
 
     <nav class="mt-2">
       <ul
@@ -22,19 +27,19 @@
         data-accordion="false"
       >
         <li class="nav-item">
-          <a href="../calendar.html" class="nav-link">
+          <a href="../calendar.html" class="nav-link" style="color: white">
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>Liste des visites actifs</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="../gallery.html" class="nav-link">
+          <a href="../gallery.html" class="nav-link" style="color: white">
             <i class="nav-icon far fa-image"></i>
             <p>Cahier des charges</p>
           </a>
         </li>
         <li class="nav-item">
-          <a (click)="onSignOut()" class="nav-link">
+          <a (click)="onSignOut()" class="nav-link" style="color: white">
             <i class="nav-icon fas fa-columns"></i>
             <p>Logout</p>
           </a>
