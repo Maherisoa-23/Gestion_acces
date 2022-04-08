@@ -8,8 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 @Injectable()
 export class SideBarComponent implements OnInit {
-  SecurityName = this.authService;
+  userName = "";
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userName = this.authService.userName;
+  }
 }

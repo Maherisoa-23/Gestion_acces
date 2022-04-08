@@ -35,6 +35,7 @@ export class AuthentificationComponent implements OnInit {
         alert("bienvenu " + element.user_first_name)
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
+          this.authService.userName = element.user_first_name + " " + element.user_last_name
           this.router.navigate(['accueil']);
         });
         break;
@@ -51,5 +52,6 @@ export class AuthentificationComponent implements OnInit {
   onSignOut() {
     this.authService.signOut();
     this.authStatus = this.authService.isAuth;
+    this.router.navigate(['authentification']);
   }
 }

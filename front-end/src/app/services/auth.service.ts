@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class AuthService {
   isAuth = false;
+  userName = ""
+
   readonly APIUrl = "http://127.0.0.1:8000"
 
   constructor(private http: HttpClient) { }
@@ -18,7 +20,7 @@ export class AuthService {
       setTimeout(() => {
         this.isAuth = true;
         resolve(true);
-      }, 2000);
+      }, 500);
     });
   }
 
