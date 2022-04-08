@@ -1,4 +1,7 @@
 .LogoOmnis {
+  margin-left: 28%;
+  margin-top: 20px;
+  height: 120px;
   border: 1 px solid black;
   border-radius: 20px;
 }

@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,8 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 @Injectable()
 export class SideBarComponent implements OnInit {
-  SecurityName = this.authService;
-  constructor(private authService: AuthService) {}
+  userName = "";
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userName = this.authService.userName;
+  }
+
+  onSignOut() {
+    this.authService.signOut();
+    this.router.navigate(['authentification']);
+  }
 }
