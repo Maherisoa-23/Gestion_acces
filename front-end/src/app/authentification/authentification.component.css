@@ -6,6 +6,14 @@
   justify-content: center;
   min-height: 100vh;
 }
+#omnis {
+  font-weight: bold;
+}
+#GA {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-right: 4px;
+  text-shadow: 1px 1px 3px white;
+}
 
 .screen {
   background: linear-gradient(90deg, #5d54a4, #7c78b8);
