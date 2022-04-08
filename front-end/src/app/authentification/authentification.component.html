@@ -1,57 +1,54 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h2 class="text-center text-dark mt-5">Gestion Acces</h2>
-      <div class="text-center mb-5 text-dark">OMNIS Madagascar</div>
-      <div class="card my-5">
-        <form
-          class="card-body cardbody-color p-lg-5"
-          (ngSubmit)="onSubmit(f)"
-          #f="ngForm"
+  <div class="screen">
+    <div class="screen__content">
+      <form class="login" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="login__field">
+          <i class="login__icon fas fa-user"></i>
+          <input
+            type="text"
+            class="login__input"
+            placeholder="Numero Matricule"
+            name="numero_matricule"
+            required
+            [(ngModel)]="numero_matricule"
+          />
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-lock"></i>
+          <input
+            type="password"
+            class="login__input"
+            placeholder="Mot de Passe"
+            name="password"
+            required
+            [(ngModel)]="password"
+          />
+        </div>
+        <button
+          class="button login__submit"
+          *ngIf="!authStatus"
+          (click)="onSignIn()"
+          type="submit"
+          [disabled]="f.invalid"
         >
-          <div class="text-center">
-            <img
-              src="../../../assets/images/OMNISS.jpg"
-              class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-              width="200px"
-              alt="profile"
-            />
-          </div>
-
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="Username"
-              aria-describedby="emailHelp"
-              name="numero_matricule"
-              required
-              [(ngModel)]="numero_matricule"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              name="password"
-              required
-              [(ngModel)]="password"
-            />
-          </div>
-          <div class="text-center">
-            <button
-              type="submit"
-              class="btn btn-color px-5 mb-5 w-100"
-              *ngIf="!authStatus"
-              (click)="onSignIn()"
-              [disabled]="f.invalid"
-            >
-              Login
-            </button>
-          </div>
-        </form>
+          <span class="button__text">Se connecter</span>
+          <i class="button__icon fas fa-chevron-right"></i>
+        </button>
+      </form>
+      <div class="social-login">
+        <h3>OMNIS</h3>
+        <div class="social-icons">
+          <h5 style="font-family: Arial, Helvetica, sans-serif">
+            Gestion d'Acces
+          </h5>
+        </div>
       </div>
+    </div>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
     </div>
   </div>
 </div>

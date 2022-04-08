@@ -23,7 +23,7 @@ import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent },
-  { path: 'authenetification', component: AuthentificationComponent },
+  { path: 'authentification', component: AuthentificationComponent },
   { path: '', component: AuthentificationComponent },
   { path: 'not-found', component: ErrorComponent },
   { path: '**', redirectTo: '/not-found' },
