@@ -49,3 +49,8 @@ def visit_register_API(request: HttpRequest, id=0):
             visit_serializer.save()
             return JsonResponse("Added successfully to visit register",safe=False)
         return JsonResponse("failded to add", safe= False)
+    elif request.method == 'DELETE':
+        visits_register=Visits_register.objects.get(visit_id =id)
+        visits_register.delete()
+        return JsonResponse("Delete successfully", safe = False)
+    return JsonResponse("Failded to delete", safe = False)

@@ -46,9 +46,19 @@ export class ListActiveVisitComponent implements OnInit {
   }
 
   exit(item : any) {
+    var val = {
+      visitor_first_name: item.visitor_first_name,
+      visitor_last_name: item.visitor_last_name,
+      motif: item.motif,
+      CIN: item.CIN,
+      date_of_entry: item.date_of_entry,
+      exit_time : this.date
+    };
     if (confirm('Vous êtes sûs?')) {
       this.service.deleteVisit(item.visit_id).subscribe((data) => {
         alert(data.toString());
+      });
+      this.service.addVisitsRegister(val).subscribe((res) => {
       });
     }
     this.refreshVisitsList();

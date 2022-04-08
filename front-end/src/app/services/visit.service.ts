@@ -26,4 +26,8 @@ export class VisitService {
     return this.http.put(this.APIUrl + '/visit/',val);
   }
 
+  addVisitsRegister(val: any) {
+    return this.http.post(this.APIUrl + '/visits_register/',val);
+  }
+
 }
