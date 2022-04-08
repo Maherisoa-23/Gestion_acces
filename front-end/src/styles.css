@@ -5,6 +5,10 @@
   padding: 0;
 }
 
-body {
+.auth-body{
   background: linear-gradient(90deg, #c7c5f4, #776bcc);
+}
+
+.visit-body{
+  background:white
 }
