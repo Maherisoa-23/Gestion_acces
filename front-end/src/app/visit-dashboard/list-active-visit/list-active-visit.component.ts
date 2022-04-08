@@ -12,9 +12,12 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() visitor_last_name = '';
   @Input() motif = '';
   @Input() CIN = 0;
+  @Input() search = "";
+
   constructor(private service: VisitService) {}
 
   visitsList: any = [];
+  FilteredList : any= []
 
   ngOnInit(): void {
     this.refreshVisitsList();
@@ -63,5 +66,18 @@ export class ListActiveVisitComponent implements OnInit {
     }
     this.refreshVisitsList();
     this.refreshVisitsList();
+  }
+
+  filtre(){
+    this.visitsList = []
+    for (let index = 0; index < this.visitsList.length; index++) {
+      const element = this.visitsList[index];
+      
+      if (element.visitor_first_name == this.search) {
+        this.FilteredList.push(element)
+      }
+    }
+    this.visitsList = this.FilteredList
+    this.visitsList = this.FilteredList
   }
 }
