@@ -11,7 +11,7 @@ export class AuthService {
   isAuth = false;
   userName = ""
 
-  readonly APIUrl = "http://127.0.0.1:8000"
+  readonly APIUrl = "http://192.168.1.253:8888"
 
   constructor(private http: HttpClient) { }
 
