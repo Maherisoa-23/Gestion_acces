@@ -5,7 +5,7 @@
   <img src="../../../assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
   <div class="sidebar">
     <ul
-      class="nav nav-pills nav-sidebar flex-column mt-2"
+      class="nav nav-pills nav-sidebar flex-column"
       data-widget="treeview"
       role="menu"
       data-accordion="false"
@@ -19,7 +19,7 @@
     </ul>
     <hr />
 
-    <nav class="mt-2">
+    <nav class="mt-2 liste">
       <ul
         class="nav nav-pills nav-sidebar flex-column"
         data-widget="treeview"
@@ -27,23 +27,30 @@
         data-accordion="false"
       >
         <li class="nav-item">
-          <a href="../calendar.html" class="nav-link" style="color: white">
-            <i class="nav-icon far fa-calendar-alt"></i>
-            <p>Liste des visites actifs</p>
+          <a routerLink="accueil" class="nav-link" style="color: white">
+            <i class="nav-icon fas fa-address-book"></i>
+            <p>Liste des visites actives</p>
           </a>
         </li>
+        <hr />
         <li class="nav-item">
-          <a href="../gallery.html" class="nav-link" style="color: white">
-            <i class="nav-icon far fa-image"></i>
+          <a
+            routerLink="authentification"
+            class="nav-link"
+            style="color: white"
+          >
+            <i class="nav-icon fas fa-book"></i>
             <p>Cahier des charges</p>
           </a>
         </li>
-        <li class="nav-item">
+        <hr />
+        <li class="nav-item logout">
           <a (click)="onSignOut()" class="nav-link" style="color: white">
-            <i class="nav-icon fas fa-columns"></i>
-            <p>Logout</p>
+            <i class="nav-icon fas fa-share-square"></i>
+            Se deconnecter
           </a>
         </li>
+        <hr />
       </ul>
     </nav>
   </div>

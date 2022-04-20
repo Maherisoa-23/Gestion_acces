@@ -1,11 +1,18 @@
-.LogoOmnis {
-  margin-left: 28%;
-  margin-top: 20px;
-  height: 120px;
-  border: 1 px solid black;
-  border-radius: 20px;
+aside {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
+.LogoOmnis {
+  margin: 28%;
+  height: 120px;
+  border: 1 px solid #1d4851db;
+  border-radius: 5px;
+}
+
 .couleur {
-  background-color: #5c5696;
+  background-color: #174048;
   position: fixed;
+}
+.liste .logout {
+  margin-top: 250px;
 }

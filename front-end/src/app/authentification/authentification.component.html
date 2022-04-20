@@ -1,54 +1,52 @@
-<body class="auth-body">
-  <div class="container">
-    <div class="screen">
-      <div class="screen__content">
-        <form class="login" (ngSubmit)="onSubmit(f)" #f="ngForm">
-          <div class="login__field">
-            <i class="login__icon fas fa-user"></i>
-            <input
-              type="text"
-              class="login__input"
-              placeholder="Numero Matricule"
-              name="numero_matricule"
-              required
-              [(ngModel)]="numero_matricule"
-            />
-          </div>
-          <div class="login__field">
-            <i class="login__icon fas fa-lock"></i>
-            <input
-              type="password"
-              class="login__input"
-              placeholder="Mot de Passe"
-              name="password"
-              required
-              [(ngModel)]="password"
-            />
-          </div>
-          <button
-            class="button login__submit"
-            *ngIf="!authStatus"
-            (click)="onSignIn()"
-            type="submit"
-            [disabled]="f.invalid"
-          >
-            <span class="button__text">Se connecter</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-          </button>
-        </form>
-        <div class="social-login">
-          <h3 id="omnis">OMNIS</h3>
-          <div class="social-icons">
-            <h5 id="GA">Gestion d'Acces</h5>
-          </div>
+<img src="../../assets/img/wave.png" alt="liii" class="wave" />
+<div class="container">
+  <div class="img">
+    <img src="../../assets/img/undraw_secure_files_re_6vdh (3).svg" />
+  </div>
+  <div class="login-content">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <img src="../../assets/img/undraw_profile_pic_ic-5-t.svg" />
+      <h2 class="title">Gestion Acces</h2>
+      <p id="omnis">OMNIS Madagascar</p>
+
+      <div class="input-div one">
+        <div class="i">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="div">
+          <input
+            type="text"
+            class="input"
+            name="numero_matricule"
+            required
+            [(ngModel)]="numero_matricule"
+            placeholder="Numero Matricule"
+          />
         </div>
       </div>
-      <div class="screen__background">
-        <span class="screen__background__shape screen__background__shape4"></span>
-        <span class="screen__background__shape screen__background__shape3"></span>
-        <span class="screen__background__shape screen__background__shape2"></span>
-        <span class="screen__background__shape screen__background__shape1"></span>
+      <div class="input-div pass">
+        <div class="i">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="div">
+          <input
+            type="password"
+            class="input"
+            name="password"
+            required
+            [(ngModel)]="password"
+            placeholder="Mot De Passe"
+          />
+        </div>
       </div>
-    </div>
+
+      <input
+        type="submit"
+        class="btn"
+        *ngIf="!authStatus"
+        (click)="onSignIn()"
+        value="Se Connecter"
+      />
+    </form>
   </div>
-</body>
+</div>

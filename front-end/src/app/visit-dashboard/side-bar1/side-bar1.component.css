@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 230px;
+  height: 100%;
+  background: #102a2f;
+  box-shadow: 2px 2px 1px #72ac7c;
+  z-index: 2;
+}
+
+.titre {
+  font-size: 25px;
+  color: white;
+  line-height: 60px;
+  background-color: #102a2f;
+}
+.sidebar ul li a {
+  display: block;
+  color: white;
+  line-height: 60px;
+  padding-left: 25px;
+}
+.sidebar ul li a:hover {
+  border-left: 4px solid #35aa49;
+  transition: 0.5s;
+  background: #44e55f62;
+  counter-reset: white;
+}
+.LogoOmnis {
+  width: 100%;
+  border: 1px solid white;
+  margin-bottom: 50px;
+}

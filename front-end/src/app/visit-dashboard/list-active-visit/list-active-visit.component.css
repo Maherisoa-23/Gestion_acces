@@ -1,9 +1,15 @@
 .bg-perso {
-    background-color: #7c78b8;
-    color: white;
-    justify-content: space-around;
+  background-color: #35aa49;
+  color: white;
+  justify-content: space-around;
 }
 
 .titre {
-    margin-left: 52px;
+  margin-left: 52px;
+}
+.visite {
+  position: absolute;
+  width: 99%;
+  margin-top: 115px;
+  margin-right: 20%;
 }

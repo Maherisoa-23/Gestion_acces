@@ -1,147 +1,150 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nouvelle visite</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail3" [(ngModel)]="visitor_first_name" />
-          </div>
+<div class="visite">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nouvelle visite</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Prénom</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail3" [(ngModel)]="visitor_last_name" />
+        <div class="modal-body">
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="inputEmail3"
+                [(ngModel)]="visitor_first_name"
+              />
+            </div>
           </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Motif</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="motif" />
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label"
+              >Prénom</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="inputEmail3"
+                [(ngModel)]="visitor_last_name"
+              />
+            </div>
           </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">CIN</label>
-          <div class="col-sm-10">
-            <input type="number" class="form-control" [(ngModel)]="CIN" />
+          <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label"
+              >Motif</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="motif" />
+            </div>
           </div>
-        </div>
+          <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label"
+              >CIN</label
+            >
+            <div class="col-sm-10">
+              <input type="number" class="form-control" [(ngModel)]="CIN" />
+            </div>
+          </div>
 
-        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" (click)="addVisit()">
-          Valider
-        </button>
+          <button
+            type="submit"
+            data-bs-dismiss="modal"
+            class="btn btn-primary"
+            (click)="addVisit()"
+          >
+            Valider
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!--  <section class="content">
-    <table class="table table-primary">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom visiteur</th>
-          <th>Motif</th>
-          <th>Date et heure d entree</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="mt-2">
-        <tr *ngFor="let item of visitsList">
-          <td>{{ item.visit_id }}</td>
-          <td>{{ item.visitor_first_name }}</td>
-          <td>{{ item.motif }}</td>
-          <td>{{ item.date_of_entry | date: "dd-MM-yyyy h:m a" }}</td>
-          <button class="btn btn-danger" (click)="exit(item)">Sortir</button>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-</div> -->
-
-<div class="content-wrapper">
-
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6 titre">
-          <h1>La gestion des visites</h1>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6 titre">
+            <h1>La gestion des visites</h1>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content">
-    <div class="container-fluid row justify-content-center">
-      <div class="col-md-11">
-        <div class="row">
+    <section class="content">
+      <div class="container-fluid row justify-content-center">
+        <div class="col-md-11">
+          <div class="row">
+            <div class="col-lg-12 col-6">
+              <div class="small-box bg-perso btn justify-content-center">
+                <h3>Ajouter</h3>
 
-          <div class="col-lg-12 col-6">
-
-            <div class="small-box bg-perso btn justify-content-center ">
-              <h3> Ajouter</h3>
-
-              <a class="small-box-footer" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <h3>Nouvelle visite <i class="ion ion-person-add"></i> </h3>
-              </a>
+                <a
+                  class="small-box-footer"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  <h3>Nouvelle visite <i class="ion ion-person-add"></i></h3>
+                </a>
+              </div>
             </div>
           </div>
 
-        </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div
+                  class="card-header"
+                  style="color: white; background-color: #1d4851"
+                >
+                  <h3 class="card-title">Liste des visites actives</h3>
+                  <div class="card-tools"></div>
+                </div>
 
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Liste des visites actives</h3>
-                <div class="card-tools">
-                  <!-- <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right"  [(ngModel)]="search">
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default" (click)="filtre()">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div> -->
+                <div class="card-body table-responsive p-0">
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Date et heure d'entré</th>
+                        <th>Motif</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of visitsList">
+                        <td>{{ item.visit_id }}</td>
+                        <td>{{ item.visitor_first_name }}</td>
+                        <td>{{ item.date_of_entry }}</td>
+                        <td>{{ item.motif }}</td>
+                        <td>
+                          <button class="btn btn-block btn-danger btn-lg">
+                            Sortir
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nom</th>
-                      <th>Date et heure d'entré</th>
-                      <th>Motif</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of visitsList">
-                      <td>{{item.visit_id}}</td>
-                      <td>{{item.visitor_first_name}}</td>
-                      <td>{{item.date_of_entry}}</td>
-                      <td>{{item.motif}}</td>
-                      <td><button class="btn btn-block btn-danger btn-lg"> Sortir </button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
             </div>
-
           </div>
         </div>
-
       </div>
-      
-
-    </div>
-  </section>
-
+    </section>
+  </div>
 </div>
