@@ -2,6 +2,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
+import hashlib
 
 from authApp.models import User
 from authApp.serializers import User_serializer
@@ -16,6 +17,7 @@ def user_API(request: HttpRequest, id=0):
         return JsonResponse(user_serializer.data, safe=False)
     elif request.method== 'POST':
         user_data = JSONParser().parse(request)
+        user_data["password"] = hashlib.md5(user_data["password"].encode()).hexdigest()
         user_serializer = User_serializer(data=user_data)
         if user_serializer.is_valid():
             user_serializer.save()

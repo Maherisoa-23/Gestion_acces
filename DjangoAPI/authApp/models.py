@@ -5,4 +5,4 @@ class User(models.Model) :
     user_first_name = models.CharField(max_length=50)
     user_last_name    = models.CharField(max_length=50)
     numero_matricule = models.IntegerField()
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=100)
