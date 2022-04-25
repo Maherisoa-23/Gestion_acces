@@ -4,8 +4,8 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 import hashlib
 
-from authApp.models import User
-from authApp.serializers import User_serializer
+from authApp.models import User,Employee
+from authApp.serializers import User_serializer,Employee_serializer
 
 
 # Create your views here.
@@ -34,5 +34,33 @@ def user_API(request: HttpRequest, id=0):
     elif request.method == 'DELETE':
         user=User.objects.get(user_id =id)
         user.delete()
+        return JsonResponse("Delete successfully", safe = False)
+    return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def employee_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        employee = Employee.objects.all()
+        employee_serializer = Employee_serializer(employee, many=True)
+        return JsonResponse(employee_serializer.data, safe=False)
+    elif request.method== 'POST':
+        employee_data = JSONParser().parse(request)
+        employee_data["password"] = hashlib.md5(employee_data["password"].encode()).hexdigest()
+        employee_serializer = Employee_serializer(data=employee_data)
+        if employee_serializer.is_valid():
+            employee_serializer.save()
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        employee_data = JSONParser().parse(request)
+        employee= Employee.objects.get(employee_id = employee_data['employee_id'] )
+        employee_serializer = Employee_serializer(employee,data=employee_data)
+        if employee_serializer.is_valid():
+            employee_serializer.save()
+            return JsonResponse("Update successfully",safe=False)
+        return JsonResponse("failded to Update", safe= False)
+    elif request.method == 'DELETE':
+        employee=Employee.objects.get(employee_id =id)
+        employee.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
