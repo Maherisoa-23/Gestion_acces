@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from authApp.models import Pointage
 from authApp.models import User,Employee
 
 class User_serializer(serializers.ModelSerializer):
@@ -20,4 +21,14 @@ class Employee_serializer(serializers.ModelSerializer):
                   'numero_matricule',
                   'department',
                   'password'
+                  )
+        
+class Pointage_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pointage
+        fields = ('pointage_id',
+                  'employee',
+                  'date',
+                  'entry_time',
+                  'exit_time',
                   )

@@ -4,9 +4,8 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 import hashlib
 
-from authApp.models import User,Employee
-from authApp.serializers import User_serializer,Employee_serializer
-
+from authApp.models import User,Pointage,Employee
+from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer
 
 # Create your views here.
 @csrf_exempt
@@ -62,5 +61,24 @@ def employee_API(request: HttpRequest, id=0):
     elif request.method == 'DELETE':
         employee=Employee.objects.get(employee_id =id)
         employee.delete()
+        return JsonResponse("Delete successfully", safe = False)
+    return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def pointage_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        pointage = Pointage.objects.all()
+        pointage_serializer = Pointage_serializer(pointage, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
+    elif request.method== 'POST':
+        pointage_data = JSONParser().parse(request)
+        pointage_serializer = Pointage_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'DELETE':
+        pointage=pointage.objects.get(pointage_id =id)
+        pointage.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
