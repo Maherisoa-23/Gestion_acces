@@ -1,57 +1,25 @@
-<a class="nav-link" data-widget="pushmenu" href="#" role="button"
-  ><i class="fas fa-bars"></i
-></a>
-<aside class="main-sidebar couleur elevation-4">
-  <img src="./assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
-  <div class="sidebar">
-    <ul
-      class="nav nav-pills nav-sidebar flex-column"
-      data-widget="treeview"
-      role="menu"
-      data-accordion="false"
-    >
-      <li class="nav-item">
-        <a href="../calendar.html" class="nav-link" style="color: white">
-          <i class="fas fa-user-alt fa-md mr-2"></i>
-          <p>{{ userName }}</p>
-        </a>
-      </li>
-    </ul>
-    <hr />
+<!--sidebar-->
+<div class="sidebar">
+  <img
+    src="./assets/images/logoOmnis.png"
+    class="img-fluid LogoOmnis"
+  />
 
-    <nav class="mt-2 liste">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false"
-      >
-        <li class="nav-item">
-          <a routerLink="accueil" class="nav-link" style="color: white">
-            <i class="nav-icon fas fa-address-book"></i>
-            <p>Liste des visites actives</p>
-          </a>
-        </li>
-        <hr />
-        <li class="nav-item">
-          <a
-            routerLink="authentification"
-            class="nav-link"
-            style="color: white"
-          >
-            <i class="nav-icon fas fa-book"></i>
-            <p>Cahier des charges</p>
-          </a>
-        </li>
-        <hr />
-        <li class="nav-item logout">
-          <a (click)="onSignOut()" class="nav-link" style="color: white">
-            <i class="nav-icon fas fa-share-square"></i>
-            Se deconnecter
-          </a>
-        </li>
-        <hr />
-      </ul>
-    </nav>
-  </div>
-</aside>
+  <h1>OMNIS MADAGASCAR</h1>
+  <hr />
+  <ul>
+    <li>
+      <a href="#"><i class="fas fa-user-check"></i> Security name</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-clock"></i> Visite Active</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-book"></i> Cahier des Charges</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-share-square"></i> Deconnexion</a>
+    </li>
+  </ul>
+</div>
+<!--end-sidebar-->

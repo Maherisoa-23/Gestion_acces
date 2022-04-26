@@ -1,11 +1,280 @@
-/* You can add global styles to this file, and also import other style files */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  /*variable*/
+  --color-bleu: #1e546b;
+  --color-green: #35aa49;
+  --color-red: #c92128;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
+/*wrapper*/
+.wrapper- {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  grid-gap: 10px;
+  grid-template-columns: 300px 900px;
+  grid-template-rows: 300px 900px;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+}
+
+/*sidebar*/
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--color-bleu);
+  display: grid;
+  width: 300px;
+  height: 100%;
+}
+.sidebar img {
+  width: 150px;
+  height: 150px;
+  margin-top: 100px;
+  margin-left: 70px;
+  border-radius: 2px;
+}
+.sidebar h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  padding: 0;
+  align-items: center;
+  font-size: 18px;
+  color: #ece9e3b2;
+}
+.sidebar ul {
+  list-style-type: none;
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar ul li {
+  height: 70px;
+  margin-left: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar ul li:hover {
+  height: 70px;
+  margin-left: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar ul li a {
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.sidebar ul li a:hover {
+  border-bottom: 3px solid #35aa49;
+  border-top: 3px solid #35aa49;
+  transition: 0.3s;
+  color: #35aa49;
+  counter-reset: white;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+/*header*/
+.header {
+  grid-area: header;
+  padding: 10px;
+  background-color: #227093;
+}
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+/*content*/
+.content {
+  grid-area: content;
+  background-color: #f7f1e3;
+  padding: 10px;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+.content .btn {
+  height: 200px;
+  width: 100%;
+  grid-column: 1 / -1;
+  background-color: #474787;
+}
+.content .btn .btn-content {
+  margin: 50px auto;
+  height: 100px;
+  width: 300px;
+  color: #fff;
+  background: #227093;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.content .section {
+  width: 100%;
+  grid-column: 1 / -1;
+  background-color: #474787;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.content .section .tbl {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 10%;
+  margin: 40px auto 40px;
+}
+.content .section .tbl thead {
+  background-color: rgb(255, 0, 0);
+}
+.content .section .tbl thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #fff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+.content .section .tbl tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: normal;
+  color: #f1f1f1;
+  background-color: #3c3f44;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #dee2e685;
+}
+.content .section .tbl tbody tr td .bouton {
+  width: 130px;
+  text-decoration: none;
+  line-height: 35px;
+  display: inline-block;
+  background-color: #ff1046;
+  font-weight: medium;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 14px;
+  opacity: 1;
+}
+/*footer*/
+.footer {
+  grid-area: footer;
+  background-color: #84817a;
+  display: grid;
+  justify-content: end;
+  align-items: center;
+  padding: 15px;
+  font-size: 18px;
+}
+/*media*/
+@media screen and (max-width: 768px) {
+  /*wrapper*/
+  .wrapper- {
+    grid-template-areas:
+      "sidebar sidebar sidebar"
+      "header header header"
+      "content content content"
+      "footer footer footer";
+    grid-template-rows: 100px 70px 1fr 80px;
+  }
+
+  /*sidebar*/
+  .sidebar {
+    position: static;
+    display: grid;
+    width: 99%;
+    justify-content: center;
+    align-content: center;
+  }
+  .sidebar img,
+  .sidebar hr {
+    display: none;
+  }
+  .sidebar h1 {
+    padding: 15px 0 15px 0;
+  }
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: auto;
+  }
+  .sidebar ul li {
+    height: 20px;
+    margin: 0 10px;
+  }
+  .sidebar ul li a {
+    font-size: 10px;
+    text-transform: lowercase;
+  }
+  .sidebar ul li a:hover {
+    color: #35aa49;
+    font-size: 12px;
+  }
+  .sidebar ul li a i {
+    display: none;
+  }
+
+  /*content*/
+  .content {
+    grid-template-columns: 1fr;
+  }
+  .content .section .tbl thead {
+    display: none;
+  }
+  .content .section .tbl,
+  .content .section .tbl tbody,
+  .content .section .tbl tr,
+  .content .section .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .content .section .tbl tr {
+    margin-bottom: 15px;
+  }
+  .content .section .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .content .section .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+  }
+  /*header*/
+  .header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto auto;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
 }

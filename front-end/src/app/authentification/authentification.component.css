@@ -86,13 +86,13 @@ form {
   height: 45px;
 }
 
-.input-div > div > .input {
+.input-div > div > h5 {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #40ab52bf;
-  font-size: 15px;
+  font-size: 18px;
   transition: 0.3s;
 }
 
@@ -176,7 +176,7 @@ a:hover {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   margin: 1rem 0;
-  margin-top: 50px;
+
   cursor: pointer;
   transition: 0.5s;
 }

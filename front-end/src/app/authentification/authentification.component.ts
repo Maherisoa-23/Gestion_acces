@@ -3,8 +3,6 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Md5 } from 'ts-md5';
-
-
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
@@ -17,9 +15,13 @@ export class AuthentificationComponent implements OnInit {
   @Input() password: string = '';
 
   usersList: any = [];
-
+  myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router) {
-    
+    this.myScriptElement = document.createElement('script');
+
+    this.myScriptElement.src = 'assets/javascript/authentification.js';
+    this.myScriptElement.type = 'text/javascript';
+    document.body.appendChild(this.myScriptElement);
   }
 
   ngOnInit(): void {
@@ -36,16 +38,13 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     const md5 = new Md5()
     const pass = md5.appendStr(this.password).end().toString()
-    console.log(pass)
     
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
-      console.log(element.password)
       if (
         element.numero_matricule == this.numero_matricule &&
         element.password == pass
       ) {
-        console.log("tafiditra")
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
           this.authService.userName =
