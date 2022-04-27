@@ -17,11 +17,12 @@ body {
   height: 100vh;
   width: 100%;
   grid-gap: 10px;
-  grid-template-columns: 300px 900px;
-  grid-template-rows: 300px 900px;
+  grid-template-columns: 300px 1fr 1fr;
+  grid-template-rows: 80px 1fr 80px;
   grid-template-areas:
-    "sidebar header"
-    "sidebar content";
+    "sidebar header header"
+    "sidebar content content"
+    "sidebar footer footer";
 }
 
 /*sidebar*/
@@ -29,6 +30,7 @@ body {
   grid-area: sidebar;
   background-color: var(--color-bleu);
   display: grid;
+  position: fixed;
   width: 300px;
   height: 100%;
 }
@@ -105,12 +107,12 @@ body {
   background-color: #f7f1e3;
   padding: 10px;
   grid-gap: 16px;
-  grid-template-columns: 1fr 1fr;
 }
 .content .btn {
   height: 200px;
   width: 100%;
-  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
   background-color: #474787;
 }
 .content .btn .btn-content {

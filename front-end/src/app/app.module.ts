@@ -15,16 +15,13 @@ import { AddVisitComponent } from './visit-dashboard/list-active-visit/add-visit
 import { VisitService } from './services/visit.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationComponent } from './authentification/authentification.component';
-import { AccueilComponent } from './accueil/accueil.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth-guard.service';
-import { SideBar1Component } from './visit-dashboard/side-bar1/side-bar1.component';
-import { ListActiveVisit1Component } from './visit-dashboard/list-active-visit1/list-active-visit1.component';
 
 const appRoutes: Routes = [
-  { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent },
+  { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent },
   { path: 'authentification', component: AuthentificationComponent },
   { path: '', component: AuthentificationComponent },
   { path: 'not-found', component: ErrorComponent },
@@ -41,10 +38,7 @@ const appRoutes: Routes = [
     SideBarComponent,
     AddVisitComponent,
     AuthentificationComponent,
-    AccueilComponent,
     ErrorComponent,
-    SideBar1Component,
-    ListActiveVisit1Component,
   ],
   imports: [
     BrowserModule,
