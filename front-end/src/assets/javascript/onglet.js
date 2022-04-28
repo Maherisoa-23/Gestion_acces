@@ -1,20 +1,14 @@
-const onglets = Array.from(document.querySelectorAll(".onglets"));
-const contenu = Array.from(document.querySelectorAll(".contenu"));
+function ouvrirOnglet(evt, nomRubrique) {
+  var i, tab, onglets;
+  tab = document.getElementsByClassName("rubrique");
 
-onglets.forEach((onglet) => {
-  onglet.addEventListener("click", tabsAnimation);
-});
-
-let index = 0;
-
-function tabsAnimation(e) {
-  const el = e.target;
-
-  onglets[index].classList.remove("active");
-  contenu[index].classList.remove("active-contenu");
-
-  index = onglets.indexOf(el);
-
-  onglets[index].classList.add("active");
-  contenu[index].classList.add("active-contenu");
+  for (i = 0; i < tab.length; i++) {
+    tab[i].style.display = "none";
+  }
+  onglets = document.getElementsByClassName("onglet");
+  for (i = 0; i < onglets.length; i++) {
+    onglets[i].className = onglets[i].className.replace(" actif", "");
+  }
+  document.getElementById(nomRubrique).style.display = "block";
+  evt.currentTarget.className += " actif";
 }

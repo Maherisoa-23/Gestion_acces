@@ -1,53 +1,101 @@
-<div class="container">
-    <div class="container-onglets">
-      <div class="onglets active">ANDRAHARO</div>
-      <div class="onglets">AMBOHIJATOVO</div>
-      <div class="onglets">MANGASOAVINA</div>
-    </div>
-  
-    <div class="contenu active-contenu">
-      <div class="section">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nom</th>
-              <th>Heure/Date</th>
-              <th>Motif</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of visitsList">
-              <td data-label="ID">{{ item.visit_id }}</td>
-              <td data-label="Nom">{{ item.visitor_name }}</td>
-              <td data-label="Heure/Date">{{ item.date_of_entry }}</td>
-              <td data-label="Motif">{{ item.motif }}</td>
-              <td data-label="#">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  
-    <div class="contenu">
-      <h3>VISITE AMBOHIJATOVO 2</h3>
-      <hr/>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-        perspiciatis alias quod, dolores eum illum doloremque assumenda odio
-        architecto, dolorum vitae nobis, quo deleniti ipsum.
-      </p>
-    </div>
-  
-    <div class="contenu">
-      <h3>VISITE MANGASOAVINA 3</h3>
-      <hr />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-        perspiciatis alias quod, dolores eum illum doloremque assumenda odio
-        architecto, dolorum vitae nobis, quo deleniti ipsum.
-      </p>
+<div id="auCentre">
+  <div class="barre">
+    <button class="onglet actif" onclick="ouvrirOnglet(event,'Css')" (click)= "switchAndraharo()">
+      Andraharo
+    </button>
+    <button class="onglet" onclick="ouvrirOnglet(event,'Javascript')" (click)= "switchAmbohijatovo()">
+      Ambohijatovo
+    </button>
+    <button class="onglet" onclick="ouvrirOnglet(event,'Php')" (click)= "switchMangasoavina()">
+      Mangasoavina
+    </button>
+  </div>
+
+  <div id="Css" class="rubrique">
+    <!--On garde rubrique pour reconnaître par code Javascript-->
+    <!--Tableau-->
+    <div class="section">
+      <h1>Liste visite Andraharo</h1>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Heure/Date</th>
+            <th>Motif</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of visitsList">
+            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+            <td data-label="#" *ngIf="item.lieu == lieu">
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+
+  <div id="Javascript" class="rubrique" style="display: none">
+    <!--Tableau-->
+    <div class="section">
+      <h1>Liste visite Ambohijatovo</h1>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Heure/Date</th>
+            <th>Motif</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of visitsList">
+            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+            <td data-label="#" *ngIf="item.lieu == lieu">
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="Php" class="rubrique" style="display: none">
+    <!--Tableau-->
+    <div class="section">
+      <h1>Liste visite Mangasoavina</h1>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Heure/Date</th>
+            <th>Motif</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of visitsList">
+            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+            <td data-label="#" *ngIf="item.lieu == lieu">
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
