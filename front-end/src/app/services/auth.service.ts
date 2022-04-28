@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   isAuth = false;
   userName = ""
+  lieu = "";
+  isAdmin = false;
 
   readonly APIUrl = "http://127.0.0.1:8000"
 

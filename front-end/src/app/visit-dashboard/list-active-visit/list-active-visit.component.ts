@@ -1,25 +1,28 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
   selector: 'app-list-active-visit',
   templateUrl: './list-active-visit.component.html',
   styleUrls: ['./list-active-visit.component.css'],
+  providers: [DatePipe]
 })
 export class ListActiveVisitComponent implements OnInit {
   @Input() visit_id = 1;
-  @Input() visitor_first_name = '';
-  @Input() visitor_last_name = '';
+  @Input() visitor_name = '';
   @Input() motif = '';
   @Input() CIN = 0;
-  @Input() search = "";
 
-  constructor(private service: VisitService) {}
+  constructor(private service: VisitService, private authServ : AuthService, private datePipe: DatePipe) {}
 
   visitsList: any = [];
-  FilteredList : any= []
+  lieu = ""
+  FilteredList : any= [];
 
   ngOnInit(): void {
+    this.lieu = this.authServ.lieu
     this.refreshVisitsList();
   }
   refreshVisitsList() {
@@ -30,15 +33,17 @@ export class ListActiveVisitComponent implements OnInit {
 
   ActivatedAddVisit: boolean = false;
   visite: any;
-  date = new Date();
+  date: any;
 
   addVisit() {
+    this.date = new Date();
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd, h:mm:ss');
     var val = {
-      visitor_first_name: this.visitor_first_name,
-      visitor_last_name: this.visitor_last_name,
+      visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
-      date_of_entry: this.date,
+      lieu: this.authServ.lieu,
+      date_of_entry: this.date.toString()
     };
     
     this.service.addVisit(val).subscribe((res) => {
@@ -46,38 +51,33 @@ export class ListActiveVisitComponent implements OnInit {
     });
     this.refreshVisitsList();
     this.refreshVisitsList();
+    this.visitor_name =""
+    this.CIN = 0
+    this.motif = ""
   }
 
   exit(item : any) {
+    
+    this.date = new Date();
+    this.date = this.datePipe.transform(this.date, 'h:mm:ss');
     var val = {
-      visitor_first_name: item.visitor_first_name,
-      visitor_last_name: item.visitor_last_name,
+      visitor_name: item.visitor_name,
       motif: item.motif,
       CIN: item.CIN,
+      lieu: item.lieu,
       date_of_entry: item.date_of_entry,
-      exit_time : this.date
+      exit_time : this.date.toString()
     };
     if (confirm('Vous êtes sûs?')) {
       this.service.deleteVisit(item.visit_id).subscribe((data) => {
+        
+      });
+      this.service.addVisitsRegister(val).subscribe((data) => {
         alert(data.toString());
       });
-      this.service.addVisitsRegister(val).subscribe((res) => {
-      });
     }
     this.refreshVisitsList();
     this.refreshVisitsList();
   }
-
-  filtre(){
-    this.visitsList = []
-    for (let index = 0; index < this.visitsList.length; index++) {
-      const element = this.visitsList[index];
-      
-      if (element.visitor_first_name == this.search) {
-        this.FilteredList.push(element)
-      }
-    }
-    this.visitsList = this.FilteredList
-    this.visitsList = this.FilteredList
-  }
+  
 }

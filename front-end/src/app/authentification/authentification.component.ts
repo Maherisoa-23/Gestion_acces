@@ -13,6 +13,8 @@ export class AuthentificationComponent implements OnInit {
   authName!: string;
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
+  @Input() lieu = "Ambohijatovo";
+  lieux = ["Ambohijatovo", "Andraharo","Mangasoavina"]
 
   usersList: any = [];
   myScriptElement: HTMLScriptElement;
@@ -45,6 +47,11 @@ export class AuthentificationComponent implements OnInit {
         element.numero_matricule == this.numero_matricule &&
         element.password == pass
       ) {
+        this.authService.lieu = this.lieu
+        if (element.user_id == 1) {
+          this.authService.isAdmin = true
+        }
+        console.log(this.authService.lieu)
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
           this.authService.userName =

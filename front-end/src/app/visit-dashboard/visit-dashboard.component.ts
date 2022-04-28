@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-visit-dashboard',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./visit-dashboard.component.css']
 })
 export class VisitDashboardComponent implements OnInit {
+  isAdmin = false;
 
-  constructor() { }
+  constructor(private service: AuthService) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.service.isAdmin
+    console.log(this.isAdmin)
   }
 
 }

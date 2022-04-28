@@ -9,13 +9,14 @@
 
   <!--header-->
   <div class="header">
-    <h1>Gestion Acces</h1>
+    <app-nav-bar></app-nav-bar>
   </div>
   <!--end-header-->
 
   <!--content-->
   <div class="content">
-    <app-list-active-visit></app-list-active-visit>
+    <app-list-active-visit *ngIf="!isAdmin"></app-list-active-visit>
+    <app-list-visit-admin *ngIf="isAdmin"></app-list-visit-admin>
   </div>
   <!--end-content-->
 </div>

@@ -1,39 +1,40 @@
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nouvelle visite</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail3" [(ngModel)]="visitor_first_name">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Prénom</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail3" [(ngModel)]="visitor_last_name">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Motif</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="motif" >
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">CIN</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" [(ngModel)]="CIN" >
-                    </div>
-                </div>
 
-                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" (click)="addVisit()">Valider</button>
-            </div>
-        </div>
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
-</div>
+
+    <div class="container">
+      <label for="uname"><b>Nom Visiteur </b></label>
+      <input
+        type="text"
+        [(ngModel)] = "visitor_name"
+        required        
+      />
+
+      <label for="psw"><b>Numero CIN</b></label><br>
+      <input
+        type="number"
+        [(ngModel)] = "CIN"
+        required
+      /> <br>
+
+      <label for="subject"><b>Motif </b></label>
+      <textarea
+        id="subject"
+        [(ngModel)] = "motif"
+        style="height: 200px"
+      ></textarea>
+      <button type="submit" class="btn-ajout" (click)="addVisit()">Ajouter</button>
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
+        Cancel
+      </button>
+    </div>
