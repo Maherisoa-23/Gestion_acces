@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
@@ -6,6 +7,7 @@ import { VisitService } from 'src/app/services/visit.service';
   selector: 'app-list-active-visit',
   templateUrl: './list-active-visit.component.html',
   styleUrls: ['./list-active-visit.component.css'],
+  providers: [DatePipe]
 })
 export class ListActiveVisitComponent implements OnInit {
   @Input() visit_id = 1;
@@ -13,7 +15,7 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() motif = '';
   @Input() CIN = 0;
 
-  constructor(private service: VisitService, private authServ : AuthService) {}
+  constructor(private service: VisitService, private authServ : AuthService, private datePipe: DatePipe) {}
 
   visitsList: any = [];
   lieu = ""
@@ -31,15 +33,17 @@ export class ListActiveVisitComponent implements OnInit {
 
   ActivatedAddVisit: boolean = false;
   visite: any;
-  date = new Date();
+  date: any;
 
   addVisit() {
+    this.date = new Date();
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd, h:mm:ss');
     var val = {
       visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
       lieu: this.authServ.lieu,
-      date_of_entry: Date.now().toString()
+      date_of_entry: this.date.toString()
     };
     
     this.service.addVisit(val).subscribe((res) => {
@@ -50,19 +54,23 @@ export class ListActiveVisitComponent implements OnInit {
   }
 
   exit(item : any) {
+    
+    this.date = new Date();
+    this.date = this.datePipe.transform(this.date, 'h:mm:ss');
     var val = {
-      visitor_first_name: item.visitor_first_name,
-      visitor_last_name: item.visitor_last_name,
+      visitor_name: item.visitor_name,
       motif: item.motif,
       CIN: item.CIN,
+      lieu: item.lieu,
       date_of_entry: item.date_of_entry,
-      exit_time : this.date
+      exit_time : this.date.toString()
     };
     if (confirm('Vous êtes sûs?')) {
       this.service.deleteVisit(item.visit_id).subscribe((data) => {
-        alert(data.toString());
+        
       });
-      this.service.addVisitsRegister(val).subscribe((res) => {
+      this.service.addVisitsRegister(val).subscribe((data) => {
+        alert(data.toString());
       });
     }
     this.refreshVisitsList();

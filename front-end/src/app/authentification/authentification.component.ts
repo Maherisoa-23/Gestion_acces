@@ -13,7 +13,7 @@ export class AuthentificationComponent implements OnInit {
   authName!: string;
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
-  @Input() lieu = "";
+  @Input() lieu = "Ambohijatovo";
   lieux = ["Ambohijatovo", "Andraharo","Mangasoavina"]
 
   usersList: any = [];
