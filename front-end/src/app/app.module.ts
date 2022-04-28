@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { ListVisitAdminComponent } from './visit-dashboard/list-visit-admin/list-visit-admin.component';
 
 const appRoutes: Routes = [
   { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     AddVisitComponent,
     AuthentificationComponent,
     ErrorComponent,
+    ListVisitAdminComponent,
   ],
   imports: [
     BrowserModule,

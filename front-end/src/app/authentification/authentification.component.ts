@@ -48,6 +48,9 @@ export class AuthentificationComponent implements OnInit {
         element.password == pass
       ) {
         this.authService.lieu = this.lieu
+        if (element.user_id == 1) {
+          this.authService.isAdmin = true
+        }
         console.log(this.authService.lieu)
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
