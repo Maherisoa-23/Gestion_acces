@@ -76,23 +76,24 @@ body {
   /*wrapper*/
   .wrapper- {
     grid-template-areas:
-      "sidebar sidebar "
       "header header "
+      "sidebar sidebar "
       "content content ";
-    grid-template-rows: 100px 70px 1fr;
+    grid-template-rows: 70px 200px 1fr;
   }
 
   /*sidebar*/
   .sidebar {
     position: static;
     display: grid;
-    width: 99%;
+    width: 100%;
     justify-content: center;
     align-content: center;
   }
 
   /*content*/
   .content {
+    width: 100%;
     grid-template-columns: 1fr;
   }
 }

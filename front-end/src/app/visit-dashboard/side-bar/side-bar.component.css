@@ -8,7 +8,7 @@ img {
 h1 {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 0;
   align-items: center;
   font-size: 18px;
@@ -22,25 +22,25 @@ ul {
   margin-top: 60px;
 }
 ul li {
-  height: 60px;
-  margin-left: 50px;
-  justify-content: center;
-  align-items: center;
+  height: 80px;
+  display: block;
 }
 ul li a {
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
+  padding: 40px;
+  display: block;
 }
 ul li a:hover {
-  border-bottom: 3px solid #35aa49;
-  border-top: 3px solid #35aa49;
+  border-left: 6px solid #35aa49;
   transition: 0.3s;
-  color: #35aa49;
+  color: #fff;
+  background: rgba(0, 128, 0, 0.66);
   counter-reset: white;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /*media*/
@@ -52,25 +52,30 @@ ul li a:hover {
     display: none;
   }
   h1 {
-    padding: 10px 0 10px 0;
+    padding: 5px 0 5px 0;
   }
   ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0px;
   }
   ul li {
     height: 20px;
-    margin: 0 10px;
+    margin: 0 15px;
   }
   ul li a {
     font-size: 14px;
-    text-transform: lowercase;
+    text-transform: capitalize;
+    padding: 5px;
   }
   ul li a:hover {
-    color: #35aa49;
-    font-size: 12px;
+    border-left: 0;
+    border-bottom: 3px solid #35aa49;
+    border-radius: 0;
+    background: none;
+    color: #fff;
+    font-size: 14px;
   }
   ul li a i {
     display: none;

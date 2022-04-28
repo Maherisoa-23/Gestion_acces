@@ -51,6 +51,9 @@ export class ListActiveVisitComponent implements OnInit {
     });
     this.refreshVisitsList();
     this.refreshVisitsList();
+    this.visitor_name =""
+    this.CIN = 0
+    this.motif = ""
   }
 
   exit(item : any) {

@@ -1,304 +1,310 @@
 .btn {
-    height: auto;
+  height: auto;
+  width: 100%;
+  grid-column: 1 / -1;
+  background-color: var(--color-fond);
+  display: flex;
+  justify-content: center;
+}
+.btn .btn-content {
+  margin: 20px auto 40px;
+  height: 100px;
+  width: 300px;
+  color: #fff;
+  background: var(--color-green);
+  border: none;
+  border-radius: 15px;
+  text-transform: uppercase;
+  font-size: 18px;
+  box-shadow: 0 9px #999;
+}
+.btn .btn-content:hover {
+  background-color: #3e8e41;
+}
+.btn .btn-content:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/*TABLE*/
+.section {
+  width: 100%;
+  grid-column: 1 / -1;
+  background-color: var(--color-fond);
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.section .text h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 20px;
+  color: var(--color-blue);
+}
+.section .tbl {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 10%;
+  margin: 10px auto 40px;
+}
+.section .tbl thead {
+  background-color: var(--color-blue);
+}
+.section .tbl thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #fff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+.section .tbl tbody tr {
+  background-color: #fff;
+  color: var(--color-blue);
+}
+.section .tbl tbody tr:hover {
+  background-color: #8c999ea7;
+  color: #fff;
+}
+.section .tbl tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: normal;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid var(--color-blue);
+}
+
+.section .tbl tbody tr td .bouton {
+  width: 100px;
+  text-decoration: none;
+  line-height: 35px;
+  display: inline-block;
+  background-color: var(--color-red);
+  font-weight: medium;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  opacity: 1;
+}
+.section .tbl tbody tr td .bouton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.section .tbl tbody tr td .bouton span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.section .tbl tbody tr td .bouton:hover span {
+  padding-right: 25px;
+}
+.section .tbl tbody tr td .bouton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/*modal*/
+
+/* Full-width input fields */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid var(--color-blue);
+  box-sizing: border-box;
+  color: var(--color-blue);
+}
+
+/* Set a style for all buttons */
+/*button {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}*/
+
+/* Extra styles for the cancel button */
+/*.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: var(--color-red);
+}*/
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.container {
+  padding: 16px;
+}
+.modal form .container .btn-cancel {
+  background-color: var(--color-red);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+.modal form .container .btn-cancel:hover {
+  box-shadow: 2px 2px 2px rgb(52, 14, 14);
+}
+.modal form .container .btn-ajout {
+  background-color: var(--color-green);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 1;
+  transition: 0.3s;
+}
+.modal form .container .btn-ajout:hover {
+  box-shadow: 2px 2px 2px rgb(19, 64, 32);
+}
+
+.modal form .container label {
+  color: var(--color-blue);
+  text-transform: uppercase;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 1% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid var(--color-blue);
+  border-radius: 5px;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: var(--color-blue);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
     width: 100%;
-    grid-column: 1 / -1;
-    background-color: var(--color-fond);
-    display: flex;
-    justify-content: center;
   }
-  .btn .btn-content {
-    margin: 20px auto 40px;
-    height: 100px;
-    width: 300px;
-    color: #fff;
-    background: var(--color-green);
-    border: none;
-    border-radius: 15px;
-    text-transform: uppercase;
-    font-size: 18px;
-    box-shadow: 0 9px #999;
-  }
-  .btn .btn-content:hover {
-    background-color: #3e8e41;
-  }
-  .btn .btn-content:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  
-  /*TABLE*/
-  .section {
-    width: 100%;
-    grid-column: 1 / -1;
-    background-color: var(--color-fond);
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  .section .tbl {
-    width: 100%;
-    border-collapse: collapse;
-    padding: 0 10%;
-    margin: 0 auto 40px;
-  }
+}
+/*media*/
+@media screen and (max-width: 768px) {
+  /*content*/
+
   .section .tbl thead {
-    background-color: var(--color-blue);
+    display: none;
   }
-  .section .tbl thead tr th {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.35px;
-    color: #fff;
-    opacity: 1;
-    padding: 12px;
-    vertical-align: top;
-    border: 1px solid #dee2e685;
+  .section .tbl,
+  .section .tbl tbody,
+  .section .tbl tr,
+  .section .tbl td {
+    display: block;
+    width: 100%;
   }
-  .section .tbl tbody tr {
-    background-color: #fff;
-    color: var(--color-blue);
-  }
-  .section .tbl tbody tr:hover {
-    background-color: #8c999ea7;
-    color: #fff;
+  .section .tbl tr {
+    margin-bottom: 15px;
   }
   .section .tbl tbody tr td {
-    font-size: 14px;
-    letter-spacing: 0.35px;
-    font-weight: normal;
-    padding: 8px;
-    text-align: center;
-    border: 1px solid var(--color-blue);
-  }
-  
-  .section .tbl tbody tr td .bouton {
-    width: 100px;
-    text-decoration: none;
-    line-height: 35px;
-    display: inline-block;
-    background-color: var(--color-red);
-    font-weight: medium;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: all 0.5s;
-    cursor: pointer;
-    opacity: 1;
-  }
-  .section .tbl tbody tr td .bouton span {
-    cursor: pointer;
-    display: inline-block;
+    text-align: right;
+    padding-left: 50%;
     position: relative;
-    transition: 0.5s;
   }
-  .section .tbl tbody tr td .bouton span:after {
-    content: "\00bb";
+  .section .tbl td:before {
+    content: attr(data-label);
     position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-  .section .tbl tbody tr td .bouton:hover span {
-    padding-right: 25px;
-  }
-  .section .tbl tbody tr td .bouton:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-  
-  /*modal*/
-  
-  /* Full-width input fields */
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid var(--color-blue);
-    box-sizing: border-box;
-    color: var(--color-blue);
-  }
-  
-  /* Set a style for all buttons */
-  /*button {
-    background-color: #04aa6d;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }*/
-  
-  /* Extra styles for the cancel button */
-  /*.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: var(--color-red);
-  }*/
-  
-  /* Center the image and position the close button */
-  .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-  }
-  
-  .container {
-    padding: 16px;
-  }
-  .modal form .container .btn-cancel {
-    background-color: var(--color-red);
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-  }
-  .modal form .container .btn-cancel:hover {
-    box-shadow: 2px 2px 2px rgb(52, 14, 14);
-  }
-  .modal form .container .btn-ajout {
-    background-color: var(--color-green);
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 1;
-    transition: 0.3s;
-  }
-  .modal form .container .btn-ajout:hover {
-    box-shadow: 2px 2px 2px rgb(19, 64, 32);
-  }
-  
-  .modal form .container label {
-    color: var(--color-blue);
-    text-transform: uppercase;
-  }
-  
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
-  
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
     left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    padding-top: 60px;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
   }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 1% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid var(--color-blue);
-    border-radius: 5px;
-    width: 50%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button (x) */
-  .close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: var(--color-blue);
-    font-size: 35px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: red;
-    cursor: pointer;
-  }
-  
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s;
-  }
-  
-  @-webkit-keyframes animatezoom {
-    from {
-      -webkit-transform: scale(0);
-    }
-    to {
-      -webkit-transform: scale(1);
-    }
-  }
-  
-  @keyframes animatezoom {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-  
-  /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 300px) {
-    span.psw {
-      display: block;
-      float: none;
-    }
-    .cancelbtn {
-      width: 100%;
-    }
-  }
-  /*media*/
-  @media screen and (max-width: 768px) {
-    /*content*/
-  
-    .section .tbl thead {
-      display: none;
-    }
-    .section .tbl,
-    .section .tbl tbody,
-    .section .tbl tr,
-    .section .tbl td {
-      display: block;
-      width: 100%;
-    }
-    .section .tbl tr {
-      margin-bottom: 15px;
-    }
-    .section .tbl tbody tr td {
-      text-align: right;
-      padding-left: 50%;
-      position: relative;
-    }
-    .section .tbl td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 0;
-      width: 50%;
-      padding-left: 15px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: left;
-    }
-  }
-  
+}
