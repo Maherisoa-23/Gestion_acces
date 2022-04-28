@@ -13,7 +13,7 @@ export class AuthService {
   lieu = "";
   isAdmin = false;
 
-  readonly APIUrl = "http://127.0.0.1:8000"
+  readonly APIUrl = "http://192.168.1.253:8000"
 
   constructor(private http: HttpClient) { }
 
