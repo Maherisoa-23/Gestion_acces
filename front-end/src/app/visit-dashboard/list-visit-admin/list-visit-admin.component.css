@@ -1,81 +1,238 @@
 body {
-    background: #f1f1f1;
-    height: 100vh;
-  }
-  
+  height: 100vh;
+}
+
+.container {
+  position: absolute;
+  top: 40%;
+  margin-left: 600px;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 300px;
+  background: #f1f1f1;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
   .container {
-    position: absolute;
-    top: 40%;
-    margin-left: 600px;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 300px;
-    background: #f1f1f1;
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 100%;
   }
-  
+
   .container-onglets {
-    background: #f1f1f1;
     width: 100%;
     height: 30%;
     justify-content: space-evenly;
     display: flex;
     border-bottom: 1px solid #333;
   }
+
   .onglets {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
   }
-  .onglets:not(:nth-child(3)) {
-    border-right: 1px solid #333;
-  }
-  
-  .contenu {
-    height: 70%;
-    width: 100%;
-    position: absolute;
+}
+
+.container-onglets {
+  background: #f1f1f1;
+  width: 100%;
+  height: 30%;
+  justify-content: space-evenly;
+  display: flex;
+  border-bottom: 1px solid #333;
+}
+
+.onglets {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.onglets:not(:nth-child(3)) {
+  border-right: 1px solid #333;
+}
+
+.contenu {
+  height: 70%;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+.contenu h3 {
+  padding: 20px;
+}
+
+.contenu hr {
+  width: 20%;
+  height: 2px;
+  margin-left: 20px;
+  background: #000;
+  border: none;
+}
+
+.contenu p {
+  padding: 20px;
+}
+
+/* Anim */
+
+.active {
+  background: midnightblue;
+  color: #f1f1f1;
+  transition: all 0.3s ease;
+}
+
+.active-contenu {
+  animation: fade 0.5s forwards;
+}
+
+@keyframes fade {
+  from {
     opacity: 0;
   }
-  .contenu h3 {
-    padding: 20px;
+
+  to {
+    opacity: 1;
   }
-  .contenu hr {
-    width: 20%;
-    height: 2px;
-    margin-left: 20px;
-    background: #000;
-    border: none;
+}
+
+/*media*/
+@media screen and (max-width: 768px) {}
+
+/*TABLEAU*/
+
+.section {
+  width: 100%;
+  grid-column: 1 / -1;
+  background-color: var(--color-fond);
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 10%;
+  margin: 0 auto 40px;
+}
+
+.tbl thead {
+  background-color: var(--color-blue);
+}
+
+.tbl thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #fff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+
+.tbl tbody tr {
+  background-color: #fff;
+  color: var(--color-blue);
+}
+
+.tbl tbody tr:hover {
+  background-color: #8c999ea7;
+  color: #fff;
+}
+
+.tbl tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: normal;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid var(--color-blue);
+}
+
+.tbl tbody tr td .bouton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.tbl tbody tr td .bouton span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.tbl tbody tr td .bouton:hover span {
+  padding-right: 25px;
+}
+
+.tbl tbody tr td .bouton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: var(--color-blue);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/*media*/
+@media screen and (max-width: 768px) {
+  /*content*/
+
+  .tbl thead {
+    display: none;
   }
-  .contenu p {
-    padding: 20px;
+
+  .tbl,
+  .tbl tbody,
+  .tbl tr,
+  .tbl td {
+    display: block;
+    width: 100%;
   }
-  
-  /* Anim */
-  
-  .active {
-    background: midnightblue;
-    color: #f1f1f1;
-    transition: all 0.3s ease;
+
+  .tbl tr {
+    margin-bottom: 15px;
   }
-  
-  .active-contenu {
-    animation: fade 0.5s forwards;
+
+  .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
   }
-  @keyframes fade {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+
+  .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
   }
-  /*media*/
-  @media screen and (max-width: 768px) {
-  }
-  
+}

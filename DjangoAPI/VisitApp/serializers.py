@@ -8,6 +8,7 @@ class Visit_serializer(serializers.ModelSerializer):
                   'visitor_name',
                   'motif',
                   'CIN',
+                  'lieu',
                   'date_of_entry'
                   )
 class Visits_register_serializer(serializers.ModelSerializer):
@@ -17,6 +18,7 @@ class Visits_register_serializer(serializers.ModelSerializer):
                   'visitor_name',
                   'motif',
                   'CIN',
+                  'lieu',
                   'date_of_entry',
                   'exit_time'
                   )

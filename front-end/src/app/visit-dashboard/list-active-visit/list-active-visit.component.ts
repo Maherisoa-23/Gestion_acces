@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
@@ -12,12 +13,14 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() motif = '';
   @Input() CIN = 0;
 
-  constructor(private service: VisitService) {}
+  constructor(private service: VisitService, private authServ : AuthService) {}
 
   visitsList: any = [];
-  FilteredList : any= []
+  lieu = ""
+  FilteredList : any= [];
 
   ngOnInit(): void {
+    this.lieu = this.authServ.lieu
     this.refreshVisitsList();
   }
   refreshVisitsList() {
@@ -35,6 +38,7 @@ export class ListActiveVisitComponent implements OnInit {
       visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
+      lieu: this.authServ.lieu,
       date_of_entry: Date.now().toString()
     };
     

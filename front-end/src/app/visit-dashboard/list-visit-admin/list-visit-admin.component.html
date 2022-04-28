@@ -6,13 +6,28 @@
     </div>
   
     <div class="contenu active-contenu">
-      <h3>VISITE ANDRAHARO 1</h3>
-      <hr />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-        perspiciatis alias quod, dolores eum illum doloremque assumenda odio
-        architecto, dolorum vitae nobis, quo deleniti ipsum.
-      </p>
+      <div class="section">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Heure/Date</th>
+              <th>Motif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of visitsList">
+              <td data-label="ID">{{ item.visit_id }}</td>
+              <td data-label="Nom">{{ item.visitor_name }}</td>
+              <td data-label="Heure/Date">{{ item.date_of_entry }}</td>
+              <td data-label="Motif">{{ item.motif }}</td>
+              <td data-label="#">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   
     <div class="contenu">

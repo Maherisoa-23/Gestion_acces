@@ -43,7 +43,7 @@
         name="motif"
         style="height: 200px"
       ></textarea>
-      <button type="submit" class="btn-ajout" (click)="addVisit()">Ajouter</button>
+      <button type="submit" class="btn-ajout"  (click)="addVisit()" onclick="document.getElementById('id01').style.display='none'">Ajouter</button>
       <button
         class="btn-cancel"
         type="button"
@@ -55,7 +55,7 @@
 
   </form>
 </div>
-
+<h3>Liste de visite à {{lieu}}</h3>
 <!--Tableau-->
 <div class="section">
   <table class="tbl">
@@ -70,13 +70,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of visitsList">
-        <td data-label="ID">{{ item.visit_id }}</td>
-        <td data-label="Nom">{{ item.visitor_name }}</td>
-        <td data-label="Heure/Date">{{ item.date_of_entry }}</td>
-        <td data-label="Motif">{{ item.motif }}</td>
-        <td data-label="#">
-          <a href="#" class="bouton" (click)="exit(item)"
-            ><span>Sortir</span></a
+        <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
+        <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+        <td data-label="#" *ngIf="item.lieu == lieu">
+          <button class="bouton" (click)="exit(item)"
+            ><span>Sortir</span></button
           >
         </td>
       </tr>
