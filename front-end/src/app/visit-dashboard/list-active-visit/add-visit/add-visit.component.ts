@@ -7,21 +7,24 @@ import { VisitService } from 'src/app/services/visit.service';
   styleUrls: ['./add-visit.component.css'],
 })
 export class AddVisitComponent implements OnInit {
-  @Input() visitor_first_name = '';
-  @Input() visitor_last_name = '';
+  @Input() visitor_name = '';
   @Input() motif = '';
   @Input() CIN = 0;
+  date_of_entry : Date;
 
-  constructor(private service: VisitService) {}
+
+  constructor(private service: VisitService) {
+    this.date_of_entry =new Date()
+  }
 
   ngOnInit(): void {}
 
   addVisit() {
     var val = {
-      visitor_first_name: this.visitor_first_name,
-      visitor_last_name: this.visitor_last_name,
+      visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
+      date_of_entry: Date.now().toString()
     };
 
     this.service.addVisit(val).subscribe((res) => {

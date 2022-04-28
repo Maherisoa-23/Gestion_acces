@@ -10,7 +10,8 @@
 
 <!--modal-->
 <div id="id01" class="modal">
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate">
+    
     <div class="imgcontainer">
       <span
         onclick="document.getElementById('id01').style.display='none'"
@@ -21,31 +22,28 @@
     </div>
 
     <div class="container">
-      <label for="uname"><b>Nom Visiteur</b></label>
+      <label ><b>Nom Visiteur </b></label>
       <input
         type="text"
-        placeholder="Entrer le nom du visiteur"
-        name="uname"
-        required
-        
+        [(ngModel)] = "visitor_name" 
+        name="visitor_name"     
       />
 
-      <label for="psw"><b>Numero CIN</b></label>
+      <label ><b>Numero CIN</b></label><br>
       <input
-        type="text"
-        placeholder="Entrer le numero CIN"
-        name="psw"
-        required
-      />
+        type="number"
+        [(ngModel)] = "CIN"
+        name="CIN"  
+      /> <br>
 
-      <label for="subject"><b>Motif</b></label>
+      <label ><b>Motif </b></label>
       <textarea
         id="subject"
-        name="subject"
-        placeholder="Ecrire le motif"
+        [(ngModel)] = "motif"
+        name="motif"
         style="height: 200px"
       ></textarea>
-      <button type="submit" class="btn-ajout">Ajouter</button>
+      <button type="submit" class="btn-ajout" (click)="addVisit()">Ajouter</button>
       <button
         class="btn-cancel"
         type="button"
@@ -55,7 +53,6 @@
       </button>
     </div>
 
-    <div class="container" style="background-color: #f1f1f1"></div>
   </form>
 </div>
 
@@ -74,7 +71,7 @@
     <tbody>
       <tr *ngFor="let item of visitsList">
         <td data-label="ID">{{ item.visit_id }}</td>
-        <td data-label="Nom">{{ item.visitor_first_name }}</td>
+        <td data-label="Nom">{{ item.visitor_name }}</td>
         <td data-label="Heure/Date">{{ item.date_of_entry }}</td>
         <td data-label="Motif">{{ item.motif }}</td>
         <td data-label="#">
