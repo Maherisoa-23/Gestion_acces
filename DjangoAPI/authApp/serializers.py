@@ -18,6 +18,7 @@ class Employee_serializer(serializers.ModelSerializer):
         fields = ('employee_id',
                   'employee_name',
                   'function',
+                  'lieu',
                   'numero_matricule',
                   'department',
                   'password'
@@ -35,7 +36,9 @@ class Pointage_serializer(serializers.ModelSerializer):
         model = Pointage
         fields = ('pointage_id',
                   'employee',
+                  'employee_name',
                   'date',
+                  'lieu',
                   'entry_time'
                   )
 class Pointage_register_serializer(serializers.ModelSerializer):
@@ -44,6 +47,7 @@ class Pointage_register_serializer(serializers.ModelSerializer):
         fields = ('pointage_id',
                   'employee',
                   'date',
+                  'lieu',
                   'entry_time',
                   'exit_time',
                   )        

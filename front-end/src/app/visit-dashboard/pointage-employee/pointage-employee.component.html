@@ -1,154 +1,89 @@
-<p>pointage-employee works!</p>
 <!--bouton ajout + sorti-->
 <div class="btn">
-    <button
-      class="btn-content entre"
-      onclick="document.getElementById('id01').style.display='block'"
-    >
-      Entree
-    </button>
-    <button
-      class="btn-content exit"
-      onclick="document.getElementById('id02').style.display='block'"
-    >
-      Sortie
-    </button>
-  </div>
-  <!--end-bouton ajout + sorti-->
-  
-  <!--Modal-entre-->
-  <div id="id01" class="modal">
-    <form class="modal-content animate">
-      <h1>entre</h1>
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id01').style.display='none'"
-          class="close"
-          title="Close Modal"
-          >&times;</span
-        >
-      </div>
-  
-      <div class="container">
-        <label><b>Numero Matricule</b></label>
-        <input type="text" name="Numero_matricule" />
-        <label><b>Mot de passe</b></label>
-        <input type="password" name="Mot_de_passe" />
-  
-        <button
-          type="submit"
-          class="btn-ajout"
-          onclick="document.getElementById('id01').style.display='none'"
-        >
-          Ajouter
-        </button>
-        <button
-          class="btn-cancel"
-          type="button"
-          onclick="document.getElementById('id01').style.display='none'"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <!--Modal-entre-end-->
-  <!--Modal-sorti-->
-  
-  <div id="id02" class="modal">
-    <form class="modal-content animate">
-      <h1>sorti</h1>
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id02').style.display='none'"
-          class="close"
-          title="Close Modal"
-          >&times;</span
-        >
-      </div>
-  
-      <div class="container">
-        <label><b>Numero Matricule</b></label>
-        <input type="text" name="Numero_matricule" />
-        <label><b>Mot de passe</b></label>
-        <input type="password" name="Mot_de_passe" />
-  
-        <button
-          type="submit"
-          class="btn-ajout"
-          onclick="document.getElementById('id01').style.display='none'"
-        >
-          Ajouter
-        </button>
-        <button
-          class="btn-cancel"
-          type="button"
-          onclick="document.getElementById('id02').style.display='none'"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <!--Modal-sorti-end-->
-  
-  <!--tableau-pointage-->
-  <div class="section">
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Heure d'entree</th>
-          <th>Nom</th>
-          <th>Numero Matricule</th>
-          <th>Departement</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="ID">1</td>
-          <td data-label="Heure entre">001</td>
-          <td data-label="Nom" s>Lucas</td>
-          <td data-label="Matricule">Stagiaire</td>
-          <td data-label="Departement">DSI</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>001</td>
-          <td>Lucas</td>
-          <td>Stagiaire</td>
-          <td>DSI</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>001</td>
-          <td>Lucas</td>
-          <td>Stagiaire</td>
-          <td>DSI</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>001</td>
-          <td>Lucas</td>
-          <td>Stagiaire</td>
-          <td>DSI</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>001</td>
-          <td>Lucas</td>
-          <td>Stagiaire</td>
-          <td>DSI</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>001</td>
-          <td>Lucas</td>
-          <td>Stagiaire</td>
-          <td>DSI</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <!--end-tableau-pointage-->
-  
+  <button class="btn-content entre" onclick="document.getElementById('id01').style.display='block'">
+    Entree
+  </button>
+  <button class="btn-content exit" onclick="document.getElementById('id02').style.display='block'">
+    Sortie
+  </button>
+</div>
+<!--end-bouton ajout + sorti-->
+
+<!--Modal-entre-->
+<div id="id01" class="modal">
+  <form class="modal-content animate">
+    <h1>entre</h1>
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close"
+        title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label><b>Numero Matricule</b></label>
+      <input type="text" name="Numero_matricule" />
+      <label><b>Mot de passe</b></label>
+      <input type="password" name="Mot_de_passe" />
+
+      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'">
+        Ajouter
+      </button>
+      <button class="btn-cancel" type="button" onclick="document.getElementById('id01').style.display='none'">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<!--Modal-entre-end-->
+<!--Modal-sorti-->
+
+<div id="id02" class="modal">
+  <form class="modal-content animate">
+    <h1>sorti</h1>
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close"
+        title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label><b>Numero Matricule</b></label>
+      <input type="text" name="Numero_matricule" />
+      <label><b>Mot de passe</b></label>
+      <input type="password" name="Mot_de_passe" />
+
+      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'">
+        Ajouter
+      </button>
+      <button class="btn-cancel" type="button" onclick="document.getElementById('id02').style.display='none'">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<!--Modal-sorti-end-->
+
+<!--tableau-pointage-->
+<div class="section">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Heure d'entree</th>
+        <th>Nom</th>
+        <th>Numero Matricule</th>
+        <th>Departement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pointages">
+        <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
+        <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+        <td data-label="#" *ngIf="item.lieu == lieu">
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<!--end-tableau-pointage-->

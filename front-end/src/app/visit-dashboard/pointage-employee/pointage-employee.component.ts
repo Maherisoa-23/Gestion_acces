@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-pointage-employee',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PointageEmployeeComponent implements OnInit {
 
-  constructor() { }
+  lieu = "";
+  pointages : any = []
+
+  constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
+    this.lieu = this.authServ.lieu;
+  }
+
+  refreshPointageList() {
+    this.authServ.getPointageList().subscribe((data) => {
+      this.pointages = data;
+    });
   }
 
 }
