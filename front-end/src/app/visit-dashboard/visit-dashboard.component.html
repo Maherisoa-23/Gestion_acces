@@ -3,7 +3,6 @@
   <!--sidebar-->
   <div class="sidebar">
     <app-side-bar></app-side-bar>
-    
   </div>
   <!--end-sidebar-->
 
@@ -15,10 +14,10 @@
 
   <!--content-->
   <div class="content">
-    <app-list-active-visit *ngIf="!isAdmin"></app-list-active-visit>
-    <app-list-visit-admin *ngIf="isAdmin"></app-list-visit-admin>
+    <!-- <app-list-active-visit *ngIf="!isAdmin"></app-list-active-visit>
+    <app-list-visit-admin *ngIf="isAdmin"></app-list-visit-admin> -->
+    <router-outlet></router-outlet>
   </div>
   <!--end-content-->
 </div>
 <!--end-Wrapper-->
-

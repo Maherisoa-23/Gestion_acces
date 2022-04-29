@@ -1,14 +1,14 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-side-bar',
-  templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.css'],
+  selector: 'app-side-bar-a',
+  templateUrl: './side-bar-a.component.html',
+  styleUrls: ['./side-bar-a.component.css']
 })
-@Injectable()
-export class SideBarComponent implements OnInit {
+export class SideBarAComponent implements OnInit {
+
   userName = "";
   constructor(private authService: AuthService, private route: Router) {}
 
@@ -21,11 +21,8 @@ export class SideBarComponent implements OnInit {
     this.route.navigate(['authentification']);
   }
 
-  showActiveVisit(){
-    this.route.navigate(['accueil/visit-active'])
-  }
-  PointageView(){
-    this.route.navigate(['accueil/pointage'])
+  showAdminVisit(){
+    this.route.navigate(['admin/visit-admin'])
   }
 
 }

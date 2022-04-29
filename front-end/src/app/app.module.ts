@@ -19,11 +19,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth-guard.service';
-import { ListVisitAdminComponent } from './visit-dashboard/list-visit-admin/list-visit-admin.component';
+import { ListVisitAdminComponent } from './admin-dashboard/list-visit-admin/list-visit-admin.component';
 import { PointageEmployeeComponent } from './visit-dashboard/pointage-employee/pointage-employee.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NavBarAComponent } from './admin-dashboard/nav-bar-a/nav-bar-a.component';
+import { SideBarAComponent } from './admin-dashboard/side-bar-a/side-bar-a.component';
 
 const appRoutes: Routes = [
-  { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent },
+  { path: 'admin', canActivate: [AuthGuard], component: VisitDashboardComponent,
+    children: [
+      { path: '', component: ListVisitAdminComponent },
+      { path: 'visit-admin', component: ListVisitAdminComponent},
+    ]
+  },
+  { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent,
+    children: [
+      { path: '', component: ListActiveVisitComponent },
+      { path: 'visit-active', component: ListActiveVisitComponent},
+      { path: 'pointage', component: PointageEmployeeComponent},
+    ]
+  },
   { path: 'authentification', component: AuthentificationComponent },
   { path: '', component: AuthentificationComponent },
   { path: 'not-found', component: ErrorComponent },
@@ -43,6 +58,9 @@ const appRoutes: Routes = [
     ErrorComponent,
     ListVisitAdminComponent,
     PointageEmployeeComponent,
+    AdminDashboardComponent,
+    NavBarAComponent,
+    SideBarAComponent,
   ],
   imports: [
     BrowserModule,

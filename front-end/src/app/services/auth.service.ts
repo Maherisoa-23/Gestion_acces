@@ -30,6 +30,10 @@ export class AuthService {
     this.isAuth = false;
   }
 
+  getUsersList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/user/');
+  }
+
   getEmployeeList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/employee/');
   }

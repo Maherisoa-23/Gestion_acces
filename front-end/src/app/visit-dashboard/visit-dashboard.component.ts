@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class VisitDashboardComponent implements OnInit {
   isAdmin = false;
 
-  constructor(private service: AuthService) { }
+  constructor(private service: AuthService, private route: Router) { }
 
   ngOnInit(): void {
     this.isAdmin = this.service.isAdmin

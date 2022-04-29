@@ -50,8 +50,16 @@ export class AuthentificationComponent implements OnInit {
         this.authService.lieu = this.lieu
         if (element.user_id == 1) {
           this.authService.isAdmin = true
+          this.authService.signIn().then(() => {
+            this.authStatus = this.authService.isAuth;
+            this.authService.userName =
+              element.user_first_name + ' ' + element.user_last_name;
+            this.router.navigate(['admin']);
+          });
+          break;
         }
-        console.log(this.authService.lieu)
+        else {
+          console.log(this.authService.lieu)
         this.authService.signIn().then(() => {
           this.authStatus = this.authService.isAuth;
           this.authService.userName =
@@ -59,6 +67,8 @@ export class AuthentificationComponent implements OnInit {
           this.router.navigate(['accueil']);
         });
         break;
+        }
+        
       }
     }
   }
