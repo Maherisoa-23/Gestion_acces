@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 
 class User(models.Model) :
@@ -13,16 +14,17 @@ class Department(models.Model):
     
 class Employee(models.Model) :
     department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = False, default=1)
-    employee_id = models.AutoField(primary_key=True)
+    department_name = models.CharField(max_length=50, default="DSI")
+    numero_matricule = models.IntegerField(primary_key=True)
     employee_name = models.CharField(max_length=50)
     function   = models.CharField(max_length=50)
-    lieu = models.CharField(max_length=30)
-    numero_matricule = models.IntegerField()
+    lieu = models.CharField(max_length=30)    
     password = models.CharField(max_length=100)
     
 class Pointage(models.Model):
-    employee = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = False)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
     employee_name =  models.CharField(max_length=50, null= True)
+    employee_dep = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)
     date = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)
@@ -30,6 +32,8 @@ class Pointage(models.Model):
     
 class Pointage_register(models.Model):
     employee = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = False)
+    employee_name =  models.CharField(max_length=50, null= True)
+    employee_dep = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)
     lieu = models.CharField(max_length=30)
     date = models.CharField(max_length=50)

@@ -44,6 +44,8 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse(employee_serializer.data, safe=False)
     elif request.method== 'POST':
         employee_data = JSONParser().parse(request)
+        department = Department.objects.get(pk=employee_data["department"])
+        employee_data["department_name"] = department.department_name
         employee_data["password"] = hashlib.md5(employee_data["password"].encode()).hexdigest()
         employee_serializer = Employee_serializer(data=employee_data)
         if employee_serializer.is_valid():
@@ -73,8 +75,8 @@ def pointage_API(request: HttpRequest, id=0):
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(pk=pointage_data["employee"])
-        pointage_data["employee_name"] = employee.employee_name       
-        print(employee.employee_name)
+        pointage_data["employee_name"] = employee.employee_name
+        pointage_data["employee_dep"] = employee.department_name         
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()

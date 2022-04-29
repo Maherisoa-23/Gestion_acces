@@ -19,16 +19,16 @@
     </div>
 
     <div class="container">
-      <label><b>Numero Matricule</b></label>
-      <input type="text" name="Numero_matricule" />
+      <label><b>Numero Matricule : {{numero_matricule}}</b></label>
+      <input type="text" [(ngModel)]="numero_matricule" name="numero_matricule" />
       <label><b>Mot de passe</b></label>
-      <input type="password" name="Mot_de_passe" />
+      <input type="password" [(ngModel)]="password" name="password" />
 
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'">
-        Ajouter
+      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'" (click)="OnEnter()">
+        Confirmer
       </button>
       <button class="btn-cancel" type="button" onclick="document.getElementById('id01').style.display='none'">
-        Cancel
+        Annuler
       </button>
     </div>
   </form>
@@ -66,21 +66,18 @@
   <table class="tbl">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Numero Matricule</th>
         <th>Heure d'entree</th>
         <th>Nom</th>
-        <th>Numero Matricule</th>
         <th>Departement</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages">
-        <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
-        <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
-        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
-        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
-        <td data-label="#" *ngIf="item.lieu == lieu">
-
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee }}</td>
+        <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee_name }}</td>
+        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.employee_dep }}</td>
       </tr>
 
     </tbody>

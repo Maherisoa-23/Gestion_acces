@@ -47,7 +47,7 @@ export class ListActiveVisitComponent implements OnInit {
     };
     
     this.service.addVisit(val).subscribe((res) => {
-      alert(res.toString());
+      console.log(res.toString());
     });
     this.refreshVisitsList();
     this.refreshVisitsList();

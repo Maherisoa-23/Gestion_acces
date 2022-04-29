@@ -15,12 +15,13 @@ class User_serializer(serializers.ModelSerializer):
 class Employee_serializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ('employee_id',
+        fields = (
                   'employee_name',
                   'function',
                   'lieu',
                   'numero_matricule',
                   'department',
+                  'department_name',
                   'password'
                   )
 class Department_serializer(serializers.ModelSerializer):
@@ -37,6 +38,7 @@ class Pointage_serializer(serializers.ModelSerializer):
         fields = ('pointage_id',
                   'employee',
                   'employee_name',
+                  'employee_dep',
                   'date',
                   'lieu',
                   'entry_time'
@@ -45,7 +47,9 @@ class Pointage_register_serializer(serializers.ModelSerializer):
     class Meta:
         model = Pointage_register
         fields = ('pointage_id',
-                  'employee',
+                  'employee',                
+                  'employee_name',
+                  'employee_dep',
                   'date',
                   'lieu',
                   'entry_time',
