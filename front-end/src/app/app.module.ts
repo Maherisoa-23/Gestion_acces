@@ -20,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ListVisitAdminComponent } from './visit-dashboard/list-visit-admin/list-visit-admin.component';
+import { PointageEmployeeComponent } from './visit-dashboard/pointage-employee/pointage-employee.component';
 
 const appRoutes: Routes = [
   { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent },
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     AuthentificationComponent,
     ErrorComponent,
     ListVisitAdminComponent,
+    PointageEmployeeComponent,
   ],
   imports: [
     BrowserModule,

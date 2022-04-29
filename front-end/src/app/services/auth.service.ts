@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class AuthService {
   isAuth = false;
-  userName = ""
+  userName = "";
   lieu = "";
   isAdmin = false;
 
