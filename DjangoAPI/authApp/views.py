@@ -4,8 +4,8 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 import hashlib
 
-from authApp.models import User,Pointage,Employee
-from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer
+from authApp.models import User,Pointage,Employee,Department,Pointage_register
+from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer
 
 # Create your views here.
 @csrf_exempt
@@ -78,7 +78,45 @@ def pointage_API(request: HttpRequest, id=0):
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'DELETE':
-        pointage=pointage.objects.get(pointage_id =id)
+        pointage=Pointage.objects.get(pointage_id =id)
+        pointage_serializer = Pointage_serializer(pointage)
+        return JsonResponse(pointage_serializer.data, safe=False)
+    return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def pointage_register_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        pointage = Pointage_register.objects.all()
+        pointage_serializer = Pointage_register_serializer(pointage, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
+    elif request.method== 'POST':
+        pointage_data = JSONParser().parse(request)
+        pointage_serializer = Pointage_register_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'DELETE':
+        pointage=Pointage.objects.get(pointage_id =id)
+        pointage_serializer = Pointage_register_serializer(pointage)
+        return JsonResponse(pointage_serializer.data, safe=False)
+    return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def department_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        pointage = Department.objects.all()
+        pointage_serializer = Department_serializer(pointage, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
+    elif request.method== 'POST':
+        pointage_data = JSONParser().parse(request)
+        pointage_serializer = Department_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'DELETE':
+        pointage=Department.objects.get(pointage_id =id)
         pointage.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)

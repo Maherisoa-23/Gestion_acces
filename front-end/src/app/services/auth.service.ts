@@ -13,7 +13,7 @@ export class AuthService {
   lieu = "";
   isAdmin = false;
 
-  readonly APIUrl = "http://192.168.1.253:8000"
+  readonly APIUrl = "http://127.0.0.1:8000"
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +30,39 @@ export class AuthService {
     this.isAuth = false;
   }
 
-  getUsersList(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/user/');
+  getEmployeeList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/employee/');
+  }
+
+  getDepartmentList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/department/');
+  }
+
+  getPointageList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/pointage/');
+  }
+
+  getPointageRegisterList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/pointage_register/');
+  }
+
+  addPointage(val: any) {
+    return this.http.post(this.APIUrl + '/pointage/',val);
+  }
+
+  addPointageRegister(val: any) {
+    return this.http.post(this.APIUrl + '/pointage_register/',val);
+  }
+
+  deletePointage(id: number) {
+    return this.http.delete(this.APIUrl + '/pointage/' + id);
+  }
+
+  deleteVisit(id: number) {
+    return this.http.delete(this.APIUrl + '/visit/' + id);
+  }
+
+  updateVisit(val: any) {
+    return this.http.put(this.APIUrl + '/visit/',val);
   }
 }
