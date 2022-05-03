@@ -39,3 +39,20 @@ class Pointage_register(models.Model):
     date = models.CharField(max_length=50)
     entry_time = models.CharField(max_length=50)
     exit_time = models.CharField(max_length=50)
+    
+class Active_connection(models.Model):
+    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
+    employee_name =  models.CharField(max_length=50, null= True)
+    active_connection_id = models.AutoField(primary_key=True)
+    date = models.CharField(max_length=50)
+    lieu = models.CharField(max_length=30)
+    entry_time = models.CharField(max_length=50)
+    
+class Connection_register(models.Model):
+    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
+    employee_name =  models.CharField(max_length=50, null= True)
+    connection_register_id = models.AutoField(primary_key=True)
+    date = models.CharField(max_length=50)
+    lieu = models.CharField(max_length=30)
+    entry_time = models.CharField(max_length=50)
+    exit_time = models.CharField(max_length=50)
