@@ -14,7 +14,7 @@ export class AuthentificationComponent implements OnInit {
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
   @Input() lieu = "Ambohijatovo";
-  lieux = ["Ambohijatovo", "Andraharo","Mangasoavina"]
+  lieux = ["Ambohijatovo", "Andraharo", "Mangasoavina"]
 
   usersList: any = [];
   myScriptElement: HTMLScriptElement;
@@ -40,7 +40,7 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     const md5 = new Md5()
     const pass = md5.appendStr(this.password).end().toString()
-    
+
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
       if (
@@ -60,15 +60,15 @@ export class AuthentificationComponent implements OnInit {
         }
         else {
           console.log(this.authService.lieu)
-        this.authService.signIn().then(() => {
-          this.authStatus = this.authService.isAuth;
-          this.authService.userName =
-            element.user_first_name + ' ' + element.user_last_name;
-          this.router.navigate(['accueil']);
-        });
-        break;
+          this.authService.signIn().then(() => {
+            this.authStatus = this.authService.isAuth;
+            this.authService.userName =
+              element.user_first_name + ' ' + element.user_last_name;
+            this.router.navigate(['accueil']);
+          });
+          break;
         }
-        
+
       }
     }
   }

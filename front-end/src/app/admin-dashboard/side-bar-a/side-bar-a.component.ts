@@ -25,4 +25,8 @@ export class SideBarAComponent implements OnInit {
     this.route.navigate(['admin/visit-admin'])
   }
 
+  showAdminPointage(){
+    this.route.navigate(['admin/pointage-admin'])
+  }
+
 }

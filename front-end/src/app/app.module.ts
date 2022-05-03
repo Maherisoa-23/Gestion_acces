@@ -24,12 +24,14 @@ import { PointageEmployeeComponent } from './visit-dashboard/pointage-employee/p
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NavBarAComponent } from './admin-dashboard/nav-bar-a/nav-bar-a.component';
 import { SideBarAComponent } from './admin-dashboard/side-bar-a/side-bar-a.component';
+import { PointageComponent } from './admin-dashboard/pointage/pointage.component';
 
 const appRoutes: Routes = [
-  { path: 'admin', canActivate: [AuthGuard], component: VisitDashboardComponent,
+  { path: 'admin', canActivate: [AuthGuard], component: AdminDashboardComponent,
     children: [
       { path: '', component: ListVisitAdminComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent},
+      { path: 'pointage-admin', component: PointageComponent},
     ]
   },
   { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent,
@@ -61,6 +63,7 @@ const appRoutes: Routes = [
     AdminDashboardComponent,
     NavBarAComponent,
     SideBarAComponent,
+    PointageComponent,
   ],
   imports: [
     BrowserModule,

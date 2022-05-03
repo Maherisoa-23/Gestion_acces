@@ -1,0 +1,38 @@
+<div class="section">
+    <!--Bar-search-->
+    <div class="topnav">
+      <a class="active" href="#home"
+        ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i> Avril
+        2022</a
+      >
+      <div class="search-container">
+        <form action="">
+          <input type="text" placeholder="Recherche par date.." name="search" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <!--Bar-search-end-->
+    <!--Liste tableau-->
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Heure/Date</th>
+          <th>Motif</th>
+          <th>Depart</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pointages">
+          <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.numero_matricule }}</td>
+          <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
+          <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee_name }}</td>
+          <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.employee_dep }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--Liste tableau-end-->
+  </div>
+  

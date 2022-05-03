@@ -1,1 +1,23 @@
-<p>admin-dashboard works!</p>
+<!--Wrapper-->
+<div class="wrapper-">
+    <!--sidebar-->
+    <div class="sidebar">
+      <app-side-bar-a></app-side-bar-a>
+    </div>
+    <!--end-sidebar-->
+  
+    <!--header-->
+    <div class="header">
+      <app-nav-bar-a></app-nav-bar-a>
+    </div>
+    <!--end-header-->
+  
+    <!--content-->
+    <div class="content">
+      <!-- <app-list-active-visit *ngIf="!isAdmin"></app-list-active-visit>
+      <app-list-visit-admin *ngIf="isAdmin"></app-list-visit-admin> -->
+      <router-outlet></router-outlet>
+    </div>
+    <!--end-content-->
+  </div>
+  <!--end-Wrapper-->

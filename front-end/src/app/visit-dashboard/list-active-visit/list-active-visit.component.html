@@ -66,7 +66,7 @@
       <tr>
         <th>ID</th>
         <th>Nom</th>
-        <th>Heure/Date</th>
+        <th>Heure d'entrée</th>
         <th>Motif</th>
         <th>#</th>
       </tr>
@@ -75,7 +75,7 @@
       <tr *ngFor="let item of visitsList">
         <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
         <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
-        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.date_of_entry }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
         <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
         <td data-label="#" *ngIf="item.lieu == lieu">
           <button class="bouton" (click)="exit(item)"
