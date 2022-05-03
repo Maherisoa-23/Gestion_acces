@@ -25,6 +25,7 @@ export class PointageEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.lieu = this.authServ.lieu;
     this.refreshPointageList();
+    this.getEmployeeList();
   }
 
   refreshPointageList() {
@@ -40,38 +41,106 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   OnEnter() {
+    if (!this.isEmployee()) {
+      alert("numéro matricule ou mot de passe incorrect!");
+    }
+    else {
+      if (this.isPointed()) {
+        alert("Employé déjà présent");
+      }
+      else {
+        this.date = new Date();
+        this.heure = new Date();
+        this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
+        this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+        var val = {
+          numero_matricule: this.numero_matricule,
+          date: this.date.toString(),
+          lieu: this.lieu,
+          entry_time: this.heure.toString()
+        };
+        this.authServ.addPointage(val).subscribe((res) => {
+          console.log(res.toString() + " to the pointage list");
+        });
+        this.refreshPointageList();
+        this.refreshPointageList();
+        this.numero_matricule = 0
+        this.password = "";
+      }
+    }
+
+  }
+
+  OnExit() {
+    if (!this.isEmployee()) {
+      alert("numéro matricule ou mot de passe incorrect!");
+    }
+    else {
+      if (!this.isPointed()) {
+        alert("Employé non présent ou déjà parti");
+      }
+      else {
+        this.authServ.deletePointage(this.numero_matricule).subscribe((data) => {
+          console.log(data.toString() + " from the active pointage ");
+        });
+        //ajout dans le registre des pointages
+        for (let index = 0; index < this.pointages.length; index++) {
+          const element = this.pointages[index];
+          if (
+            element.numero_matricule == this.numero_matricule
+          ) {
+            this.heure = new Date();
+            this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+            var val = {
+              numero_matricule: this.numero_matricule,
+              date: element.date,
+              lieu: element.lieu,
+              employee_name: element.employee_name,
+              employee_dep: element.employee_dep,
+              entry_time: element.entry_time,
+              exit_time: this.heure.toString()
+            };
+            this.authServ.addPointageRegister(val).subscribe((res) => {
+              console.log(res.toString() + " to the pointage register");
+            });
+            break;
+          };
+        }
+      }
+    }
+
+    this.refreshPointageList();
+    this.refreshPointageList();
+    console.log("refreshed")
+    this.numero_matricule = 0
+    this.password = ""
+  }
+
+  isEmployee(): boolean {
     const md5 = new Md5()
     const pass = md5.appendStr(this.password).end().toString()
-
     for (let index = 0; index < this.employees.length; index++) {
       const element = this.employees[index];
       if (
         element.numero_matricule == this.numero_matricule &&
         element.password == pass
       ) {
-        this.date = new Date();
-        this.heure = new Date();
-        this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
-        this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-        var val = {
-          employee: 5,
-          date: this.date.toString(),
-          lieu: this.lieu,
-          entry_time: this.heure.toString()
-        };
-
-        this.authServ.addPointage(val).subscribe((res) => {
-          console.log(res.toString());
-        });
-        break;
-      }
-
+        return true
+      };
     }
+    return false
+  }
 
-    this.refreshPointageList();
-    this.refreshPointageList();
-    this.numero_matricule = 0
-    this.password = ""
+  isPointed(): boolean {
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (
+        element.numero_matricule == this.numero_matricule
+      ) {
+        return true
+      };
+    }
+    return false
   }
 
 }

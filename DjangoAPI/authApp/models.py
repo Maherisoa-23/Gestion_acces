@@ -22,7 +22,7 @@ class Employee(models.Model) :
     password = models.CharField(max_length=100)
     
 class Pointage(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
+    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)
@@ -31,7 +31,7 @@ class Pointage(models.Model):
     entry_time = models.CharField(max_length=50)
     
 class Pointage_register(models.Model):
-    employee = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = False)
+    numero_matricule = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = False)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)

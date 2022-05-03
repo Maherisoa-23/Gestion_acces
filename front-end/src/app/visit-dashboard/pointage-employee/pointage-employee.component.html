@@ -45,13 +45,13 @@
     </div>
 
     <div class="container">
-      <label><b>Numero Matricule</b></label>
-      <input type="text" name="Numero_matricule" />
+      <label><b>Numero Matricule : {{numero_matricule}}</b></label>
+      <input type="text" [(ngModel)]="numero_matricule" name="numero_matricule" />
       <label><b>Mot de passe</b></label>
-      <input type="password" name="Mot_de_passe" />
+      <input type="password" [(ngModel)]="password" name="password" />
 
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'">
-        Ajouter
+      <button type="submit" class="btn-ajout" onclick="document.getElementById('id02').style.display='none'" (click)="OnExit()">
+        Confirmer
       </button>
       <button class="btn-cancel" type="button" onclick="document.getElementById('id02').style.display='none'">
         Cancel
@@ -74,7 +74,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages">
-        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.numero_matricule }}</td>
         <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
         <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee_name }}</td>
         <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.employee_dep }}</td>

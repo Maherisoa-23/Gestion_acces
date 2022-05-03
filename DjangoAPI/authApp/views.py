@@ -74,7 +74,7 @@ def pointage_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
-        employee = Employee.objects.get(pk=pointage_data["employee"])
+        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
         pointage_data["employee_dep"] = employee.department_name         
         pointage_serializer = Pointage_serializer(data=pointage_data)
@@ -83,9 +83,9 @@ def pointage_API(request: HttpRequest, id=0):
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'DELETE':
-        pointage=Pointage.objects.get(pointage_id =id)
-        pointage_serializer = Pointage_serializer(pointage)
-        return JsonResponse(pointage_serializer.data, safe=False)
+        pointage=Pointage.objects.get(numero_matricule =id)
+        pointage.delete()
+        return JsonResponse("deleted successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt
@@ -102,9 +102,10 @@ def pointage_register_API(request: HttpRequest, id=0):
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'DELETE':
-        pointage=Pointage.objects.get(pointage_id =id)
+        pointage=Pointage_register.objects.get(pointage_id =id)
+        pointage.delete()
         pointage_serializer = Pointage_register_serializer(pointage)
-        return JsonResponse(pointage_serializer.data, safe=False)
+        return JsonResponse("Delete successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt
