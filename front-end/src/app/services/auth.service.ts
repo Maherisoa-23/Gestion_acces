@@ -12,6 +12,9 @@ export class AuthService {
   userName = "";
   lieu = "";
   isAdmin = false;
+  date : any;
+  userLoginTime : any;
+  numero_matricule : any;
 
   readonly APIUrl = "http://127.0.0.1:8000"
 
@@ -62,11 +65,15 @@ export class AuthService {
     return this.http.delete(this.APIUrl + '/pointage/' + id);
   }
 
-  deleteVisit(id: number) {
-    return this.http.delete(this.APIUrl + '/visit/' + id);
+  addActiveConnection(val: any) {
+    return this.http.post(this.APIUrl + '/active_connection/',val);
   }
 
-  updateVisit(val: any) {
-    return this.http.put(this.APIUrl + '/visit/',val);
+  deleteActiveConnection(id: number) {
+    return this.http.delete(this.APIUrl + '/active_connection/' + id);
+  }
+
+  addConnectionRegister(val: any) {
+    return this.http.post(this.APIUrl + '/connection_register/',val);
   }
 }

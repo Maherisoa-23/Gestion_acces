@@ -143,7 +143,7 @@ def active_connection_API(request: HttpRequest, id=0):
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'DELETE':
-        pointage=Active_connection.objects.get(pointage_id =id)
+        pointage=Active_connection.objects.get(numero_matricule =id)
         pointage.delete()
         return JsonResponse("Delete successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
@@ -156,6 +156,8 @@ def connection_register_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
+        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
+        pointage_data["employee_name"] = employee.employee_name
         pointage_serializer = Connection_register_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()

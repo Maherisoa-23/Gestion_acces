@@ -70,7 +70,7 @@ class Active_connection_serializer(serializers.ModelSerializer):
 class Connection_register_serializer(serializers.ModelSerializer):
     class Meta:
         model = Connection_register
-        fields = ('active_connection_id',
+        fields = ('connection_register_id',
                   'numero_matricule',
                   'employee_name',
                   'date',

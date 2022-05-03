@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -6,11 +7,15 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css'],
+  providers: [DatePipe]
 })
 @Injectable()
 export class SideBarComponent implements OnInit {
+
   userName = "";
-  constructor(private authService: AuthService, private route: Router) {}
+  heure : any;
+
+  constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.userName = this.authService.userName;
@@ -19,6 +24,7 @@ export class SideBarComponent implements OnInit {
   onSignOut() {
     this.authService.signOut();
     localStorage.removeItem('user1');
+    this.saveConnectionRegister();
     this.route.navigate(['authentification']);
   }
 
@@ -27,6 +33,29 @@ export class SideBarComponent implements OnInit {
   }
   PointageView(){
     this.route.navigate(['accueil/pointage'])
+  }
+
+  saveConnectionRegister() {
+    this.heure = new Date();
+    this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+
+    var val = {
+      numero_matricule: this.authService.numero_matricule,
+      date: this.authService.date,
+      lieu: this.authService.lieu,
+      entry_time : this.authService.userLoginTime,
+      exit_time: this.heure.toString(),
+    };
+
+    this.authService.deletePointage(this.authService.numero_matricule).subscribe((res) => {
+      console.log(res.toString() + " from the pointage list");
+    });
+    this.authService.deleteActiveConnection(this.authService.numero_matricule).subscribe((res) => {
+      console.log(res.toString() + " from the active connection list");
+    });
+    this.authService.addConnectionRegister(val).subscribe((res) => {
+      console.log(res.toString() + " to the connection register list");
+    });
   }
 
 }
