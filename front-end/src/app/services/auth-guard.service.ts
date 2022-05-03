@@ -10,9 +10,21 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    if (localStorage.getItem('user1')) {
+      return true;
+    } else {
+      this.router.navigate(['/authentification']);
+      return false;
+    }
+  }
+
+  /* canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
@@ -22,5 +34,5 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/authentification']);
     }
     return false;
-  }
+  } */
 }

@@ -18,6 +18,7 @@ export class SideBarAComponent implements OnInit {
 
   onSignOut() {
     this.authService.signOut();
+    localStorage.removeItem('user1');
     this.route.navigate(['authentification']);
   }
 
