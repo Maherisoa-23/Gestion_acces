@@ -27,7 +27,9 @@ export class AuthentificationComponent implements OnInit {
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
+
     document.body.appendChild(this.myScriptElement);
+   
   }
 
   ngOnInit(): void {
@@ -71,9 +73,9 @@ export class AuthentificationComponent implements OnInit {
             this.router.navigate(['accueil']);
           });
           localStorage.setItem('user1', JSON.stringify(element[index]));
-          
+          this.saveConnection()
+
         }
-        this.saveConnection()
         break;
 
       }
