@@ -26,9 +26,10 @@ import { NavBarAComponent } from './admin-dashboard/nav-bar-a/nav-bar-a.componen
 import { SideBarAComponent } from './admin-dashboard/side-bar-a/side-bar-a.component';
 import { PointageComponent } from './admin-dashboard/pointage/pointage.component';
 import { AccueilComponent } from './admin-dashboard/accueil/accueil.component';
+import { AdminGuard } from './services/admin-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'admin', canActivate: [AuthGuard], component: AdminDashboardComponent,
+  { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent},
@@ -75,7 +76,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [VisitService, AuthService, AuthGuard],
+  providers: [VisitService, AuthService, AuthGuard, AdminGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

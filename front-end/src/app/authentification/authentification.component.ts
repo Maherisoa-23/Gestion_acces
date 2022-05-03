@@ -56,6 +56,7 @@ export class AuthentificationComponent implements OnInit {
               element.user_first_name + ' ' + element.user_last_name;
             this.router.navigate(['admin']);
           });
+          localStorage.setItem('admin1', JSON.stringify(element[index]));
         }
         else {
           console.log(this.authService.lieu)
@@ -65,8 +66,8 @@ export class AuthentificationComponent implements OnInit {
               element.user_first_name + ' ' + element.user_last_name;
             this.router.navigate(['accueil']);
           });
+          localStorage.setItem('user1', JSON.stringify(element[index]));
         }
-        localStorage.setItem('user1', JSON.stringify(element[index]));
         break;
 
       }
