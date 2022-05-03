@@ -25,11 +25,12 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { NavBarAComponent } from './admin-dashboard/nav-bar-a/nav-bar-a.component';
 import { SideBarAComponent } from './admin-dashboard/side-bar-a/side-bar-a.component';
 import { PointageComponent } from './admin-dashboard/pointage/pointage.component';
+import { AccueilComponent } from './admin-dashboard/accueil/accueil.component';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AuthGuard], component: AdminDashboardComponent,
     children: [
-      { path: '', component: ListVisitAdminComponent },
+      { path: '', component: AccueilComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent},
       { path: 'pointage-admin', component: PointageComponent},
     ]
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     NavBarAComponent,
     SideBarAComponent,
     PointageComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
