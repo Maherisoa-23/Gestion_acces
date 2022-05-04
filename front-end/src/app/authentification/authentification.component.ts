@@ -54,12 +54,11 @@ export class AuthentificationComponent implements OnInit {
         element.password == pass
       ) {
         this.authService.lieu = this.lieu
-        if (element.user_id == 1) {
+        if (element.numero_matricule == 1) {
           this.authService.isAdmin = true
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
-            this.authService.userName =
-              element.user_first_name + ' ' + element.user_last_name;
+            this.authService.userName = element.user_name;
             this.router.navigate(['admin']);
           });
           localStorage.setItem('admin1', JSON.stringify(element[index]));
@@ -68,8 +67,7 @@ export class AuthentificationComponent implements OnInit {
           console.log(this.authService.lieu)
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
-            this.authService.userName =
-              element.user_first_name + ' ' + element.user_last_name;
+            this.authService.userName = element.user_name;
             this.router.navigate(['accueil']);
           });
           localStorage.setItem('user1', JSON.stringify(element[index]));

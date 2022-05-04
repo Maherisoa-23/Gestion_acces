@@ -2,28 +2,27 @@
 
 <hr />
 <h1><i class="fas fa-id-card-alt"></i></h1>
-<h1>Lucas Rakoto</h1>
+<h1>{{userName}}</h1>
 <hr />
 
 <ul>
   <li>
+    <a (click)="showAccueil()"><i class="fas fa-clock"></i> Accueil </a>
+
+  </li>
+  <li>
     <div class="dropdown">
-      <a
-        ><i class="fas fa-home"></i>
-        Dropdown
+      <a><i class="fas fa-home"></i>
+        Visite
         <i class="fa fa-caret-down"></i>
       </a>
       <div class="dropdown-content">
-        <a href="#">ANDRAHARO</a>
+        <a (click)="showAdminVisit()"><i class="fas fa-clock"></i>Visite actif</a>
         <hr />
-        <a href="#">AMBOHIJATOVO</a>
+        <a (click)="showAdminVisit()"><i class="fas fa-clock"></i> Registre des visites</a>
         <hr />
-        <a href="#">MANGASOAVINA</a>
       </div>
     </div>
-  </li>
-  <li>
-    <a (click)="showAdminVisit()"><i class="fas fa-clock"></i> Simple Visite</a>
   </li>
   <li>
     <a (click)="showAdminPointage()"><i class="fas fa-fingerprint"></i> Pointage</a>

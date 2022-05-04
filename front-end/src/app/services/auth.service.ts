@@ -45,6 +45,8 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/department/');
   }
 
+  //Methode pour les pointages
+
   getPointageList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage/');
   }
@@ -63,6 +65,13 @@ export class AuthService {
 
   deletePointage(id: number) {
     return this.http.delete(this.APIUrl + '/pointage/' + id);
+  }
+
+
+  //methode pour la gestion des connections
+
+  getActiveConnectionList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/active_connection/');
   }
 
   addActiveConnection(val: any) {

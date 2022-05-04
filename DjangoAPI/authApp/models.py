@@ -2,10 +2,8 @@ from tkinter import CASCADE
 from django.db import models
 
 class User(models.Model) :
-    user_id = models.AutoField(primary_key=True)
-    user_first_name = models.CharField(max_length=50)
-    user_last_name  = models.CharField(max_length=50)
-    numero_matricule = models.IntegerField()
+    user_name = models.CharField(max_length=100)
+    numero_matricule = models.IntegerField(primary_key=True)
     password = models.CharField(max_length=100)
     
 class Department(models.Model):

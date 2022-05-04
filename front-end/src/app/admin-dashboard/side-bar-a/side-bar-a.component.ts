@@ -22,6 +22,10 @@ export class SideBarAComponent implements OnInit {
     this.route.navigate(['authentification']);
   }
 
+  showAccueil(){
+    this.route.navigate(['admin/'])
+  }
+
   showAdminVisit(){
     this.route.navigate(['admin/visit-admin'])
   }

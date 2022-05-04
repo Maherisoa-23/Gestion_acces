@@ -1,35 +1,34 @@
-<div class="grid-container">
-    <div class="grid-item lieu">
-        <div class="card-title">
-            <h1 >Andraharo</h1> 
-        </div>
-        <div class="card-body">
-            <p>
-                Securité actif : nom_sécurité
-                heure_de_conexion: ...
-            </p>
-        </div>
-    </div>
-    <div class="grid-item lieu">
-        <div class="card-title">
-            <h1 >Ambohijatovo</h1> 
-        </div>
-        <div class="card-body">
-            <p>
-                Securité actif : nom_sécurité
-                heure_de_conexion: ...
-            </p>
+<!--body-->
+<div class="accueil-container">
+    <!--header-->
+    <div class="accueil-header">
+        <div class="card" *ngFor="let item of activeConnections">
+            <div class="card-container">
+                <h3>{{item.lieu}}</h3>
+                <h4>Security : {{item.employee_name}}</h4>
+                <h4>Heure d'entree : {{item.entry_time}}</h4>
+            </div>
         </div>
     </div>
-    <div class="grid-item lieu"> 
-        <div class="card-title">
-            <h1 >Mangasoavina</h1> 
-        </div>
-        <div class="card-body">
-            <p>
-                Securité actif : nom_sécurité
-                heure_de_conexion: ...
-            </p>
+    <!--header-end-->
+
+    <!--diagramme-->
+    <div class="accueil-body"></div>
+    <!--diagramme-end-->
+
+    <!--sidebar-->
+    <div class="accueil-sidebar">
+        <div class="security">
+            <h3>Security actif</h3>
+            <ul>
+                <li>Lucas</li>
+                <li>Lucas</li>
+                <li>Lucas</li>
+                <li>Lucas</li>
+                <li>Lucas</li>
+            </ul>
         </div>
     </div>
+    <!--end-sidebar-->
 </div>
+<!--body-end-->

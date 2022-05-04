@@ -5,9 +5,8 @@ from authApp.models import User,Employee,Department,Pointage,Pointage_register,A
 class User_serializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('user_id',
-                  'user_first_name',
-                  'user_last_name',
+        fields = (
+                  'user_name',
                   'numero_matricule',
                   'password'
                   )

@@ -1,30 +1,112 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: minmax(150px, auto);
-    grid-gap: 25px;
-    justify-content: center;
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.accueil-container {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 250px 1fr;
+  grid-template-areas:
+    "header header "
+    "contenu  sidebar"
+    "contenu  sidebar";
 }
 
-.grid-item {
-    display: flex;
-    flex-direction: column;
+/*sidebar*/
+.accueil-sidebar {
+  grid-area: sidebar;
+  background: lightcoral;
+  height: 100vh;
 }
-.lieu {
-    border: 2px solid red;
+.accueil-sidebar .security {
+  border: 2px solid green;
+  background: gainsboro;
+  width: 100%;
+  padding: 10px;
 }
-.card-title{
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-    border-bottom: 2px solid;
+.accueil-sidebar .security h3 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.accueil-sidebar .security ul {
+  margin: 20px;
+  list-style-type: none;
+}
+.accueil-sidebar .security ul li {
+  border: 2px solid red;
+  margin: 2px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+.accueil-sidebar .security ul li:hover {
+  font-size: 18.5px;
+  margin-left: 4px;
+}
+
+/*header*/
+.accueil-header {
+  grid-area: header;
+  background: #000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+.accueil-header .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background: yellow;
+  transition: 0.3s;
+  width: 300px;
+  height: 200px;
+  margin: 10px;
+}
+.accueil-header .card:hover {
+  box-shadow: 0 8px 16px 0 rgba(243, 0, 0, 0.885);
+  background: yellow;
+}
+.accueil-header .card .card-container {
+  padding: 10px;
+}
+
+/*body/diagramme*/
+.accueil-body {
+  grid-area: contenu;
+  background: green;
+  height: 100vh;
 }
 
 @media screen and (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-    .card-title{
-        font-size: 10px;
-    }
+  /*accueil*/
+  .accueil-container {
+    grid-template-areas:
+      "header  header"
+      "sidebar  sidebar"
+      "contenu  contenu";
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  /*header*/
+  .accueil-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /*sidebar*/
+  .accueil-sidebar {
+    height: auto;
+  }
+  /*body*/
+  .accueil-body {
+    height: auto;
+  }
 }
