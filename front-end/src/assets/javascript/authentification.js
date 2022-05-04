@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll(".input");
+const inputs = document.querySelectorAll(".input-auth");
 
 function addcl() {
   let parent = this.parentNode.parentNode;

@@ -21,15 +21,32 @@ export class AuthentificationComponent implements OnInit {
   heure: any;
 
   usersList: any = [];
-  myScriptElement: HTMLScriptElement;
+  //myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
-    this.myScriptElement = document.createElement('script');
+    /* this.myScriptElement = document.createElement('script');
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
 
-    document.body.appendChild(this.myScriptElement);
-   
+    document.body.appendChild(this.myScriptElement); */
+    const inputs = document.querySelectorAll(".input");
+    
+    function addcl(item : any) {
+      let parent = item.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+    
+    function remcl(item : any) {
+      let parent = item.parentNode.parentNode;
+      if (item.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+    
+    inputs.forEach((input) => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
   }
 
   ngOnInit(): void {
@@ -80,11 +97,7 @@ export class AuthentificationComponent implements OnInit {
     }
     
   }
-  onSubmit(form: NgForm) {
-    const name = form.value['Username'];
-    const password = form.value['password'];
-    this.authName = name;
-  }
+  
 
   saveConnection() {
     this.date = new Date();

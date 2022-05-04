@@ -4,7 +4,7 @@
     <img src="assets/img/undraw_secure_files_re_6vdh (3).svg" />
   </div>
   <div class="login-content">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form >
       <img
         src="assets/images/logoOmnis.png"
         class="img-fluid LogoOmnis"
@@ -20,7 +20,7 @@
           <h5>Numero</h5>
           <input
             type="text"
-            class="input"
+            class="input-auth"
             name="numero_matricule"
             required
             [(ngModel)]="numero_matricule"
@@ -35,7 +35,7 @@
           <h5>Mot de Passe</h5>
           <input
             type="password"
-            class="input"
+            class="input-auth"
             name="password"
             required
             [(ngModel)]="password"

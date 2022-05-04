@@ -8,7 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AccueilComponent implements OnInit {
 
-  activeConnections : any 
+  activeConnections : any ;
+  pointages : any;
   constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,12 @@ export class AccueilComponent implements OnInit {
   refreshActiveConnectionsList() {
     this.authServ.getActiveConnectionList().subscribe((data) => {
       this.activeConnections = data;
+    });
+  }
+
+  refreshPointageList() {
+    this.authServ.getPointageList().subscribe((data) => {
+      this.pointages = data;
     });
   }
 
