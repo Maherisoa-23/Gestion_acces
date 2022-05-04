@@ -14,5 +14,7 @@ urlpatterns = [
     re_path(r'^active_connection/([0-9]+)$',views.active_connection_API),
     re_path(r'^active_connection/$',views.active_connection_API),
     re_path(r'^connection_register/([0-9]+)$',views.connection_register_API),
-    re_path(r'^connection_register/$',views.connection_register_API)
+    re_path(r'^connection_register/$',views.connection_register_API),
+    re_path(r'^security/$',views.security_API)
+
     ]

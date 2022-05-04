@@ -169,3 +169,11 @@ def connection_register_API(request: HttpRequest, id=0):
         return JsonResponse("Delete successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
+@csrf_exempt
+def security_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        employee = Employee.objects.filter(department=3)
+        employee_serializer = Employee_serializer(employee, many=True)
+        return JsonResponse(employee_serializer.data, safe=False)
+    return JsonResponse("Failded to delete", safe = False)
+
