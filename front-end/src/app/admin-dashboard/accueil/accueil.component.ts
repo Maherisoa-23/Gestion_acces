@@ -10,10 +10,13 @@ export class AccueilComponent implements OnInit {
 
   activeConnections : any ;
   pointages : any;
+  activeSecurityList : any;
   constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
     this.refreshActiveConnectionsList();
+    this.refreshPointageList();
+    this.refreshActiveSecurityList();
   }
 
   refreshActiveConnectionsList() {
@@ -25,6 +28,12 @@ export class AccueilComponent implements OnInit {
   refreshPointageList() {
     this.authServ.getPointageList().subscribe((data) => {
       this.pointages = data;
+    });
+  }
+
+  refreshActiveSecurityList() {
+    this.authServ.getPointageByDep(3).subscribe((data) => {
+      this.activeSecurityList = data
     });
   }
 

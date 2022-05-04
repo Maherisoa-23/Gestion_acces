@@ -21,11 +21,7 @@
         <div class="security">
             <h3>Security actif</h3>
             <ul>
-                <li>Lucas</li>
-                <li>Lucas</li>
-                <li>Lucas</li>
-                <li>Lucas</li>
-                <li>Lucas</li>
+                <li *ngFor="let item of activeSecurityList">{{item.employee_name}}</li>
             </ul>
         </div>
     </div>

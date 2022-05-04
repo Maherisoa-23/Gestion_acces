@@ -66,7 +66,10 @@ export class AuthService {
   deletePointage(id: number) {
     return this.http.delete(this.APIUrl + '/pointage/' + id);
   }
-
+  //filtre des pointages par départements
+  getPointageByDep(dep_id: number){
+    return this.http.delete(this.APIUrl + '/security/' + dep_id);
+  }
 
   //methode pour la gestion des connections
 

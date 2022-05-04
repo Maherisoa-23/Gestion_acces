@@ -103,10 +103,9 @@ def pointage_API(request: HttpRequest, id = 0):
         return JsonResponse("failded to add", safe= False)    
     #filtrer les pointages par département
     elif request.method == 'DELETE':
-        dep = Department.objects.get(pk=id)
-        pointage=Pointage.objects.filter(employee_dep_name = dep.department_name)
-        pointage_serializer = Pointage_serializer(pointage, many=True)
-        return JsonResponse(pointage_serializer.data, safe=False)
+        pointage=Pointage.objects.get(pk =id)
+        pointage.delete()
+        return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt
@@ -177,5 +176,11 @@ def security_API(request: HttpRequest, id=0):
         employee = Employee.objects.filter(department=3)
         employee_serializer = Employee_serializer(employee, many=True)
         return JsonResponse(employee_serializer.data, safe=False)
+    #filtrer les pointages par département
+    elif request.method == 'DELETE':
+        dep = Department.objects.get(pk=id)
+        pointage=Pointage.objects.filter(employee_dep_name = dep.department_name)
+        pointage_serializer = Pointage_serializer(pointage, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
