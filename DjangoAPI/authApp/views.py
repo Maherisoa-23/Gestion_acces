@@ -86,7 +86,7 @@ def employee_API(request: HttpRequest, id=0):
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt
-def pointage_API(request: HttpRequest, id=0):
+def pointage_API(request: HttpRequest, id = 0):
     if request.method == 'GET':
         pointage = Pointage.objects.all()
         pointage_serializer = Pointage_serializer(pointage, many=True)
@@ -95,16 +95,18 @@ def pointage_API(request: HttpRequest, id=0):
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep"] = employee.department_name         
+        pointage_data["employee_dep_name"] = employee.department_name         
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
-        return JsonResponse("failded to add", safe= False)
+        return JsonResponse("failded to add", safe= False)    
+    #filtrer les pointages par département
     elif request.method == 'DELETE':
-        pointage=Pointage.objects.get(numero_matricule =id)
-        pointage.delete()
-        return JsonResponse("deleted successfully", safe=False)
+        dep = Department.objects.get(pk=id)
+        pointage=Pointage.objects.filter(employee_dep_name = dep.department_name)
+        pointage_serializer = Pointage_serializer(pointage, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt

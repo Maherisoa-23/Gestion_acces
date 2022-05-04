@@ -37,18 +37,19 @@ class Pointage_serializer(serializers.ModelSerializer):
         fields = ('pointage_id',
                   'numero_matricule',
                   'employee_name',
-                  'employee_dep',
+                  'employee_dep_name',
                   'date',
                   'lieu',
                   'entry_time'
                   )
+        
 class Pointage_register_serializer(serializers.ModelSerializer):
     class Meta:
         model = Pointage_register
-        fields = ('pointage_id',
-                  'numero_matricule',                
+        fields = ('pointage_register_id',
+                  'numero_matricule',
                   'employee_name',
-                  'employee_dep',
+                  'employee_dep_name',
                   'date',
                   'lieu',
                   'entry_time',
