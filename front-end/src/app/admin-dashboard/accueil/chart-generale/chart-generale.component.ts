@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chart-generale',
@@ -7,14 +8,29 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./chart-generale.component.css']
 })
 export class ChartGeneraleComponent implements OnInit {
+  @Input() tab_visit_counting : any = [];
+  @Input() tab_pointage_counting: any = [];
+
   myChart: any;
-  constructor(private elementRef: ElementRef) {
+
+  constructor(private elementRef: ElementRef, private authServ : AuthService) {
   }
 
   ngOnInit(): void {
-    this.chartit();
+    this.refreshCounting()
+    setTimeout(() => {
+      this.chartit()}, 500);   
   }
 
+  refreshCounting() {
+    this.authServ.getTabVisitCounting().subscribe((data) => {
+      this.tab_visit_counting = data;
+    });
+    this.authServ.getTabPointageCounting().subscribe((data) => {
+      this.tab_pointage_counting = data;
+    });
+    
+  }
   chartit() {
     let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
     this.myChart = new Chart(htmlRef, {
@@ -23,7 +39,7 @@ export class ChartGeneraleComponent implements OnInit {
         labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
         datasets: [{
           label: 'visites',
-          data: [12, 19, 3],
+          data: this.tab_visit_counting,
           backgroundColor: [
             'rgba(201, 0, 23, 0.5)',
             'rgba(201, 0, 23, 0.5)',
@@ -38,7 +54,7 @@ export class ChartGeneraleComponent implements OnInit {
         },
         {
           label: 'pointage',
-          data: [ 5, 7, 3],
+          data: this.tab_pointage_counting,
           backgroundColor: [
             'rgba(65, 166, 41, 0.5)',
             'rgba(65, 166, 41, 0.5)',

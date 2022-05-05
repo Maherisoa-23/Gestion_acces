@@ -89,11 +89,18 @@ export class AuthService {
   }
 
   //methode pour les comptages
-  getTotalVisitAndPointage(): Observable<any[]>{
-    return this.http.get<any[]>(this.APIUrl + '/counter/');
+  //pour les visites
+  getTabVisitCounting(): Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/visit_counter/');
   }
-
-  getCountingFilterByPlace(lieu_id: number): Observable<any[]>{
-    return this.http.delete<any[]>(this.APIUrl + '/counter/' + lieu_id);
+  getVisitCountingFilterByPlace(lieu_id: number): Observable<any>{
+    return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
+  }
+  //pour les pointages
+  getTabPointageCounting(): Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/pointage_counter/');
+  }
+  getPointageCountingFilterByPlace(lieu_id: number): Observable<any>{
+    return this.http.delete<any>(this.APIUrl + '/pointage_counter/' + lieu_id);
   }
 }

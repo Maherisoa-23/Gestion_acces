@@ -6,6 +6,7 @@ import hashlib
 
 from authApp.models import User,Pointage,Employee,Department,Pointage_register,Active_connection,Connection_register
 from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Active_connection_serializer,Connection_register_serializer
+from VisitApp.models import Lieu
 
 # Create your views here.
 @csrf_exempt
@@ -184,3 +185,22 @@ def security_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
+@csrf_exempt
+def pointage_counter_API(request: HttpRequest, id=0):
+    #nb de pointage pour tout les lieu dans un tableau
+    if request.method == 'GET':
+        pointage_tab = []
+        for i in range(1,4):
+            lieu = Lieu.objects.get(pk = i)
+            pointage = Pointage.objects.filter(lieu = lieu.lieu_name)
+            nb_pointage = pointage.count()
+            pointage_tab.append(nb_pointage)
+        
+        return JsonResponse(pointage_tab, safe=False)
+    #nombre de pointage pour un lieu en particulier
+    elif request.method == 'DELETE':
+        lieu = Lieu.objects.get(pk = id)
+        pointage = Pointage.objects.filter(lieu = lieu.lieu_name)
+        nb_pointage = pointage.count()
+        return JsonResponse(nb_pointage, safe = False)
+    return JsonResponse("wrong lieu_id", safe = False)

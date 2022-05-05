@@ -10,9 +10,8 @@ export class LieuCardComponent implements OnInit {
   @Input() lieu = ""
   @Input() employee_name = ""
   @Input() entry_time = ""
-  nb_visite = 0
-  nb_pointage = 0
-  tab: any;
+  nb_visite : any
+  nb_pointage : any
 
   constructor(private authServ: AuthService) { }
 
@@ -30,10 +29,11 @@ export class LieuCardComponent implements OnInit {
 
   refreshCounting() {
     const l = this.lieu
-    this.authServ.getCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
-      this.tab = data;
-      this.nb_visite = this.tab.nb_visit;
-      this.nb_pointage = this.tab.nb_pointage;
+    this.authServ.getVisitCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+      this.nb_visite = data;
+    });
+    this.authServ.getPointageCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+      this.nb_pointage = data;
     });
   }
 
