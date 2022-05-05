@@ -72,7 +72,6 @@ export class AuthService {
   }
 
   //methode pour la gestion des connections
-
   getActiveConnectionList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/active_connection/');
   }
@@ -87,5 +86,14 @@ export class AuthService {
 
   addConnectionRegister(val: any) {
     return this.http.post(this.APIUrl + '/connection_register/',val);
+  }
+
+  //methode pour les comptages
+  getTotalVisitAndPointage(): Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/counter/');
+  }
+
+  getCountingFilterByPlace(lieu_id: number): Observable<any[]>{
+    return this.http.delete<any[]>(this.APIUrl + '/counter/' + lieu_id);
   }
 }

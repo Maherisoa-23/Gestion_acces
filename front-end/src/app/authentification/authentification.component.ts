@@ -50,9 +50,10 @@ export class AuthentificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usersList = this.refreshUsersList();
+    this.refreshUsersList();
     this.authStatus = this.authService.isAuth;
   }
+
 
   refreshUsersList() {
     this.authService.getUsersList().subscribe((data) => {
@@ -63,7 +64,6 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     const md5 = new Md5()
     const pass = md5.appendStr(this.password).end().toString()
-
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
       if (

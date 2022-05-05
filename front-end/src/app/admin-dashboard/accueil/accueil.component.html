@@ -1,42 +1,28 @@
 <!--body-->
 <div class="accueil-container">
-    <!--header-->
-    <div class="accueil-header">
-      <!--eto-->
-      <div class="card" *ngFor="let item of activeConnections">
-        <div class="card-header">
-          <h3>{{ item.lieu }}</h3>
-        </div>
-        <div class="card-body">
-          <div class="card-container">
-            <h4>Security : {{ item.employee_name }}</h4>
-            <h4>Heure d'entree : {{ item.entry_time }}</h4>
-            <h4>Nombre de visite : 14</h4>
-            <h4>Nombre de pointage : 14</h4>
-          </div>
-          <div class="sary"><i class="fas fa-home"></i></div>
-        </div>
-        <div class="card-footer"><div class="rond"></div></div>
-      </div>
-    </div>
-    <!--header-end-->
-  
-    <!--diagramme-->
-    <div class="accueil-body">
-      <app-chart-generale></app-chart-generale>
-    </div>
-    <!--diagramme-end-->
-  
-    <!--sidebar-->
-    <div class="accueil-sidebar">
-      <div class="security">
-        <h3>Security actif</h3>
-        <ul>
-          <li *ngFor="let item of activeSecurityList">{{item.employee_name}}</li>
-        </ul>
-      </div>
-    </div>
-    <!--end-sidebar-->
+  <!--header-->
+  <div class="accueil-header">
+    <!--eto-->
+    <app-lieu-card *ngFor="let item of activeConnections" [lieu]="item.lieu" [employee_name]="item.employee_name"
+      [entry_time]="item.entry_time"></app-lieu-card>
   </div>
-  <!--body-end-->
-  
+  <!--header-end-->
+
+  <!--diagramme-->
+  <div class="accueil-body">
+    <app-chart-generale></app-chart-generale>
+  </div>
+  <!--diagramme-end-->
+
+  <!--sidebar-->
+  <div class="accueil-sidebar">
+    <div class="security">
+      <h3>Security actif</h3>
+      <ul>
+        <li *ngFor="let item of activeSecurityList">{{item.employee_name}}</li>
+      </ul>
+    </div>
+  </div>
+  <!--end-sidebar-->
+</div>
+<!--body-end-->
