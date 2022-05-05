@@ -42,7 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-red);
+    background: white;
     position: relative;
     height: auto;
     top: 0;
@@ -54,7 +54,7 @@
 .card .card-footer .rond {
     width: 60px;
     height: 60px;
-    border: 15px solid rgb(255, 68, 0);
+    border: 15px solid rgb(255, 255, 255);
     background: #fff;
     border-radius: 50%;
   }

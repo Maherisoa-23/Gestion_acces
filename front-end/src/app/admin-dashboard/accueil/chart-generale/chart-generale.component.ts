@@ -72,7 +72,7 @@ export class ChartGeneraleComponent implements OnInit {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
           }
         }
       }

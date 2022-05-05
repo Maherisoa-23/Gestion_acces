@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,11 +13,14 @@ export class LieuCardComponent implements OnInit {
   @Input() entry_time = ""
   nb_visite : any
   nb_pointage : any
+  myChart: any;
 
-  constructor(private authServ: AuthService) { }
+
+  constructor(private elementRef: ElementRef, private authServ: AuthService) { }
 
   ngOnInit(): void {
     this.refreshCounting();
+    this.chartit();
   }
 
   getLieuId(lieu: string) {
@@ -37,4 +41,28 @@ export class LieuCardComponent implements OnInit {
     });
   }
 
+  chartit() {
+    const data = {
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow'
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [300, 50, 100],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+    let htmlRef = this.elementRef.nativeElement.querySelector(`#lieu-chart`);
+    this.myChart = new Chart(htmlRef, {
+      type: 'doughnut',
+      data: data,
+    });
+  }
 }
