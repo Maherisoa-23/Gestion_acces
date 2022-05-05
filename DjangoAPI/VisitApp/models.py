@@ -22,3 +22,6 @@ class Visits_register(models.Model) :
     entry_time = models.CharField(max_length=30)
     exit_time = models.CharField(max_length=100)
     
+class Lieu(models.Model):
+    lieu_id = models.AutoField(primary_key=True)
+    lieu_name = models.CharField(max_length=50)

@@ -4,8 +4,9 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
-from VisitApp.models import Visits,Visits_register
+from VisitApp.models import Visits,Visits_register,Lieu
 from VisitApp.serializers import Visit_serializer, Visits_register_serializer
+from authApp.models import Pointage,Pointage_register
 
 
 # Create your views here.
@@ -54,3 +55,25 @@ def visit_register_API(request: HttpRequest, id=0):
         visits_register.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def counter_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        visits = Visits.objects.all()
+        nb_visit = visits.count()
+        pointages = Pointage.objects.all()
+        nb_pointage = pointages.count()
+        return JsonResponse({"nb_visit":nb_visit,
+                             "nb_pointage":nb_pointage}, safe=False)
+    elif request.method == 'DELETE':
+        lieu = Lieu.objects.get(pk = id)
+        visits = Visits.objects.filter(lieu = lieu.lieu_name)
+        nb_visit = visits.count()
+        pointages = Pointage.objects.filter(lieu = lieu.lieu_name)
+        nb_pointage = pointages.count()
+        return JsonResponse({
+                            "lieu": lieu.lieu_name,
+                            "nb_visit":nb_visit,
+                             "nb_pointage":nb_pointage,
+                             }, safe = False)
+    return JsonResponse("wrong lieu_id", safe = False)
