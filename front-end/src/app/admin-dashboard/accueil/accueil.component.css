@@ -9,9 +9,10 @@
   display: grid;
   height: 100vh;
   width: 100%;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: 250px 1fr;
+  grid-gap: 10px;
+  margin: 10px auto;
+  grid-template-columns: 1fr 350px;
+  grid-template-rows: 500px 1fr;
   grid-template-areas:
     "header header "
     "contenu  sidebar"
@@ -21,19 +22,24 @@
 /*sidebar*/
 .accueil-sidebar {
   grid-area: sidebar;
-  background: lightcoral;
-  height: 100vh;
+  background: var(--color-fond);
+  margin: 30px;
+  height: auto;
 }
 .accueil-sidebar .security {
-  border: 2px solid green;
-  background: gainsboro;
+  background: white;
+  box-shadow: 1px 2px 3px rgb(198, 195, 195);
   width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
   padding: 10px;
+  color: var(--color-text);
 }
 .accueil-sidebar .security h3 {
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
+  color: var(--color-titre);
   text-align: center;
   letter-spacing: 5px;
 }
@@ -42,7 +48,7 @@
   list-style-type: none;
 }
 .accueil-sidebar .security ul li {
-  border: 2px solid red;
+  border-bottom: 2px solid var(--color-fond);
   margin: 2px;
   padding: 10px;
   font-size: 18px;
@@ -57,33 +63,164 @@
 /*header*/
 .accueil-header {
   grid-area: header;
-  background: #000;
+  background: var(--color-fond);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px;
 }
 .accueil-header .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background: yellow;
-  transition: 0.3s;
-  width: 300px;
-  height: 200px;
-  margin: 10px;
+  display: grid;
+  grid-template-rows: 10% 25% 1fr;
+  grid-gap: 1px;
+  background: #fff;
+  box-shadow: 1px 2px 3px rgb(198, 195, 195);
+  color: var(--color-text);
+  border-radius: 15px;
+  transition: 0.2s;
+  position: relative;
+  width: 350px;
+  height: 450px;
 }
 .accueil-header .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(243, 0, 0, 0.885);
-  background: yellow;
+  margin-top: 5px;
+  box-shadow: 1px 3px 3px rgb(198, 195, 195);
 }
-.accueil-header .card .card-container {
+
+.accueil-header .card .card-header h3 {
+  font-size: 20px;
+  text-align: center;
   padding: 10px;
+  text-transform: uppercase;
+}
+.accueil-header .card .card-body {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  letter-spacing: 1px;
+}
+.accueil-header .card .card-body h4 {
+  font-size: 14px;
+  margin: 5px 0;
+  text-transform: capitalize;
+}
+.accueil-header .card .card-body .sary {
+  font-size: 50px;
+}
+.accueil-header .card .card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-red);
+  position: relative;
+  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 15px;
+  border-radius: 15px;
+}
+.accueil-header .card .card-footer .rond {
+  width: 60px;
+  height: 60px;
+  border: 15px solid rgb(255, 68, 0);
+  background: #fff;
+  border-radius: 50%;
 }
 
 /*body/diagramme*/
 .accueil-body {
   grid-area: contenu;
-  background: green;
-  height: 100vh;
+  background: #fff;
+  padding: 15px;
+  height: 100%;
+  margin: 20px;
+  border-radius: 15px;
+}
+.accueil-body .heading {
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+.accueil-body .fa {
+  font-size: 25px;
+}
+
+.accueil-body .accueil-body .checked {
+  color: orange;
+}
+
+/* Three column layout */
+.accueil-body .side {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.accueil-body .middle {
+  margin-top: 10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.accueil-body .right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.accueil-body .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.accueil-body .bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.accueil-body .bar-5 {
+  width: 60%;
+  height: 18px;
+  background-color: #04aa6d;
+}
+.accueil-body .bar-4 {
+  width: 30%;
+  height: 18px;
+  background-color: #2196f3;
+}
+.accueil-body .bar-3 {
+  width: 10%;
+  height: 18px;
+  background-color: #00bcd4;
+}
+.accueil-body .bar-2 {
+  width: 4%;
+  height: 18px;
+  background-color: #ff9800;
+}
+.accueil-body .bar-1 {
+  width: 15%;
+  height: 18px;
+  background-color: #f44336;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .accueil-body .side,
+  .accueil-body .middle {
+    width: 100%;
+  }
+  .accueil-body .right {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -104,6 +241,7 @@
   /*sidebar*/
   .accueil-sidebar {
     height: auto;
+    margin-right: 0;
   }
   /*body*/
   .accueil-body {
