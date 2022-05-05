@@ -12,50 +12,46 @@ export class ChartGeneraleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(document.querySelector("#myChart"))
-    this.chartit()
-  }
-  
-  drawChart() {
-    this.myChart = new Chart("myChart", {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          label: 'My First Dataset',
-          data: [300, 50, 100],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ],
-          hoverOffset: 4
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+    this.chartit();
   }
 
-  chartit(){
+  chartit() {
     let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
     this.myChart = new Chart(htmlRef, {
-      type: 'doughnut',
+      type: 'bar',
       data: {
+        labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
         datasets: [{
-          label: 'My First Dataset',
-          data: [300, 50, 100],
+          label: 'visites',
+          data: [12, 19, 3],
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            'rgba(201, 0, 23, 0.5)',
+            'rgba(201, 0, 23, 0.5)',
+            'rgba(201, 0, 23, 0.5)',
           ],
-          hoverOffset: 4
+          borderColor: [
+            '#c90017',
+            '#c90017',
+            '#c90017',
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'pointage',
+          data: [ 5, 7, 3],
+          backgroundColor: [
+            'rgba(65, 166, 41, 0.5)',
+            'rgba(65, 166, 41, 0.5)',
+            'rgba(65, 166, 41, 0.5)'
+          ],
+          borderColor: [
+            '#41a629',
+            '#41a629',
+            '#41a629'
+          ],
+          borderWidth: 1
         }]
+
       },
       options: {
         scales: {
@@ -65,5 +61,5 @@ export class ChartGeneraleComponent implements OnInit {
         }
       }
     });
- }
+  }
 }
