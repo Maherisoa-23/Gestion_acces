@@ -11,7 +11,8 @@ export class ChartGeneraleComponent implements OnInit {
   @Input() tab_visit_counting: any = [];
   @Input() tab_pointage_counting: any = [];
 
-  myChart: any;
+  myChartVisite: any;
+  myChartPointage: any;
 
   constructor(private elementRef: ElementRef, private authServ: AuthService) {
   }
@@ -33,7 +34,7 @@ export class ChartGeneraleComponent implements OnInit {
 
   }
   chartit() {
-    const data = {
+    const data_visite = {
       labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
       datasets: [{
         label: 'visites',
@@ -49,27 +50,31 @@ export class ChartGeneraleComponent implements OnInit {
           '#c90017',
         ],
         borderWidth: 1
-      },
-      {
-        label: 'pointage',
-        data: this.tab_pointage_counting,
-        backgroundColor: [
-          'rgba(65, 166, 41, 0.5)',
-          'rgba(65, 166, 41, 0.5)',
-          'rgba(65, 166, 41, 0.5)'
-        ],
-        borderColor: [
-          '#41a629',
-          '#41a629',
-          '#41a629'
-        ],
-        borderWidth: 1
       }]
     }
-    let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
-    this.myChart = new Chart(htmlRef, {
+    const data_pointage = {
+      labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
+      datasets: [
+        {
+          label: 'pointage',
+          data: this.tab_pointage_counting,
+          backgroundColor: [
+            'rgba(65, 166, 41, 0.5)',
+            'rgba(65, 166, 41, 0.5)',
+            'rgba(65, 166, 41, 0.5)'
+          ],
+          borderColor: [
+            '#41a629',
+            '#41a629',
+            '#41a629'
+          ],
+          borderWidth: 1
+        }]
+    }
+    let htmlRefVisit = this.elementRef.nativeElement.querySelector(`#myChartVisite`);
+    this.myChartVisite = new Chart(htmlRefVisit, {
       type: 'bar',
-      data: data,
+      data: data_visite,
       options: {
         scales: {
           y: {
@@ -77,6 +82,18 @@ export class ChartGeneraleComponent implements OnInit {
           }
         }
       },
+    });
+    let htmlRefPointage = this.elementRef.nativeElement.querySelector(`#myChartPointage`);
+    this.myChartPointage = new Chart(htmlRefPointage, {
+      type: 'bar',
+      data: data_pointage,
+      options: {
+        scales: {
+            y: {
+              min: 0
+            }
+          }
+        }
     });
 
   }
