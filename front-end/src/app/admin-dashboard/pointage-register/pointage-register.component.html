@@ -1,31 +1,66 @@
-<div class="section">
-    <!--Liste tableau-->
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Date</th>
-          <th (click)="SortByEntryTime()">Heure d'entree</th>
-          <th>Heure de sortie</th>
-            <th>
-            <div class="dropdown">
-              <a (click)="SortByDep()" class="dropbtn"
-                >Departement <i class="fa fa-caret-down dropbtn"></i
-              ></a>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of pointages">
-          <td data-label="Nom">{{item.employee_name}}</td>
-          <td data-label="Date">{{item.date}}</td>
-          <td data-label="Heure d'entree">{{item.entry_time}}</td>
-          <td data-label="Heure de sortie">{{item.exit_time}}</td>
-          <td data-label="Depart">{{item.employee_dep_name}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <!--Liste tableau-end-->
+<div class="topnav">
+  <a class="active"
+    ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i> Date: Avril
+    2022</a
+  >
+
+  <!--1-->
+  <a class="active"
+    ><i class="fas fa-house-user" style="margin-right: 10px"></i> Departement:
+    DSI
+    <i class="fa fa-caret-down"></i>
+  </a>
+  <div class="dropdown-content">
+    <a routerLink="visit-admin">Visite actif</a>
+    <hr />
+    <a routerLink="register-visit"> Registre des visites</a>
+    <hr />
   </div>
-  
+  <!--2-->
+  <a class="active"
+    ><i class="fas fa-home" style="margin-right: 10px"></i> Lieu: Ambojatovo
+    <i class="fa fa-caret-down"></i>
+  </a>
+  <div class="dropdown-content">
+    <a routerLink="visit-admin">Visite actif</a>
+    <hr />
+    <a routerLink="register-visit"> Registre des visites</a>
+    <hr />
+  </div>
+  <!--3-->
+  <a class="active"
+    ><i class="fas fa-id-card" style="margin-right: 10px"></i>Recherche par
+    employee</a
+  >
+</div>
+
+<div class="section">
+  <!--Liste tableau-->
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Date</th>
+        <th (click)="SortByEntryTime()">Heure d'entree</th>
+        <th>Heure de sortie</th>
+          <th>
+          <div class="dropdown">
+            <a (click)="SortByDep()" class="dropbtn"
+              >Departement <i class="fa fa-caret-down dropbtn"></i
+            ></a>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pointages">
+        <td data-label="Nom">{{item.employee_name}}</td>
+        <td data-label="Date">{{item.date}}</td>
+        <td data-label="Heure d'entree">{{item.entry_time}}</td>
+        <td data-label="Heure de sortie">{{item.exit_time}}</td>
+        <td data-label="Depart">{{item.employee_dep_name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>
