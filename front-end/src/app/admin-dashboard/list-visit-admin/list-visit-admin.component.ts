@@ -17,7 +17,7 @@ export class ListVisitAdminComponent implements OnInit {
     this.monOngletScriptElemet.type = 'text/javascript';
     document.body.appendChild(this.monOngletScriptElemet);
   }
-  lieu = ""
+  lieu = "Ambohijatovo"
   visitsList: any = [];
 
   ngOnInit(): void {

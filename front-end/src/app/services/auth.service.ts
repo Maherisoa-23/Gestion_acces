@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   isAuth = false;
   userName = "";
-  lieu = "";
+  lieu = "Ambohijatovo";
   isAdmin = false;
   date : any;
   userLoginTime : any;
