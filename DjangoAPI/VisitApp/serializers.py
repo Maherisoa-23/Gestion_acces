@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from VisitApp.models import Visits, Visits_register
+from VisitApp.models import Visits, Visits_register,Lieu
 
 class Visit_serializer(serializers.ModelSerializer):
     class Meta:
@@ -12,6 +12,7 @@ class Visit_serializer(serializers.ModelSerializer):
                   'date',
                   'entry_time'
                   )
+
 class Visits_register_serializer(serializers.ModelSerializer):
     class Meta:
         model = Visits_register
@@ -23,4 +24,12 @@ class Visits_register_serializer(serializers.ModelSerializer):
                   'date',
                   'entry_time',
                   'exit_time'
+                  )
+        
+class Lieu_serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Lieu
+        fields = ('lieu_id',
+                  'lieu_name',
+                  'total_employee'
                   )

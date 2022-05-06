@@ -25,3 +25,4 @@ class Visits_register(models.Model) :
 class Lieu(models.Model):
     lieu_id = models.AutoField(primary_key=True)
     lieu_name = models.CharField(max_length=50)
+    total_employee = models.IntegerField(default=100)

@@ -13,6 +13,7 @@ export class LieuCardComponent implements OnInit {
   @Input() entry_time = ""
   nb_visite : any
   nb_pointage : any
+  nb_employee : any
   myChart: any;
 
 
@@ -20,7 +21,9 @@ export class LieuCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshCounting();
-    this.chartit();
+
+    setTimeout(() => {
+      this.chartit()}, 500); 
   }
 
   getLieuId(lieu: string) {
@@ -39,22 +42,26 @@ export class LieuCardComponent implements OnInit {
     this.authServ.getPointageCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
       this.nb_pointage = data;
     });
+    this.authServ.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+      this.nb_employee = data;
+    });
   }
 
   chartit() {
     const data = {
       labels: [
-        'Red',
-        'Blue',
-        'Yellow'
+        'pourcentage des employés',
       ],
       datasets: [{
         label: 'My First Dataset',
-        data: [300, 50, 100],
+        data: [this.nb_pointage, this.nb_employee - this.nb_pointage],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          '#42992ea6',
+          '#e47f8b',
+        ],
+        borderColor: [
+          '#41a629',
+          '#d74051',
         ],
         hoverOffset: 4
       }]
@@ -63,6 +70,11 @@ export class LieuCardComponent implements OnInit {
     this.myChart = new Chart(htmlRef, {
       type: 'doughnut',
       data: data,
+      options: {
+        animation: {
+          animateScale : true
+        }
+      }
     });
   }
 }

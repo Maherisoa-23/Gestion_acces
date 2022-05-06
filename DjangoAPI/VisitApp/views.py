@@ -76,3 +76,12 @@ def visit_counter_API(request: HttpRequest, id=0):
         nb_visit = visits.count()
         return JsonResponse(nb_visit, safe = False)
     return JsonResponse("wrong lieu_id", safe = False)
+
+@csrf_exempt
+def lieu_API(request: HttpRequest, id=0):
+    #nombre total d'employée dans un lieu en particulier
+    if request.method == 'DELETE':
+        lieu = Lieu.objects.get(pk = id)
+        nb = lieu.total_employee
+        return JsonResponse(nb, safe = False)
+    return JsonResponse("wrong lieu_id", safe = False)
