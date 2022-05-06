@@ -68,8 +68,8 @@ export class LieuCardComponent implements OnInit {
         label: 'My First Dataset',
         data: [this.nb_pointage, this.nb_employee - this.nb_pointage],
         backgroundColor: [
-          '#eeeeee',
           this.couleur,
+          '#eeeeee',
         ],
         hoverOffset: 4
       }]
