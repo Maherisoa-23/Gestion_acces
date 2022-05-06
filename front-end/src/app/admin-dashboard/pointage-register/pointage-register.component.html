@@ -5,18 +5,13 @@
         <tr>
           <th>Nom</th>
           <th>Date</th>
-          <th>Heure d'entree</th>
+          <th (click)="SortByEntryTime()">Heure d'entree</th>
           <th>Heure de sortie</th>
             <th>
             <div class="dropdown">
-              <a onclick="myFunction()" class="dropbtn"
+              <a (click)="SortByDep()" class="dropbtn"
                 >Departement <i class="fa fa-caret-down dropbtn"></i
               ></a>
-              <div id="myDropdown" class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-              </div>
             </div>
           </th>
         </tr>
