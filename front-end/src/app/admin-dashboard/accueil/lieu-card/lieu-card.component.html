@@ -1,9 +1,9 @@
-<div class="card">
+<div class="card card{{id_lieu}}">
     <div class="card-header">
         <h3>{{ lieu }}</h3>
     </div>
     <div class="card-body">
-        <div class="card-container">
+        <div class="card-container ">
             <h4>Security : {{ employee_name }}</h4>
             <h4>Heure d'entree : {{ entry_time }}</h4>
             <h4 >Nombre de visite : {{nb_visite}}</h4>
@@ -13,6 +13,6 @@
         <div class="sary"><i class="fas fa-home"></i></div>
     </div>
     <div class="card-footer">
-        <canvas id="lieu-chart" > {{myChart}}</canvas>
+        <canvas id="lieu-chart" width="auto" height="125px" > {{myChart}}</canvas>
     </div>
 </div>

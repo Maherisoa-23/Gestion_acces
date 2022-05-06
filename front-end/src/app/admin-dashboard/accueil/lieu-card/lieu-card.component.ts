@@ -15,11 +15,15 @@ export class LieuCardComponent implements OnInit {
   nb_pointage : any
   nb_employee : any
   myChart: any;
+  id_lieu = 0;
+  couleur = ""
 
 
   constructor(private elementRef: ElementRef, private authServ: AuthService) { }
 
   ngOnInit(): void {
+    this.id_lieu = this.getLieuId(this.lieu);
+    this.setColor(this.id_lieu);
     this.refreshCounting();
 
     setTimeout(() => {
@@ -34,15 +38,23 @@ export class LieuCardComponent implements OnInit {
     }
   }
 
+  setColor(id_lieu : number){
+    if (id_lieu == 1) this.couleur = "#c92128"
+    else {
+      if (id_lieu == 2) this.couleur = "#37ab4b"
+      else this.couleur = "#20566d"
+    } 
+  }
+
   refreshCounting() {
     const l = this.lieu
-    this.authServ.getVisitCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+    this.authServ.getVisitCountingFilterByPlace(this.id_lieu).subscribe((data) => {
       this.nb_visite = data;
     });
-    this.authServ.getPointageCountingFilterByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+    this.authServ.getPointageCountingFilterByPlace(this.id_lieu).subscribe((data) => {
       this.nb_pointage = data;
     });
-    this.authServ.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+    this.authServ.getTotalNumberOfEmployeeByPlace(this.id_lieu).subscribe((data) => {
       this.nb_employee = data;
     });
   }
@@ -56,12 +68,8 @@ export class LieuCardComponent implements OnInit {
         label: 'My First Dataset',
         data: [this.nb_pointage, this.nb_employee - this.nb_pointage],
         backgroundColor: [
-          '#42992ea6',
-          '#e47f8b',
-        ],
-        borderColor: [
-          '#41a629',
-          '#d74051',
+          '#eeeeee',
+          this.couleur,
         ],
         hoverOffset: 4
       }]

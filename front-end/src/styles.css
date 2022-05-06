@@ -5,10 +5,15 @@
   --color-blue: #1e546b;
   --color-green: #35aa49;
   --color-red: #c92128;
-  --color-fond: #eeedea;
+  --color-bg: white;
+  --color-fond: rgb(229, 229, 229);
+  --color-text: #888888;
+  --color-titre: #6c6b6b;
+  --color-shadow: #6c6b6b;
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fond);
 }
 
 /* width */
@@ -40,7 +45,7 @@ body {
   grid-template-columns: 300px 1fr;
   grid-template-rows: 80px 1fr;
   grid-template-areas:
-    "sidebar header"
+    "header header"
     "sidebar content";
 }
 
@@ -49,23 +54,28 @@ body {
   grid-area: sidebar;
   background-color: var(--color-blue);
   display: grid;
+  border-radius: 15px;
+  margin: 20px;
+  box-shadow: 1px 1px 8px var(--color-bg);
   position: fixed;
-  width: 300px;
+  margin-top: 80px;
+  width: 280px;
   height: 100%;
 }
 
 /*headar*/
 .header {
   grid-area: header;
-  padding: 10px;
-  background-color: var(--color-blue);
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background: var(--color-bg);
+  z-index: 2000;
 }
 
 /*content*/
 .content {
   grid-area: content;
-  background-color: var(--color-fond);
-  padding: 10px;
 }
 
 /*media*/
@@ -78,12 +88,21 @@ body {
       "content content ";
     grid-template-rows: 70px 200px 1fr;
   }
+  /*header*/
+  .header {
+    grid-area: header;
+    margin: 0;
+    background-color: var(--color-bg);
+  }
 
   /*sidebar*/
   .sidebar {
     position: static;
     display: grid;
     width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0;
     justify-content: center;
     align-content: center;
   }

@@ -1,34 +1,40 @@
-<img src="assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
+<div class="entete">
 
-<hr />
-<h1><i class="fas fa-id-card-alt"></i></h1>
-<h1>{{userName}}</h1>
-<hr />
+  <div class="logo-text"><h1>OMNIS</h1></div>
+</div>
+<div class="users">
+  <h1><i class="fas fa-id-card-alt"></i></h1>
+  <h1>{{ userName }}Lucas</h1>
+</div>
 
 <ul>
   <li>
-    <a (click)="showAccueil()"><i class="fas fa-clock"></i> Accueil </a>
-
+    <a (click)="showAccueil()"><i class="fas fa-home"></i> Accueil </a>
   </li>
   <li>
     <div class="dropdown">
-      <a><i class="fas fa-home"></i>
+      <a
+        ><i class="fas fa-clock"></i>
         Visite
         <i class="fa fa-caret-down"></i>
       </a>
       <div class="dropdown-content">
-        <a (click)="showAdminVisit()"><i class="fas fa-clock"></i>Visite actif</a>
+        <a (click)="showAdminVisit()">Visite actif</a>
         <hr />
-        <a (click)="showAdminVisit()"><i class="fas fa-clock"></i> Registre des visites</a>
+        <a (click)="showAdminVisit()"> Registre des visites</a>
         <hr />
       </div>
     </div>
   </li>
   <li>
-    <a (click)="showAdminPointage()"><i class="fas fa-fingerprint"></i> Pointage</a>
+    <a (click)="showAdminPointage()"
+      ><i class="fas fa-fingerprint"></i> Pointage</a
+    >
   </li>
 
   <li>
-    <a (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+    <a href="/authentification" (click)="onSignOut()"
+      ><i class="fas fa-sign-out-alt"></i> Deconnexion</a
+    >
   </li>
 </ul>

@@ -21,14 +21,15 @@ export class AuthentificationComponent implements OnInit {
   heure: any;
 
   usersList: any = [];
+  myScriptElement: HTMLScriptElement;
   //myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
-    /* this.myScriptElement = document.createElement('script');
+    this.myScriptElement = document.createElement('script');
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
 
-    document.body.appendChild(this.myScriptElement); */
+    document.body.appendChild(this.myScriptElement);
     const inputs = document.querySelectorAll(".input");
     
     function addcl(item : any) {

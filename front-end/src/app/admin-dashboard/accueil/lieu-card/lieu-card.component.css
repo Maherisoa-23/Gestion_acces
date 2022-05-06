@@ -1,7 +1,6 @@
 .card {
   display: grid;
-  grid-template-rows: 10% 25% 1fr;
-  grid-gap: 1px;
+  grid-template-rows: 10% 35% 1fr;
   background: #fff;
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
   color: var(--color-text);
@@ -9,53 +8,59 @@
   transition: 0.2s;
   position: relative;
   width: 350px;
-  height: 450px;
+  height: 300px;
 }
 .card:hover {
   margin-top: 5px;
   box-shadow: 1px 3px 3px rgb(198, 195, 195);
 }
-
+.card1 {
+  border-top: 5px solid var(--color-red);
+}
+.card1 .card-body .sary {
+  color: var(--color-red);
+}
+.card2 {
+  border-top: 5px solid var(--color-green);
+}
+.card2 .card-body .sary {
+  color: var(--color-green);
+}
+.card3 {
+  border-top: 5px solid var(--color-blue);
+}
+.card3 .card-body .sary {
+  color: var(--color-blue);
+}
 .card .card-header h3 {
-    font-size: 20px;
-    text-align: center;
-    padding: 10px;
-    text-transform: uppercase;
-  }
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+}
 .card .card-body {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    letter-spacing: 1px;
-  }
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2px;
+}
 .card .card-body h4 {
-    font-size: 14px;
-    margin: 5px 0;
-    text-transform: capitalize;
-  }
+  font-size: 14px;
+  margin: 2px 0;
+  font-weight: lighter;
+  text-transform: capitalize;
+}
 .card .card-body .sary {
-    font-size: 50px;
-  }
+  font-size: 50px;
+}
 .card .card-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    position: relative;
-    height: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 15px;
-    border-radius: 15px;
-  }
-.card .card-footer .rond {
-    width: 60px;
-    height: 60px;
-    border: 15px solid rgb(255, 255, 255);
-    background: #fff;
-    border-radius: 50%;
-  }
-  
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg);
+  position: relative;
+  width: auto;
+  height: 100%;
+  align-items: flex-start;
+  border-radius: 15px;
+}

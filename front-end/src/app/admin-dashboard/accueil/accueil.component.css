@@ -7,12 +7,10 @@
 }
 .accueil-container {
   display: grid;
-  height: 100vh;
   width: 100%;
-  grid-gap: 10px;
-  margin: 10px auto;
+  grid-gap: 5px;
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 500px 1fr;
+  grid-template-rows: 310px 1fr;
   grid-template-areas:
     "header header "
     "contenu  sidebar"
@@ -23,7 +21,7 @@
 .accueil-sidebar {
   grid-area: sidebar;
   background: var(--color-fond);
-  margin: 30px;
+  margin: 10px 30px;
   height: auto;
 }
 .accueil-sidebar .security {
@@ -51,8 +49,8 @@
   border-bottom: 2px solid var(--color-fond);
   margin: 2px;
   padding: 10px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: lighter;
   transition: 0.3s ease;
 }
 .accueil-sidebar .security ul li:hover {
@@ -66,68 +64,6 @@
   background: var(--color-fond);
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-}
-.accueil-header .card {
-  display: grid;
-  grid-template-rows: 10% 25% 1fr;
-  grid-gap: 1px;
-  background: #fff;
-  box-shadow: 1px 2px 3px rgb(198, 195, 195);
-  color: var(--color-text);
-  border-radius: 15px;
-  transition: 0.2s;
-  position: relative;
-  width: 350px;
-  height: 450px;
-}
-.accueil-header .card:hover {
-  margin-top: 5px;
-  box-shadow: 1px 3px 3px rgb(198, 195, 195);
-}
-
-.accueil-header .card .card-header h3 {
-  font-size: 20px;
-  text-align: center;
-  padding: 10px;
-  text-transform: uppercase;
-}
-.accueil-header .card .card-body {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-  letter-spacing: 1px;
-}
-.accueil-header .card .card-body h4 {
-  font-size: 14px;
-  margin: 5px 0;
-  text-transform: capitalize;
-}
-.accueil-header .card .card-body .sary {
-  font-size: 50px;
-}
-.accueil-header .card .card-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--color-red);
-  position: relative;
-  height: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 15px;
-  border-radius: 15px;
-}
-.accueil-header .card .card-footer .rond {
-  width: 60px;
-  height: 60px;
-  border: 15px solid rgb(255, 68, 0);
-  background: #fff;
-  border-radius: 50%;
 }
 
 /*body/diagramme*/
@@ -136,7 +72,7 @@
   background: #fff;
   padding: 15px;
   height: 100%;
-  margin: 20px;
+  margin: 10px 30px;
   border-radius: 15px;
 }
 .accueil-body .heading {
