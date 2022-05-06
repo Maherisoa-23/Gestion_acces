@@ -1,0 +1,36 @@
+<div class="section">
+    <!--Liste tableau-->
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Date</th>
+          <th>Heure d'entree</th>
+          <th>Heure de sortie</th>
+            <th>
+            <div class="dropdown">
+              <a onclick="myFunction()" class="dropbtn"
+                >Departement <i class="fa fa-caret-down dropbtn"></i
+              ></a>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pointages">
+          <td data-label="Nom">{{item.employee_name}}</td>
+          <td data-label="Date">{{item.date}}</td>
+          <td data-label="Heure d'entree">{{item.entry_time}}</td>
+          <td data-label="Heure de sortie">{{item.exit_time}}</td>
+          <td data-label="Depart">{{item.employee_dep_name}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--Liste tableau-end-->
+  </div>
+  

@@ -4,18 +4,20 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.entete .logo img {
-  width: 70px;
-  height: 70px;
-  margin: 30px 0 30px 20px;
+.entete .logo-text p {
+  font-size: 14px;
+  color: var(--color-fond);
+  text-align: center;
+  margin: 10px 10px 15px 10px;
+  letter-spacing: 2px;
   /* filter: brightness(90%);*/
 }
 .entete .logo-text h1 {
-  font-size: 30px;
-  font-weight: 800;
-  margin-right: 20px;
+  font-size: 25px;
+  text-align: center;
+  margin: 20px 20px 5px 20px;
   color: var(--color-fond);
-  letter-spacing: 5px;
+  letter-spacing: 3px;
 }
 .users {
   border-top: 2px solid var(--color-fond);
@@ -28,7 +30,7 @@
   padding: 0;
   align-items: center;
   font-size: 16px;
-  font-weight: bolder;
+  letter-spacing: 2px;
   text-transform: capitalize;
   color: var(--color-fond);
 }
@@ -91,7 +93,7 @@ ul li .dropdown-content {
 
 ul li .dropdown-content a {
   float: none;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-blue);
   padding: 12px 16px;
