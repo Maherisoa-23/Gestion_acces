@@ -14,7 +14,6 @@ export class VisitDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.service.isAdmin
-    console.log(this.isAdmin)
   }
 
 }

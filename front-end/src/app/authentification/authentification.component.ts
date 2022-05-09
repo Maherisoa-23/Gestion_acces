@@ -19,6 +19,9 @@ export class AuthentificationComponent implements OnInit {
   lieux = ["Ambohijatovo", "Andraharo", "Mangasoavina"];
   date: any;
   heure: any;
+  
+  //pour verifier si la connection est déja existante
+  tmptab : any = []
 
   usersList: any = [];
   myScriptElement: HTMLScriptElement;
@@ -52,6 +55,7 @@ export class AuthentificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshUsersList();
+    this.refreshActiveConnectionList();
     this.authStatus = this.authService.isAuth;
   }
 
@@ -59,6 +63,12 @@ export class AuthentificationComponent implements OnInit {
   refreshUsersList() {
     this.authService.getUsersList().subscribe((data) => {
       this.usersList = data;
+    });
+  }
+
+  refreshActiveConnectionList() {
+    this.authService.getActiveConnectionList().subscribe((data) => {
+      this.tmptab = data;
     });
   }
 
@@ -82,14 +92,13 @@ export class AuthentificationComponent implements OnInit {
           localStorage.setItem('admin1', JSON.stringify(element[index]));
         }
         else {
-          console.log(this.authService.lieu)
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.router.navigate(['accueil']);
           });
           localStorage.setItem('user1', JSON.stringify(element[index]));
-          this.saveConnection()
+          this.saveConnection()            
 
         }
         break;
@@ -120,8 +129,10 @@ export class AuthentificationComponent implements OnInit {
     this.authService.addPointage(val).subscribe((res) => {
       console.log(res.toString() + " to the pointage list");
     });
-    this.authService.addActiveConnection(val).subscribe((res) => {
-      console.log(res.toString() + " to the active connection list");
-    });
+    if (this.tmptab.length < 3) {
+      this.authService.addActiveConnection(val).subscribe((res) => {
+        console.log(res.toString() + " to the active connection list");
+      });
+    }
   }
 }

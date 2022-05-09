@@ -18,6 +18,7 @@
   <div class="accueil-sidebar">
     <div class="security">
       <h3>Security actif</h3>
+      <button (click)="refreshActiveSecurityList()"> Actualiser </button>
       <ul>
         <li *ngFor="let item of activeSecurityList">{{item.employee_name}}</li>
       </ul>
