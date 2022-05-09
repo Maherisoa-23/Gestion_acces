@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
 }
+
 .accueil-container {
   display: grid;
   width: 100%;
@@ -24,6 +25,7 @@
   margin: 10px 30px;
   height: auto;
 }
+
 .accueil-sidebar .security {
   background: white;
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
@@ -33,6 +35,7 @@
   padding: 10px;
   color: var(--color-text);
 }
+
 .accueil-sidebar .security h3 {
   font-size: 20px;
   font-weight: 600;
@@ -41,10 +44,12 @@
   text-align: center;
   letter-spacing: 5px;
 }
+
 .accueil-sidebar .security ul {
   margin: 20px;
   list-style-type: none;
 }
+
 .accueil-sidebar .security ul li {
   border-bottom: 2px solid var(--color-fond);
   margin: 2px;
@@ -53,6 +58,7 @@
   font-weight: lighter;
   transition: 0.3s ease;
 }
+
 .accueil-sidebar .security ul li:hover {
   font-size: 18.5px;
   margin-left: 4px;
@@ -75,6 +81,7 @@
   margin: 10px 30px;
   border-radius: 15px;
 }
+
 .accueil-body .heading {
   font-size: 25px;
   margin-right: 25px;
@@ -127,21 +134,25 @@
   height: 18px;
   background-color: #04aa6d;
 }
+
 .accueil-body .bar-4 {
   width: 30%;
   height: 18px;
   background-color: #2196f3;
 }
+
 .accueil-body .bar-3 {
   width: 10%;
   height: 18px;
   background-color: #00bcd4;
 }
+
 .accueil-body .bar-2 {
   width: 4%;
   height: 18px;
   background-color: #ff9800;
 }
+
 .accueil-body .bar-1 {
   width: 15%;
   height: 18px;
@@ -150,16 +161,19 @@
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
+
   .accueil-body .side,
   .accueil-body .middle {
     width: 100%;
   }
+
   .accueil-body .right {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
+
   /*accueil*/
   .accueil-container {
     grid-template-areas:
@@ -168,19 +182,30 @@
       "contenu  contenu";
     grid-template-rows: 1fr 1fr 1fr;
   }
+
   /*header*/
   .accueil-header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   /*sidebar*/
   .accueil-sidebar {
     height: auto;
     margin-right: 0;
   }
+
   /*body*/
   .accueil-body {
     height: auto;
   }
+}
+
+
+/*Button*/
+.button {
+  padding: 10px 30px;
+  background: #2196f3;
+  color: white;
 }
