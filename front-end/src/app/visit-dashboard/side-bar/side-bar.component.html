@@ -1,20 +1,25 @@
-<img src="assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
-<hr />
-<h1><i class="fas fa-id-card-alt"></i></h1>
-<h1>{{userName}}</h1>
-<hr />
+<div class="entete">
+  <div class="logo-text">
+    <h1>OMNIS</h1>
+    <p>Dashboard</p>
+  </div>
+</div>
+<div class="users">
+  <h1><i class="fas fa-id-card-alt"></i></h1>
+  <h1>{{ userName }}</h1>
+</div>
 
-    <ul>
-      <li>
-        <a ><i class="fas fa-user-check"></i> Security name</a>
-      </li>
-      <li>
-        <a (click)="showActiveVisit()"><i class="fas fa-clock"></i>Gestion des visites</a>
-      </li>
-      <li>
-        <a (click)="PointageView()"><i class="fas fa-book"></i> Pointage</a>
-      </li>
-      <li>
-        <a (click)= "onSignOut()"><i class="fas fa-share-square"></i> Deconnexion</a>
-      </li>
-    </ul>
+<ul>
+  <li>
+    <a><i class="fas fa-home"></i> Accueil </a>
+  </li>
+  <li>
+    <a (click)="showActiveVisit()"> <i class="fas fa-clock"></i>   Visite    </a>
+  </li>
+  <li>
+    <a (click)="PointageView()"> <i class="fas fa-fingerprint"></i>   Pointage    </a>
+  </li>
+  <li>
+    <a (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+  </li>
+</ul>
