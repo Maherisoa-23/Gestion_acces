@@ -76,8 +76,9 @@ export class ListActiveVisitComponent implements OnInit {
         console.log((data.toString()));
       });
     }
-    this.refreshVisitsList();
-    this.refreshVisitsList();
+    setTimeout(() => {
+      this.refreshVisitsList();
+    }, 500);
   }
   
 }

@@ -19,6 +19,8 @@ export class PointageEmployeeComponent implements OnInit {
   employees: any = [];
   date: any;
   heure: any;
+  isEmp = false;
+  isPoind = false;
 
   constructor(private authServ: AuthService, private datePipe: DatePipe) { }
 
@@ -41,11 +43,15 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   OnEnter() {
-    if (!this.isEmployee()) {
+    setTimeout(() => {
+      this.isEmp = this.isEmployee()
+      this.isPoind = this.isPointed()
+    }, 500);
+    if (!this.isEmp) {
       alert("numéro matricule ou mot de passe incorrect!");
     }
     else {
-      if (this.isPointed()) {
+      if (this.isPoind) {
         alert("Employé déjà présent");
       }
       else {
@@ -62,8 +68,9 @@ export class PointageEmployeeComponent implements OnInit {
         this.authServ.addPointage(val).subscribe((res) => {
           console.log(res.toString() + " to the pointage list");
         });
-        this.refreshPointageList();
-        this.refreshPointageList();
+        setTimeout(() => {
+          this.refreshPointageList();
+        }, 500);
         this.numero_matricule = 0
         this.password = "";
       }
@@ -74,10 +81,14 @@ export class PointageEmployeeComponent implements OnInit {
   OnExit() {
     if (!this.isEmployee()) {
       alert("numéro matricule ou mot de passe incorrect!");
+      this.numero_matricule = 0
+      this.password = ""
     }
     else {
       if (!this.isPointed()) {
         alert("Employé non présent ou déjà parti");
+        this.numero_matricule = 0
+        this.password = ""
       }
       else {
         this.authServ.deletePointage(this.numero_matricule).subscribe((data) => {
@@ -109,8 +120,9 @@ export class PointageEmployeeComponent implements OnInit {
       }
     }
 
-    this.refreshPointageList();
-    this.refreshPointageList();
+    setTimeout(() => {
+      this.refreshPointageList();
+    }, 500);
     console.log("refreshed")
     this.numero_matricule = 0
     this.password = ""

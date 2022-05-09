@@ -33,24 +33,7 @@ export class AuthentificationComponent implements OnInit {
     this.myScriptElement.type = 'text/javascript';
 
     document.body.appendChild(this.myScriptElement);
-    const inputs = document.querySelectorAll(".input");
     
-    function addcl(item : any) {
-      let parent = item.parentNode.parentNode;
-      parent.classList.add("focus");
-    }
-    
-    function remcl(item : any) {
-      let parent = item.parentNode.parentNode;
-      if (item.value == "") {
-        parent.classList.remove("focus");
-      }
-    }
-    
-    inputs.forEach((input) => {
-      input.addEventListener("focus", addcl);
-      input.addEventListener("blur", remcl);
-    });
   }
 
   ngOnInit(): void {

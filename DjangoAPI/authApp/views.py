@@ -104,7 +104,7 @@ def pointage_API(request: HttpRequest, id = 0):
         return JsonResponse("failded to add", safe= False)    
     #filtrer les pointages par département
     elif request.method == 'DELETE':
-        pointage=Pointage.objects.get(pk =id)
+        pointage=Pointage.objects.get(numero_matricule =id)
         pointage.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
