@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddVisitComponent } from './add-visit.component';
+import { SecurityProfileComponent } from './security-profile.component';
 
-describe('AddVisitComponent', () => {
-  let component: AddVisitComponent;
-  let fixture: ComponentFixture<AddVisitComponent>;
+describe('SecurityProfileComponent', () => {
+  let component: SecurityProfileComponent;
+  let fixture: ComponentFixture<SecurityProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddVisitComponent ]
+      declarations: [ SecurityProfileComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddVisitComponent);
+    fixture = TestBed.createComponent(SecurityProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

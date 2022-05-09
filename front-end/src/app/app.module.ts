@@ -6,11 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitDashboardComponent } from './visit-dashboard/visit-dashboard.component';
 import { ListActiveVisitComponent } from './visit-dashboard/list-active-visit/list-active-visit.component';
-import { VisitComponent } from './visit-dashboard/list-active-visit/visit/visit.component';
 import { NavBarComponent } from './visit-dashboard/nav-bar/nav-bar.component';
 import { SideBarComponent } from './visit-dashboard/side-bar/side-bar.component';
 
-import { AddVisitComponent } from './visit-dashboard/list-active-visit/add-visit/add-visit.component';
 
 import { VisitService } from './services/visit.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,11 +28,13 @@ import { AdminGuard } from './services/admin-guard.service';
 import { ChartGeneraleComponent } from './admin-dashboard/accueil/chart-generale/chart-generale.component';
 import { LieuCardComponent } from './admin-dashboard/accueil/lieu-card/lieu-card.component';
 import { PointageRegisterComponent } from './admin-dashboard/pointage-register/pointage-register.component';
+import { SecurityProfileComponent } from './admin-dashboard/security-profile/security-profile.component';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
+      { path: 'security-profile', component: SecurityProfileComponent},
       { path: 'visit-admin', component: ListVisitAdminComponent},
       { path: 'pointage-admin', component: PointageComponent},
       { path: 'pointage-register', component: PointageRegisterComponent},
@@ -58,10 +58,8 @@ const appRoutes: Routes = [
     AppComponent,
     VisitDashboardComponent,
     ListActiveVisitComponent,
-    VisitComponent,
     NavBarComponent,
     SideBarComponent,
-    AddVisitComponent,
     AuthentificationComponent,
     ErrorComponent,
     ListVisitAdminComponent,
@@ -74,6 +72,7 @@ const appRoutes: Routes = [
     ChartGeneraleComponent,
     LieuCardComponent,
     PointageRegisterComponent,
+    SecurityProfileComponent,
   ],
   imports: [
     BrowserModule,
