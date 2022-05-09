@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
 from VisitApp.models import Visits,Visits_register,Lieu
-from VisitApp.serializers import Visit_serializer, Visits_register_serializer
+from VisitApp.serializers import Visit_serializer, Visits_register_serializer,Lieu_serializers
 
 
 # Create your views here.
@@ -79,8 +79,12 @@ def visit_counter_API(request: HttpRequest, id=0):
 
 @csrf_exempt
 def lieu_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        lieux = Lieu.objects.all()
+        visits_serializer = Lieu_serializers(lieux, many=True)
+        return JsonResponse(visits_serializer.data, safe=False)    
     #nombre total d'employée dans un lieu en particulier
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)
         nb = lieu.total_employee
         return JsonResponse(nb, safe = False)
