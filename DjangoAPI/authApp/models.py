@@ -20,7 +20,7 @@ class Employee(models.Model) :
     password = models.CharField(max_length=100)
     
 class Pointage(models.Model):
-    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
+    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1, unique=True)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)
@@ -39,12 +39,12 @@ class Pointage_register(models.Model):
     exit_time = models.CharField(max_length=50)
     
 class Active_connection(models.Model):
-    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)
+    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1, unique=True, null=True)
     employee_name =  models.CharField(max_length=50, null= True)
     active_connection_id = models.AutoField(primary_key=True)
     date = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)
-    entry_time = models.CharField(max_length=50)
+    entry_time = models.CharField(max_length=50, null=True)
     
 class Connection_register(models.Model):
     numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1)

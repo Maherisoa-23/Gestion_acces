@@ -144,6 +144,14 @@ def active_connection_API(request: HttpRequest, id=0):
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        employee_data = JSONParser().parse(request)
+        employee= Active_connection.objects.get(employee_id = employee_data['employee_id'] )
+        employee_serializer = Active_connection_serializer(employee,data=employee_data)
+        if employee_serializer.is_valid():
+            employee_serializer.save()
+            return JsonResponse("Update successfully",safe=False)
+        return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
         pointage=Active_connection.objects.get(numero_matricule =id)
         pointage.delete()
