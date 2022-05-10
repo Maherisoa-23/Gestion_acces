@@ -21,6 +21,13 @@ export class SideBarComponent implements OnInit {
     this.userName = this.authService.userName;
   }
 
+  getLieuId(lieu: string) {
+    if (lieu == "Ambohijatovo") return 1
+    else {
+      if (lieu == "Andraharo") return 2
+      else return 3
+    }
+  }
   onSignOut() {
     this.authService.signOut();
     localStorage.removeItem('user1');
@@ -46,17 +53,11 @@ export class SideBarComponent implements OnInit {
       entry_time : this.authService.userLoginTime,
       exit_time: this.heure.toString(),
     };
-    var val2 = {
-      date: this.authService.date,
-      lieu: this.authService.lieu,
-      entry_time : "",
-      exit_time : "",
-    };
 
     this.authService.deletePointage(this.authService.numero_matricule).subscribe((res) => {
       console.log(res.toString() + " from the pointage list");
     });
-    this.authService.putActiveConnection(val2).subscribe((res) => {
+    this.authService.deleteActiveConnection(this.getLieuId(this.authService.lieu)).subscribe((res) => {
       console.log(res.toString());
     });
     this.authService.addConnectionRegister(val).subscribe((res) => {

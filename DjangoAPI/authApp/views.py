@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -137,27 +138,22 @@ def active_connection_API(request: HttpRequest, id=0):
         pointage = Active_connection.objects.all()
         pointage_serializer = Active_connection_serializer(pointage, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
-    elif request.method== 'POST':
-        pointage_data = JSONParser().parse(request)
-        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
-        pointage_data["employee_name"] = employee.employee_name
-        pointage_serializer = Pointage_serializer(data=pointage_data)
-        pointage_serializer = Active_connection_serializer(data=pointage_data)
-        if pointage_serializer.is_valid():
-            pointage_serializer.save()
-            return JsonResponse("Added successfully",safe=False)
-        return JsonResponse("failded to add", safe= False)
     elif request.method == 'PUT':
-        employee_data = JSONParser().parse(request)
-        employee= Active_connection.objects.get(lieu = employee_data['lieu'] )
-        employee_serializer = Active_connection_serializer(employee,data=employee_data)
-        if employee_serializer.is_valid():
-            employee_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
+        AC_data = JSONParser().parse(request)
+        active = Active_connection.objects.get(lieu = AC_data["lieu"])
+        active.date = AC_data["date"]
+        emp = Employee.objects.get(pk = AC_data["numero_matricule"])
+        active.employee_name = emp.employee_name
+        active.numero_matricule = emp
+        active.entry_time = AC_data["entry_time"]
+        active.save()
+        return JsonResponse("success to Update", safe= False)
     elif request.method == 'DELETE':
-        pointage=Active_connection.objects.get(numero_matricule =id)
-        pointage.delete()
+        pointage=Active_connection.objects.get(pk =id)
+        pointage.employee_name = ""
+        pointage.entry_time = ""
+        pointage.numero_matricule = None
+        pointage.save()
         return JsonResponse("Delete successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
 
