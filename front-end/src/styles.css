@@ -42,11 +42,12 @@ body {
   height: 100vh;
   width: 100%;
   grid-gap: 2px;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
   grid-template-rows: 80px 1fr;
   grid-template-areas:
     "header header"
     "sidebar content";
+  background: var(--color-fond);
 }
 
 /*sidebar*/
@@ -86,7 +87,7 @@ body {
       "header header "
       "sidebar sidebar "
       "content content ";
-    grid-template-rows: 70px 200px 1fr;
+    grid-template-rows: 70px auto 1fr;
   }
   /*header*/
   .header {

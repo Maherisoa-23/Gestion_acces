@@ -1,3 +1,18 @@
+/*titre*/
+.titre {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 10px;
+  padding: 5px 0;
+}
+.titre h1 {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-blue);
+}
 .section {
   width: 100%;
   grid-column: 1 / -1;
@@ -136,7 +151,6 @@
   }
 }
 
-/*Toky css */
 .th:hover{
   cursor: pointer;
 }

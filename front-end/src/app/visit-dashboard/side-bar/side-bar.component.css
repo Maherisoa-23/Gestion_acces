@@ -112,7 +112,12 @@ ul li .dropdown:hover .dropdown-content {
 /*media*/
 @media screen and (max-width: 768px) {
   /*sidebar*/
-
+  .entete {
+    display: none;
+  }
+  .users{
+    display: none;
+  }
   img,
   hr,
   h1 {

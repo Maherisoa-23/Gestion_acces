@@ -9,6 +9,20 @@ input {
   height: 30px;
   color: var(--color-green);
 }
+.titre {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 10px;
+  padding: 5px 0;
+}
+.titre h1 {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-blue);
+}
 
 #auCentre {
   width: auto;
@@ -19,7 +33,7 @@ input {
   text-align: justify;
 }
 
-h1 {
+/* h1 {
   color: var(--color-fond);
   font-size: 22px;
   padding: 10px;
@@ -29,7 +43,7 @@ h1 {
   background: var(--color-blue);
 
   text-align: center;
-}
+} */
 .barre {
   display: flex;
   justify-content: center;

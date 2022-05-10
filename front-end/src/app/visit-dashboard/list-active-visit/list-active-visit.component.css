@@ -1,3 +1,21 @@
+.titre {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 10px;
+  padding: 5px 0;
+}
+.titre h1 {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-blue);
+}
+.titre h1 span {
+  color: var(--color-green);
+  font-size: 22px;
+}
 .btn {
   height: auto;
   width: 100%;
@@ -122,6 +140,7 @@
 
 /* Full-width input fields */
 input[type="text"],
+input [type="number"],
 textarea {
   width: 100%;
   padding: 12px 20px;

@@ -1,13 +1,27 @@
-
+<div class="titre">
+  <h1>Visite actuelle</h1>
+</div>
 <div id="auCentre">
   <div class="barre">
-    <button class="onglet actif" onclick="ouvrirOnglet(event,'Javascript')" (click)= "switchAmbohijatovo()">
+    <button
+      class="onglet actif"
+      onclick="ouvrirOnglet(event,'Javascript')"
+      (click)="switchAmbohijatovo()"
+    >
       Ambohijatovo
     </button>
-    <button class="onglet" onclick="ouvrirOnglet(event,'Css')" (click)= "switchAndraharo()">
+    <button
+      class="onglet"
+      onclick="ouvrirOnglet(event,'Css')"
+      (click)="switchAndraharo()"
+    >
       Andraharo
     </button>
-    <button class="onglet" onclick="ouvrirOnglet(event,'Php')" (click)= "switchMangasoavina()">
+    <button
+      class="onglet"
+      onclick="ouvrirOnglet(event,'Php')"
+      (click)="switchMangasoavina()"
+    >
       Mangasoavina
     </button>
   </div>
@@ -16,7 +30,7 @@
     <!--On garde rubrique pour reconnaître par code Javascript-->
     <!--Tableau-->
     <div class="section">
-      <h1>Liste visite Andraharo</h1>
+      <!-- <h1>Liste visite Andraharo</h1> -->
       <table class="tbl">
         <thead>
           <tr>
@@ -24,16 +38,24 @@
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
-            <th>Heure d'entré</th>          
+            <th>Heure d'entré</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="ID" *ngIf="item.lieu == lieu">
+              {{ item.visit_id }}
+            </td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">
+              {{ item.visitor_name }}
+            </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.date }}</td>
-            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">
+              {{ item.motif }}
+            </td>
+            <td data-label="Date" *ngIf="item.lieu == lieu">
+              {{ item.entry_time }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -43,7 +65,7 @@
   <div id="Javascript" class="rubrique">
     <!--Tableau-->
     <div class="section">
-      <h1>Liste visite Ambohijatovo</h1>
+      <!-- <h1>Liste visite Ambohijatovo</h1> -->
       <table class="tbl">
         <thead>
           <tr>
@@ -51,16 +73,24 @@
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
-            <th>Heure d'entré</th>          
+            <th>Heure d'entré</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="ID" *ngIf="item.lieu == lieu">
+              {{ item.visit_id }}
+            </td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">
+              {{ item.visitor_name }}
+            </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.date }}</td>
-            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">
+              {{ item.motif }}
+            </td>
+            <td data-label="Date" *ngIf="item.lieu == lieu">
+              {{ item.entry_time }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -70,7 +100,7 @@
   <div id="Php" class="rubrique" style="display: none">
     <!--Tableau-->
     <div class="section">
-      <h1>Liste visite Mangasoavina</h1>
+      <!-- <h1>Liste visite Mangasoavina</h1> -->
       <table class="tbl">
         <thead>
           <tr>
@@ -78,16 +108,24 @@
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
-            <th>Heure d'entré</th>          
+            <th>Heure d'entré</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.visitor_name }}</td>
+            <td data-label="ID" *ngIf="item.lieu == lieu">
+              {{ item.visit_id }}
+            </td>
+            <td data-label="Nom" *ngIf="item.lieu == lieu">
+              {{ item.visitor_name }}
+            </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.date }}</td>
-            <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
+            <td data-label="Motif" *ngIf="item.lieu == lieu">
+              {{ item.motif }}
+            </td>
+            <td data-label="Date" *ngIf="item.lieu == lieu">
+              {{ item.entry_time }}
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,9 +1,15 @@
 <!--bouton ajout + sorti-->
 <div class="btn">
-  <button class="btn-content entre" onclick="document.getElementById('id01').style.display='block'">
+  <button
+    class="btn-content entre"
+    onclick="document.getElementById('id01').style.display='block'"
+  >
     Entree
   </button>
-  <button class="btn-content exit" onclick="document.getElementById('id02').style.display='block'">
+  <button
+    class="btn-content exit"
+    onclick="document.getElementById('id02').style.display='block'"
+  >
     Sortie
   </button>
 </div>
@@ -14,20 +20,39 @@
   <form class="modal-content animate">
     <h1>entre</h1>
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close"
-        title="Close Modal">&times;</span>
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
 
     <div class="container">
-      <label><b>Numero Matricule :</b></label>
-      <input type="text" [(ngModel)]="numero_matricule" name="numero_matricule" />
+      <label
+        ><b>Numero Matricule :</b></label
+      >
+      <input
+        type="text"
+        [(ngModel)]="numero_matricule"
+        name="numero_matricule"
+      />
       <label><b>Mot de passe</b></label>
       <input type="password" [(ngModel)]="password" name="password" />
 
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'" (click)="OnEnter()">
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="OnEnter()"
+      >
         Confirmer
       </button>
-      <button class="btn-cancel" type="button" onclick="document.getElementById('id01').style.display='none'">
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
         Annuler
       </button>
     </div>
@@ -40,20 +65,37 @@
   <form class="modal-content animate">
     <h1>sorti</h1>
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close"
-        title="Close Modal">&times;</span>
+      <span
+        onclick="document.getElementById('id02').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
 
     <div class="container">
       <label><b>Numero Matricule :</b></label>
-      <input type="text" [(ngModel)]="numero_matricule" name="numero_matricule" />
+      <input
+        type="text"
+        [(ngModel)]="numero_matricule"
+        name="numero_matricule"
+      />
       <label><b>Mot de passe</b></label>
       <input type="password" [(ngModel)]="password" name="password" />
 
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id02').style.display='none'" (click)="OnExit()">
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id02').style.display='none'"
+        (click)="OnExit()"
+      >
         Confirmer
       </button>
-      <button class="btn-cancel" type="button" onclick="document.getElementById('id02').style.display='none'">
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id02').style.display='none'"
+      >
         Cancel
       </button>
     </div>
@@ -63,6 +105,11 @@
 
 <!--tableau-pointage-->
 <div class="section">
+  <div class="titre">
+    <h1>
+      Pointage actuel a: <span>{{ lieu }}</span>
+    </h1>
+  </div>
   <table class="tbl">
     <thead>
       <tr>
@@ -74,12 +121,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages">
-        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.numero_matricule }}</td>
-        <td data-label="Nom" *ngIf="item.lieu == lieu">{{ item.entry_time }}</td>
-        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">{{ item.employee_name }}</td>
-        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.employee_dep_name }}</td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">
+          {{ item.numero_matricule }}
+        </td>
+        <td data-label="Nom" *ngIf="item.lieu == lieu">
+          {{ item.entry_time }}
+        </td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">
+          {{ item.employee_name }}
+        </td>
+        <td data-label="Motif" *ngIf="item.lieu == lieu">
+          {{ item.employee_dep_name }}
+        </td>
       </tr>
-
     </tbody>
   </table>
 </div>
