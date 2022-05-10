@@ -117,6 +117,9 @@ def pointage_register_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
+        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
+        pointage_data["employee_name"] = employee.employee_name
+        pointage_data["employee_dep_name"] = employee.department_name 
         pointage_serializer = Pointage_register_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()

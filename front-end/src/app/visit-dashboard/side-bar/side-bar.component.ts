@@ -14,8 +14,6 @@ export class SideBarComponent implements OnInit {
 
   userName = "";
   heure : any;
-  myScriptElement: any;
-
 
   constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
 
@@ -28,10 +26,6 @@ export class SideBarComponent implements OnInit {
     localStorage.removeItem('user1');
     this.saveConnectionRegister();
     this.route.navigate(['authentification']);
-
-    //pour effacer le script de l'authentification afin qu'il ne se répète pas
-    this.myScriptElement = document.body.lastChild
-    document.body.removeChild(this.myScriptElement)
   }
 
   showActiveVisit(){

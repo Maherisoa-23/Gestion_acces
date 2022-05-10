@@ -142,4 +142,8 @@
       text-align: left;
     }
   }
-  
+
+/*Toky css */
+.th:hover{
+  cursor: pointer;
+}

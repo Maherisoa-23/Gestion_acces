@@ -43,15 +43,11 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   OnEnter() {
-    setTimeout(() => {
-      this.isEmp = this.isEmployee()
-      this.isPoind = this.isPointed()
-    }, 500);
-    if (!this.isEmp) {
+    if (!this.isEmployee()) {
       alert("numéro matricule ou mot de passe incorrect!");
     }
     else {
-      if (this.isPoind) {
+      if (this.isPointed()) {
         alert("Employé déjà présent");
       }
       else {
