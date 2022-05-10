@@ -40,29 +40,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td data-label="Nom">lol</td>
-          <td data-label="Heure d'entree">mars 2022</td>
-          <td data-label="Heure de sortie">mars 2022</td>
-          <td data-label="Date">mars 2022</td>
-          <td data-label="Motif">stage</td>
-          <td data-label="Depart">DSI</td>
-        </tr>
-        <tr>
-          <td data-label="Nom">lol</td>
-          <td data-label="Heure/Date">mars 2022</td>
-          <td data-label="Motif">stage</td>
-          <td data-label="Motif">stage</td>
-          <td data-label="Motif">stage</td>
-          <td data-label="Depart">stage</td>
-        </tr>
-        <tr>
-          <td data-label="Nom">lol</td>
-          <td data-label="Heure/Date">mars 2022</td>
-          <td data-label="Motif">stage</td>
-          <td data-label="Depart">stage</td>
-          <td data-label="Depart">stage</td>
-          <td data-label="Depart">stage</td>
+        <tr *ngFor="let item of visitsRegister">
+          <td data-label="Nom">{{item.visitor_name}}</td>
+          <td data-label="Heure/Date">{{item.lieu}}</td>
+          <td data-label="Motif">{{item.date}}</td>
+          <td data-label="Depart">{{item.entry_time}}</td>
+          <td data-label="Depart">{{item.exit_time}}</td>
+          <td data-label="Depart">{{item.motif}}</td>
         </tr>
       </tbody>
     </table>

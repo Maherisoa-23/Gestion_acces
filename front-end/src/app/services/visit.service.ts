@@ -32,4 +32,8 @@ export class VisitService {
     return this.http.post(this.APIUrl + '/visits_register/',val);
   }
 
+  getVisitsRegister(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/visits_register/');
+  }
+
 }
