@@ -195,6 +195,8 @@ a:hover {
   transform: translateY(-50%);
   color: #2a535bd8;
   font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
   transition: 0.3s;
 }
 

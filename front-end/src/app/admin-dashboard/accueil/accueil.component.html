@@ -3,8 +3,12 @@
   <!--header-->
   <div class="accueil-header">
     <!--eto-->
-    <app-lieu-card *ngFor="let item of activeConnections" [lieu]="item.lieu" [employee_name]="item.employee_name"
-      [entry_time]="item.entry_time"></app-lieu-card>
+    <app-lieu-card
+      *ngFor="let item of activeConnections"
+      [lieu]="item.lieu"
+      [employee_name]="item.employee_name"
+      [entry_time]="item.entry_time"
+    ></app-lieu-card>
   </div>
   <!--header-end-->
 
@@ -18,9 +22,13 @@
   <div class="accueil-sidebar">
     <div class="security">
       <h3>Securités actifs</h3>
-      <button (click)="refreshActiveSecurityList()"> actualiser </button>
+      <button (click)="refreshActiveSecurityList()" class="actualiser">
+        actualiser
+      </button>
       <ul>
-        <li *ngFor="let item of activeSecurityList">{{item.employee_name}}</li>
+        <li *ngFor="let item of activeSecurityList">
+          {{ item.employee_name }}
+        </li>
       </ul>
     </div>
   </div>

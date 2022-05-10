@@ -33,10 +33,13 @@
   color: var(--color-blue);
 }
 .card .card-header h3 {
-  font-size: 18px;
-  text-align: center;
-  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
 }
 .card .card-body {
   display: grid;

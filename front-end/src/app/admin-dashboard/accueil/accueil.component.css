@@ -34,6 +34,10 @@
   margin-bottom: 20px;
   padding: 10px;
   color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 .accueil-sidebar .security h3 {
@@ -43,11 +47,25 @@
   color: var(--color-titre);
   text-align: center;
   letter-spacing: 5px;
+  padding: 10px;
+}
+
+.accueil-sidebar .security .actualiser {
+  background: var(--color-green);
+  color: var(--color-bg);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px 3px var(--color-bg);
+  margin: 10px;
+  padding: 10px;
 }
 
 .accueil-sidebar .security ul {
   margin: 20px;
   list-style-type: none;
+  text-transform: capitalizes;
 }
 
 .accueil-sidebar .security ul li {
@@ -200,9 +218,6 @@
     height: auto;
   }
 }
-
-
-
 
 /*Button*/
 .button {
