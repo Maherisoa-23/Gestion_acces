@@ -32,6 +32,7 @@ export class PointageRegisterComponent implements OnInit {
     });
   }
 
+  /* Les méthodes de triage */
   SortByDep(){
     this.trie_dep = true
     this.trie_date = this.trie_entry_time = this.trie_exit_time = this.trie_nom = false
