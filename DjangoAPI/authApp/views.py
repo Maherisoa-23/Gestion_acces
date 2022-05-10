@@ -146,7 +146,7 @@ def active_connection_API(request: HttpRequest, id=0):
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'PUT':
         employee_data = JSONParser().parse(request)
-        employee= Active_connection.objects.get(employee_id = employee_data['employee_id'] )
+        employee= Active_connection.objects.get(lieu = employee_data['lieu'] )
         employee_serializer = Active_connection_serializer(employee,data=employee_data)
         if employee_serializer.is_valid():
             employee_serializer.save()

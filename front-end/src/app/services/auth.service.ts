@@ -82,6 +82,9 @@ export class AuthService {
     return this.http.post(this.APIUrl + '/active_connection/',val);
   }
 
+  putActiveConnection(val: any) {
+    return this.http.put(this.APIUrl + '/active_connection/',val);
+  }
   deleteActiveConnection(id: number) {
     return this.http.delete(this.APIUrl + '/active_connection/' + id);
   }

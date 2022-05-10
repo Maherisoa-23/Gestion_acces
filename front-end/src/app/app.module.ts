@@ -29,6 +29,7 @@ import { ChartGeneraleComponent } from './admin-dashboard/accueil/chart-generale
 import { LieuCardComponent } from './admin-dashboard/accueil/lieu-card/lieu-card.component';
 import { PointageRegisterComponent } from './admin-dashboard/pointage-register/pointage-register.component';
 import { SecurityProfileComponent } from './admin-dashboard/security-profile/security-profile.component';
+import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-register.component';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
       { path: '', component: AccueilComponent },
       { path: 'security-profile', component: SecurityProfileComponent},
       { path: 'visit-admin', component: ListVisitAdminComponent},
+      { path: 'visit-register', component: VisitRegisterComponent},
       { path: 'pointage-admin', component: PointageComponent},
       { path: 'pointage-register', component: PointageRegisterComponent},
     ]
@@ -73,6 +75,7 @@ const appRoutes: Routes = [
     LieuCardComponent,
     PointageRegisterComponent,
     SecurityProfileComponent,
+    VisitRegisterComponent,
   ],
   imports: [
     BrowserModule,

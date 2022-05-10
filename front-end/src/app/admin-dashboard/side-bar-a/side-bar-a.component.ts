@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SideBarAComponent implements OnInit {
 
   userName = "";
-  constructor(private authService: AuthService, private route: Router) {}
+  myScriptElement : any;
+  constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
     this.userName = this.authService.userName;
@@ -18,19 +19,24 @@ export class SideBarAComponent implements OnInit {
 
   onSignOut() {
     this.authService.signOut();
-    localStorage.removeItem('user1');
-    this.route.navigate(['authentification']);
+    setTimeout(() => {
+      this.route.navigate(['authentification']);
+    }, 500)
+    localStorage.removeItem('admin1');
+
+    //pour effacer le script de l'authentification afin qu'il ne se répète pas
+    
   }
 
-  showAccueil(){
+  showAccueil() {
     this.route.navigate(['admin/'])
   }
 
-  showAdminVisit(){
+  showAdminVisit() {
     this.route.navigate(['admin/visit-admin'])
   }
 
-  showAdminPointage(){
+  showAdminPointage() {
     this.route.navigate(['admin/pointage-admin'])
   }
 

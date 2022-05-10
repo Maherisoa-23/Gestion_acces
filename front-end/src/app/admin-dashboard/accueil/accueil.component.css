@@ -161,46 +161,47 @@
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
-
   .accueil-body .side,
   .accueil-body .middle {
     width: 100%;
   }
-
   .accueil-body .right {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
-
   /*accueil*/
   .accueil-container {
     grid-template-areas:
       "header  header"
       "sidebar  sidebar"
       "contenu  contenu";
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
   }
-
   /*header*/
   .accueil-header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10px;
   }
-
+  .accueil-header .card {
+    margin: 10px;
+  }
   /*sidebar*/
   .accueil-sidebar {
-    height: auto;
-    margin-right: 0;
+    height: 100%;
+    width: 90%;
+    margin: 10px auto 0;
   }
-
   /*body*/
   .accueil-body {
     height: auto;
   }
 }
+
+
 
 
 /*Button*/

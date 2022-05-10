@@ -19,9 +19,9 @@ export class AuthentificationComponent implements OnInit {
   lieux = ["Ambohijatovo", "Andraharo", "Mangasoavina"];
   date: any;
   heure: any;
-  
+
   //pour verifier si la connection est déja existante
-  tmptab : any = []
+  tmptab: any = []
 
   usersList: any = [];
   myScriptElement: HTMLScriptElement;
@@ -31,15 +31,17 @@ export class AuthentificationComponent implements OnInit {
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
+    if (document.body.childElementCount <7)    {
+      document.body.appendChild(this.myScriptElement);
+    }
 
-    document.body.appendChild(this.myScriptElement);
-    
   }
 
   ngOnInit(): void {
     this.refreshUsersList();
     this.refreshActiveConnectionList();
     this.authStatus = this.authService.isAuth;
+    console.log()
   }
 
 
@@ -81,16 +83,15 @@ export class AuthentificationComponent implements OnInit {
             this.router.navigate(['accueil']);
           });
           localStorage.setItem('user1', JSON.stringify(element[index]));
-          this.saveConnection()            
+          this.saveConnection()
 
         }
         break;
 
       }
     }
-    
   }
-  
+
 
   saveConnection() {
     this.date = new Date();
@@ -112,10 +113,9 @@ export class AuthentificationComponent implements OnInit {
     this.authService.addPointage(val).subscribe((res) => {
       console.log(res.toString() + " to the pointage list");
     });
-    if (this.tmptab.length < 3) {
-      this.authService.addActiveConnection(val).subscribe((res) => {
-        console.log(res.toString() + " to the active connection list");
-      });
-    }
+    this.authService.putActiveConnection(val).subscribe((res) => {
+      console.log(res.toString());
+    });
+
   }
 }

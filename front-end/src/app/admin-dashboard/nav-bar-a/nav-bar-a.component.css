@@ -1,10 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap");
 .nav {
   display: flex;
 }
 img {
   width: 50px;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 50px;
   margin-top: 5px;
   /* filter: brightness(90%);*/
 }
@@ -13,13 +14,25 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-left: 30px;
-  padding-top: 10px;
   color: var(--color-blue);
+  text-shadow: 1px 1px 1px var(--color-text);
   font-size: 30px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+}
+
+p {
+  margin-left: 30px;
+  padding-top: 10px;
+  color: var(--color-blue);
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Big Shoulders Display", Sans-serif;
+  text-transform: none;
+  margin: 5px 0 5px 750px;
 }
 
 /*media*/
@@ -34,5 +47,8 @@ h1 {
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
+  }
+  p {
+    display: none;
   }
 }
