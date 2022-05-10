@@ -1,0 +1,10 @@
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-titre);
+    text-align: center;
+    letter-spacing: 5px;
+    padding: 10px;
+  }
+  

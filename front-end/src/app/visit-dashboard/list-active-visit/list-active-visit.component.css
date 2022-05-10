@@ -34,6 +34,8 @@
   border-radius: 15px;
   text-transform: uppercase;
   font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
   box-shadow: 0 9px #999;
 }
 .btn .btn-content:hover {
@@ -140,7 +142,7 @@
 
 /* Full-width input fields */
 input[type="text"],
-input [type="number"],
+input[type="number"],
 textarea {
   width: 100%;
   padding: 12px 20px;
@@ -150,7 +152,9 @@ textarea {
   box-sizing: border-box;
   color: var(--color-blue);
 }
-
+textarea {
+  resize: none;
+}
 /* Set a style for all buttons */
 /*button {
   background-color: #04aa6d;
@@ -212,7 +216,17 @@ button:hover {
 
 .modal form .container label {
   color: var(--color-blue);
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+.modal form h1 {
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
 }
 
 span.psw {
@@ -241,7 +255,7 @@ span.psw {
   margin: 1% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid var(--color-blue);
   border-radius: 5px;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -325,5 +339,8 @@ span.psw {
     font-weight: 600;
     font-size: 14px;
     text-align: left;
+  }
+  .modal-content {
+    width: 100%; /* Could be more or less, depending on screen size */
   }
 }
