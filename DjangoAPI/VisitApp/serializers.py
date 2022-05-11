@@ -31,5 +31,6 @@ class Lieu_serializers(serializers.ModelSerializer):
         model = Lieu
         fields = ('lieu_id',
                   'lieu_name',
-                  'total_employee'
+                  'total_employee',
+                  'isActive'
                   )

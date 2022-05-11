@@ -90,6 +90,12 @@ def lieu_API(request: HttpRequest, id=0):
             visit_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        lieu_data = JSONParser().parse(request)
+        lieu= Lieu.objects.get(pk = lieu_data['lieu_id'])
+        lieu.isActive = lieu_data['isActive']
+        lieu.save()
+        return JsonResponse("Update successfully",safe=False)
     #nombre total d'employée dans un lieu en particulier
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)

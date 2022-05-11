@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class VisitDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.service.isAdmin
+    console.log(this.service.lieu)
   }
 
 }

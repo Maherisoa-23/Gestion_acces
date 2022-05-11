@@ -8,5 +8,6 @@ urlpatterns = [
     re_path(r'^visits_register/([0-9]+)$',views.visit_register_API),
     re_path(r'^visit_counter/$',views.visit_counter_API),
     re_path(r'^visit_counter/([0-9]+)$',views.visit_counter_API),
+    re_path(r'^lieu/$',views.lieu_API),
     re_path(r'^lieu/([0-9]+)$',views.lieu_API),
 ]

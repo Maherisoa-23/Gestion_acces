@@ -16,7 +16,7 @@ export class AuthentificationComponent implements OnInit {
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
   @Input() lieu = "Ambohijatovo";
-  lieux = ["Ambohijatovo", "Andraharo", "Mangasoavina"];
+  lieux :any = [];
   date: any;
   heure: any;
 
@@ -31,19 +31,22 @@ export class AuthentificationComponent implements OnInit {
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
-    if (document.body.childElementCount <7)    {
-      document.body.appendChild(this.myScriptElement);
-    }
+    document.body.appendChild(this.myScriptElement);
 
   }
 
   ngOnInit(): void {
+    this.refreshLieuList();
     this.refreshUsersList();
     this.refreshActiveConnectionList();
     this.authStatus = this.authService.isAuth;
-    console.log()
   }
 
+  refreshLieuList() {
+    this.authService.getLieuList().subscribe((data) => {
+      this.lieux = data;
+    });
+  }
 
   refreshUsersList() {
     this.authService.getUsersList().subscribe((data) => {
@@ -84,7 +87,6 @@ export class AuthentificationComponent implements OnInit {
           });
           localStorage.setItem('user1', JSON.stringify(element[index]));
           this.saveConnection()
-
         }
         break;
 

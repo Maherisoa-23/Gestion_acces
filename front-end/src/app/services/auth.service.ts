@@ -53,6 +53,14 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/department/');
   }
 
+  getLieuList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/lieu/');
+  }
+
+  putLieu (val: any) {
+    return this.http.put(this.APIUrl + '/lieu/',val);
+  }
+
   //Methode pour les pointages
 
   getPointageList(): Observable<any[]> {

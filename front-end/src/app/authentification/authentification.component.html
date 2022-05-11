@@ -42,8 +42,8 @@
         </div>
         <div class="select">
           <select name="format" id="format" [(ngModel)]="lieu">
-            <option [value]="lieu" *ngFor="let lieu of lieux">
-              {{ lieu }}
+            <option *ngFor="let lieu of lieux">
+              {{ lieu.lieu_name }}
             </option>
           </select>
         </div>

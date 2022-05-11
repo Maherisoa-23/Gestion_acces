@@ -1,3 +1,4 @@
+from operator import mod
 from pickle import TRUE
 from django.db import models
 
@@ -26,3 +27,4 @@ class Lieu(models.Model):
     lieu_id = models.AutoField(primary_key=True)
     lieu_name = models.CharField(max_length=50)
     total_employee = models.IntegerField(default=100)
+    isActive = models.BooleanField(default=False)
