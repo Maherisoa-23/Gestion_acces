@@ -33,6 +33,12 @@ import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-r
 import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
 import { UserAccueilComponent } from './visit-dashboard/user-accueil/user-accueil.component';
 
+// code format
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+import { LOCALE_ID } from '@angular/core';
+
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
     children: [
@@ -90,7 +96,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [VisitService, AuthService, AuthGuard, AdminGuard],
+  providers: [
+    VisitService, AuthService, AuthGuard, AdminGuard,
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

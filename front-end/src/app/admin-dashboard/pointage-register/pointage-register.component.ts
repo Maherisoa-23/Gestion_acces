@@ -18,6 +18,8 @@ export class PointageRegisterComponent implements OnInit {
   trie_date = false
   nom_croissant = false
   trie_nom = false
+  trie_lieu = false
+  lieu_croissant = false
 
   pointages: any;
   constructor(private authServ: AuthService) { }
@@ -35,7 +37,7 @@ export class PointageRegisterComponent implements OnInit {
   /* Les méthodes de triage */
   SortByDep(){
     this.trie_dep = true
-    this.trie_date = this.trie_entry_time = this.trie_exit_time = this.trie_nom = false
+    this.trie_date = this.trie_entry_time = this.trie_exit_time = this.trie_nom = this.trie_lieu = false
     if (!this.dep_croissant) {
       this.pointages.sort((a : any,b : any) => a.employee_dep_name.localeCompare(b.employee_dep_name));
       this.dep_croissant = true
@@ -48,7 +50,7 @@ export class PointageRegisterComponent implements OnInit {
 
   SortByEntryTime(){
     this.trie_entry_time = true
-    this.trie_date = this.trie_dep = this.trie_exit_time = this.trie_nom = false
+    this.trie_date = this.trie_dep = this.trie_exit_time = this.trie_nom = this.trie_lieu = false
     if (!this.entry_time_croissant) {
       this.pointages.sort((a : any,b : any) => a.entry_time.localeCompare(b.entry_time));
       this.entry_time_croissant = true
@@ -61,7 +63,7 @@ export class PointageRegisterComponent implements OnInit {
 
   SortByExitTime(){
     this.trie_exit_time = true
-    this.trie_date = this.trie_dep = this.trie_entry_time = this.trie_nom = false
+    this.trie_date = this.trie_dep = this.trie_entry_time = this.trie_nom = this.trie_lieu = false
     if (!this.exit_time_croissant) {
       this.pointages.sort((a : any,b : any) => a.exit_time.localeCompare(b.exit_time));
       this.exit_time_croissant = true
@@ -74,7 +76,7 @@ export class PointageRegisterComponent implements OnInit {
 
   SortByDate(){
     this.trie_date = true
-    this.trie_exit_time = this.trie_dep = this.trie_entry_time = this.trie_nom = false
+    this.trie_exit_time = this.trie_dep = this.trie_entry_time = this.trie_nom = this.trie_lieu = false
     if (!this.date_croissant) {
       this.pointages.sort((a : any,b : any) => a.date.localeCompare(b.date));
       this.date_croissant = true
@@ -87,7 +89,7 @@ export class PointageRegisterComponent implements OnInit {
 
   SortByName(){
     this.trie_nom = true
-    this.trie_exit_time = this.trie_dep = this.trie_entry_time = this.trie_date = false
+    this.trie_exit_time = this.trie_dep = this.trie_entry_time = this.trie_date = this.trie_lieu = false
     if (!this.nom_croissant) {
       this.pointages.sort((a : any,b : any) => a.employee_name.localeCompare(b.employee_name));
       this.nom_croissant = true
@@ -95,6 +97,18 @@ export class PointageRegisterComponent implements OnInit {
     else {
       this.pointages.sort((b : any,a : any) => a.employee_name.localeCompare(b.employee_name));
       this.nom_croissant = false
+    }
+  }
+  SortByLieu(){
+    this.trie_lieu = true
+    this.trie_date = this.trie_entry_time = this.trie_exit_time = this.trie_nom = this.trie_dep = false
+    if (!this.lieu_croissant) {
+      this.pointages.sort((a : any,b : any) => a.lieu.localeCompare(b.lieu));
+      this.lieu_croissant = true
+    }
+    else {
+      this.pointages.sort((b : any,a : any) => a.lieu.localeCompare(b.lieu));
+      this.lieu_croissant = false
     }
   }
 }

@@ -1,96 +1,281 @@
 /*titre*/
 .titre {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 10px;
-    padding: 5px 0;
-  }
-  .titre h1 {
-    font-size: 20px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-blue);
-  }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 10px;
+  padding: 5px 0;
+}
+.titre h1 {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-blue);
+}
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 300px 200px 1fr;
+  grid-template-areas:
+    "bienvenue heure"
+    "button button"
+    "help help";
+  width: 98%;
+  height: 100%;
+  margin-top: 10px;
+
+  background: var(--color-bg);
+  border-radius: 5px;
+}
+/* bienvenue */
+.bienvenue {
+  grid-area: bienvenue;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.bienvenue h1 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 20px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  color: var(--color-text);
+}
+.bienvenue h1 span {
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+.bienvenue .img {
+  width: 80%;
+  height: 300px;
+}
+.bienvenue .img img {
+  margin-left: 100px;
+  max-width: 100%;
+}
+/* heure */
+.heure {
+  grid-area: heure;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heure #clock h2 {
+  position: relative;
+  display: block;
+  color: var(--color-text);
+  text-align: center;
+  margin: 40px 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 1em;
+}
+
+.heure #clock #time {
+  display: flex;
+}
+
+.heure #clock #time div {
+  position: relative;
+  margin: 0 5px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+}
+
+.heure #clock #time div span {
+  position: relative;
+  display: block;
+  width: 150px;
+  height: 120px;
+  background: var(--color-green);
+  color: #fff;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  z-index: 10;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.heure #clock #time div #minutes {
+  background: var(--color-blue);
+}
+.heure #clock #time div span:nth-child(2) #minutes {
+  background: var(--color-blue);
+}
+
+.heure #clock #time div span:nth-child(2) {
+  height: 30px;
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  z-index: 9;
+  box-shadow: none;
+  background: var(--color-blue);
+  text-transform: uppercase;
+}
+.heure #clock #time div:first-child span {
+  background: var(--color-green);
+}
+
+.heure #clock #time div:last-child span {
+  background: var(--color-red);
+}
+
+.heure #clock #time div:last-child span:nth-child(2) {
+  background: var(--color-red);
+}
+
+/*.button  */
+
+.button {
+  grid-area: button;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.button .btn-content {
+  margin: 20px auto 40px;
+  height: 100px;
+  width: 300px;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  box-shadow: 0 9px #999;
+}
+.button .visite {
+  background: var(--color-red);
+}
+.button .pointage {
+  background: var(--color-green);
+}
+.button .visite:hover {
+  background-color: #a64043;
+  font-size: 20px;
+}
+.button .pointage:hover {
+  background-color: #3e8e41;
+  font-size: 20px;
+}
+.button .visite:active {
+  background-color: #a64043;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button .pointage:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+/* help */
+.help {
+  grid-area: help;
+  display: grid;
+
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "help1 help2";
+  padding: 20px;
+}
+
+.help .help1 {
+  grid-area: help1;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  color: var(--color-bg);
+  border-top: 5px solid var(--color-fond);
+  box-shadow: 2px 2px 3px rgb(198, 195, 195);
+  background: var(--color-green);
+}
+.help .help2 {
+  grid-area: help2;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  color: var(--color-bg);
+  border-top: 5px solid var(--color-fond);
+  box-shadow: 2px 2px 3px rgb(198, 195, 195);
+  background: var(--color-red);
+}
+.help h1 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 5px;
+  color: var(--color-fond);
+}
+.help p {
+  margin: 15px 5px 5px 5px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: lighter;
+  text-align: justify;
+  letter-spacing: 1px;
+}
+
+/* media */
+@media screen and (max-width: 768px) {
   .section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 200px 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 300px 400px 1fr;
     grid-template-areas:
-      "bienvenue heure"
-      "button button"
-      "help help";
-    width: 98%;
+      "bienvenue "
+      "heure"
+      "button "
+      "help ";
+    width: 100%;
     height: 100%;
     margin-top: 10px;
-  
-    background: var(--color-bg);
-    border-radius: 5px;
-  }
-  /* bienvenue */
-  .bienvenue {
-    grid-area: bienvenue;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .bienvenue h1 {
-    font-size: 25px;
-    font-weight: 600;
-    margin: 20px;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    color: var(--color-text);
-  }
-  .bienvenue h1 span {
-    text-transform: uppercase;
-    color: var(--color-blue);
   }
   .bienvenue .img {
-    width: 80%;
+    width: 86%;
     height: 300px;
   }
   .bienvenue .img img {
-    margin-left: 100px;
+    margin-left: 50px;
     max-width: 100%;
   }
-  /* heure */
+
+  .help {
+    grid-area: help;
+    display: grid;
+
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "help1"
+      "help2";
+    padding: 20px;
+  }
   .heure {
     grid-area: heure;
     display: flex;
     justify-content: center;
-  
+    background: #000;
     overflow: hidden;
   }
-  
-  .heure #clock h2 {
-    position: relative;
-    display: block;
-    color: #fff;
-    text-align: center;
-    margin: 40px 0;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.4em;
-    font-size: 1em;
-  }
-  
-  .heure #clock #time {
-    display: flex;
-  }
-  
-  .heure #clock #time div {
-    position: relative;
-    margin: 0 5px;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
-  }
-  
   .heure #clock #time div span {
     position: relative;
     display: block;
-    width: 150px;
+    width: 100px;
     height: 120px;
     background: var(--color-green);
     color: #fff;
@@ -103,168 +288,4 @@
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
   }
-  
-  .heure #clock #time div #minutes {
-    background: var(--color-blue);
-  }
-  .heure #clock #time div span:nth-child(2) #minutes {
-    background: var(--color-blue);
-  }
-  
-  .heure #clock #time div span:nth-child(2) {
-    height: 30px;
-    font-size: 0.7em;
-    letter-spacing: 0.2em;
-    font-weight: 500;
-    z-index: 9;
-    box-shadow: none;
-    background: var(--color-blue);
-    text-transform: uppercase;
-  }
-  .heure #clock #time div:first-child span {
-    background: var(--color-green);
-  }
-  
-  .heure #clock #time div:last-child span {
-    background: var(--color-red);
-  }
-  
-  .heure #clock #time div:last-child span:nth-child(2) {
-    background: var(--color-red);
-  }
-  
-  /*.button  */
-  
-  .button {
-    grid-area: button;
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .button .btn-content {
-    margin: 20px auto 40px;
-    height: 100px;
-    width: 300px;
-    color: #fff;
-    border: none;
-    border-radius: 15px;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    box-shadow: 0 9px #999;
-  }
-  .button .visite {
-    background: var(--color-red);
-  }
-  .button .pointage {
-    background: var(--color-green);
-  }
-  .button .visite:hover {
-    background-color: #a64043;
-    font-size: 20px;
-  }
-  .button .pointage:hover {
-    background-color: #3e8e41;
-    font-size: 20px;
-  }
-  .button .visite:active {
-    background-color: #a64043;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  .button .pointage:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  /* help */
-  .help {
-    grid-area: help;
-    display: grid;
-  
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "help1 help2";
-    padding: 20px;
-  }
-  
-  .help .help1 {
-    grid-area: help1;
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    color: var(--color-bg);
-    border-top: 5px solid var(--color-fond);
-    box-shadow: 2px 2px 3px rgb(198, 195, 195);
-    background: var(--color-green);
-  }
-  .help .help2 {
-    grid-area: help2;
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    color: var(--color-bg);
-    border-top: 5px solid var(--color-fond);
-    box-shadow: 2px 2px 3px rgb(198, 195, 195);
-    background: var(--color-red);
-  }
-  .help h1 {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin: 5px;
-    color: var(--color-fond);
-  }
-  .help p {
-    margin: 15px 5px 5px 5px;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: lighter;
-    text-align: justify;
-    letter-spacing: 1px;
-  }
-  
-  /* media */
-  @media screen and (max-width: 768px) {
-    .section {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 300px 300px 400px 1fr;
-      grid-template-areas:
-        "bienvenue "
-        "heure"
-        "button "
-        "help ";
-      width: 100%;
-      height: 100%;
-      margin-top: 10px;
-    }
-    .bienvenue .img {
-      width: 86%;
-      height: 300px;
-    }
-    .bienvenue .img img {
-      margin-left: 50px;
-      max-width: 100%;
-    }
-  
-    .help {
-      grid-area: help;
-      display: grid;
-  
-      grid-gap: 20px;
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "help1"
-        "help2";
-      padding: 20px;
-    }
-  }
-  
+}

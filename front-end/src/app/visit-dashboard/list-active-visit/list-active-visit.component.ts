@@ -34,16 +34,19 @@ export class ListActiveVisitComponent implements OnInit {
   ActivatedAddVisit: boolean = false;
   visite: any;
   date: any;
+  entry_time : any;
 
   addVisit() {
     this.date = new Date();
-    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd, h:mm:ss');
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+    this.entry_time = this.datePipe.transform(this.date, ' h:mm:ss');
     var val = {
       visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
       lieu: this.authServ.lieu,
-      date_of_entry: this.date.toString()
+      date: this.date.toString(),
+      entry_time : this.entry_time.toString()
     };
     
     this.service.addVisit(val).subscribe((res) => {

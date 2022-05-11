@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-accueil.component.css'],
 })
 export class UserAccueilComponent implements OnInit {
+  Date: Date = new Date();
   monOngletScriptElemeet!: HTMLScriptElement;
   constructor() {
     this.monOngletScriptElemeet = document.createElement('script');
