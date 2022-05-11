@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { Md5 } from 'ts-md5';
 import { DatePipe } from '@angular/common';
 @Component({

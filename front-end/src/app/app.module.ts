@@ -31,6 +31,7 @@ import { PointageRegisterComponent } from './admin-dashboard/pointage-register/p
 import { SecurityProfileComponent } from './admin-dashboard/security-profile/security-profile.component';
 import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-register.component';
 import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
+import { UserAccueilComponent } from './visit-dashboard/user-accueil/user-accueil.component';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
   },
   { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent,
     children: [
-      { path: '', component: PointageEmployeeComponent },
+      { path: '', component: UserAccueilComponent },
       { path: 'visit-active', component: ListActiveVisitComponent},
       { path: 'pointage', component: PointageEmployeeComponent},
     ]
@@ -79,6 +80,7 @@ const appRoutes: Routes = [
     SecurityProfileComponent,
     VisitRegisterComponent,
     SecurityAgentComponent,
+    UserAccueilComponent,
   ],
   imports: [
     BrowserModule,

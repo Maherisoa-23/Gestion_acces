@@ -68,4 +68,8 @@ export class SideBarComponent implements OnInit {
     });
   }
 
+  showAccueil() {
+    this.route.navigate(['accueil/'])
+  }
+
 }

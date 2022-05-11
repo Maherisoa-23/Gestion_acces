@@ -20,9 +20,7 @@ export class AccueilComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.refreshActiveConnectionsList();
-    this.refreshPointageList();
-    this.refreshActiveSecurityList();
+    this.refresh();
   }
 
 
@@ -38,7 +36,9 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  refreshActiveSecurityList() {
+  refresh() {
+    this.refreshActiveConnectionsList();
+    this.refreshPointageList();
     this.authServ.getPointageByDep(3).subscribe((data) => {
       this.activeSecurityList = data
     });
