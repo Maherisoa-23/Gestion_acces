@@ -1,0 +1,24 @@
+<div class="titre">
+    <h1>Les agents de securite</h1>
+  </div>
+  <div class="section">
+    <!--Liste tableau-->
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th (click) = "SortByMatricule()">Numero Matricule</th>
+          <th (click) = "SortByName()">Nom</th>
+          <th>Dérnière connexion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of securities">
+          <td data-label="Nom">{{item.numero_matricule}}</td>
+          <td data-label="Heure/Date">{{item.employee_name}}</td>
+          <td data-label="Motif">{{getLastPointageBySec(item.numero_matricule)}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--Liste tableau-end-->
+  </div>
+  

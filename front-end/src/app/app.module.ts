@@ -30,12 +30,13 @@ import { LieuCardComponent } from './admin-dashboard/accueil/lieu-card/lieu-card
 import { PointageRegisterComponent } from './admin-dashboard/pointage-register/pointage-register.component';
 import { SecurityProfileComponent } from './admin-dashboard/security-profile/security-profile.component';
 import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-register.component';
+import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'security-profile', component: SecurityProfileComponent},
+      { path: 'security-agent', component: SecurityAgentComponent},
       { path: 'visit-admin', component: ListVisitAdminComponent},
       { path: 'visit-register', component: VisitRegisterComponent},
       { path: 'pointage-admin', component: PointageComponent},
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
     PointageRegisterComponent,
     SecurityProfileComponent,
     VisitRegisterComponent,
+    SecurityAgentComponent,
   ],
   imports: [
     BrowserModule,

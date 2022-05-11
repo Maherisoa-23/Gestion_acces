@@ -1,4 +1,5 @@
 
+from tkinter.tix import Tree
 from django.db import models
 
 class User(models.Model) :
@@ -20,7 +21,7 @@ class Employee(models.Model) :
     password = models.CharField(max_length=100)
     
 class Pointage(models.Model):
-    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1, unique=True)
+    numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
     pointage_id = models.AutoField(primary_key=True)
@@ -39,7 +40,7 @@ class Pointage_register(models.Model):
     exit_time = models.CharField(max_length=50)
     
 class Active_connection(models.Model):
-    numero_matricule = models.ForeignKey(Employee, on_delete=models.CASCADE, default=1, unique=True, null=True)
+    numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
     employee_name =  models.CharField(max_length=50, null= True)
     active_connection_id = models.AutoField(primary_key=True)
     date = models.CharField(max_length=50)

@@ -39,8 +39,14 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/user/');
   }
 
+  //Methode pour les employés
+
   getEmployeeList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/employee/');
+  }
+
+  getEmployeeListByDep(dep_id :number): Observable<any[]> {
+    return this.http.delete<any[]>(this.APIUrl + '/employee/' + dep_id);
   }
 
   getDepartmentList(): Observable<any[]> {

@@ -1,0 +1,94 @@
+/*titre*/
+.titre {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 10px;
+    padding: 5px 0;
+  }
+  .titre h1 {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-blue);
+  }
+  .section {
+    width: 100%;
+    grid-column: 1 / -1;
+    background-color: var(--color-fond);
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  /*media*/
+  @media screen and (max-width: 768px) {
+    /*liste tableau*/
+    .section .tbl thead {
+      display: none;
+    }
+    .section .tbl,
+    .section .tbl tbody,
+    .section .tbl tr,
+    .section .tbl td {
+      display: block;
+      width: 100%;
+    }
+    .section .tbl tr {
+      margin-bottom: 15px;
+    }
+    .section .tbl tbody tr td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+    .section .tbl td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 15px;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: left;
+    }
+  }
+  
+  .th:hover {
+    cursor: pointer;
+  }
+  .section .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0 10%;
+    margin: 10px auto 40px;
+  }
+  .section .tbl thead {
+    background-color: var(--color-blue);
+  }
+  .section .tbl thead tr th {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    color: #fff;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid #dee2e685;
+  }
+  .section .tbl tbody tr {
+    background-color: #fff;
+    color: var(--color-blue);
+  }
+  .section .tbl tbody tr:hover {
+    background-color: #8c999ea7;
+    color: #fff;
+  }
+  .section .tbl tbody tr td {
+    font-size: 14px;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--color-blue);
+  }
+  

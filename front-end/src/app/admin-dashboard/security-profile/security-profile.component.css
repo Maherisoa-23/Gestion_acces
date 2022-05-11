@@ -3,12 +3,12 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 500px;
+    grid-template-columns: 40% 60%;
     grid-template-rows: 300px 1fr;
     grid-template-areas:
       "card-profil pointage"
       "chart pointage";
-    padding: 20px;
+     padding-right: 5px; 
   }
   /* page-profil */
   /* -----------------contenu ----------------------*/
@@ -45,7 +45,7 @@
   .card-profil .content-card ul {
     list-style-type: none;
     color: var(--color-fond);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-top: 20px;
     margin-left: 20px;
