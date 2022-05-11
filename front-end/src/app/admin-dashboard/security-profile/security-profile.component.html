@@ -3,21 +3,21 @@
     <!--card-profil -->
     <div class="card-profil">
         <div class="img-card">
-            <img src="/assets/images/OMNISS.jpg" alt="" />
+            <img src="/assets/avatar/{{security_name}}.png" alt="" />
         </div>
         <div class="content-card">
             <ul>
-                <li>Nom: <span>Rakoto</span></li>
-                <li>Numero matricule: <span>0168</span></li>
-                <li>poste de garde: <span>Andraharo</span></li>
-                <li>dérnière connection: <span>10/05/2022 17h45</span></li>
+                <li>Nom: <span>{{security_name}}</span></li>
+                <li>Numero matricule: <span>{{matricule_security}}</span></li>
+                <li>poste de garde: <span>{{last_pointage_lieu}}</span></li>
+                <li>dérnière connection: <span>{{last_pointage_date}}</span></li>
             </ul>
         </div>
     </div>
     <!--card-profil -->
     <!-- chart -->
     <div class="chart">
-
+        <canvas id="myChartPointage"> {{myChartPointage}}</canvas>
     </div>
     <!-- chart -->
     <!-- security-register-pointage -->
@@ -27,18 +27,23 @@
             <table class="tbl">
                 <thead>
                     <tr>
-                        <th>Lieu</th>
-                        <th>Date</th>
+                        <th class="th" (click)="SortByLieu()">
+                            Lieu <i *ngIf="lieu_croissant && trie_lieu" class="fa fa-caret-down dropbtn"></i> <i
+                                *ngIf="!lieu_croissant && trie_lieu" class="fa fa-caret-up dropbtn"></i>
+                        </th>
+                        <th class="th" (click)="SortByDate()">Date <i *ngIf="date_croissant && trie_date"
+                                class="fa fa-caret-down dropbtn"></i> <i *ngIf="!date_croissant && trie_date"
+                                class="fa fa-caret-up dropbtn"></i></th>
                         <th>Heure d'entré</th>
                         <th>Heure de sortie</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td data-label="ID">1</td>
-                        <td data-label="Nom">baba</td>
-                        <td data-label="Nom">baba</td>
-                        <td data-label="Date">avril</td>
+                    <tr *ngFor="let item of pointages">
+                        <td data-label="ID">{{item.lieu}}</td>
+                        <td data-label="Nom">{{item.date}}</td>
+                        <td data-label="Nom">{{item.entry_time}}</td>
+                        <td data-label="Date">{{item.exit_time}}</td>
                     </tr>
                 </tbody>
             </table>

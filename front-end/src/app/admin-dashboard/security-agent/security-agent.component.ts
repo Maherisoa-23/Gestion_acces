@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
 
 @Component({
   selector: 'app-security-agent',
@@ -16,7 +18,7 @@ export class SecurityAgentComponent implements OnInit {
   nom_croissant = false;
   matricule_croissant = false;
 
-  constructor(private authServ: AuthService) { }
+  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
@@ -71,6 +73,12 @@ export class SecurityAgentComponent implements OnInit {
       this.securities.sort((b : any,a : any) => a.numero_matricule - b.numero_matricule);
       this.matricule_croissant = false
     }
+  }
+
+  ShowSecurityProfile(security : any) {
+    this.SecurityServ.matricule_security = security.numero_matricule;
+    this.SecurityServ.security_name = security.employee_name;
+    this.route.navigate(['admin/security-profile'])
   }
 
 

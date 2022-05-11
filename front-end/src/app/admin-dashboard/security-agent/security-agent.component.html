@@ -6,9 +6,14 @@
     <table class="tbl">
       <thead>
         <tr>
-          <th (click) = "SortByMatricule()">Numero Matricule</th>
-          <th (click) = "SortByName()">Nom</th>
+          <th class="th" (click) = "SortByMatricule()">Numero Matricule <i *ngIf="matricule_croissant && trie_matricule"
+            class="fa fa-caret-down dropbtn"></i> <i *ngIf="!matricule_croissant && trie_matricule"
+            class="fa fa-caret-up dropbtn"></i></th>
+          <th class="th" (click) = "SortByName()">Nom <i *ngIf="nom_croissant && trie_nom"
+            class="fa fa-caret-down dropbtn"></i> <i *ngIf="!nom_croissant && trie_nom"
+            class="fa fa-caret-up dropbtn"></i></th>
           <th>Dérnière connexion</th>
+          <th>option</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +21,7 @@
           <td data-label="Nom">{{item.numero_matricule}}</td>
           <td data-label="Heure/Date">{{item.employee_name}}</td>
           <td data-label="Motif">{{getLastPointageBySec(item.numero_matricule)}}</td>
+          <td> <button (click)="ShowSecurityProfile(item)"> Voir profile </button></td>
         </tr>
       </tbody>
     </table>
