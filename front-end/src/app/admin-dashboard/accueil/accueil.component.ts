@@ -9,17 +9,22 @@ import { Chart } from 'chart.js';
 })
 export class AccueilComponent implements OnInit {
 
-  activeConnections : any ;
-  pointages : any;
-  activeSecurityList : any;
+  activeConnections: any;
+  pointages: any;
+  activeSecurityList: any;
   myChart: any;
+  admin: any;
 
-  constructor(private authServ: AuthService, private elementRef: ElementRef) { 
+  constructor(private authServ: AuthService, private elementRef: ElementRef) {
   }
 
-  
+
 
   ngOnInit(): void {
+    if (localStorage.getItem('admin1') != null) {
+      this.admin = JSON.parse(localStorage.getItem('admin1') || '{}');
+      console.log("admin name = " + this.admin.user_name)
+    }
     this.refresh();
   }
 
@@ -44,6 +49,6 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  
-  
+
+
 }

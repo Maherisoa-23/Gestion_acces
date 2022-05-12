@@ -20,8 +20,11 @@ export class SideBarComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.lieu = this.authService.lieu;
     this.userName = this.authService.userName;
+    setTimeout(() => {
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      this.lieu = Lieu.lieu_name
+    }, 1000);
   }
 
   getLieuId(lieu: string) {
@@ -45,6 +48,7 @@ export class SideBarComponent implements OnInit {
     }, 1000);
     this.saveConnectionRegister();
     this.route.navigate(['authentification']);
+    localStorage.removeItem('lieu')
   }
 
   showActiveVisit(){

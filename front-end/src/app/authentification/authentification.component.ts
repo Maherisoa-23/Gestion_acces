@@ -14,9 +14,10 @@ export class AuthentificationComponent implements OnInit {
   authName!: string;
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
-  @Input() lieu = "Ambohijatovo";
+  @Input() selected_lieu = "";
   Lieu: any; // Objet
   lieux: any = [];
+  lieux_name: any = []
   date: any;
   heure: any;
 
@@ -36,6 +37,8 @@ export class AuthentificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+    console.log("lieu = " + localStorage.getItem('lieu'))
     this.refreshLieuList();
     this.refreshUsersList();
     this.refreshActiveConnectionList();
@@ -46,8 +49,10 @@ export class AuthentificationComponent implements OnInit {
     if (lieu == 'Ambohijatovo') return 1;
     else {
       if (lieu == 'Andraharo') return 2;
-      else return 3;
+      else if (lieu == "Mangasoavina") return 3;
+      else return 4;
     }
+
   }
 
   refreshLieuList() {
@@ -57,11 +62,11 @@ export class AuthentificationComponent implements OnInit {
     setTimeout(() => {
       for (let index = 0; index < this.lieux.length; index++) {
         const element = this.lieux[index];
-        if (element.isActive) {
-          this.lieux.pop(element);
+        if (!element.isActive) {
+          this.lieux_name.push(element.lieu_name);
         }
       }
-    },500)
+    }, 500)
   }
 
   refreshUsersList() {
@@ -77,6 +82,7 @@ export class AuthentificationComponent implements OnInit {
   }
 
   onSignIn() {
+
     const md5 = new Md5()
     const pass = md5.appendStr(this.password).end().toString()
     for (let index = 0; index < this.usersList.length; index++) {
@@ -85,7 +91,7 @@ export class AuthentificationComponent implements OnInit {
         element.numero_matricule == this.numero_matricule &&
         element.password == pass
       ) {
-        this.authService.lieu = this.lieu
+        this.authService.lieu = this.selected_lieu
         //si Admin
         if (element.numero_matricule == 1) {
           this.authService.isAdmin = true
@@ -93,8 +99,9 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.router.navigate(['admin']);
+            localStorage.setItem('admin1', JSON.stringify(element));
           });
-          localStorage.setItem('admin1', JSON.stringify(element[index]));
+
         }
         //si agent de sécurité
         else {
@@ -103,22 +110,24 @@ export class AuthentificationComponent implements OnInit {
             this.authService.userName = element.user_name;
             this.router.navigate(['accueil']);
           });
-
-          this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+          console.log("lieu this  = " + this.authService.lieu);
+          this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.authService.lieu)).subscribe((data) => {
             this.Lieu = data;
           });
+
           setTimeout(() => {
+
             this.Lieu.isActive = true
             this.authService.putLieu(this.Lieu).subscribe((res) => {
               console.log(res.toString());
             });
+            localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 1000);
 
-          localStorage.setItem('user1', JSON.stringify(element[index]));
+          localStorage.setItem('user1', JSON.stringify(element));
           this.saveConnection()
         }
         break;
-
       }
     }
   }
@@ -137,7 +146,7 @@ export class AuthentificationComponent implements OnInit {
     var val = {
       numero_matricule: this.numero_matricule,
       date: this.date.toString(),
-      lieu: this.lieu,
+      lieu: this.selected_lieu,
       entry_time: this.heure.toString()
     };
 

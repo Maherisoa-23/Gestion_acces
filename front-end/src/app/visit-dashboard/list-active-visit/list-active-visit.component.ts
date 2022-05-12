@@ -22,7 +22,10 @@ export class ListActiveVisitComponent implements OnInit {
   FilteredList : any= [];
 
   ngOnInit(): void {
-    this.lieu = this.authServ.lieu
+    setTimeout(() => {
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      this.lieu = Lieu.lieu_name
+    }, 1000);
     this.refreshVisitsList();
   }
   refreshVisitsList() {

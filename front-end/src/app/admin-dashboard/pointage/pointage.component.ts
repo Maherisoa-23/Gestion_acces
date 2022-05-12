@@ -13,7 +13,10 @@ export class PointageComponent implements OnInit {
   constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
-    this.lieu = this.authServ.lieu;
+    setTimeout(() => {
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      this.lieu = Lieu.lieu_name
+    }, 1000);
     this.refreshPointageList();
   }
 

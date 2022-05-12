@@ -23,6 +23,7 @@ export class SideBarAComponent implements OnInit {
       this.route.navigate(['authentification']);
     }, 500)
     localStorage.removeItem('admin1');
+    localStorage.removeItem('lieu')
 
     //pour effacer le script de l'authentification afin qu'il ne se répète pas
     

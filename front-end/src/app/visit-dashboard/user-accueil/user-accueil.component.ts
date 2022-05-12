@@ -16,5 +16,13 @@ export class UserAccueilComponent implements OnInit {
     document.body.appendChild(this.monOngletScriptElemeet);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    /* vérification:
+    setTimeout(() => {
+      const lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      console.log("lieu aty am accueil = " + lieu.lieu_name)
+    }, 1000); */
+
+  }
 }

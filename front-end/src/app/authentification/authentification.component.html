@@ -15,7 +15,7 @@
             <i class="fas fa-user"></i>
           </div>
           <div class="div">
-            <h5>Numero</h5>
+            <h5>Numero : {{selected_lieu}}</h5>
             <input
               type="text"
               class="input-auth"
@@ -41,9 +41,9 @@
           </div>
         </div>
         <div class="select">
-          <select name="format" id="format" [(ngModel)]="lieu">
-            <option  *ngFor="let item of lieux">
-              <p>{{ item.lieu_name }}</p>
+          <select name="format" id="format" [(ngModel)]="selected_lieu">
+            <option [value]="lieu" *ngFor="let lieu of lieux_name">
+              {{ lieu }}
             </option>
           </select>
         </div>
