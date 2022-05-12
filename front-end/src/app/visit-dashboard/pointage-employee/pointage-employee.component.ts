@@ -25,7 +25,10 @@ export class PointageEmployeeComponent implements OnInit {
   constructor(private authServ: AuthService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.lieu = this.authServ.lieu;
+    setTimeout(() => {
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      this.lieu = Lieu.lieu_name
+    }, 1000);;
     this.refreshPointageList();
     this.getEmployeeList();
   }

@@ -12,32 +12,31 @@ import { AuthService } from 'src/app/services/auth.service';
 @Injectable()
 export class SideBarComponent implements OnInit {
 
+  User : any;
   Lieu : any;
   lieu : any;
+  lieu_id : any;
   userName = "";
   heure : any;
 
   constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.userName = this.authService.userName;
+    
+    
     setTimeout(() => {
+      this.User = JSON.parse(localStorage.getItem('user1') || '{}');
+      this.userName = this.User.user_name;
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
       this.lieu = Lieu.lieu_name
+      this.lieu_id = Lieu.lieu_id
     }, 1000);
   }
 
-  getLieuId(lieu: string) {
-    if (lieu == "Ambohijatovo") return 1
-    else {
-      if (lieu == "Andraharo") return 2
-      else return 3
-    }
-  }
   onSignOut() {
     this.authService.signOut();
     localStorage.removeItem('user1');
-    this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+    this.authService.getTotalNumberOfEmployeeByPlace(this.lieu_id).subscribe((data) => {
       this.Lieu = data;
     });
     setTimeout(() => {
@@ -73,7 +72,7 @@ export class SideBarComponent implements OnInit {
     this.authService.deletePointage(this.authService.numero_matricule).subscribe((res) => {
       console.log(res.toString() + " from the pointage list");
     });
-    this.authService.deleteActiveConnection(this.getLieuId(this.authService.lieu)).subscribe((res) => {
+    this.authService.deleteActiveConnection(this.lieu_id).subscribe((res) => {
       console.log(res.toString());
     });
     this.authService.addConnectionRegister(val).subscribe((res) => {
