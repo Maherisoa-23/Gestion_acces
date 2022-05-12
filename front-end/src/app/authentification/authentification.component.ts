@@ -15,7 +15,8 @@ export class AuthentificationComponent implements OnInit {
   @Input() numero_matricule: string = '';
   @Input() password: string = '';
   @Input() lieu = "Ambohijatovo";
-  lieux :any = [];
+  Lieu: any; // Objet
+  lieux: any = [];
   date: any;
   heure: any;
 
@@ -41,10 +42,26 @@ export class AuthentificationComponent implements OnInit {
     this.authStatus = this.authService.isAuth;
   }
 
+  getLieuId(lieu: string) {
+    if (lieu == 'Ambohijatovo') return 1;
+    else {
+      if (lieu == 'Andraharo') return 2;
+      else return 3;
+    }
+  }
+
   refreshLieuList() {
     this.authService.getLieuList().subscribe((data) => {
       this.lieux = data;
     });
+    setTimeout(() => {
+      for (let index = 0; index < this.lieux.length; index++) {
+        const element = this.lieux[index];
+        if (element.isActive) {
+          this.lieux.pop(element);
+        }
+      }
+    },500)
   }
 
   refreshUsersList() {
@@ -69,6 +86,7 @@ export class AuthentificationComponent implements OnInit {
         element.password == pass
       ) {
         this.authService.lieu = this.lieu
+        //si Admin
         if (element.numero_matricule == 1) {
           this.authService.isAdmin = true
           this.authService.signIn().then(() => {
@@ -78,12 +96,24 @@ export class AuthentificationComponent implements OnInit {
           });
           localStorage.setItem('admin1', JSON.stringify(element[index]));
         }
+        //si agent de sécurité
         else {
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.router.navigate(['accueil']);
           });
+
+          this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+            this.Lieu = data;
+          });
+          setTimeout(() => {
+            this.Lieu.isActive = true
+            this.authService.putLieu(this.Lieu).subscribe((res) => {
+              console.log(res.toString());
+            });
+          }, 1000);
+
           localStorage.setItem('user1', JSON.stringify(element[index]));
           this.saveConnection()
         }

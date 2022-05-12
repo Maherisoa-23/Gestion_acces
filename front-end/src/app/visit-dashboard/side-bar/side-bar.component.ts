@@ -12,12 +12,15 @@ import { AuthService } from 'src/app/services/auth.service';
 @Injectable()
 export class SideBarComponent implements OnInit {
 
+  Lieu : any;
+  lieu : any;
   userName = "";
   heure : any;
 
   constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    this.lieu = this.authService.lieu;
     this.userName = this.authService.userName;
   }
 
@@ -31,6 +34,15 @@ export class SideBarComponent implements OnInit {
   onSignOut() {
     this.authService.signOut();
     localStorage.removeItem('user1');
+    this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.lieu)).subscribe((data) => {
+      this.Lieu = data;
+    });
+    setTimeout(() => {
+      this.Lieu.isActive = false
+      this.authService.putLieu(this.Lieu).subscribe((res) => {
+        console.log(res.toString());
+      });
+    }, 1000);
     this.saveConnectionRegister();
     this.route.navigate(['authentification']);
   }

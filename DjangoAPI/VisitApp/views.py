@@ -96,9 +96,9 @@ def lieu_API(request: HttpRequest, id=0):
         lieu.isActive = lieu_data['isActive']
         lieu.save()
         return JsonResponse("Update successfully",safe=False)
-    #nombre total d'employée dans un lieu en particulier
+    #un lieu en particulier
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)
-        nb = lieu.total_employee
-        return JsonResponse(nb, safe = False)
+        lieu_serializer = Lieu_serializers(lieu)
+        return JsonResponse(lieu_serializer.data, safe=False) 
     return JsonResponse("wrong lieu_id", safe = False)
