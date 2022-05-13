@@ -11,13 +11,122 @@
   width: 100%;
   grid-gap: 5px;
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 310px 1fr;
+  grid-template-rows: 350px 310px 1fr;
   grid-template-areas:
+    "clock  clock"
     "header header "
-    "contenu  sidebar"
     "contenu  sidebar";
 }
+.clocks {
+  grid-area: clock;
+  margin: 10px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "bienvenue heure";
+}
+/*.clock  bienvenue */
+.clocks .bienvenue {
+  grid-area: bienvenue;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.clocks .bienvenue h1 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 20px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  color: var(--color-text);
+}
+.clocks .bienvenue h1 span {
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+.clocks .bienvenue .img {
+  width: 500px;
+  height: 300px;
+}
+.clocks .bienvenue .img img {
+  margin-left: 100px;
+  max-width: 100%;
+}
+/*.clocks  heure */
+.clocks .heure {
+  grid-area: heure;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.clocks .heure #clock h2 {
+  position: relative;
+  display: block;
+  color: var(--color-text);
+  text-align: center;
+  margin: 40px 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 1.5em;
+}
+
+.clocks .heure #clock #time {
+  display: flex;
+}
+
+.clocks .heure #clock #time div {
+  position: relative;
+  margin: 0 5px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0004); */
+}
+
+.clocks .heure #clock #time div span {
+  position: relative;
+  display: block;
+  width: 150px;
+  height: 120px;
+  background: var(--color-green);
+  color: #fff;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  z-index: 10;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  /* border-radius: 3px; */
+}
+
+.clocks .heure #clock #time div #minutes {
+  background: var(--color-blue);
+}
+.clocks .heure #clock #time div span:nth-child(2) #minutes {
+  background: var(--color-blue);
+}
+
+.clocks .heure #clock #time div span:nth-child(2) {
+  height: 30px;
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  z-index: 9;
+  box-shadow: none;
+  background: var(--color-blue);
+  text-transform: uppercase;
+}
+.clocks .heure #clock #time div:first-child span {
+  background: var(--color-green);
+}
+
+.clocks .heure #clock #time div:last-child span {
+  background: var(--color-red);
+}
+
+.clocks .heure #clock #time div:last-child span:nth-child(2) {
+  background: var(--color-red);
+}
 /*sidebar*/
 .accueil-sidebar {
   grid-area: sidebar;
@@ -88,6 +197,7 @@
   background: var(--color-fond);
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 /*body/diagramme*/
@@ -176,26 +286,24 @@
   height: 18px;
   background-color: #f44336;
 }
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-  .accueil-body .side,
-  .accueil-body .middle {
-    width: 100%;
-  }
-  .accueil-body .right {
-    display: none;
-  }
+/*Button*/
+.button {
+  padding: 10px 30px;
+  background: #2196f3;
+  color: white;
 }
 
-@media screen and (max-width: 768px) {
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 1300px) {
   /*accueil*/
   .accueil-container {
     grid-template-areas:
+      "clock clock"
       "header  header"
       "sidebar  sidebar"
       "contenu  contenu";
-    grid-template-rows: 1fr auto 1fr;
+    grid-template-rows: 1fr 1fr auto auto;
   }
   /*header*/
   .accueil-header {
@@ -217,11 +325,141 @@
   .accueil-body {
     height: auto;
   }
+  .clocks {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "bienvenue"
+      "heure";
+  }
+  /* c */
+
+  .clocks .bienvenue {
+    background: var(--color-bg);
+  }
+  /* c */
+
+  .clocks .bienvenue .img {
+    width: 86%;
+    height: 300px;
+  }
+  .clocks .bienvenue .img img {
+    margin-left: 50px;
+    max-width: 100%;
+  }
+
+  .clocks .heure {
+    grid-area: heure;
+    display: flex;
+    justify-content: center;
+    background: var(--color-fond);
+    overflow: hidden;
+  }
+  .clocks .heure #clock h2 {
+    font-size: 1em;
+  }
+  .clocks .heure #clock #time div span {
+    position: relative;
+    display: block;
+    width: 150px;
+    height: 120px;
+    background: var(--color-green);
+    color: #fff;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
 }
 
-/*Button*/
-.button {
-  padding: 10px 30px;
-  background: #2196f3;
-  color: white;
+@media screen and (max-width: 768px) {
+  /*accueil*/
+  .accueil-container {
+    grid-template-rows: 500px 1fr auto auto;
+    grid-template-areas:
+      "clock clock"
+      "header  header"
+      "sidebar  sidebar"
+      "contenu  contenu";
+  }
+  /*header*/
+  .accueil-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  .accueil-header .card {
+    margin: 10px;
+  }
+  /*sidebar*/
+  .accueil-sidebar {
+    height: 100%;
+    width: 90%;
+    margin: 10px auto 0;
+  }
+  /*body*/
+  .accueil-body {
+    height: max-content;
+  }
+  .clocks {
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 300px;
+    grid-template-areas:
+      "bienvenue"
+      "heure";
+  }
+  .clocks .bienvenue {
+    height: 200px;
+    background: var(--color-bg);
+  }
+
+  .clocks .bienvenue .img {
+    width: 86%;
+    height: 300px;
+  }
+  .clocks .bienvenue .img img {
+    margin-left: 50px;
+    max-width: 100%;
+  }
+
+  .clocks .heure {
+    grid-area: heure;
+    display: flex;
+    justify-content: center;
+    background: var(--color-fond);
+    overflow: hidden;
+  }
+  .clocks .heure #clock h2 {
+    font-size: 1em;
+  }
+  .clocks .heure #clock #time div span {
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 120px;
+    background: var(--color-green);
+    color: #fff;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+}
+@media (max-width: 400px) {
+  .accueil-body .side,
+  .accueil-body .middle {
+    width: 100%;
+  }
+  .accueil-body .right {
+    display: none;
+  }
 }

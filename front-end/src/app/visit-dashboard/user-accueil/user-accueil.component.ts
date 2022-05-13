@@ -7,22 +7,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccueilComponent implements OnInit {
   Date: Date = new Date();
-  monOngletScriptElemeet!: HTMLScriptElement;
+  // monOngletScriptElemeet!: HTMLScriptElement;
+  private daysArray = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  private date = new Date();
+  public hour: any;
+  public minute!: string;
+  public second!: string;
+  public ampm!: string;
+  public day!: string;
   constructor() {
-    this.monOngletScriptElemeet = document.createElement('script');
-
-    this.monOngletScriptElemeet.src = 'assets/javascript/clock.js';
-    this.monOngletScriptElemeet.type = 'text/javascript';
-    document.body.appendChild(this.monOngletScriptElemeet);
   }
 
   ngOnInit(): void {
 
-    /* vérification:
-    setTimeout(() => {
-      const lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
-      console.log("lieu aty am accueil = " + lieu.lieu_name)
-    }, 1000); */
+    setInterval(() => {
+      const date = new Date();
+      this.updateDate(date);
+    }, 1000);
+    this.day = this.daysArray[this.date.getDay()];
 
+  }
+
+  private updateDate(date: Date) {
+    const hours = date.getHours();
+    this.ampm = hours >= 12 ? 'PM' : 'AM';
+    this.hour = hours % 12;
+    this.hour = this.hour ? this.hour : 12;
+    this.hour = this.hour < 10 ? '0' + this.hour : this.hour;
+    const minutes = date.getMinutes();
+    this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
+    const seconds = date.getSeconds();
+    this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
 }

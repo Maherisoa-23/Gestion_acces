@@ -9,16 +9,19 @@
       <img src="assets/img/undraw_hello_re_3evm.svg" />
     </div>
   </div>
-  <!-- bienvenu -->
-
-  <!-- date/heure -->
   <div class="heure">
     <div id="clock">
       <h2>{{ Date | date: "fullDate" }}</h2>
       <div id="time">
-        <div><span id="hour">00</span> <span>Heures</span></div>
-        <div><span id="minutes">00</span> <span>Minutes</span></div>
-        <div><span id="seconds">00</span> <span>Secondes</span></div>
+        <div>
+          <span id="hour">{{ hour }}</span> <span>Heures</span>
+        </div>
+        <div>
+          <span id="minutes">{{ minute }}</span> <span>Minutes</span>
+        </div>
+        <div>
+          <span id="seconds">{{ second }}</span> <span>Secondes</span>
+        </div>
       </div>
     </div>
   </div>
@@ -26,37 +29,42 @@
 
   <!-- btn*2 -->
   <div class="button">
-    <!--bouton ajout + sorti-->
-    <button class="btn-content pointage">Gerer Pointage</button>
-    <button class="btn-content visite">Gerer Visite</button>
-
-    <!--end-bouton ajout + sorti-->
-  </div>
-  <!-- btn*2 -->
-
-  <!-- help -->
-  <div class="help">
-    <div class="help1">
-      <h1>POUR GERER L'ACCES DES EMPLOYEES</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia,
-        alias! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Officia, alias! Lorem ipsum dolor, sit amet consectetur adipisicing
-        elit. Officia, alias! Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Officia, alias! Lorem ipsum dolor, sit amet
-        consectetur adipisicing elit. Officia, alias! Lorem ipsum dolor, sit
-        amet consectetur adipisicing elit. Officia, alias! Lorem ipsum dolor,
-      </p>
+    <div class="card c1">
+      <div class="imgBx">
+        <!-- <img src="./../../../assets/images/OMNISS.jpg" alt="01" /> -->
+        <button class="btn-effet i1">Gerer Pointage</button>
+      </div>
+      <div class="content">
+        <h2>Card one</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
+          minus, rem, at in recusandae explicabo soluta atque facere porro
+          deserunt quidem veritatis minima voluptate, quaerat earum velit
+          dolorem ad dolor.
+        </p>
+      </div>
+      <div class="aide">
+        <h1>Aide<i class="fas fa-hand-point-up"></i></h1>
+      </div>
     </div>
-    <div class="help2">
-      <h1>POUR GERER L'ACCES DES VISITEURS</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia,
-        alias! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Officia, alias! Lorem ipsum dolor, sit amet consectetur adipisicing
-        elit. Officia, alias!
-      </p>
+    <div class="card c2">
+      <div class="imgBx">
+        <button class="btn-effet i2">Gerer Visite</button>
+
+        <!-- <img src="images/02.jpg" alt="01" /> -->
+      </div>
+      <div class="content">
+        <h2>Card two</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
+          minus, rem, at in recusandae explicabo soluta atque facere porro
+          deserunt quidem veritatis minima voluptate, quaerat earum velit
+          dolorem ad dolor.
+        </p>
+      </div>
+      <div class="aide">
+        <h1>AIDE<i class="fas fa-hand-point-up"></i></h1>
+      </div>
     </div>
   </div>
-  <!-- help -->
 </div>

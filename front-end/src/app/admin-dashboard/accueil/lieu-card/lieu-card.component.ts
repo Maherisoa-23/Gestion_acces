@@ -60,7 +60,7 @@ export class LieuCardComponent implements OnInit {
       });
     this.authServ.getTotalNumberOfEmployeeByPlace(this.id_lieu)
       .subscribe((data) => {
-        this.nb_employee = data;
+        this.nb_employee = data.total_employee;
       });
   }
 
@@ -70,7 +70,7 @@ export class LieuCardComponent implements OnInit {
       datasets: [
         {
           label: 'My First Dataset',
-          data: [this.nb_pointage, this.nb_employee.total_employee  - this.nb_pointage],
+          data: [this.nb_pointage, this.nb_employee  - this.nb_pointage],
           backgroundColor: [this.couleur, '#eeeeee'],
           hoverOffset: 4,
         },
