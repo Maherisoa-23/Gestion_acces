@@ -37,8 +37,6 @@ export class AuthentificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
-    console.log("lieu = " + localStorage.getItem('lieu'))
     this.refreshLieuList();
     this.refreshUsersList();
     this.refreshActiveConnectionList();
@@ -66,7 +64,7 @@ export class AuthentificationComponent implements OnInit {
           this.lieux_name.push(element.lieu_name);
         }
       }
-    }, 500)
+    }, 1200)
   }
 
   refreshUsersList() {
@@ -107,24 +105,24 @@ export class AuthentificationComponent implements OnInit {
         else {
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
-            this.authService.userName = element.user_name;
-            this.router.navigate(['accueil']);
+            this.authService.userName = element.user_name            
+            this.router.navigate(['agent']);
           });
           console.log("lieu this  = " + this.authService.lieu);
-          this.authService.getTotalNumberOfEmployeeByPlace(this.getLieuId(this.authService.lieu)).subscribe((data) => {
+
+          localStorage.setItem('user', JSON.stringify(element));
+          this.authService.getLieu(this.getLieuId(this.authService.lieu)).subscribe((data) => {
             this.Lieu = data;
           });
-
+      
           setTimeout(() => {
-
+      
             this.Lieu.isActive = true
             this.authService.putLieu(this.Lieu).subscribe((res) => {
               console.log(res.toString());
             });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 1000);
-
-          localStorage.setItem('user1', JSON.stringify(element));
           this.saveConnection()
         }
         break;
@@ -137,10 +135,7 @@ export class AuthentificationComponent implements OnInit {
     this.date = new Date();
     this.heure = new Date();
     this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
-    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-    this.authService.date = this.date.toString()
-    this.authService.userLoginTime = this.heure.toString()
-    this.authService.numero_matricule = this.numero_matricule
+    this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy');
 
 
     var val = {
@@ -156,6 +151,6 @@ export class AuthentificationComponent implements OnInit {
     this.authService.putActiveConnection(val).subscribe((res) => {
       console.log(res.toString());
     });
-
+    localStorage.setItem('connection', JSON.stringify(val))
   }
 }

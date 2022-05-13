@@ -122,7 +122,7 @@ export class AuthService {
   getPointageCountingFilterByPlace(lieu_id: number): Observable<any>{
     return this.http.delete<any>(this.APIUrl + '/pointage_counter/' + lieu_id);
   }
-  getTotalNumberOfEmployeeByPlace(lieu_id : number): Observable<any>{
+  getLieu(lieu_id : number): Observable<any>{
     return this.http.delete<any>(this.APIUrl + '/lieu/' + lieu_id);
   }
 }

@@ -58,7 +58,7 @@ export class LieuCardComponent implements OnInit {
       .subscribe((data) => {
         this.nb_pointage = data;
       });
-    this.authServ.getTotalNumberOfEmployeeByPlace(this.id_lieu)
+    this.authServ.getLieu(this.id_lieu)
       .subscribe((data) => {
         this.nb_employee = data.total_employee;
       });

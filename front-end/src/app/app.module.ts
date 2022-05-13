@@ -51,7 +51,7 @@ const appRoutes: Routes = [
       { path: 'pointage-register', component: PointageRegisterComponent},
     ]
   },
-  { path: 'accueil', canActivate: [AuthGuard], component: VisitDashboardComponent,
+  { path: 'agent', canActivate: [AuthGuard], component: VisitDashboardComponent,
     children: [
       { path: '', component: UserAccueilComponent },
       { path: 'visit-active', component: ListActiveVisitComponent},
