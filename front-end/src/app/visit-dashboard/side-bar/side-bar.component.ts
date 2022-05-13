@@ -55,10 +55,10 @@ export class SideBarComponent implements OnInit {
   }
 
   showActiveVisit(){
-    this.route.navigate(['accueil/visit-active'])
+    this.route.navigate(['agent/visit-active'])
   }
   PointageView(){
-    this.route.navigate(['accueil/pointage'])
+    this.route.navigate(['agent/pointage'])
   }
 
   saveConnectionRegister() {
