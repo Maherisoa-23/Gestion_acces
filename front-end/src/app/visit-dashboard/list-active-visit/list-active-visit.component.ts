@@ -37,23 +37,24 @@ export class ListActiveVisitComponent implements OnInit {
   ActivatedAddVisit: boolean = false;
   visite: any;
   date: any;
+  Date: any;
   entry_time : any;
 
   addVisit() {
-    this.date = new Date();
-    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-    this.entry_time = this.datePipe.transform(this.date, ' h:mm:ss');
+    this.Date = new Date();
+    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+    this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
     var val = {
       visitor_name: this.visitor_name,
       motif: this.motif,
       CIN: this.CIN,
-      lieu: this.authServ.lieu,
+      lieu: this.lieu,
       date: this.date.toString(),
       entry_time : this.entry_time.toString()
     };
     
     this.service.addVisit(val).subscribe((res) => {
-      console.log(res.toString());
+      console.log(res.toString() + " to visit active list");
     });
     this.refreshVisitsList();
     this.refreshVisitsList();
@@ -64,14 +65,15 @@ export class ListActiveVisitComponent implements OnInit {
 
   exit(item : any) {
     
-    this.date = new Date();
-    this.date = this.datePipe.transform(this.date, 'h:mm:ss');
+    this.Date = new Date();
+    this.date = this.datePipe.transform(this.Date, 'h:mm:ss');
     var val = {
       visitor_name: item.visitor_name,
       motif: item.motif,
       CIN: item.CIN,
-      lieu: item.lieu,
-      date_of_entry: item.date_of_entry,
+      lieu: this.lieu,
+      date: item.date,
+      entry_time : item.entry_time,
       exit_time : this.date.toString()
     };
     if (confirm('Vous êtes sûs?')) {
@@ -79,7 +81,7 @@ export class ListActiveVisitComponent implements OnInit {
         
       });
       this.service.addVisitsRegister(val).subscribe((data) => {
-        console.log((data.toString()));
+        console.log((data.toString()) + " to the visit register ") ;
       });
     }
     setTimeout(() => {
