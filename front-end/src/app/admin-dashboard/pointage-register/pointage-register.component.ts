@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -22,15 +22,25 @@ export class PointageRegisterComponent implements OnInit {
   lieu_croissant = false
 
   pointages: any;
+  departments : any ;
+
+  filtredPointages : any  = [];
   constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
+    this.refreshDepList();
   }
 
   refreshPointageRegisterList() {
     this.authServ.getPointageRegisterList().subscribe((data) => {
       this.pointages = data;
+    });
+  }
+
+  refreshDepList() {
+    this.authServ.getDepartmentList().subscribe((data) => {
+      this.departments = data;
     });
   }
 
@@ -110,5 +120,54 @@ export class PointageRegisterComponent implements OnInit {
       this.pointages.sort((b : any,a : any) => a.lieu.localeCompare(b.lieu));
       this.lieu_croissant = false
     }
+  }
+
+  //Methode fe filtrage
+  @Input() selected_lieu = ""
+  @Input() selected_dep = ""
+  filtered = false;
+  FilterByLieu(lieu_name : string) {
+    this.filtered = true
+    this.filtredPointages = []
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      console.log(element.employee_dep_name)
+      if (element.lieu == lieu_name) {
+        this.filtredPointages.push(element)
+      }
+    }
+    this.SortByName();
+  }
+
+  FilterByDep() {
+    this.filtered = true
+    this.filtredPointages = []
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (element.employee_dep_name == this.selected_dep) {
+        this.filtredPointages.push(element)
+      }
+    }
+    this.SortByName();
+  }
+
+  DepSelected(item : any) {
+    this.selected_dep = item.department_name
+    setTimeout(() => {
+      this.FilterByDep();
+    }, 500)
+  }
+
+  AmbohijatovoSelected(){
+    this.selected_lieu = "Ambohijatovo";
+    this.FilterByLieu(this.selected_lieu);
+  }
+  AndraharoSelected(){
+    this.selected_lieu = "Andraharo";
+    this.FilterByLieu(this.selected_lieu);
+  }
+  MangasoavinaSelected(){
+    this.selected_lieu = "Mangasoavina";
+    this.FilterByLieu(this.selected_lieu);
   }
 }
