@@ -21,18 +21,20 @@ export class AuthentificationComponent implements OnInit {
   date: any;
   heure: any;
 
+  input1 = false;
+  input2 = false;
+
   //pour verifier si la connection est déja existante
   tmptab: any = []
 
   usersList: any = [];
-  myScriptElement: HTMLScriptElement;
   //myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
-    this.myScriptElement = document.createElement('script');
+    /* this.myScriptElement = document.createElement('script');
 
     this.myScriptElement.src = 'assets/javascript/authentification.js';
     this.myScriptElement.type = 'text/javascript';
-    document.body.appendChild(this.myScriptElement);
+    document.body.appendChild(this.myScriptElement); */
 
   }
 
@@ -130,7 +132,6 @@ export class AuthentificationComponent implements OnInit {
     }
   }
 
-
   saveConnection() {
     this.date = new Date();
     this.heure = new Date();
@@ -153,4 +154,8 @@ export class AuthentificationComponent implements OnInit {
     });
     localStorage.setItem('connection', JSON.stringify(val))
   }
+
+  //animation du formulaire d'euthentification
+  ClickOnInput1() { this.input1 = true }
+  ClickOnInput2() { this.input2 = true }
 }

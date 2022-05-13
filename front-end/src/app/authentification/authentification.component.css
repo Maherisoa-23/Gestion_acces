@@ -119,17 +119,17 @@ form {
   left: 50%;
 }
 
-.input-div.focus:before,
-.input-div.focus:after {
+.focus:before,
+.focus:after {
   width: 50%;
 }
 
-.input-div.focus > div > h5 {
+.focus > div > h5 {
   top: -5px;
   font-size: 15px;
 }
 
-.input-div.focus > .i > i {
+.focus > .i > i {
   color: var(--color-green);
 }
 

@@ -10,12 +10,12 @@
         <h2 class="title">Gestion Acces</h2>
         <p id="omnis">OMNIS Madagascar</p>
 
-        <div class="input-div one">
+        <div [ngClass]="{'input-div': true, 'focus': input1}" (click)="ClickOnInput1()">
           <div class="i">
             <i class="fas fa-user"></i>
           </div>
           <div class="div">
-            <h5>Numero : {{selected_lieu}}</h5>
+            <h5>Numero </h5>
             <input
               type="text"
               class="input-auth"
@@ -25,7 +25,7 @@
             />
           </div>
         </div>
-        <div class="input-div pass">
+        <div [ngClass]="{'input-div': true, 'focus': input2}" (click)="ClickOnInput2()">
           <div class="i">
             <i class="fas fa-lock"></i>
           </div>
