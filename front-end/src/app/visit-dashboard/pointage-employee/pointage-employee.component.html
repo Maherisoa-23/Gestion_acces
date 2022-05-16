@@ -22,7 +22,7 @@
       <label><b>Numero Matricule :</b></label>
       <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
       <ul *ngFor="let item of employees">
-        <li *ngIf="item.employee_name.toLowerCase().startsWith(enteredValue.toLowerCase()) && enteredValue" >{{item.employee_name}}</li>
+        <li *ngIf="item.employee_name.toLowerCase().includes(enteredValue.toLowerCase()) && enteredValue" (click) = "suggested(item.employee_name)">{{item.employee_name}}</li>
       </ul>
 
       <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'"

@@ -59,7 +59,7 @@ export class PointageEmployeeComponent implements OnInit {
       this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
       this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
       var val = {
-        numero_matricule: this.numero_matricule,
+        numero_matricule: this.getNumeroMatricule(this.enteredValue),
         date: this.date.toString(),
         lieu: this.lieu,
         entry_time: this.heure.toString()
@@ -74,6 +74,15 @@ export class PointageEmployeeComponent implements OnInit {
     }
   }
 
+  getNumeroMatricule(name : string) {
+    for (let index = 0; index < this.employees.length; index++) {
+      const element = this.employees[index];
+      if (element.employee_name == name) {
+        return element.numero_matricule
+      }
+    }
+    return 0
+  }
   OnExit() {
 
     if (!this.isPointed()) {
@@ -141,6 +150,10 @@ export class PointageEmployeeComponent implements OnInit {
       };
     }
     return false
+  }
+
+  suggested(employee_name : string){
+    this.enteredValue = employee_name;
   }
 
 }
