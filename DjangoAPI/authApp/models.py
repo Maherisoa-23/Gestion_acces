@@ -1,5 +1,3 @@
-
-from tkinter.tix import Tree
 from django.db import models
 
 class User(models.Model) :
@@ -18,7 +16,7 @@ class Employee(models.Model) :
     employee_name = models.CharField(max_length=50)
     function   = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)    
-    password = models.CharField(max_length=100)
+    pointed_at = models.CharField(max_length=30, default="not pointed") 
     
 class Pointage(models.Model):
     numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE)

@@ -48,7 +48,7 @@ export class SideBarComponent implements OnInit {
       });
       this.route.navigate(['authentification']);
     }, 1000);
-    this.saveConnectionRegister();
+    //this.saveConnectionRegister();
     localStorage.removeItem('lieu');
     localStorage.removeItem('user');
     

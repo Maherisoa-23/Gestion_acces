@@ -21,8 +21,8 @@ class Employee_serializer(serializers.ModelSerializer):
                   'numero_matricule',
                   'department',
                   'department_name',
-                  'password'
-                  )
+                  'pointed_at'
+                )
 
 class Department_serializer(serializers.ModelSerializer):
     class Meta:
