@@ -12,19 +12,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PointageEmployeeComponent implements OnInit {
 
-  @Input() numero_matricule = 0;
   @Input() enteredValue = "";
 
 
   lieu = "";
   pointages: any = [];
+  pointagesbyLieu : any = []
   employees: any = [];
   date: any;
   heure: any;
   isEmp = false;
   isPoind = false;
 
-  filteredList : any = []
+  pointed_at : any; // si l"employée est déjà pointé à un autre locaux
 
   constructor(private authServ: AuthService, private datePipe: DatePipe) { }
 
@@ -43,6 +43,16 @@ export class PointageEmployeeComponent implements OnInit {
     });
   }
 
+  refreshPointagesThisLieuList() {
+    this.pointagesbyLieu = []
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (element.lieu == this.lieu) {
+        this.pointagesbyLieu.push(element)
+      }
+    }
+  }
+
   getEmployeeList() {
     this.authServ.getEmployeeList().subscribe((data) => {
       this.employees = data;
@@ -51,7 +61,7 @@ export class PointageEmployeeComponent implements OnInit {
 
   OnEnter() {
     if (this.isPointed()) {
-      alert("Employé déjà présent");
+      alert("Employé déjà présent à : " + this.pointed_at);
     }
     else {
       this.date = new Date();
@@ -67,11 +77,19 @@ export class PointageEmployeeComponent implements OnInit {
       this.authServ.addPointage(val).subscribe((res) => {
         console.log(res.toString() + " to the pointage list");
       });
+      const emp = {
+        numero_matricule: this.getNumeroMatricule(this.enteredValue),
+        pointed_at: this.lieu
+      }
+      this.authServ.putEmployee(emp).subscribe((res) => {
+        console.log(res.toString());
+      });
       setTimeout(() => {
         this.refreshPointageList();
       }, 500);
-      this.numero_matricule = 0
+      
     }
+    this.enteredValue = ""
   }
 
   getNumeroMatricule(name : string) {
@@ -87,22 +105,22 @@ export class PointageEmployeeComponent implements OnInit {
 
     if (!this.isPointed()) {
       alert("Employé non présent ou déjà parti");
-      this.numero_matricule = 0
+      this.enteredValue = ""
     }
     else {
-      this.authServ.deletePointage(this.numero_matricule).subscribe((data) => {
+      this.authServ.deletePointage(this.getNumeroMatricule(this.enteredValue)).subscribe((data) => {
         console.log(data.toString() + " from the active pointage ");
       });
       //ajout dans le registre des pointages
       for (let index = 0; index < this.pointages.length; index++) {
         const element = this.pointages[index];
         if (
-          element.numero_matricule == this.numero_matricule
+          element.numero_matricule == this.getNumeroMatricule(this.enteredValue)
         ) {
           this.heure = new Date();
           this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
           var val = {
-            numero_matricule: this.numero_matricule,
+            numero_matricule: this.getNumeroMatricule(this.enteredValue),
             date: element.date,
             lieu: element.lieu,
             employee_name: element.employee_name,
@@ -113,6 +131,13 @@ export class PointageEmployeeComponent implements OnInit {
           this.authServ.addPointageRegister(val).subscribe((res) => {
             console.log(res.toString() + " to the pointage register");
           });
+          const emp = {
+            numero_matricule: this.getNumeroMatricule(this.enteredValue),
+            pointed_at: "not pointed"
+          }
+          this.authServ.putEmployee(emp).subscribe((res) => {
+            console.log(res.toString() + " from the employee list");
+          });
           break;
         };
       }
@@ -122,7 +147,7 @@ export class PointageEmployeeComponent implements OnInit {
       this.refreshPointageList();
     }, 500);
     console.log("refreshed")
-    this.numero_matricule = 0
+    this.enteredValue = ""
   }
 
   /* isEmployee(): boolean {
@@ -144,8 +169,9 @@ export class PointageEmployeeComponent implements OnInit {
     for (let index = 0; index < this.pointages.length; index++) {
       const element = this.pointages[index];
       if (
-        element.numero_matricule == this.numero_matricule
+        element.numero_matricule == this.getNumeroMatricule(this.enteredValue)
       ) {
+        this.pointed_at = element.lieu
         return true
       };
     }

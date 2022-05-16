@@ -20,7 +20,8 @@ class Employee_serializer(serializers.ModelSerializer):
                   'lieu',
                   'numero_matricule',
                   'department',
-                  'department_name'
+                  'department_name',
+                  'pointed_at'
                 )
 
 class Department_serializer(serializers.ModelSerializer):

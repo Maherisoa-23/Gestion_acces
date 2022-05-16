@@ -3,7 +3,7 @@
   <button class="btn-content entre" onclick="document.getElementById('id01').style.display='block'">
     Entree
   </button>
-  <button class="btn-content exit" onclick="document.getElementById('id02').style.display='block'">
+  <button class="btn-content exit" onclick="document.getElementById('id02').style.display='block'" (click)="refreshPointagesThisLieuList()">
     Sortie
   </button>
 </div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="container">
-      <label><b>Numero Matricule :</b></label>
+      <label><b>Nom : </b></label>
       <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
       <ul *ngFor="let item of employees">
         <li *ngIf="item.employee_name.toLowerCase().includes(enteredValue.toLowerCase()) && enteredValue" (click) = "suggested(item.employee_name)">{{item.employee_name}}</li>
@@ -36,8 +36,8 @@
   </form>
 </div>
 <!--Modal-entre-end-->
-<!--Modal-sorti-->
 
+<!--Modal-sorti-->
 <div id="id02" class="modal">
   <form class="modal-content animate">
     <h1>Pointage de sortie</h1>
@@ -47,8 +47,11 @@
     </div>
 
     <div class="container">
-      <label><b>Numero Matricule :</b></label>
-      <input type="text" [(ngModel)]="numero_matricule" name="numero_matricule" />
+      <label><b>Nom : </b></label>
+      <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
+      <ul *ngFor="let item of pointagesbyLieu">
+        <li *ngIf="item.employee_name.toLowerCase().includes(enteredValue.toLowerCase()) && enteredValue" (click) = "suggested(item.employee_name)">{{item.employee_name}}</li>
+      </ul>
       <button type="submit" class="btn-ajout" onclick="document.getElementById('id02').style.display='none'"
         (click)="OnExit()">
         Confirmer

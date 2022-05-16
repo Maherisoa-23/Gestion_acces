@@ -49,6 +49,10 @@ export class AuthService {
     return this.http.delete<any[]>(this.APIUrl + '/employee/' + dep_id);
   }
 
+  putEmployee(val : any){
+    return this.http.put(this.APIUrl + '/employee/',val);
+  }
+
   getDepartmentList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/department/');
   }

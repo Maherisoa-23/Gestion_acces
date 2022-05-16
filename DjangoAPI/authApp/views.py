@@ -75,12 +75,11 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'PUT':
         employee_data = JSONParser().parse(request)
-        employee= Employee.objects.get(employee_id = employee_data['employee_id'] )
-        employee_serializer = Employee_serializer(employee,data=employee_data)
-        if employee_serializer.is_valid():
-            employee_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
+        employee= Employee.objects.get(numero_matricule = employee_data['numero_matricule'] )
+        employee.pointed_at = employee_data["pointed_at"]
+        employee.save()
+        return JsonResponse("Update successfully",safe=False)
+        #return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
         employee=Employee.objects.filter(department =id)
         employee_serializer = Employee_serializer(employee, many=True)
@@ -95,7 +94,7 @@ def pointage_API(request: HttpRequest, id = 0):
         return JsonResponse(pointage_serializer.data, safe=False)
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
-        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
+        employee = Employee.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
         pointage_data["employee_dep_name"] = employee.department_name         
         pointage_serializer = Pointage_serializer(data=pointage_data)
@@ -147,7 +146,7 @@ def active_connection_API(request: HttpRequest, id=0):
         active.numero_matricule = emp
         active.entry_time = AC_data["entry_time"]
         active.save()
-        return JsonResponse("success to Update", safe= False)
+        return JsonResponse("Updated successfully", safe= False)
     elif request.method == 'DELETE':
         pointage=Active_connection.objects.get(pk =id)
         pointage.employee_name = ""
