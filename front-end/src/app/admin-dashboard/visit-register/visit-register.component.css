@@ -20,6 +20,7 @@
   padding-right: 10px;
   padding-left: 10px;
 }
+
 /* navigation*/
 .topnav {
   overflow: hidden;
@@ -27,9 +28,10 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.topnav a {
+.topnav .active {
   width: 250px;
   color: var(--color-blue);
   background: var(--color-bg);
@@ -42,15 +44,69 @@
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
+}
+.topnav .active input {
+  border: none;
+  color: var(--color-red);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
 }
 
-.topnav a:hover {
+.topnav .active button {
+  margin: 5px;
+  padding: 5px;
+  background: var(--color-red);
+  color: var(--color-bg);
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+
+.topnav .active button:hover {
+  margin-right: 3px;
+  box-shadow: 1px 2px 2px var(--color-bg);
+}
+.topnav .active:hover {
   background-color: var(--color-fond);
   color: var(--color-blue);
 }
-.topnav a i {
+.topnav .active i {
   font-size: 25px;
   color: var(--color-red);
+}
+/*bouton deroulant*/
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.topnav .dropdown-content {
+  display: none;
+  position: absolute;
+  background: var(--color-bg);
+  width: 200px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.topnav .dropdown-content a {
+  float: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-red);
+  color: var(--color-blue);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+.topnav .dropdown-content a:hover {
+  background-color: #ddd;
+}
+.topnav .dropdown:hover .dropdown-content {
+  display: block;
+  margin: 12px 0 0 40px;
 }
 .section .tbl {
   width: 100%;
@@ -87,44 +143,7 @@
   text-align: center;
   border: 1px solid var(--color-blue);
 }
-.dropbtn {
-  cursor: pointer;
-}
 
-.dropbtn:hover,
-.dropbtn:focus {
-  border-bottom: 2px solid var(--color-bg);
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown .dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.show {
-  display: block;
-}
 /*media*/
 @media screen and (max-width: 768px) {
   /*liste tableau*/
@@ -158,6 +177,6 @@
   }
 }
 
-.th:hover{
+.th:hover {
   cursor: pointer;
 }

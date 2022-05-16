@@ -9,7 +9,6 @@ import { ListActiveVisitComponent } from './visit-dashboard/list-active-visit/li
 import { NavBarComponent } from './visit-dashboard/nav-bar/nav-bar.component';
 import { SideBarComponent } from './visit-dashboard/side-bar/side-bar.component';
 
-
 import { VisitService } from './services/visit.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationComponent } from './authentification/authentification.component';
@@ -32,7 +31,7 @@ import { SecurityProfileComponent } from './admin-dashboard/security-profile/sec
 import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-register.component';
 import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
 import { UserAccueilComponent } from './visit-dashboard/user-accueil/user-accueil.component';
-
+import { DataTablesModule } from 'angular-datatables';
 // code format
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -40,23 +39,29 @@ registerLocaleData(localeFr, 'fr');
 import { LOCALE_ID } from '@angular/core';
 
 const appRoutes: Routes = [
-  { path: 'admin', canActivate: [AdminGuard], component: AdminDashboardComponent,
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'security-agent', component: SecurityAgentComponent},
-      { path: 'security-profile', component: SecurityProfileComponent},
-      { path: 'visit-admin', component: ListVisitAdminComponent},
-      { path: 'visit-register', component: VisitRegisterComponent},
-      { path: 'pointage-admin', component: PointageComponent},
-      { path: 'pointage-register', component: PointageRegisterComponent},
-    ]
+      { path: 'security-agent', component: SecurityAgentComponent },
+      { path: 'security-profile', component: SecurityProfileComponent },
+      { path: 'visit-admin', component: ListVisitAdminComponent },
+      { path: 'visit-register', component: VisitRegisterComponent },
+      { path: 'pointage-admin', component: PointageComponent },
+      { path: 'pointage-register', component: PointageRegisterComponent },
+    ],
   },
-  { path: 'agent', canActivate: [AuthGuard], component: VisitDashboardComponent,
+  {
+    path: 'agent',
+    canActivate: [AuthGuard],
+    component: VisitDashboardComponent,
     children: [
       { path: '', component: UserAccueilComponent },
-      { path: 'visit-active', component: ListActiveVisitComponent},
-      { path: 'pointage', component: PointageEmployeeComponent},
-    ]
+      { path: 'visit-active', component: ListActiveVisitComponent },
+      { path: 'pointage', component: PointageEmployeeComponent },
+    ],
   },
   { path: 'authentification', component: AuthentificationComponent },
   { path: '', component: AuthentificationComponent },
@@ -91,13 +96,17 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
-    VisitService, AuthService, AuthGuard, AdminGuard,
+    VisitService,
+    AuthService,
+    AuthGuard,
+    AdminGuard,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
   bootstrap: [AppComponent],

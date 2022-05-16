@@ -80,6 +80,40 @@ body {
 }
 
 /*media*/
+@media screen and (max-width: 1300px) {
+  .wrapper- {
+    grid-template-areas:
+      "header header "
+      "sidebar sidebar "
+      "content content ";
+    grid-template-rows: 70px auto 1fr;
+  }
+
+  .header {
+    grid-area: header;
+    margin: 0;
+    background-color: var(--color-bg);
+  }
+
+  .sidebar {
+    position: static;
+    display: grid;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0;
+    justify-content: center;
+    align-content: center;
+  }
+
+  /*content*/
+  .content {
+    width: 100%;
+    /* grid-template-columns: 1fr; */
+  }
+}
+
+/*media*/
 @media screen and (max-width: 768px) {
   /*wrapper*/
   .wrapper- {

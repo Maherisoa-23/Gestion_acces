@@ -3,7 +3,7 @@
   <div class="clocks">
     <!-- bienvenue -->
     <div class="bienvenue">
-      <h1>Bienvenue <span>agent</span></h1>
+      <h1>Bienvenue <span>Admin</span></h1>
       <div class="img">
         <img src="assets/img/undraw_hello_re_3evm.svg" />
       </div>
@@ -49,9 +49,7 @@
   <div class="accueil-sidebar">
     <div class="security">
       <h3>Securités actifs</h3>
-      <button (click)="refresh()" class="actualiser">
-        actualiser
-      </button>
+      <button (click)="refresh()" class="actualiser">actualiser</button>
       <ul>
         <li *ngFor="let item of activeSecurityList">
           {{ item.employee_name }}
