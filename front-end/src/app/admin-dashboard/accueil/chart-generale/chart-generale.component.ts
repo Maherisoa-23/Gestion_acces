@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ChartGeneraleComponent implements OnInit {
   @Input() tab_visit_counting: any = [];
-  @Input() tab_pointage_counting: any = [];
 
   myChartVisite: any;
   myChartPointage: any;
@@ -26,9 +25,6 @@ export class ChartGeneraleComponent implements OnInit {
   refreshCounting() {
     this.authServ.getTabVisitCounting().subscribe((data) => {
       this.tab_visit_counting = data;
-    });
-    this.authServ.getTabPointageCounting().subscribe((data) => {
-      this.tab_pointage_counting = data;
     });
   }
   chartit() {

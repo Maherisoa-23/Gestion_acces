@@ -102,7 +102,6 @@ def pointage_API(request: HttpRequest, id = 0):
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)    
-    #filtrer les pointages par département
     elif request.method == 'DELETE':
         pointage=Pointage.objects.get(numero_matricule =id)
         pointage.delete()
@@ -203,6 +202,11 @@ def pointage_counter_API(request: HttpRequest, id=0):
             pointage_tab.append(nb_pointage)
         
         return JsonResponse(pointage_tab, safe=False)
+    #prendre le nombre de pointage à un lieu et date précis
+    elif request.method== 'POST':
+        request_data = JSONParser().parse(request)
+        pointage = Pointage_register.objects.filter(date = request_data["date"], lieu = request_data["lieu"])
+        return JsonResponse(pointage.count(),safe=False)
     #nombre de pointage pour un lieu en particulier
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)
