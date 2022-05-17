@@ -2,136 +2,26 @@
   <h1>Registre des pointages</h1>
 </div>
 <div class="topnav">
-  <a class="active"
-    ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
+  <a class="active"><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
     <input type="date" [(ngModel)]="DateSelected" class="dateadded" />
-    <!-- <button
-      (click)="ChangeDate()"
-    >
-      Change Date
-    </button> -->
   </a>
-
-  <!--1-->
-  <div class="active dropdown">
-    <a
-      ><i class="fas fa-house-user" style="margin-right: 10px"></i>
-      Departement:{{ selected_dep }}
-      <i class="fa fa-caret-down"></i>
-    </a>
-    <div class="dropdown-content">
-      <a *ngFor="let item of departments" (click)="DepSelected(item)">
-        {{ item.department_name }}</a
-      >
-    </div>
-  </div>
-  <!--0-->
-  <div class="active dropdown">
-    <a
-      ><i class="fas fa-map-marker-alt" style="margin-right: 10px"></i> Lieu:
-      {{ selected_lieu }}
-
-      <i class="fa fa-caret-down"></i>
-    </a>
-    <div class="dropdown-content">
-      <a (click)="AmbohijatovoSelected()">Ambohijatovo</a>
-      <a (click)="AndraharoSelected()">Andraharo</a>
-      <a (click)="MangasoavinaSelected()">Mangasoavina</a>
-    </div>
-  </div>
-
-  <!--3-->
-  <a class="active"
-    ><i class="fas fa-id-card" style="margin-right: 10px"></i>Recherche par
-    employee</a
-  >
 </div>
 
 <div class="section">
   <!--Liste tableau-->
-  <table id="dataTables-example" class="tbl">
+  <table id="dataTables-example" class="tbl" datatable [dtOptions]="dtOptions" *ngIf="isShow">
     <thead>
       <tr>
-        <th class="th" (click)="SortByName()">
-          Nom
-          <i
-            *ngIf="nom_croissant && trie_nom"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!nom_croissant && trie_nom"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
-        <th class="th" (click)="SortByDate()">
-          Date
-          <i
-            *ngIf="date_croissant && trie_date"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!date_croissant && trie_date"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
-        <th class="th" (click)="SortByEntryTime()">
-          Heure d'entree
-          <i
-            *ngIf="entry_time_croissant && trie_entry_time"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!entry_time_croissant && trie_entry_time"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
-        <th class="th" (click)="SortByExitTime()">
-          Heure de sortie
-          <i
-            *ngIf="exit_time_croissant && trie_exit_time"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!exit_time_croissant && trie_exit_time"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
-        <th class="th" (click)="SortByLieu()">
-          Lieu
-          <i
-            *ngIf="lieu_croissant && trie_lieu"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!lieu_croissant && trie_lieu"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
-        <th class="th" (click)="SortByDep()">
-          Departement
-          <i
-            *ngIf="dep_croissant && trie_dep"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!dep_croissant && trie_dep"
-            class="fa fa-caret-up dropbtn"
-          ></i>
-        </th>
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Heure d'entree</th>
+        <th>Heure de sortie</th>
+        <th>Lieu</th>
+        <th>Departement</th>
       </tr>
     </thead>
-    <tbody *ngIf="!filtered">
+    <tbody>
       <tr *ngFor="let item of pointages">
-        <td data-label="Nom">{{ item.employee_name }}</td>
-        <td data-label="Date">{{ item.date }}</td>
-        <td data-label="Heure d'entree">{{ item.entry_time }}</td>
-        <td data-label="Heure de sortie">{{ item.exit_time }}</td>
-        <td data-label="Depart">{{ item.lieu }}</td>
-        <td data-label="Depart">{{ item.employee_dep_name }}</td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="filtered">
-      <tr *ngFor="let item of filtredPointages">
         <td data-label="Nom">{{ item.employee_name }}</td>
         <td data-label="Date">{{ item.date }}</td>
         <td data-label="Heure d'entree">{{ item.entry_time }}</td>

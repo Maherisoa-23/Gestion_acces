@@ -1,7 +1,7 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 declare var $: any;
+
 @Component({
   selector: 'app-pointage-register',
   templateUrl: './pointage-register.component.html',
@@ -26,16 +26,33 @@ export class PointageRegisterComponent implements OnInit {
   DateSelected: any;
 
   filtredPointages: any = [];
+
+  dtOptions: DataTables.Settings = {};
+  isShow = false
   constructor(private authServ: AuthService) {}
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
     this.refreshDepList();
     //datepicker
+    setTimeout(() => {
+      this.isShow = true
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 5,
+        lengthMenu : [5, 10, 25],
+        processing: true
+      };
+    },500)
+    
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
+    });
+
+    $(".namefilter").on("change", function(){
+      $('#dataTables-example').DataTable().order([0, $().val()]).draw();
     });
   }
 
