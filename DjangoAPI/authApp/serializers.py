@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Pointage
-from authApp.models import User,Employee,Department,Pointage,Pointage_register,Active_connection,Connection_register
+from authApp.models import User,Employee,Department,Pointage,Pointage_register,Active_connection,Connection_register, Daily_pointage
 
 class User_serializer(serializers.ModelSerializer):
     class Meta:
@@ -54,7 +54,8 @@ class Pointage_register_serializer(serializers.ModelSerializer):
                   'lieu',
                   'entry_time',
                   'exit_time',
-                  )   
+                  'daily_pointage_id'
+                  )
         
 class Active_connection_serializer(serializers.ModelSerializer):
     class Meta:

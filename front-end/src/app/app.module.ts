@@ -38,6 +38,7 @@ import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 import { LOCALE_ID } from '@angular/core';
 import { NgToastModule } from 'ng-angular-popup';
+import { UniquePointageComponent } from './admin-dashboard/unique-pointage/unique-pointage.component';
 
 const appRoutes: Routes = [
   {
@@ -93,6 +94,7 @@ const appRoutes: Routes = [
     VisitRegisterComponent,
     SecurityAgentComponent,
     UserAccueilComponent,
+    UniquePointageComponent,
   ],
   imports: [
     BrowserModule,

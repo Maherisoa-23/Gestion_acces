@@ -37,6 +37,7 @@ class Pointage_register(models.Model):
     entry_time = models.CharField(max_length=50)
     exit_time = models.CharField(max_length=50)
     
+    
 class Active_connection(models.Model):
     numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
     employee_name =  models.CharField(max_length=50, null= True)
