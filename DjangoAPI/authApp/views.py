@@ -192,6 +192,7 @@ def security_API(request: HttpRequest, id=0):
 
 @csrf_exempt
 def pointage_counter_API(request: HttpRequest, id=0):
+    
     #nb de pointage pour tout les lieu dans un tableau
     if request.method == 'GET':
         pointage_tab = []
@@ -214,3 +215,13 @@ def pointage_counter_API(request: HttpRequest, id=0):
         nb_pointage = pointage.count()
         return JsonResponse(nb_pointage, safe = False)
     return JsonResponse("wrong lieu_id", safe = False)
+
+@csrf_exempt
+def daily_pointage_API(request: HttpRequest, id=0):
+    
+    #pointage d'un employée que est passé par plusieurs locaux en une journée
+    if request.method == 'GET':
+        pointage_tab = []        
+        return JsonResponse(pointage_tab, safe=False)
+    return JsonResponse("wrong lieu_id", safe = False)
+

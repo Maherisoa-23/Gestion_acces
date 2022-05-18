@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Pointage
-from authApp.models import User,Employee,Department,Pointage,Pointage_register,Active_connection,Connection_register, Daily_pointage
+from authApp.models import User,Employee,Department,Pointage,Pointage_register,Active_connection,Connection_register
 
 class User_serializer(serializers.ModelSerializer):
     class Meta:

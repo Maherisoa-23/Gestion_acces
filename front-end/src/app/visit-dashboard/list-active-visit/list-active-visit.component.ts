@@ -42,7 +42,7 @@ export class ListActiveVisitComponent implements OnInit {
 
   addVisit() {
     this.Date = new Date();
-    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+    this.date = this.datePipe.transform(this.Date, 'MM-dd-yyyy');
     this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
     var val = {
       visitor_name: this.visitor_name,

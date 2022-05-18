@@ -53,6 +53,7 @@ const appRoutes: Routes = [
       { path: 'visit-register', component: VisitRegisterComponent },
       { path: 'pointage-admin', component: PointageComponent },
       { path: 'pointage-register', component: PointageRegisterComponent },
+      { path: 'unique-pointage', component: UniquePointageComponent }
     ],
   },
   {
