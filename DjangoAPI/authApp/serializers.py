@@ -54,7 +54,6 @@ class Pointage_register_serializer(serializers.ModelSerializer):
                   'lieu',
                   'entry_time',
                   'exit_time',
-                  'daily_pointage_id'
                   )
         
 class Active_connection_serializer(serializers.ModelSerializer):

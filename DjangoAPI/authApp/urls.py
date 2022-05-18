@@ -19,4 +19,5 @@ urlpatterns = [
     re_path(r'^security/([0-9]+)$',views.security_API),
     re_path(r'^pointage_counter/$',views.pointage_counter_API),
     re_path(r'^pointage_counter/([0-9]+)$',views.pointage_counter_API),
+    re_path(r'^daily_pointage/$',views.daily_pointage_API),
     ]
