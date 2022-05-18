@@ -8,7 +8,6 @@ class User_serializer(serializers.ModelSerializer):
         fields = (
                   'user_name',
                   'numero_matricule',
-                  'password'
                   )
         
 class Employee_serializer(serializers.ModelSerializer):

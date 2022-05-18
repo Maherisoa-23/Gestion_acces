@@ -12,7 +12,8 @@ import { DatePipe } from '@angular/common';
 export class AuthentificationComponent implements OnInit {
   authStatus!: boolean;
   authName!: string;
-  @Input() numero_matricule: string = '';
+  @Input() numero_matricule: any;
+  readonly adminMatricule = 1111;
   @Input() password: string = '';
   @Input() selected_lieu = "";
   Lieu: any; // Objet
@@ -30,11 +31,6 @@ export class AuthentificationComponent implements OnInit {
   usersList: any = [];
   //myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
-    /* this.myScriptElement = document.createElement('script');
-
-    this.myScriptElement.src = 'assets/javascript/authentification.js';
-    this.myScriptElement.type = 'text/javascript';
-    document.body.appendChild(this.myScriptElement); */
 
   }
 
@@ -83,17 +79,14 @@ export class AuthentificationComponent implements OnInit {
 
   onSignIn() {
 
-    const md5 = new Md5()
-    const pass = md5.appendStr(this.password).end().toString()
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
-      if (
-        element.numero_matricule == this.numero_matricule &&
-        element.password == pass
-      ) {
+      if (element.numero_matricule == this.numero_matricule) {
         this.authService.lieu = this.selected_lieu
         //si Admin
-        if (element.numero_matricule == 1) {
+        if (element.numero_matricule == this.adminMatricule) {
+          const md5 = new Md5()
+          const pass = md5.appendStr(this.password).end().toString()
           this.authService.isAdmin = true
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
