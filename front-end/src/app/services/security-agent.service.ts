@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class SecurityAgentService {
   matricule_security : any;
   security_name : any;
+  pointed_at : any;
 
   constructor() { }
 }

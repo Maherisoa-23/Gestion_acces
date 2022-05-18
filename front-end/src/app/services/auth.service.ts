@@ -13,8 +13,8 @@ export class AuthService {
   lieu = "Ambohijatovo";
   isAdmin = false;
   date : any;
-  userLoginTime : any;
-  numero_matricule : any;
+
+  pointages:any;
 
   //readonly APIUrl = "http://192.168.10.107:8000"
   readonly APIUrl = "http://localhost:8000"
@@ -69,6 +69,12 @@ export class AuthService {
 
   getPointageList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage/');
+  }
+
+  refreshPointageList() {
+    this.getPointageList().subscribe((data) => {
+      this.pointages = data;
+    });
   }
 
   getPointageRegisterList(): Observable<any[]> {

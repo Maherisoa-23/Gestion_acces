@@ -3,6 +3,7 @@ from django.db import models
 class User(models.Model) :
     user_name = models.CharField(max_length=100)
     numero_matricule = models.IntegerField(primary_key=True)
+    password = models.CharField(max_length=100, null=True)
     
 class Department(models.Model):
     department_id = models.AutoField(primary_key=True)

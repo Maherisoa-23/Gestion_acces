@@ -25,11 +25,9 @@ export class AuthentificationComponent implements OnInit {
   input1 = false;
   input2 = false;
 
-  //pour verifier si la connection est déja existante
   tmptab: any = []
 
   usersList: any = [];
-  //myScriptElement: HTMLScriptElement;
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
 
   }
@@ -81,23 +79,9 @@ export class AuthentificationComponent implements OnInit {
 
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
-      if (element.numero_matricule == this.numero_matricule) {
+      if (element.numero_matricule == this.numero_matricule && this.selected_lieu!="") {
         this.authService.lieu = this.selected_lieu
-        //si Admin
-        if (element.numero_matricule == this.adminMatricule) {
-          const md5 = new Md5()
-          const pass = md5.appendStr(this.password).end().toString()
-          this.authService.isAdmin = true
-          this.authService.signIn().then(() => {
-            this.authStatus = this.authService.isAuth;
-            this.authService.userName = element.user_name;
-            this.router.navigate(['admin']);
-            localStorage.setItem('admin1', JSON.stringify(element));
-          });
-
-        }
         //si agent de sécurité
-        else {
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name            
@@ -118,12 +102,25 @@ export class AuthentificationComponent implements OnInit {
             });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 1000);
-          //this.saveConnection()
-        }
+          //this.saveConnection()        
         break;
       }
+      //si Admin
+      if (element.numero_matricule == this.adminMatricule) {
+        const md5 = new Md5()
+        const pass = md5.appendStr(this.password).end().toString()
+        if(element.password == pass) {
+          this.authService.isAdmin = true
+          this.authService.signIn().then(() => {
+          this.authStatus = this.authService.isAuth;
+          this.authService.userName = element.user_name;
+          this.router.navigate(['admin']);
+          localStorage.setItem('admin1', JSON.stringify(element));
+        });
+        }
     }
   }
+}
 
   saveConnection() {
     this.date = new Date();
@@ -151,4 +148,8 @@ export class AuthentificationComponent implements OnInit {
   //animation du formulaire d'euthentification
   ClickOnInput1() { this.input1 = true }
   ClickOnInput2() { this.input2 = true }
+
+  suggested(numero_matricule : any){
+    this.numero_matricule = numero_matricule;
+  }
 }

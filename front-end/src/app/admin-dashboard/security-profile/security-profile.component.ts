@@ -28,6 +28,7 @@ export class SecurityProfileComponent implements OnInit {
   constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService) { }
 
   ngOnInit(): void {
+    this.last_pointage_lieu = this.SecurityServ.pointed_at
     this.refreshPointageRegisterList();
     this.matricule_security = this.SecurityServ.matricule_security;
     this.security_name = this.SecurityServ.security_name;
@@ -52,7 +53,9 @@ export class SecurityProfileComponent implements OnInit {
       }
     }
     this.last_pointage_date = this.last_pointage.date;
-    this.last_pointage_lieu = this.last_pointage.lieu;
+    if (this.last_pointage_lieu == "not pointed") {
+      this.last_pointage_lieu = this.last_pointage.lieu;
+    }
   }
 
   chartit() {

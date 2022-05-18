@@ -16,28 +16,21 @@
           </div>
           <div class="div">
             <h5>Numero </h5>
-            <input
-              type="text"
-              class="input-auth"
-              name="numero_matricule"
-              required
-              [(ngModel)]="numero_matricule"
-            />
+            <input type="text" class="input-auth" name="numero_matricule" required [(ngModel)]="numero_matricule" />
+            <ul *ngFor="let item of usersList">
+              <li *ngIf="item.numero_matricule == numero_matricule" (click) = "suggested(item.numero_matricule)"> {{item.numero_matricule}} : {{item.user_name}}</li>
+            </ul>
           </div>
         </div>
-        <div [ngClass]="{'input-div': true, 'focus': input2}" (click)="ClickOnInput2()" (keyup)="ClickOnInput2()" *ngIf="numero_matricule == adminMatricule"> <!-- admin matricule -->
+        <div [ngClass]="{'input-div': true, 'focus': input2}" (click)="ClickOnInput2()" (keyup)="ClickOnInput2()"
+          *ngIf="numero_matricule == adminMatricule">
+          <!-- admin matricule -->
           <div class="i">
             <i class="fas fa-lock"></i>
           </div>
           <div class="div">
             <h5>Mot de Passe</h5>
-            <input
-              type="password"
-              class="input-auth"
-              name="password"
-              required
-              [(ngModel)]="password"
-            />
+            <input type="password" class="input-auth" name="password" required [(ngModel)]="password" />
           </div>
         </div>
         <div class="select" *ngIf="numero_matricule != adminMatricule">
@@ -47,12 +40,7 @@
             </option>
           </select>
         </div>
-        <input
-          type="submit"
-          class="btn"
-          (click)="onSignIn()"
-          value="Se Connecter"
-        />
+        <input type="submit" class="btn" (click)="onSignIn()" value="Se Connecter" />
       </form>
     </div>
   </div>

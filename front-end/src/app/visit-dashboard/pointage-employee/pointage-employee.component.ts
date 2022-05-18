@@ -67,7 +67,7 @@ export class PointageEmployeeComponent implements OnInit {
       this.date = new Date();
       this.heure = new Date();
       this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
-      this.date = this.datePipe.transform(this.date, "fullDate");
+      this.date = this.datePipe.transform(this.date, "dd:MM:yyyy");
       var val = {
         numero_matricule: this.getNumeroMatricule(this.enteredValue),
         date: this.date.toString(),

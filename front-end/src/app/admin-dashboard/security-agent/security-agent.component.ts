@@ -12,6 +12,7 @@ export class SecurityAgentComponent implements OnInit {
 
   securities : any ;
   pointage_register : any ;
+  pointages : any ;
   last_pointage : any ;
   trie_nom = false;
   trie_matricule = false;
@@ -30,6 +31,12 @@ export class SecurityAgentComponent implements OnInit {
   refreshSecurityList() {
     this.authServ.getEmployeeListByDep(3).subscribe((data) => {
       this.securities = data;
+    });
+  }
+
+  refreshPointageList() {
+    this.authServ.getPointageList().subscribe((data) => {
+      this.pointages = data;
     });
   }
 
@@ -76,9 +83,13 @@ export class SecurityAgentComponent implements OnInit {
   }
 
   ShowSecurityProfile(security : any) {
-    this.SecurityServ.matricule_security = security.numero_matricule;
-    this.SecurityServ.security_name = security.employee_name;
-    this.route.navigate(['admin/security-profile'])
+    this.authServ.refreshPointageList()
+    setTimeout(() => {
+      this.SecurityServ.matricule_security = security.numero_matricule;
+      this.SecurityServ.security_name = security.employee_name;
+      this.SecurityServ.pointed_at = security.pointed_at
+      this.route.navigate(['admin/security-profile'])
+    }, 1000)
   }
 
 
