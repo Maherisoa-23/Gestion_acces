@@ -1,290 +1,405 @@
 /* page-profil */
 .page-profil {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 40% 60%;
-    grid-template-rows: 300px 1fr;
-    grid-template-areas:
-      "card-profil pointage"
-      "chart pointage";
-     padding-right: 5px; 
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 300px 1fr;
+  grid-template-areas:
+    "card-profil pointage"
+    "chart pointage";
+  padding-right: 5px;
+}
+/* page-profil */
+/* -----------------contenu ----------------------*/
+/* card-profil */
+.card-profil {
+  grid-area: card-profil;
+  background: var(--color-bg);
+  box-shadow: 1px 2px 3px rgb(198, 195, 195);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: var(--color-blue);
+  margin: 10px auto;
+}
+.card-profil .img-card {
+  width: 200px;
+  height: 200px;
+  margin: 10px 20px 10px 20px;
+}
+.card-profil .img-card img {
+  max-width: 100%;
+}
+.card-profil .content-card {
+  width: 100%;
+  height: 100%;
+  background: var(--color-blue);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card-profil .content-card ul {
+  list-style-type: none;
+  color: var(--color-fond);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 65px auto;
+}
+.card-profil .content-card ul li {
+  padding: 10px;
+  text-transform: uppercase;
+}
+.card-profil .content-card ul li span {
+  text-transform: capitalize;
+  margin-left: 10px;
+  font-weight: lighter;
+}
+/* ------------------------------ */
+/* chart */
+.chart {
+  grid-area: chart;
+  box-sizing: border-box;
+  background: var(--color-bg);
+  box-shadow: 1px 2px 3px rgb(198, 195, 195);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  color: var(--color-blue);
+
+  /* height: max-content; */
+}
+
+/* ----------------------------- */
+.pointage {
+  grid-area: pointage;
+  background: var(--color-bg);
+  box-shadow: 1px 2px 3px rgb(198, 195, 195);
+  margin: 10px 0px 10px 20px;
+  border-radius: 10px;
+  height: max-content;
+}
+/* table */
+
+/*TABLE*/
+.pointage .section {
+  width: 100%;
+  grid-column: 1 / -1;
+
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.pointage .section h1 {
+  text-align: center;
+  color: var(--color-titre);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.pointage .section .tbl {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 10%;
+  margin: 0 auto 40px;
+}
+.pointage .section .tbl thead {
+  background-color: var(--color-blue);
+}
+.pointage .section .tbl thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #fff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border-top: 1px solid #dee2e685;
+  border-bottom: 1px solid #dee2e685;
+}
+/* .pointage .section .tbl tbody tr {
+  background-color: var(--color-fond);
+  color: var(--color-blue);
+} */
+.pointage .section .tbl tbody tr:hover {
+  background-color: var(--color-green);
+  color: var(--color-bg);
+}
+.pointage .section .tbl tbody {
+  background: var(--color-fond);
+}
+.pointage .section .tbl tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+  border-top: 1px solid var(--color-blue);
+  border-bottom: 1px solid var(--color-blue);
+}
+.pointage .section .tbl tbody .fond1 {
+  color: var(--color-red);
+  /* color: var(--color-bg); */
+}
+.pointage .section .tbl tbody .fond2 {
+  color: var(--color-blue);
+  /* color: var(--color-bg); */
+}
+.pointage .section .tbl tbody .fond3 {
+  color: var(--color-green);
+  /* color: var(--color-bg); */
+}
+
+.pointage .section .tbl tbody tr td .bouton {
+  width: 100px;
+  text-decoration: none;
+  line-height: 35px;
+  display: inline-block;
+  background-color: var(--color-red);
+  font-weight: medium;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.pointage .section .tbl tbody tr td .bouton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.pointage .section .tbl tbody tr td .bouton span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.pointage .section .tbl tbody tr td .bouton:hover span {
+  padding-right: 25px;
+}
+.pointage .section .tbl tbody tr td .bouton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.th:hover {
+  cursor: pointer;
+}
+
+/*------------------------- contenu -------------------*/
+
+/* responsive */
+@media screen and (max-width: 460px) {
+  .pointage .section .tbl tbody tr td .bouton {
+    width: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* page-profil */
+  .page-profil {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
   }
   /* page-profil */
-  /* -----------------contenu ----------------------*/
-  /* card-profil */
   .card-profil {
-    grid-area: card-profil;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  
-    color: var(--color-blue);
-    margin: 10px auto;
-  }
-  .card-profil .img-card {
-    width: 200px;
-    height: 200px;
-    margin: 10px 20px 10px 20px;
-  }
-  .card-profil .img-card img {
-    max-width: 100%;
-  }
-  .card-profil .content-card {
-    width: 100%;
-    height: 100%;
-    background: var(--color-blue);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  .card-profil .content-card ul {
-    list-style-type: none;
-    color: var(--color-fond);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-left: 20px;
-  }
-  .card-profil .content-card ul li {
-    padding: 10px;
-    text-transform: uppercase;
-  }
-  .card-profil .content-card ul li span {
-    text-transform: capitalize;
-    margin-left: 20px;
-    font-weight: lighter;
-  }
-  /* ------------------------------ */
-  /* chart */
-  .chart {
-    grid-area: chart;
-    box-sizing: border-box;
-    background: var(--color-bg);
-    box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 10px;
-    width: 100%;
+    border-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px auto;
+    flex-wrap: wrap;
     color: var(--color-blue);
-  
-    /* height: max-content; */
+    margin: 10px;
+    /* border: 2px solid red; */
   }
-  
-  /* ----------------------------- */
+  .card-profil .img-card {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+  }
+  .card-profil .content-card {
+    width: 100%;
+    height: 70%;
+
+    background: var(--color-blue);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: center;
+    /* border: 5px solid yellow; */
+  }
+  .chart {
+    margin: 20px auto;
+  }
   .pointage {
     grid-area: pointage;
+    width: 100%;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    margin: 10px 0px 10px 20px;
+    margin: 10px auto;
     border-radius: 10px;
     height: max-content;
   }
-  /* table */
-  
-  /*TABLE*/
-  .pointage .section {
-    width: 100%;
-    grid-column: 1 / -1;
-  
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  .pointage .section h1 {
-    text-align: center;
-    color: var(--color-blue);
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  .pointage .section .tbl {
-    width: 100%;
-    border-collapse: collapse;
-    padding: 0 10%;
-    margin: 0 auto 40px;
-  }
+  /*liste tableau*/
+
   .pointage .section .tbl thead {
-    background-color: var(--color-blue);
+    display: none;
   }
-  .pointage .section .tbl thead tr th {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.35px;
-    color: #fff;
-    opacity: 1;
-    padding: 12px;
-    vertical-align: top;
-    border-top: 1px solid #dee2e685;
-    border-bottom: 1px solid #dee2e685;
+  .pointage .section .tbl,
+  .pointage .section .tbl tbody,
+  .pointage .section .tbl tr,
+  .pointage .section .tbl td {
+    display: block;
+    width: 100%;
   }
-  .pointage .section .tbl tbody tr {
-    background-color: var(--color-fond);
-    color: var(--color-blue);
-  }
-  .pointage .section .tbl tbody tr:hover {
-    background-color: var(--color-green);
-    color: #fff;
+  .pointage .section .tbl tr {
+    margin-bottom: 15px;
   }
   .pointage .section .tbl tbody tr td {
-    font-size: 14px;
-    letter-spacing: 0.35px;
-    font-weight: normal;
-    padding: 8px;
-    text-align: center;
-    border-top: 1px solid var(--color-blue);
-    border-bottom: 1px solid var(--color-blue);
-  }
-  
-  .pointage .section .tbl tbody tr td .bouton {
-    width: 100px;
-    text-decoration: none;
-    line-height: 35px;
-    display: inline-block;
-    background-color: var(--color-red);
-    font-weight: medium;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: all 0.5s;
-    cursor: pointer;
-    opacity: 1;
-  }
-  .pointage .section .tbl tbody tr td .bouton span {
-    cursor: pointer;
-    display: inline-block;
+    text-align: right;
+    padding-left: 50%;
     position: relative;
-    transition: 0.5s;
   }
-  .pointage .section .tbl tbody tr td .bouton span:after {
-    content: "\00bb";
+  .pointage .section .tbl td:before {
+    content: attr(data-label);
     position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
   }
-  .pointage .section .tbl tbody tr td .bouton:hover span {
-    padding-right: 25px;
+}
+@media screen and (max-width: 900px) {
+  /* page-profil */
+  .page-profil {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
   }
-  .pointage .section .tbl tbody tr td .bouton:hover span:after {
-    opacity: 1;
-    right: 0;
+  /* page-profil */
+  .card-profil {
+    background: var(--color-bg);
+    box-shadow: 1px 2px 3px rgb(198, 195, 195);
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--color-blue);
+    margin: 10px;
+    /* border: 2px solid red; */
   }
-  /*------------------------- contenu -------------------*/
-  
-  /* responsive */
-  @media screen and (max-width: 460px) {
-    .pointage .section .tbl tbody tr td .bouton {
-      width: 50px;
-    }
+  .card-profil .img-card {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
   }
-  @media screen and (max-width: 768px) {
-    .pointage .section .tbl thead {
-      display: none;
-    }
-    .pointage .section .tbl,
-    .pointage .section .tbl tbody,
-    .pointage .section .tbl tr,
-    .pointage .section .tbl td {
-      display: block;
-      width: 100%;
-    }
-    .pointage .section .tbl tr {
-      margin-bottom: 15px;
-    }
-    .pointage .section .tbl tbody tr td {
-      text-align: right;
-      padding-left: 50%;
-      position: relative;
-    }
-    .pointage .section .tbl td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 0;
-      width: 50%;
-      padding-left: 15px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: left;
-    }
-  }
-  @media screen and (max-width: 900px) {
-    .pointage .section .tbl thead {
-      display: none;
-    }
-    .pointage .section .tbl,
-    .pointage .section .tbl tbody,
-    .pointage .section .tbl tr,
-    .pointage .section .tbl td {
-      display: block;
-      width: 100%;
-    }
-    .pointage .section .tbl tr {
-      margin-bottom: 15px;
-    }
-    .pointage .section .tbl tbody tr td {
-      text-align: right;
-      padding-left: 50%;
-      position: relative;
-    }
-    .pointage .section .tbl td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 0;
-      width: 50%;
-      padding-left: 15px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: left;
-    }
-  }
-  
-  @media screen and (max-width: 760px) {
-    /* page-profil */
-    .page-profil {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center;
-    }
-    /* page-profil */
-    .card-profil {
-      background: var(--color-bg);
-      box-shadow: 1px 2px 3px rgb(198, 195, 195);
-      border-radius: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      color: var(--color-blue);
-      margin: 10px;
-    }
-    .card-profil .img-card {
-      width: 100px;
-      height: 100px;
-      margin: 20px auto;
-    }
-    .card-profil .content-card {
-      width: 100%;
-      background: var(--color-blue);
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      text-align: center;
-    }
-  }
+  .card-profil .content-card {
+    width: 100%;
+    height: 70%;
 
-  .th:hover{
-    cursor: pointer;
+    background: var(--color-blue);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: center;
+    /* border: 5px solid yellow; */
   }
+  .chart {
+    margin: 20px auto;
+  }
+  .pointage {
+    grid-area: pointage;
+    width: 100%;
+    background: var(--color-bg);
+    box-shadow: 1px 2px 3px rgb(198, 195, 195);
+    margin: 10px auto;
+    border-radius: 10px;
+    height: max-content;
+  }
+  /*liste tableau*/
+
+  .pointage .section .tbl thead {
+    display: none;
+  }
+  .pointage .section .tbl,
+  .pointage .section .tbl tbody,
+  .pointage .section .tbl tr,
+  .pointage .section .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .pointage .section .tbl tr {
+    margin-bottom: 15px;
+  }
+  .pointage .section .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .pointage .section .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+@media screen and (max-width: 1100px) {
+  /*liste tableau*/
+
+  .pointage .section .tbl thead {
+    display: none;
+  }
+  .pointage .section .tbl,
+  .pointage .section .tbl tbody,
+  .pointage .section .tbl tr,
+  .pointage .section .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .pointage .section .tbl tr {
+    margin-bottom: 15px;
+  }
+  .pointage .section .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .pointage .section .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+/*
+@media screen and (max-width: 760px) {
+} */

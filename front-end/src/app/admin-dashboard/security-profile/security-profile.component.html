@@ -26,27 +26,52 @@
             <h1>Ses dérnières activités</h1>
             <table class="tbl">
                 <thead>
-                    <tr>
-                        <th class="th" (click)="SortByLieu()">
-                            Lieu <i *ngIf="lieu_croissant && trie_lieu" class="fa fa-caret-down dropbtn"></i> <i
-                                *ngIf="!lieu_croissant && trie_lieu" class="fa fa-caret-up dropbtn"></i>
-                        </th>
-                        <th class="th" (click)="SortByDate()">Date <i *ngIf="date_croissant && trie_date"
-                                class="fa fa-caret-down dropbtn"></i> <i *ngIf="!date_croissant && trie_date"
-                                class="fa fa-caret-up dropbtn"></i></th>
-                        <th>Heure d'entré</th>
-                        <th>Heure de sortie</th>
-                    </tr>
+                  <tr>
+                    <th class="th" (click)="SortByLieu()">
+                      Lieu
+                      <i
+                        *ngIf="lieu_croissant && trie_lieu"
+                        class="fa fa-caret-down dropbtn"
+                      ></i>
+                      <i
+                        *ngIf="!lieu_croissant && trie_lieu"
+                        class="fa fa-caret-up dropbtn"
+                      ></i>
+                    </th>
+                    <th class="th" (click)="SortByDate()">
+                      Date
+                      <i
+                        *ngIf="date_croissant && trie_date"
+                        class="fa fa-caret-down dropbtn"
+                      ></i>
+                      <i
+                        *ngIf="!date_croissant && trie_date"
+                        class="fa fa-caret-up dropbtn"
+                      ></i>
+                    </th>
+                    <th>Heure d'entré</th>
+                    <th>Heure de sortie</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of pointages">
-                        <td data-label="ID">{{item.lieu}}</td>
-                        <td data-label="Nom">{{item.date}}</td>
-                        <td data-label="Nom">{{item.entry_time}}</td>
-                        <td data-label="Date">{{item.exit_time}}</td>
-                    </tr>
+                  <tr
+                    *ngFor="let item of pointages"
+                    [ngClass]="{
+                      fond1: item.lieu == 'Ambohijatovo',
+                      fond2: item.lieu == 'Mangasoavina',
+                      fond3: item.lieu == 'Andraharo'
+                    }"
+                  >
+                    <!-- ngClass="item.lieu == 'Andraharo' ? 'fond1' : item.lieu == 'Ambohijatovo'? 'fond2' : 'fond3' " -->
+                    <td data-label="ID">
+                      {{ item.lieu }}
+                    </td>
+                    <td data-label="Nom">{{ item.date }}</td>
+                    <td data-label="Nom">{{ item.entry_time }}</td>
+                    <td data-label="Date">{{ item.exit_time }}</td>
+                  </tr>
                 </tbody>
-            </table>
+              </table>
         </div>
     </div>
     <!-- security-register-pointage -->

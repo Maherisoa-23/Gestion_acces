@@ -45,8 +45,8 @@ export class PointageRegisterComponent implements OnInit {
       this.isShow = true
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 5,
-        lengthMenu : [5, 10, 25],
+        pageLength: 10,
+        lengthMenu : [10, 15, 25],
         processing: true,
       };
     },500)
