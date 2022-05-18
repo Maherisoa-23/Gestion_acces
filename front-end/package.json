@@ -27,6 +27,7 @@
     "datatables.net": "^1.11.5",
     "datatables.net-dt": "^1.12.0",
     "jquery": "^3.6.0",
+    "ng-angular-popup": "^0.1.2",
     "rxjs": "~7.5.0",
     "ts-md5": "^1.2.11",
     "tslib": "^2.3.0",

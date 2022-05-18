@@ -37,6 +37,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 import { LOCALE_ID } from '@angular/core';
+import { NgToastModule } from 'ng-angular-popup';
 
 const appRoutes: Routes = [
   {
@@ -101,6 +102,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    NgToastModule
   ],
   providers: [
     VisitService,

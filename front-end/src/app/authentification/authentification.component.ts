@@ -3,6 +3,9 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5';
 import { DatePipe } from '@angular/common';
+import { NgToastService } from 'ng-angular-popup';
+
+
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
@@ -28,7 +31,7 @@ export class AuthentificationComponent implements OnInit {
   tmptab: any = []
 
   usersList: any = [];
-  constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
+  constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe, private toast: NgToastService) {
 
   }
 
@@ -76,10 +79,10 @@ export class AuthentificationComponent implements OnInit {
   }
 
   onSignIn() {
-
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
       if (element.numero_matricule == this.numero_matricule && this.selected_lieu!="") {
+        this.showSuccess()
         this.authService.lieu = this.selected_lieu
         //si agent de sécurité
           this.authService.signIn().then(() => {
@@ -117,9 +120,12 @@ export class AuthentificationComponent implements OnInit {
           this.router.navigate(['admin']);
           localStorage.setItem('admin1', JSON.stringify(element));
         });
+        this.showSuccess()
         }
+        else this.showErrorAdmin()
     }
   }
+  this.showErrorAgent()
 }
 
   saveConnection() {
@@ -144,6 +150,34 @@ export class AuthentificationComponent implements OnInit {
     });
     localStorage.setItem('connection', JSON.stringify(val))
   }
+
+  //Les messages de notification, de succes et d"erreur
+  showSuccess() {
+    this.toast.success({
+      detail: 'Bienvenue',
+      summary: 'Vous êtes connecté',
+      duration: 5000,
+    });
+  }
+
+  showErrorAdmin() {
+    this.toast.error({
+      detail: 'ERROR',
+      summary:
+        'Verifier bien votre matricule et votre mot de passe',
+      duration: 5000,
+    });
+  }
+
+  showErrorAgent() {
+    this.toast.error({
+      detail: 'ERROR',
+      summary:
+        'Verifier bien votre matricule et le choix du lieu',
+      duration: 5000,
+    });
+  }
+
 
   //animation du formulaire d'euthentification
   ClickOnInput1() { this.input1 = true }
