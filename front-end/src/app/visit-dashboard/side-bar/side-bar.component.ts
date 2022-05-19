@@ -73,13 +73,6 @@ export class SideBarComponent implements OnInit {
       entry_time : this.Connection.entry_time,
       exit_time: this.heure.toString(),
     };
-
-    this.authService.deletePointage(this.User.numero_matricule).subscribe((res) => {
-      console.log(res.toString() + " from the pointage list");
-    });
-    this.authService.addPointageRegister(val).subscribe((res) => {
-      console.log(res.toString() + " to the pointage register list");
-    });
   }
 
   showAccueil() {

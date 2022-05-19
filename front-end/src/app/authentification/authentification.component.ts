@@ -171,7 +171,6 @@ export class AuthentificationComponent implements OnInit {
     this.authService.addPointage(val).subscribe((res) => {
       console.log(res.toString() + ' to the pointage list');
     });
-    localStorage.setItem('connection', JSON.stringify(val));
   }
 
   //animation du formulaire d'euthentification

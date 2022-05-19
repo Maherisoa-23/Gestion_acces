@@ -102,8 +102,6 @@ export class AuthService {
   }
 
 
-
-
   //methode pour les comptages
   //pour les visites
   getTabVisitCounting(): Observable<any[]>{
@@ -113,6 +111,9 @@ export class AuthService {
     return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
   }
   //pour les pointages
+  getAllPointageByLieuAndDate(val : any){
+    return this.http.post(this.APIUrl + '/pointage_counter/', val);
+  }
   getPointageByLieuAndDate(val : any){
     return this.http.post(this.APIUrl + '/daily_pointage/', val);
   }

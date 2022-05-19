@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy , ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataTableDirective } from 'angular-datatables' ;
 import { Router } from '@angular/router';

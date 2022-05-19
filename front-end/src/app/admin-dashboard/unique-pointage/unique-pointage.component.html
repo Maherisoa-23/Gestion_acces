@@ -1,11 +1,49 @@
-<h2>pointage du : {{dailyPointages[0].date }}</h2>
-<h4>Nom : {{dailyPointages[0].employee_name }}</h4>
-<h4>Numero matricule : {{dailyPointages[0].numero_matricule }}</h4>
-<h4>Direction : {{dailyPointages[0].employee_dep_name }}</h4>
-<h4>Il a fait {{dailyPointages.length }} pointages </h4>
-<ul>
-    <li *ngFor="let item of dailyPointages ">
-        <h5> Lieu à : {{item.lieu}} </h5>
-        <h5> Entré à : {{item.entry_time}} et sorti à {{item.exit_time}}</h5>
-    </li>
-</ul>
+<div class="titre">
+    <h1>DETAILS</h1>
+  </div>
+  <div class="section">
+    <div class="date">
+      <h1>
+        Pointage du : <span>{{ dailyPointages[0].date }}</span>
+      </h1>
+    </div>
+  </div>
+  <div class="section">
+    <div class="nom">
+      <h2>
+        Nom: <span>{{ dailyPointages[0].employee_name }}</span>
+      </h2>
+      <h2>
+        Numero matricule: <span> {{ dailyPointages[0].numero_matricule }}</span>
+      </h2>
+      <h2>
+        Direction: <span> {{ dailyPointages[0].employee_dep_name }}</span>
+      </h2>
+      <h2>
+        Il a fait: <span> {{ dailyPointages.length }}</span> pointages
+      </h2>
+    </div>
+  </div>
+  <div class="section">
+    <div class="nom">
+      <h2>
+        Liste de pointage de: <span>{{ dailyPointages[0].employee_name }}</span>
+      </h2>
+    </div>
+    <div class="liste">
+      <ul>
+        <li *ngFor="let item of dailyPointages">
+          <h2>
+            Lieu à : <span>{{ item.lieu }}</span>
+          </h2>
+          <h2>
+            Entré à : <span>{{ item.entry_time }}</span>
+          </h2>
+          <h2>
+            Sorti à <span>{{ item.exit_time }}</span>
+          </h2>
+          <!-- reponsive??? -->
+        </li>
+      </ul>
+    </div>
+  </div>

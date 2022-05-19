@@ -158,11 +158,15 @@ def pointage_counter_API(request: HttpRequest, id=0):
             pointage_tab.append(nb_pointage)
         
         return JsonResponse(pointage_tab, safe=False)
-    #prendre le nombre de pointage à un lieu et date précis
+    #prendre le nombre de pointage à un lieu sur les 7 dérnières dates
     elif request.method== 'POST':
+        tab = []
         request_data = JSONParser().parse(request)
-        pointage = Pointage_register.objects.filter(date = request_data["date"], lieu = request_data["lieu"])
-        return JsonResponse(pointage.count(),safe=False)
+        for i in range(7):      
+            print(request_data["date" + str(i)] == "12-05-2022")      
+            pointage = Pointage_register.objects.filter(date = request_data["date" + str(i)], lieu = request_data["lieu"])
+            tab.append(pointage.count())
+        return JsonResponse(tab,safe=False)
     #nombre de pointage pour un lieu en particulier
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)

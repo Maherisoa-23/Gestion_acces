@@ -1,21 +1,36 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chart-generale',
   templateUrl: './chart-generale.component.html',
   styleUrls: ['./chart-generale.component.css'],
+  providers: [DatePipe],
 })
 export class ChartGeneraleComponent implements OnInit {
   @Input() tab_visit_counting: any = [];
 
   myChartVisite: any;
   myChartPointage: any;
+  today: any
+  date: any
+  dateTab: any = []
+  tab_pointage: any = []
+  tmp: any
 
-  constructor(private elementRef: ElementRef, private authServ: AuthService) {}
+  constructor(private elementRef: ElementRef, private authServ: AuthService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.getLastSevenDay();
+    this.getPointageByLieuDate("Ambohijatovo");
+    setTimeout(() => {
+      this.getPointageByLieuDate("Andraharo");
+    }, 500);
+    setTimeout(() => {
+      this.getPointageByLieuDate("Mangasoavina");
+    }, 1000);
     this.refreshCounting();
     setTimeout(() => {
       this.chartit();
@@ -27,8 +42,36 @@ export class ChartGeneraleComponent implements OnInit {
       this.tab_visit_counting = data;
     });
   }
+
+  getLastSevenDay() {
+    this.today = new Date()
+    for (let index = 1; index < 8; index++) {
+      this.date = new Date(this.today.setDate(this.today.getDate() - 1));
+      this.dateTab.push(this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString())
+    }
+  }
+
+  getPointageByLieuDate(lieu : string) {
+    const val = {
+      lieu: lieu,
+      date0: this.dateTab[0],
+      date1: this.dateTab[1],
+      date2: this.dateTab[2],
+      date3: this.dateTab[3],
+      date4: this.dateTab[4],
+      date5: this.dateTab[5],
+      date6: this.dateTab[6],
+    }
+    this.authServ.getAllPointageByLieuAndDate(val).subscribe((data) => {
+      this.tmp = data
+    });
+    setTimeout(() => {
+      console.log(this.tmp)
+    }, 500)
+  }
+
   chartit() {
-    const data_visite = {
+    const data_pointage = {
       labels: [
         'Lundi',
         'Mardi',
@@ -59,35 +102,12 @@ export class ChartGeneraleComponent implements OnInit {
         },
       ],
     };
-    const data_pointage = {
-      labels: [
-        'Lundi',
-        'Mardi',
-        'Mercredi',
-        'Jeudi',
-        'Vendredi',
-        'Samedi',
-        'Dimanche',
-      ],
-      datasets: [
-        {
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          borderColor: '#37ab4b',
-        },
-      ],
-    };
-    let htmlRefVisit =
-      this.elementRef.nativeElement.querySelector(`#myChartVisite`);
-    this.myChartVisite = new Chart(htmlRefVisit, {
-      type: 'bar',
-      data: data_visite,
-    });
     let htmlRefPointage =
       this.elementRef.nativeElement.querySelector(`#myChartPointage`);
     this.myChartPointage = new Chart(htmlRefPointage, {
-      type: 'line',
+      type: 'bar',
       data: data_pointage,
     });
   }
+
 }

@@ -61,7 +61,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     component: VisitDashboardComponent,
     children: [
-      { path: '', component: UserAccueilComponent },
+      { path: 'accueil', component: UserAccueilComponent },
       { path: 'visit-active', component: ListActiveVisitComponent },
       { path: 'pointage', component: PointageEmployeeComponent },
     ],
