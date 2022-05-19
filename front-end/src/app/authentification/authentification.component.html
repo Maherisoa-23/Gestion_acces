@@ -7,30 +7,55 @@
     <div class="login-content">
       <form>
         <img src="assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
-        <h2 class="title">Gestion Access</h2>
+        <h2 class="title">Gestion Access 2</h2>
         <p id="omnis">OMNIS Madagascar</p>
 
-        <div [ngClass]="{'input-div': true, 'focus': input1}" (click)="ClickOnInput1()" (keyup)="ClickOnInput1()">
+        <div
+          [ngClass]="{ 'input-div': true, focus: input1 }"
+          (click)="ClickOnInput1()"
+          (keyup)="ClickOnInput1()"
+        >
           <div class="i">
             <i class="fas fa-user"></i>
           </div>
           <div class="div">
-            <h5>Numero </h5>
-            <input type="text" class="input-auth" name="numero_matricule" required [(ngModel)]="numero_matricule" />
+            <h5>Numero</h5>
+            <input
+              type="text"
+              class="input-auth"
+              name="numero_matricule"
+              required
+              [(ngModel)]="numero_matricule"
+            />
             <ul *ngFor="let item of usersList">
-              <li *ngIf="item.numero_matricule == numero_matricule" (click) = "suggested(item.numero_matricule)"> {{item.numero_matricule}} : {{item.user_name}}</li>
+              <li
+                *ngIf="item.numero_matricule == numero_matricule"
+                (click)="suggested(item.numero_matricule)"
+              >
+                {{ item.numero_matricule }} : {{ item.user_name }}
+              </li>
             </ul>
           </div>
         </div>
-        <div [ngClass]="{'input-div': true, 'focus': input2}" (click)="ClickOnInput2()" (keyup)="ClickOnInput2()"
-          *ngIf="numero_matricule == adminMatricule">
+        <div
+          [ngClass]="{ 'input-div': true, focus: input2 }"
+          (click)="ClickOnInput2()"
+          (keyup)="ClickOnInput2()"
+          *ngIf="numero_matricule == adminMatricule"
+        >
           <!-- admin matricule -->
           <div class="i">
             <i class="fas fa-lock"></i>
           </div>
           <div class="div">
             <h5>Mot de Passe</h5>
-            <input type="password" class="input-auth" name="password" required [(ngModel)]="password" />
+            <input
+              type="password"
+              class="input-auth"
+              name="password"
+              required
+              [(ngModel)]="password"
+            />
           </div>
         </div>
         <div class="select" *ngIf="numero_matricule != adminMatricule">
@@ -40,7 +65,12 @@
             </option>
           </select>
         </div>
-        <input type="submit" class="btn" (click)="onSignIn()" value="Se Connecter" />
+        <input
+          type="submit"
+          class="btn"
+          (click)="onSignIn()"
+          value="Se Connecter"
+        />
       </form>
     </div>
   </div>
