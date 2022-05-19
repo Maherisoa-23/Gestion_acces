@@ -6,8 +6,8 @@ from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 import hashlib
 
-from authApp.models import User,Pointage,Employee,Department,Pointage_register,Active_connection,Connection_register
-from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Active_connection_serializer,Connection_register_serializer
+from authApp.models import User,Pointage,Employee,Department,Pointage_register
+from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer
 from VisitApp.models import Lieu
 
 # Create your views here.
@@ -127,52 +127,6 @@ def pointage_register_API(request: HttpRequest, id=0):
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'DELETE':
         pointage=Pointage_register.objects.get(pointage_id =id)
-        pointage.delete()
-        return JsonResponse("Delete successfully", safe=False)
-    return JsonResponse("Failded to delete", safe = False)
-
-@csrf_exempt
-def active_connection_API(request: HttpRequest, id=0):
-    if request.method == 'GET':
-        pointage = Active_connection.objects.all()
-        pointage_serializer = Active_connection_serializer(pointage, many=True)
-        return JsonResponse(pointage_serializer.data, safe=False)
-    elif request.method == 'PUT':
-        AC_data = JSONParser().parse(request)
-        active = Active_connection.objects.get(lieu = AC_data["lieu"])
-        active.date = AC_data["date"]
-        emp = Employee.objects.get(pk = AC_data["numero_matricule"])
-        active.employee_name = emp.employee_name
-        active.numero_matricule = emp
-        active.entry_time = AC_data["entry_time"]
-        active.save()
-        return JsonResponse("Updated successfully", safe= False)
-    elif request.method == 'DELETE':
-        pointage=Active_connection.objects.get(pk =id)
-        pointage.employee_name = ""
-        pointage.entry_time = ""
-        pointage.numero_matricule = None
-        pointage.save()
-        return JsonResponse("Delete successfully", safe=False)
-    return JsonResponse("Failded to delete", safe = False)
-
-@csrf_exempt
-def connection_register_API(request: HttpRequest, id=0):
-    if request.method == 'GET':
-        pointage = Connection_register.objects.all()
-        pointage_serializer = Connection_register_serializer(pointage, many=True)
-        return JsonResponse(pointage_serializer.data, safe=False)
-    elif request.method== 'POST':
-        pointage_data = JSONParser().parse(request)
-        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
-        pointage_data["employee_name"] = employee.employee_name
-        pointage_serializer = Connection_register_serializer(data=pointage_data)
-        if pointage_serializer.is_valid():
-            pointage_serializer.save()
-            return JsonResponse("Added successfully",safe=False)
-        return JsonResponse("failded to add", safe= False)
-    elif request.method == 'DELETE':
-        pointage=Connection_register.objects.get(pointage_id =id)
         pointage.delete()
         return JsonResponse("Delete successfully", safe=False)
     return JsonResponse("Failded to delete", safe = False)
