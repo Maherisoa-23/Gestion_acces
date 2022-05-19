@@ -1,5 +1,3 @@
-from operator import mod
-from pickle import TRUE
 from django.db import models
 
 # Create your models here.
@@ -28,3 +26,4 @@ class Lieu(models.Model):
     lieu_name = models.CharField(max_length=50)
     total_employee = models.IntegerField(default=100)
     isActive = models.BooleanField(default=False)
+    entry_time = models.CharField(max_length=30, null=True)

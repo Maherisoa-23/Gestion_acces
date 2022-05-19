@@ -101,25 +101,6 @@ export class AuthService {
     return this.http.delete(this.APIUrl + '/security/' + dep_id);
   }
 
-  //methode pour la gestion des connections
-  getActiveConnectionList(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/active_connection/');
-  }
-
-  addActiveConnection(val: any) {
-    return this.http.post(this.APIUrl + '/active_connection/',val);
-  }
-
-  putActiveConnection(val: any) {
-    return this.http.put(this.APIUrl + '/active_connection/',val);
-  }
-  deleteActiveConnection(lieu_id: number) {
-    return this.http.delete(this.APIUrl + '/active_connection/' + lieu_id);
-  }
-
-  addConnectionRegister(val: any) {
-    return this.http.post(this.APIUrl + '/connection_register/',val);
-  }
 
 
 

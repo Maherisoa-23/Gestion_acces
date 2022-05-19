@@ -9,12 +9,12 @@ import { Chart } from 'chart.js';
 })
 export class AccueilComponent implements OnInit {
 
-  activeConnections: any;
   pointages: any;
   activeSecurityList: any;
   myChart: any;
   admin: any;
 
+  lieux : any
   // Clock
   Date: Date = new Date();
   private daysArray = [
@@ -60,11 +60,6 @@ export class AccueilComponent implements OnInit {
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
 
-  refreshActiveConnectionsList() {
-    this.authServ.getActiveConnectionList().subscribe((data) => {
-      this.activeConnections = data;
-    });
-  }
 
   refreshPointageList() {
     this.authServ.getPointageList().subscribe((data) => {
@@ -73,10 +68,15 @@ export class AccueilComponent implements OnInit {
   }
 
   refresh() {
-    this.refreshActiveConnectionsList();
+    this.refreshLieuxList()
     this.refreshPointageList();
     this.authServ.getPointageByDep(3).subscribe((data) => {
       this.activeSecurityList = data
+    });
+  }
+  refreshLieuxList(){
+    this.authServ.getLieuList().subscribe((data) => {
+      this.lieux = data
     });
   }
 

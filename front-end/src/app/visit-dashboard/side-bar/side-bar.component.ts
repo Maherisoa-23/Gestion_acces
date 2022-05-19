@@ -77,12 +77,6 @@ export class SideBarComponent implements OnInit {
     this.authService.deletePointage(this.User.numero_matricule).subscribe((res) => {
       console.log(res.toString() + " from the pointage list");
     });
-    this.authService.deleteActiveConnection(this.lieu_id).subscribe((res) => {
-      console.log(res.toString());
-    });
-    this.authService.addConnectionRegister(val).subscribe((res) => {
-      console.log(res.toString() + " to the connection register list");
-    });
     this.authService.addPointageRegister(val).subscribe((res) => {
       console.log(res.toString() + " to the pointage register list");
     });

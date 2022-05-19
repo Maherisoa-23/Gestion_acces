@@ -31,9 +31,8 @@
   <div class="accueil-header">
     <!--eto-->
     <app-lieu-card
-      *ngFor="let item of activeConnections"
-      [lieu]="item.lieu"
-      [employee_name]="item.employee_name"
+      *ngFor="let item of lieux"
+      [lieu]="item.lieu_name" 
       [entry_time]="item.entry_time"
     ></app-lieu-card>
   </div>

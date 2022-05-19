@@ -40,7 +40,6 @@ export class AuthentificationComponent implements OnInit {
   ngOnInit(): void {
     this.refreshLieuList();
     this.refreshUsersList();
-    this.refreshActiveConnectionList();
     this.authStatus = this.authService.isAuth;
   }
   //Les messages de notification, de succes et d"erreur
@@ -96,15 +95,11 @@ export class AuthentificationComponent implements OnInit {
     });
   }
 
-  refreshActiveConnectionList() {
-    this.authService.getActiveConnectionList().subscribe((data) => {
-      this.tmptab = data;
-    });
-  }
-
   onSignIn() {
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
+      console.log(element.numero_matricule == this.numero_matricule && this.selected_lieu != '')
+
       //admnin
       if (
         this.numero_matricule == this.adminMatricule &&
@@ -126,8 +121,7 @@ export class AuthentificationComponent implements OnInit {
         break;
       } else {
         if (
-          this.selected_lieu != '' &&
-          this.numero_matricule == element.matricule
+          element.numero_matricule == this.numero_matricule && this.selected_lieu != ''
         ) {
           this.authService.lieu = this.selected_lieu;
           //si agent de sécurité
@@ -155,8 +149,9 @@ export class AuthentificationComponent implements OnInit {
           }, 1000);
           //this.saveConnection()
           break;
-        } else this.showErrorAgent();
+        } 
       }
+      this.showErrorAgent();
     }
   }
 
@@ -175,9 +170,6 @@ export class AuthentificationComponent implements OnInit {
 
     this.authService.addPointage(val).subscribe((res) => {
       console.log(res.toString() + ' to the pointage list');
-    });
-    this.authService.putActiveConnection(val).subscribe((res) => {
-      console.log(res.toString());
     });
     localStorage.setItem('connection', JSON.stringify(val));
   }
