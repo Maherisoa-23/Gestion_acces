@@ -105,42 +105,11 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
+      //admnin
       if (
-        element.numero_matricule == this.numero_matricule &&
-        this.selected_lieu != '' &&
-        element.numero_matricule != this.adminMatricule
+        this.numero_matricule == this.adminMatricule &&
+        this.numero_matricule == element.numero_matricule
       ) {
-        this.authService.lieu = this.selected_lieu;
-        //si agent de sécurité
-        this.authService.signIn().then(() => {
-          this.authStatus = this.authService.isAuth;
-          this.authService.userName = element.user_name;
-          this.showSuccess();
-          this.router.navigate(['agent']);
-        });
-        console.log('lieu this  = ' + this.authService.lieu);
-
-        localStorage.setItem('user', JSON.stringify(element));
-        this.authService
-          .getLieu(this.getLieuId(this.authService.lieu))
-          .subscribe((data) => {
-            this.Lieu = data;
-          });
-
-        setTimeout(() => {
-          this.Lieu.isActive = true;
-          this.authService.putLieu(this.Lieu).subscribe((res) => {
-            console.log(res.toString());
-          });
-          localStorage.setItem('lieu', JSON.stringify(this.Lieu));
-        }, 1000);
-        //this.saveConnection()
-        break;
-      } else {
-        this.showErrorAgent();
-      }
-      //si Admin
-      if (element.numero_matricule == this.adminMatricule) {
         const md5 = new Md5();
         const pass = md5.appendStr(this.password).end().toString();
         if (element.password == pass) {
@@ -148,17 +117,47 @@ export class AuthentificationComponent implements OnInit {
           this.authService.signIn().then(() => {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
-            this.showSuccess();
 
             this.router.navigate(['admin']);
             localStorage.setItem('admin1', JSON.stringify(element));
           });
-        } else {
-          this.showErrorAdmin();
-        }
+          this.showSuccess();
+        } else this.showErrorAdmin();
+        break;
+      } else {
+        if (
+          this.selected_lieu != '' &&
+          this.numero_matricule == element.matricule
+        ) {
+          this.authService.lieu = this.selected_lieu;
+          //si agent de sécurité
+          this.authService.signIn().then(() => {
+            this.authStatus = this.authService.isAuth;
+            this.authService.userName = element.user_name;
+            this.showSuccess();
+            this.router.navigate(['agent']);
+          });
+          console.log('lieu this  = ' + this.authService.lieu);
+
+          localStorage.setItem('user', JSON.stringify(element));
+          this.authService
+            .getLieu(this.getLieuId(this.authService.lieu))
+            .subscribe((data) => {
+              this.Lieu = data;
+            });
+
+          setTimeout(() => {
+            this.Lieu.isActive = true;
+            this.authService.putLieu(this.Lieu).subscribe((res) => {
+              console.log(res.toString());
+            });
+            localStorage.setItem('lieu', JSON.stringify(this.Lieu));
+          }, 1000);
+          //this.saveConnection()
+          break;
+        } else this.showErrorAgent();
       }
     }
-    // this.showErrorAgent();
   }
 
   saveConnection() {

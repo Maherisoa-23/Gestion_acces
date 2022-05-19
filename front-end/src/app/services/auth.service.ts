@@ -16,6 +16,10 @@ export class AuthService {
 
   pointages:any;
 
+  //pour passer des données entre les composants.
+  dateDailyPointage = ""
+  numero_matricule = 0
+
   //readonly APIUrl = "http://192.168.10.107:8000"
   readonly APIUrl = "http://localhost:8000"
   
@@ -117,6 +121,8 @@ export class AuthService {
     return this.http.post(this.APIUrl + '/connection_register/',val);
   }
 
+
+
   //methode pour les comptages
   //pour les visites
   getTabVisitCounting(): Observable<any[]>{
@@ -127,7 +133,7 @@ export class AuthService {
   }
   //pour les pointages
   getPointageByLieuAndDate(val : any){
-    return this.http.post(this.APIUrl + '/pointage_counter/', val);
+    return this.http.post(this.APIUrl + '/daily_pointage/', val);
   }
   getPointageCountingFilterByPlace(lieu_id: number): Observable<any>{
     return this.http.delete<any>(this.APIUrl + '/pointage_counter/' + lieu_id);

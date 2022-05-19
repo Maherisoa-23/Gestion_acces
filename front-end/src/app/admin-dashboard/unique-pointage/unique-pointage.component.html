@@ -1,10 +1,11 @@
-<h2>pointage du : </h2>
-<h4>Nom : </h4>
-<h4>Numero matricule : </h4>
-<h4>Les pointages </h4>
+<h2>pointage du : {{dailyPointages[0].date }}</h2>
+<h4>Nom : {{dailyPointages[0].employee_name }}</h4>
+<h4>Numero matricule : {{dailyPointages[0].numero_matricule }}</h4>
+<h4>Direction : {{dailyPointages[0].employee_dep_name }}</h4>
+<h4>Il a fait {{dailyPointages.length }} pointages </h4>
 <ul>
-    <li>pointage 1 : </li>
-    <li>pointage 1 : </li>
-    <li>pointage 1 : </li>
-    <li>pointage 1 : </li>
+    <li *ngFor="let item of dailyPointages ">
+        <h5> Lieu à : {{item.lieu}} </h5>
+        <h5> Entré à : {{item.entry_time}} et sorti à {{item.exit_time}}</h5>
+    </li>
 </ul>

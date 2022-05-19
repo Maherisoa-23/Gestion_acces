@@ -1,9 +1,17 @@
 <!--bouton ajout + sorti-->
 <div class="btn">
-  <button class="btn-content entre" onclick="document.getElementById('id01').style.display='block'">
+  <button
+    class="btn-content entre"
+    onclick="document.getElementById('id01').style.display='block'"
+    (click)="showInfo()"
+  >
     Entree
   </button>
-  <button class="btn-content exit" onclick="document.getElementById('id02').style.display='block'" (click)="refreshPointagesThisLieuList()">
+  <button
+    class="btn-content exit"
+    onclick="document.getElementById('id02').style.display='block'"
+    (click)="refreshPointagesThisLieuList()"
+  >
     Sortie
   </button>
 </div>
@@ -14,22 +22,43 @@
   <form class="modal-content animate">
     <h1>Pointage d'entree</h1>
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close"
-        title="Close Modal">&times;</span>
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
 
     <div class="container">
       <label><b>Nom : </b></label>
       <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
       <ul *ngFor="let item of employees">
-        <li *ngIf="item.employee_name.toLowerCase().includes(enteredValue.toLowerCase()) && enteredValue" (click) = "suggested(item.employee_name)">{{item.employee_name}}</li>
+        <li
+          *ngIf="
+            item.employee_name
+              .toLowerCase()
+              .includes(enteredValue.toLowerCase()) && enteredValue
+          "
+          (click)="suggested(item.employee_name)"
+        >
+          {{ item.employee_name }}
+        </li>
       </ul>
 
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id01').style.display='none'"
-        (click)="OnEnter()">
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="OnEnter()"
+      >
         Confirmer
       </button>
-      <button class="btn-cancel" type="button" onclick="document.getElementById('id01').style.display='none'">
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
         Annuler
       </button>
     </div>
@@ -42,21 +71,42 @@
   <form class="modal-content animate">
     <h1>Pointage de sortie</h1>
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close"
-        title="Close Modal">&times;</span>
+      <span
+        onclick="document.getElementById('id02').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
 
     <div class="container">
       <label><b>Nom : </b></label>
       <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
       <ul *ngFor="let item of pointagesbyLieu">
-        <li *ngIf="item.employee_name.toLowerCase().includes(enteredValue.toLowerCase()) && enteredValue" (click) = "suggested(item.employee_name)">{{item.employee_name}}</li>
+        <li
+          *ngIf="
+            item.employee_name
+              .toLowerCase()
+              .includes(enteredValue.toLowerCase()) && enteredValue
+          "
+          (click)="suggested(item.employee_name)"
+        >
+          {{ item.employee_name }}
+        </li>
       </ul>
-      <button type="submit" class="btn-ajout" onclick="document.getElementById('id02').style.display='none'"
-        (click)="OnExit()">
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id02').style.display='none'"
+        (click)="OnExit()"
+      >
         Confirmer
       </button>
-      <button class="btn-cancel" type="button" onclick="document.getElementById('id02').style.display='none'">
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id02').style.display='none'"
+      >
         Cancel
       </button>
     </div>

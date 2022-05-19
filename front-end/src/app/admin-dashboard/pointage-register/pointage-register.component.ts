@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy , ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataTableDirective } from 'angular-datatables' ;
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -35,7 +36,7 @@ export class PointageRegisterComponent implements OnInit {
   datatableElement : any = DataTableDirective ;  
 
   depSelected : any;
-  constructor(private authServ: AuthService) {}
+  constructor(private authServ: AuthService, private route: Router) {}
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
@@ -67,6 +68,12 @@ export class PointageRegisterComponent implements OnInit {
     this.authServ.getDepartmentList().subscribe((data) => {
       this.departments = data;
     });
+  }
+
+  CheckDailyPointage(item : any) {
+    this.authServ.dateDailyPointage = item.date;
+    this.authServ.numero_matricule = item.numero_matricule;
+    this.route.navigate(['admin/unique-pointage'])
   }
 
 

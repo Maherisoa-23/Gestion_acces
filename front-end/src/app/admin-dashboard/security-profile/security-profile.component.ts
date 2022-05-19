@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
@@ -25,7 +26,7 @@ export class SecurityProfileComponent implements OnInit {
   trie_date = false;
   date_croissant = false;
 
-  constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService) { }
+  constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService, private route: Router) { }
 
   ngOnInit(): void {
     this.last_pointage_lieu = this.SecurityServ.pointed_at
@@ -97,6 +98,12 @@ export class SecurityProfileComponent implements OnInit {
       type: 'bar',
       data: data_pointage,
     });
+  }
+
+  CheckDailyPointage(item : any) {
+    this.authServ.dateDailyPointage = item.date;
+    this.authServ.numero_matricule = item.numero_matricule;
+    this.route.navigate(['admin/unique-pointage'])
   }
 
   SortByLieu(){

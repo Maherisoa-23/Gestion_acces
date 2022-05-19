@@ -2,12 +2,12 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-list-active-visit',
   templateUrl: './list-active-visit.component.html',
   styleUrls: ['./list-active-visit.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class ListActiveVisitComponent implements OnInit {
   @Input() visit_id = 1;
@@ -15,18 +15,54 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() motif = '';
   @Input() CIN = 0;
 
-  constructor(private service: VisitService, private authServ : AuthService, private datePipe: DatePipe) {}
+  constructor(
+    private service: VisitService,
+    private authServ: AuthService,
+    private datePipe: DatePipe,
+    private toast: NgToastService
+  ) {}
 
   visitsList: any = [];
-  lieu = ""
-  FilteredList : any= [];
+  lieu = '';
+  FilteredList: any = [];
 
   ngOnInit(): void {
     setTimeout(() => {
-      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
-      this.lieu = Lieu.lieu_name
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
+      this.lieu = Lieu.lieu_name;
     }, 1000);
     this.refreshVisitsList();
+  }
+  showSuccess() {
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: 'Your Success Message',
+      duration: 5000,
+    });
+  }
+
+  showError() {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: 'Your Error Message',
+      duration: 5000,
+    });
+  }
+
+  showInfo() {
+    this.toast.info({
+      detail: 'ATTENTION',
+      summary: 'Verifier bien le nom, le numero CIN',
+      duration: 6000,
+    });
+  }
+
+  showWarn() {
+    this.toast.warning({
+      detail: 'ANNULER',
+      summary: 'Ajout annulé',
+      duration: 5000,
+    });
   }
   refreshVisitsList() {
     this.service.getVisitsList().subscribe((data) => {
@@ -38,7 +74,7 @@ export class ListActiveVisitComponent implements OnInit {
   visite: any;
   date: any;
   Date: any;
-  entry_time : any;
+  entry_time: any;
 
   addVisit() {
     this.Date = new Date();
@@ -50,21 +86,33 @@ export class ListActiveVisitComponent implements OnInit {
       CIN: this.CIN,
       lieu: this.lieu,
       date: this.date.toString(),
-      entry_time : this.entry_time.toString()
+      entry_time: this.entry_time.toString(),
     };
-    
+
     this.service.addVisit(val).subscribe((res) => {
-      console.log(res.toString() + " to visit active list");
+      if (res.toString() == 'Added successfully') {
+        this.toast.success({
+          detail: 'SUCCES',
+          summary: 'Ajout réussi',
+          duration: 5000,
+        });
+      } else {
+        this.toast.error({
+          detail: 'ERREUR',
+          summary: 'Ajout impossible',
+          duration: 5000,
+        });
+      }
+      // console.log(res.toString() + ' to visit active list');
     });
     this.refreshVisitsList();
     this.refreshVisitsList();
-    this.visitor_name =""
-    this.CIN = 0
-    this.motif = ""
+    this.visitor_name = '';
+    this.CIN = 0;
+    this.motif = '';
   }
 
-  exit(item : any) {
-    
+  exit(item: any) {
     this.Date = new Date();
     this.date = this.datePipe.transform(this.Date, 'h:mm:ss');
     var val = {
@@ -73,20 +121,24 @@ export class ListActiveVisitComponent implements OnInit {
       CIN: item.CIN,
       lieu: this.lieu,
       date: item.date,
-      entry_time : item.entry_time,
-      exit_time : this.date.toString()
+      entry_time: item.entry_time,
+      exit_time: this.date.toString(),
     };
     if (confirm('Vous êtes sûs?')) {
-      this.service.deleteVisit(item.visit_id).subscribe((data) => {
-        
-      });
+      this.service.deleteVisit(item.visit_id).subscribe((data) => {});
       this.service.addVisitsRegister(val).subscribe((data) => {
-        console.log((data.toString()) + " to the visit register ") ;
+        if (data.toString() == 'Added successfully to visit register') {
+          this.toast.success({
+            detail: 'SUCCES',
+            summary: 'Sortie Visiteur',
+            duration: 5000,
+          });
+        }
+        // console.log(data.toString() + ' to the visit register ');
       });
     }
     setTimeout(() => {
       this.refreshVisitsList();
     }, 500);
   }
-  
 }

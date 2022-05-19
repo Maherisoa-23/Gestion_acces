@@ -3,6 +3,7 @@
   <button
     class="btn-content"
     onclick="document.getElementById('id01').style.display='block'"
+    (click)="showInfo()"
   >
     Ajout Nouvelle Visite
   </button>
@@ -25,8 +26,7 @@
       <label><b>Nom Visiteur </b></label>
       <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
 
-      <label><b>Numero CIN </b></label
-      ><br />
+      <label><b>Numero CIN </b></label><br />
       <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
 
       <label><b>Motif </b></label>
@@ -48,6 +48,7 @@
         class="btn-cancel"
         type="button"
         onclick="document.getElementById('id01').style.display='none'"
+        (click)="showWarn()"
       >
         Cancel
       </button>
