@@ -32,6 +32,10 @@ import { VisitRegisterComponent } from './admin-dashboard/visit-register/visit-r
 import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
 import { UserAccueilComponent } from './visit-dashboard/user-accueil/user-accueil.component';
 import { DataTablesModule } from 'angular-datatables';
+
+//animation
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // code format
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -44,7 +48,8 @@ import { ClockingScheduleComponent } from './admin-dashboard/security-profile/cl
 //pour le calendrier
 import { FullCalendarModule } from '@fullcalendar/angular'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import  interactionPlugin  from '@fullcalendar/interaction'
+import  interactionPlugin  from '@fullcalendar/interaction';
+import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-details.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -64,6 +69,7 @@ const appRoutes: Routes = [
       { path: 'visit-register', component: VisitRegisterComponent },
       { path: 'pointage-admin', component: PointageComponent },
       { path: 'pointage-register', component: PointageRegisterComponent },
+      { path: 'lieu-details', component: LieuDetailsComponent },
       { path: 'unique-pointage', component: UniquePointageComponent }
     ],
   },
@@ -108,6 +114,7 @@ const appRoutes: Routes = [
     UserAccueilComponent,
     UniquePointageComponent,
     ClockingScheduleComponent,
+    LieuDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +125,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     NgToastModule,
-    FullCalendarModule
+    FullCalendarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     VisitService,

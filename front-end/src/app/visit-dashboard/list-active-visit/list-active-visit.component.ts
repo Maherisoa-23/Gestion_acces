@@ -3,11 +3,25 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 @Component({
   selector: 'app-list-active-visit',
   templateUrl: './list-active-visit.component.html',
   styleUrls: ['./list-active-visit.component.css'],
   providers: [DatePipe],
+  animations: [
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter , :leave', [animate(1000)]),
+      // transition('* => void', [animate(2000, style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class ListActiveVisitComponent implements OnInit {
   @Input() visit_id = 1;
@@ -88,6 +102,7 @@ export class ListActiveVisitComponent implements OnInit {
       date: this.date.toString(),
       entry_time: this.entry_time.toString(),
     };
+    this.visitsList.push(val);
 
     this.service.addVisit(val).subscribe((res) => {
       if (res.toString() == 'Added successfully') {
@@ -105,8 +120,7 @@ export class ListActiveVisitComponent implements OnInit {
       }
       // console.log(res.toString() + ' to visit active list');
     });
-    this.refreshVisitsList();
-    this.refreshVisitsList();
+
     this.visitor_name = '';
     this.CIN = 0;
     this.motif = '';
@@ -137,6 +151,7 @@ export class ListActiveVisitComponent implements OnInit {
         // console.log(data.toString() + ' to the visit register ');
       });
     }
+
     setTimeout(() => {
       this.refreshVisitsList();
     }, 500);
