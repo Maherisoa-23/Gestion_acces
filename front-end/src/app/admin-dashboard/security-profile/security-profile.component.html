@@ -22,7 +22,7 @@
     <!-- chart -->
     <!-- security-register-pointage -->
     <div class="pointage">
-        <div class="section">
+        <!-- <div class="section">
             <h1>Ses dérnières activités</h1>
             <table class="tbl">
                 <thead>
@@ -63,7 +63,6 @@
                     }"
                     (click)="CheckDailyPointage(item)"
                   >
-                    <!-- ngClass="item.lieu == 'Andraharo' ? 'fond1' : item.lieu == 'Ambohijatovo'? 'fond2' : 'fond3' " -->
                     <td data-label="ID">
                       {{ item.lieu }}
                     </td>
@@ -73,8 +72,10 @@
                   </tr>
                 </tbody>
               </table>
-        </div>
-    </div>
+        </div> -->
+    
+        <app-clocking-schedule></app-clocking-schedule>
+      </div>
     <!-- security-register-pointage -->
 </div>
 <!-- profil security body -->

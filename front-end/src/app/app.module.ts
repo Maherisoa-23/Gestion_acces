@@ -39,6 +39,17 @@ registerLocaleData(localeFr, 'fr');
 import { LOCALE_ID } from '@angular/core';
 import { NgToastModule } from 'ng-angular-popup';
 import { UniquePointageComponent } from './admin-dashboard/unique-pointage/unique-pointage.component';
+import { ClockingScheduleComponent } from './admin-dashboard/security-profile/clocking-schedule/clocking-schedule.component';
+
+//pour le calendrier
+import { FullCalendarModule } from '@fullcalendar/angular'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import  interactionPlugin  from '@fullcalendar/interaction'
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin
+])
 
 const appRoutes: Routes = [
   {
@@ -96,6 +107,7 @@ const appRoutes: Routes = [
     SecurityAgentComponent,
     UserAccueilComponent,
     UniquePointageComponent,
+    ClockingScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +117,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    NgToastModule
+    NgToastModule,
+    FullCalendarModule
   ],
   providers: [
     VisitService,

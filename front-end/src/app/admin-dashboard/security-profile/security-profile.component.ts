@@ -12,7 +12,7 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 export class SecurityProfileComponent implements OnInit {
 
   pointage_register: any;
-  matricule_security: any;
+  matricule_security = 5;
   security_name = "Toky";
   last_pointage: any;
   last_pointage_lieu = "";
@@ -31,12 +31,13 @@ export class SecurityProfileComponent implements OnInit {
   ngOnInit(): void {
     this.last_pointage_lieu = this.SecurityServ.pointed_at
     this.refreshPointageRegisterList();
-    this.matricule_security = this.SecurityServ.matricule_security;
+    if (this.SecurityServ.matricule_security != 0)
+      this.matricule_security = this.SecurityServ.matricule_security;
     this.security_name = this.SecurityServ.security_name;
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
     }, 500)
-    this.chartit();
+    this.chartit(); 
   }
 
   refreshPointageRegisterList() {
