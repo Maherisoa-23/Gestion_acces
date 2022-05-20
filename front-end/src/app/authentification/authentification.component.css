@@ -147,6 +147,18 @@ form {
   color: var(--color-green);
   font-family: "poppins", sans-serif;
 }
+form .div ul {
+  display: block;
+  list-style-type: none;
+  font-size: 16px;
+  font-weight: 800px;
+  color: var(--color-green);
+  letter-spacing: 2px;
+  /* background: var(--color-green); */
+  margin-top: 60px;
+  margin-right: 200px;
+  /* z-index: 1; */
+}
 
 .input-div.pass {
   margin-bottom: 4px;

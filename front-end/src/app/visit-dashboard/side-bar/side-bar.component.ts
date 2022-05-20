@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class SideBarComponent implements OnInit {
   Date : any;
   Connection : any;
 
-  constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe) {}
+  constructor(private authService: AuthService, private route: Router, private datePipe: DatePipe, private toast : NgToastService) {}
 
   ngOnInit(): void {
     
@@ -47,10 +48,12 @@ export class SideBarComponent implements OnInit {
         console.log(res.toString());
       });
       this.route.navigate(['authentification']);
-    }, 1000);
+      this.msgSignOut()
+    }, 500);
     //this.saveConnectionRegister();
     localStorage.removeItem('lieu');
     localStorage.removeItem('user');
+    
     
   }
 
@@ -79,4 +82,11 @@ export class SideBarComponent implements OnInit {
     this.route.navigate(['agent/'])
   }
 
+  msgSignOut() {
+    this.toast.success({
+      detail: 'Deconnexion',
+      summary: 'Vous êtes déconnecté',
+      duration: 4000,
+    });
+  }
 }

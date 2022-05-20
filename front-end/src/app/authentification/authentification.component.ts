@@ -23,6 +23,7 @@ export class AuthentificationComponent implements OnInit {
   lieux_name: any = [];
   date: any;
   heure: any;
+  ok = false; //pour admin
 
   input1 = false;
   input2 = false;
@@ -63,7 +64,7 @@ export class AuthentificationComponent implements OnInit {
     this.toast.error({
       detail: 'ERROR',
       summary: 'Verifier bien votre matricule et le choix du lieu',
-      duration: 5000,
+      duration: 4000,
     });
   }
   getLieuId(lieu: string) {
@@ -105,6 +106,7 @@ export class AuthentificationComponent implements OnInit {
         this.numero_matricule == this.adminMatricule &&
         this.numero_matricule == element.numero_matricule
       ) {
+        this.ok = true
         const md5 = new Md5();
         const pass = md5.appendStr(this.password).end().toString();
         if (element.password == pass) {
@@ -117,6 +119,7 @@ export class AuthentificationComponent implements OnInit {
             localStorage.setItem('admin1', JSON.stringify(element));
           });
           this.showSuccess();
+          break;
         } else this.showErrorAdmin();
         break;
       } else {
@@ -129,7 +132,7 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.showSuccess();
-            this.router.navigate(['agent']);
+            this.router.navigate(['agent/accueil']);
           });
           console.log('lieu this  = ' + this.authService.lieu);
 
@@ -139,19 +142,23 @@ export class AuthentificationComponent implements OnInit {
             .subscribe((data) => {
               this.Lieu = data;
             });
-
+            
           setTimeout(() => {
             this.Lieu.isActive = true;
             this.authService.putLieu(this.Lieu).subscribe((res) => {
               console.log(res.toString());
             });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
-          }, 1000);
+          }, 500);
           //this.saveConnection()
           break;
         } 
       }
-      this.showErrorAgent();
+      setTimeout(() => {
+        if (!this.ok)
+          this.showErrorAgent();
+      }, 500);
+      
     }
   }
 

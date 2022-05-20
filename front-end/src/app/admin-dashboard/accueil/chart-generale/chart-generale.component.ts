@@ -20,6 +20,10 @@ export class ChartGeneraleComponent implements OnInit {
   tab_pointage: any = []
   tmp: any
 
+  ambohijatovo_tab : any
+  andraharo_tab : any
+  mangasoavin_tab : any
+
   constructor(private elementRef: ElementRef, private authServ: AuthService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -34,7 +38,7 @@ export class ChartGeneraleComponent implements OnInit {
     this.refreshCounting();
     setTimeout(() => {
       this.chartit();
-    }, 1000);
+    }, 2000);
   }
 
   refreshCounting() {
@@ -66,37 +70,32 @@ export class ChartGeneraleComponent implements OnInit {
       this.tmp = data
     });
     setTimeout(() => {
-      console.log(this.tmp)
+      if (lieu == "Ambohijatovo") {
+        this.ambohijatovo_tab = this.tmp
+      } else if (lieu == "Andraharo") this.andraharo_tab = this.tmp
+      else this.mangasoavin_tab = this.tmp
     }, 500)
   }
 
   chartit() {
     const data_pointage = {
-      labels: [
-        'Lundi',
-        'Mardi',
-        'Mercredi',
-        'Jeudi',
-        'Vendredi',
-        'Samedi',
-        'Dimanche',
-      ],
+      labels: this.dateTab,
       datasets: [
         {
           label: 'Ambohijatovo',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          data: this.ambohijatovo_tab,
           backgroundColor: '#ca212680',
           maxBarThickness: 12,
         },
         {
           label: 'Andraharo',
-          data: [15, 32, 75, 94, 40, 66, 35],
+          data: this.andraharo_tab,
           backgroundColor: '#37a94a80',
           maxBarThickness: 12,
         },
         {
           label: 'Mangasoavina',
-          data: [48, 34, 16, 74, 53, 26, 68],
+          data: this.mangasoavin_tab,
           backgroundColor: '#1e546b80',
           maxBarThickness: 12,
         },

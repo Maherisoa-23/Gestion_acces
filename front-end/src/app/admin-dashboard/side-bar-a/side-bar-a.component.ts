@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class SideBarAComponent implements OnInit {
 
   userName = "";
   myScriptElement : any;
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private route: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.userName = this.authService.userName;
@@ -23,8 +24,9 @@ export class SideBarAComponent implements OnInit {
       this.route.navigate(['authentification']);
     }, 500)
     localStorage.removeItem('admin1');
-    localStorage.removeItem('lieu')
-
+    setTimeout(() => {
+      this.msgSignOut()
+    }, 550);
     //pour effacer le script de l'authentification afin qu'il ne se répète pas
     
   }
@@ -33,12 +35,11 @@ export class SideBarAComponent implements OnInit {
     this.route.navigate(['admin/'])
   }
 
-  showAdminVisit() {
-    this.route.navigate(['admin/visit-admin'])
+  msgSignOut() {
+    this.toast.success({
+      detail: 'Deconnexion',
+      summary: 'Vous êtes déconnecté',
+      duration: 4000,
+    });
   }
-
-  showAdminPointage() {
-    this.route.navigate(['admin/pointage-admin'])
-  }
-
 }
