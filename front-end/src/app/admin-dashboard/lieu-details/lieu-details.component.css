@@ -95,7 +95,7 @@
   grid-area: security;
   background: var(--color-bg);
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   box-shadow: 2px 2px 5px var(--color-fond);
 }
 .section .security .security-content {
@@ -133,12 +133,15 @@
 .section .card .info {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 20px;
-  font-size: 16px;
+  grid-template-rows: 1fr 30px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: var(--color-blue);
   padding-left: 20px;
+}
+.section .card .info span {
+  color: var(--color-titre);
 }
 /* bloc chart  */
 .section .chart {
