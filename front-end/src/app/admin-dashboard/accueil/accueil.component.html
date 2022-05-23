@@ -1,6 +1,6 @@
 <!--body-->
 <div class="accueil-container">
-  <div class="clocks">
+  <div class="clocks anim3 animate fade3">
     <!-- bienvenue -->
     <div class="bienvenue">
       <h1>Bienvenue <span>Admin</span></h1>
@@ -32,7 +32,7 @@
     <!--eto-->
     <app-lieu-card
       *ngFor="let item of lieux"
-      [lieu]="item.lieu_name" 
+      [lieu]="item.lieu_name"
       [entry_time]="item.entry_time"
     ></app-lieu-card>
   </div>
