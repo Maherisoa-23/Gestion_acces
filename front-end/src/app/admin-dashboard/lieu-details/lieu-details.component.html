@@ -10,12 +10,11 @@
     </div>
     <div class="security-content">
       <div class="card" *ngFor="let item of securities">
-        <h1>
-          Nom: <span>{{ item.employee_name }}</span>
-        </h1>
-        <h1>
-          Heure d'entree: <span>{{ item.entry_time }}</span>
-        </h1>
+        <div class="logo"><i class="fas fa-user-alt"></i></div>
+        <div class="info">
+          <div class="nom">{{ item.employee_name }}</div>
+          <div class="heure">>{{ item.entry_time }}</div>
+        </div>
       </div>
     </div>
   </div>
