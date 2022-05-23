@@ -11,7 +11,7 @@
   width: 100%;
   grid-gap: 5px;
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 350px 310px 1fr;
+  grid-template-rows: 300px 310px 1fr;
   grid-template-areas:
     "clock  clock"
     "header header "
@@ -19,10 +19,11 @@
 }
 .clocks {
   grid-area: clock;
-  margin: 10px 30px;
+  margin: 0px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "bienvenue heure";
+  /* border: 2px solid red; */
 }
 /*.clock  bienvenue */
 .clocks .bienvenue {
@@ -35,7 +36,8 @@
 .clocks .bienvenue h1 {
   font-size: 25px;
   font-weight: 600;
-  margin: 20px;
+  /* margin: 20px; */
+  margin: 0px 20px 20px 20px;
   text-transform: capitalize;
   letter-spacing: 1px;
   color: var(--color-text);
@@ -134,6 +136,11 @@
   -moz-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
+.anim2 {
+  -webkit-animation-delay: 1.6s;
+  -moz-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
 .anim3 {
   -webkit-animation-delay: 0.1s;
   -moz-animation-delay: 0.1s;
@@ -173,6 +180,34 @@
 .fade1 {
   -webkit-animation-name: fade1;
   animation-name: fade1;
+}
+@-webkit-keyframes fade2 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fade2 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fade2 {
+  -webkit-animation-name: fade2;
+  animation-name: fade2;
 }
 
 @-webkit-keyframes fade3 {

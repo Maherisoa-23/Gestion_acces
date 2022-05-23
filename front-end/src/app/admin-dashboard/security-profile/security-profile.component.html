@@ -1,28 +1,36 @@
 <!-- profil security body -->
-<div class="page-profil">
-    <!--card-profil -->
-    <div class="card-profil">
-        <div class="img-card">
-            <img src="assets/avatar/{{security_name}}.png" alt="" />
-        </div>
-        <div class="content-card">
-            <ul>
-                <li>Nom: <span>{{security_name}}</span></li>
-                <li>Numero matricule: <span>{{matricule_security}}</span></li>
-                <li>poste de garde: <span>{{last_pointage_lieu}}</span></li>
-                <li>dérnière connection: <span>{{last_pointage_date}}</span></li>
-            </ul>
-        </div>
+<div class="page-profil animation1 animation fade01">
+  <!--card-profil -->
+  <div class="card-profil animation1 animation fade01">
+    <div class="img-card">
+      <img src="assets/avatar/{{ security_name }}.png" alt="" />
     </div>
-    <!--card-profil -->
-    <!-- chart -->
-    <div class="chart">
-        <canvas id="myChartPointage"> {{myChartPointage}}</canvas>
+    <div class="content-card">
+      <ul>
+        <li>
+          Nom: <span>{{ security_name }}</span>
+        </li>
+        <li>
+          Numero matricule: <span>{{ matricule_security }}</span>
+        </li>
+        <li>
+          poste de garde: <span>{{ last_pointage_lieu }}</span>
+        </li>
+        <li>
+          dérnière connection: <span>{{ last_pointage_date }}</span>
+        </li>
+      </ul>
     </div>
-    <!-- chart -->
-    <!-- security-register-pointage -->
-    <div class="pointage">
-        <!-- <div class="section">
+  </div>
+  <!--card-profil -->
+  <!-- chart -->
+  <div class="chart animation2 animation fade02">
+    <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
+  </div>
+  <!-- chart -->
+  <!-- security-register-pointage -->
+  <div class="pointage animation3 animation fade03">
+    <!-- <div class="section">
             <h1>Ses dérnières activités</h1>
             <table class="tbl">
                 <thead>
@@ -73,9 +81,9 @@
                 </tbody>
               </table>
         </div> -->
-    
-        <app-clocking-schedule></app-clocking-schedule>
-      </div>
-    <!-- security-register-pointage -->
+
+    <app-clocking-schedule></app-clocking-schedule>
+  </div>
+  <!-- security-register-pointage -->
 </div>
 <!-- profil security body -->

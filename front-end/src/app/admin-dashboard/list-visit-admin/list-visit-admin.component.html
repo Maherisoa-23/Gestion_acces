@@ -1,8 +1,8 @@
 <!-- eto -->
-<div class="titre">
+<div class="titre animation1 animation fade01">
   <h1>Visite actuelle</h1>
 </div>
-<div id="auCentre">
+<div id="auCentre" class="animation1 animation fade01">
   <div class="lieu animation3 animation fade03">
     <h1>
       Lieu: <span>{{ lieu }}</span>
@@ -40,7 +40,7 @@
       <table class="tbl animation2 animation fade02">
         <thead>
           <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
@@ -49,9 +49,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
+            <!-- <td data-label="ID" *ngIf="item.lieu == lieu">
               {{ item.visit_id }}
-            </td>
+            </td> -->
             <td data-label="Nom" *ngIf="item.lieu == lieu">
               {{ item.visitor_name }}
             </td>
@@ -75,7 +75,7 @@
       <table class="tbl animation2 animation fade02">
         <thead>
           <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
@@ -84,9 +84,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
+            <!-- <td data-label="ID" *ngIf="item.lieu == lieu">
               {{ item.visit_id }}
-            </td>
+            </td> -->
             <td data-label="Nom" *ngIf="item.lieu == lieu">
               {{ item.visitor_name }}
             </td>
@@ -110,7 +110,7 @@
       <table class="tbl animation2 animation fade02">
         <thead>
           <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Nom</th>
             <th>Date</th>
             <th>Motif</th>
@@ -119,9 +119,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of visitsList">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
+            <!-- <td data-label="ID" *ngIf="item.lieu == lieu">
               {{ item.visit_id }}
-            </td>
+            </td> -->
             <td data-label="Nom" *ngIf="item.lieu == lieu">
               {{ item.visitor_name }}
             </td>
