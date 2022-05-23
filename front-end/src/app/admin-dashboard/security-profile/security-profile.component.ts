@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
@@ -7,7 +8,8 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 @Component({
   selector: 'app-security-profile',
   templateUrl: './security-profile.component.html',
-  styleUrls: ['./security-profile.component.css']
+  styleUrls: ['./security-profile.component.css'],
+  providers: [DatePipe],
 })
 export class SecurityProfileComponent implements OnInit {
 
@@ -26,7 +28,12 @@ export class SecurityProfileComponent implements OnInit {
   trie_date = false;
   date_croissant = false;
 
-  constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService, private route: Router) { }
+  //pour le chart.js
+  today: any
+  date: any
+  dateTab: any = []
+
+  constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService, private route: Router, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.last_pointage_lieu = this.SecurityServ.pointed_at
@@ -37,6 +44,7 @@ export class SecurityProfileComponent implements OnInit {
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
     }, 500)
+    this.getLastSevenDay()
     this.chartit(); 
   }
 
@@ -60,37 +68,25 @@ export class SecurityProfileComponent implements OnInit {
     }
   }
 
+  getLastSevenDay() {
+    this.today = new Date()
+    for (let index = 1; index < 8; index++) {
+      this.date = new Date(this.today.setDate(this.today.getDate() - 1));
+      this.dateTab.push(this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString())
+    }
+  }
+
   chartit() {
+    const labels = this.dateTab
     const data_pointage = {
-      labels: [
-        'Lundi',
-        'Mardi',
-        'Mercredi',
-        'Jeudi',
-        'Vendredi',
-        'Samedi',
-        'Dimanche',
-      ],
+      labels: labels,
       datasets: [
         {
-          label: 'Ambohijatovo',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          label: 'Activité',
+          data: [[7.15,15.3],[8.12,16.5],[7.45,15.6],[10.5,13.35],[9.25,16.25],[7.55,15.3],[8.30,15.30]],
           backgroundColor: '#ca212680',
-          maxBarThickness: 12,
-        },
-        {
-          label: 'Andraharo',
-          data: [15, 32, 75, 94, 40, 66, 35],
-          backgroundColor: '#37a94a80',
-          maxBarThickness: 12,
-        },
-        {
-          label: 'Mangasoavina',
-          data: [48, 34, 16, 74, 53, 26, 68],
-          backgroundColor: '#1e546b80',
-          maxBarThickness: 12,
-        },
-      ],
+        }
+      ]
     };
 
     let htmlRefPointage =
@@ -107,29 +103,4 @@ export class SecurityProfileComponent implements OnInit {
     this.route.navigate(['admin/unique-pointage'])
   }
 
-  SortByLieu(){
-    this.trie_lieu = true
-    this.trie_date =  false
-    if (!this.lieu_croissant) {
-      this.pointages.sort((a : any,b : any) => a.lieu.localeCompare(b.lieu));
-      this.lieu_croissant = true
-    }
-    else {
-      this.pointages.sort((b : any,a : any) => a.lieu.localeCompare(b.lieu));
-      this.lieu_croissant = false
-    }
-  }
-
-  SortByDate(){
-    this.trie_date = true
-    this.trie_lieu = false
-    if (!this.date_croissant) {
-      this.pointages.sort((a : any,b : any) => a.date.localeCompare(b.date));
-      this.date_croissant = true
-    }
-    else {
-      this.pointages.sort((b : any,a : any) => a.date.localeCompare(b.date));
-      this.date_croissant = false
-    }
-  }
 }

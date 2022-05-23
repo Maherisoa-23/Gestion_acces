@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
@@ -19,10 +20,12 @@ export class ClockingScheduleComponent implements OnInit {
   calendarOptions: CalendarOptions | any;
   val: any;
 
-  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private datePipe : DatePipe) { }
+  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
   handleDateClick(arg: any) {
-    alert('date click! ' + arg.dateStr)
+    this.authServ.numero_matricule = this.matricule_security;
+    this.authServ.dateDailyPointage = arg.dateStr;
+    this.route.navigate(['admin/unique-pointage']);
   }
 
   ngOnInit(): void {
@@ -79,11 +82,11 @@ export class ClockingScheduleComponent implements OnInit {
     }
   }
 
-  convertTime(timeString : string){
+  convertTime(timeString: string) {
     let timeTokens = timeString.split(':');
     let hour = timeTokens[0];
     let min = timeTokens[1];
     return hour + "h" + min;
-}
+  }
 
 }
