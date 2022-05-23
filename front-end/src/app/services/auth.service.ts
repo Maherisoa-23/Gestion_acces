@@ -123,4 +123,10 @@ export class AuthService {
   getLieu(lieu_id : number): Observable<any>{
     return this.http.delete<any>(this.APIUrl + '/lieu/' + lieu_id);
   }
+
+
+  //Pour les sécurité actifs par lieu
+  getActifSecurityByLieu(val : any): Observable<any[]>{
+    return this.http.post<any[]>(this.APIUrl + '/security/', val);
+  }
 }

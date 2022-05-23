@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -18,7 +19,7 @@ export class LieuCardComponent implements OnInit {
   id_lieu = 0;
   couleur = '';
 
-  constructor(private elementRef: ElementRef, private authServ: AuthService) {}
+  constructor(private elementRef: ElementRef, private authServ: AuthService, private route: Router) {}
 
   ngOnInit(): void {
     this.id_lieu = this.getLieuId(this.lieu);
@@ -86,5 +87,10 @@ export class LieuCardComponent implements OnInit {
         },
       },
     });
+  }
+
+  showLieuDetails() {
+    this.authServ.lieu = this.lieu;
+    this.route.navigate(['admin/lieu-details'])
   }
 }

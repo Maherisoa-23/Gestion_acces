@@ -1,5 +1,5 @@
 <div class="titre">
-    <h1>Lieu : <span>Ambohijatovo</span></h1>
+    <h1>Lieu : <span>{{lieu}}</span></h1>
   </div>
   <div class="section">
     <div class="security">
@@ -7,25 +7,9 @@
         <h1>Security actif</h1>
       </div>
       <div class="security-content">
-        <div class="card">
-          <h1>Nom: <span>Lucas</span></h1>
-          <h1>Numero matricule: <span>01</span></h1>
-          <h1>Heure d'entree: <span>07h00</span></h1>
-        </div>
-        <div class="card">
-          <h1>Nom: <span>Lucas</span></h1>
-          <h1>Numero matricule: <span>01</span></h1>
-          <h1>Heure d'entree: <span>07h00</span></h1>
-        </div>
-        <div class="card">
-          <h1>Nom: <span>Lucas</span></h1>
-          <h1>Numero matricule: <span>01</span></h1>
-          <h1>Heure d'entree: <span>07h00</span></h1>
-        </div>
-        <div class="card">
-          <h1>Nom: <span>Lucas</span></h1>
-          <h1>Numero matricule: <span>01</span></h1>
-          <h1>Heure d'entree: <span>07h00</span></h1>
+        <div class="card" *ngFor="let item of securities">
+          <h1>Nom: <span>{{item.employee_name}}</span></h1>
+          <h1>Heure d'entree: <span>{{item.entry_time}}</span></h1>
         </div>
       </div>
     </div>

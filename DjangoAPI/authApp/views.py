@@ -137,6 +137,12 @@ def security_API(request: HttpRequest, id=0):
         employee = Employee.objects.filter(department=3)
         employee_serializer = Employee_serializer(employee, many=True)
         return JsonResponse(employee_serializer.data, safe=False)
+    #liste de sécurité actif à un lieu 
+    elif request.method == 'POST':
+        request_data = JSONParser().parse(request)
+        pointage_tab = Pointage.objects.filter(lieu = request_data["lieu"], employee_dep_name = "SECURITE")      
+        pointage_serializer = Pointage_serializer(pointage_tab, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False)
     #filtrer les pointages par département
     elif request.method == 'DELETE':
         dep = Department.objects.get(pk=id)
