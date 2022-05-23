@@ -60,7 +60,8 @@
         </div>
         <div class="select" *ngIf="numero_matricule != adminMatricule">
           <select name="format" id="format" [(ngModel)]="selected_lieu">
-            <option value="" default selected>Selectionner un lieu</option>
+            <option value="" default selected>Selectionner le lieu</option>
+
             <option [value]="lieu" *ngFor="let lieu of lieux_name">
               {{ lieu }}
             </option>

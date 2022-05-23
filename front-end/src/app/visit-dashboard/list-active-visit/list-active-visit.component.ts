@@ -43,6 +43,9 @@ export class ListActiveVisitComponent implements OnInit {
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
+
+      //trie décroissant, ze tonga farany no eo ambony
+      this.visitsList.sort((b : any,a : any) => a.entry_time.localeCompare(b.entry_time));
     }, 1000);
     this.refreshVisitsList();
   }
@@ -77,6 +80,7 @@ export class ListActiveVisitComponent implements OnInit {
       duration: 5000,
     });
   }
+
   refreshVisitsList() {
     this.service.getVisitsList().subscribe((data) => {
       this.visitsList = data;
@@ -91,7 +95,7 @@ export class ListActiveVisitComponent implements OnInit {
 
   addVisit() {
     this.Date = new Date();
-    this.date = this.datePipe.transform(this.Date, 'MM-dd-yyyy');
+    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
     this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
     var val = {
       visitor_name: this.visitor_name,
@@ -101,7 +105,7 @@ export class ListActiveVisitComponent implements OnInit {
       date: this.date.toString(),
       entry_time: this.entry_time.toString(),
     };
-    this.visitsList.push(val);
+    this.visitsList.unshift(val);
 
     this.service.addVisit(val).subscribe((res) => {
       if (res.toString() == 'Added successfully') {
@@ -117,7 +121,6 @@ export class ListActiveVisitComponent implements OnInit {
           duration: 5000,
         });
       }
-      // console.log(res.toString() + ' to visit active list');
     });
 
     this.visitor_name = '';
@@ -149,7 +152,9 @@ export class ListActiveVisitComponent implements OnInit {
         }
         // console.log(data.toString() + ' to the visit register ');
       });
+
+      //animation sortie
+      this.visitsList = this.visitsList.filter((f : any) => { return f.CIN != item.CIN})
     }
-    this.visitsList.splice(this.visitsList.indexOf(item))
   }
 }

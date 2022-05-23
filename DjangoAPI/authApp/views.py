@@ -163,7 +163,6 @@ def pointage_counter_API(request: HttpRequest, id=0):
         tab = []
         request_data = JSONParser().parse(request)
         for i in range(7):      
-            print(request_data["date" + str(i)] == "12-05-2022")      
             pointage = Pointage_register.objects.filter(date = request_data["date" + str(i)], lieu = request_data["lieu"])
             tab.append(pointage.count())
         return JsonResponse(tab,safe=False)
