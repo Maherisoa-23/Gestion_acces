@@ -1,35 +1,60 @@
-<div class="titre">
-    <h1>Lieu : <span>{{lieu}}</span></h1>
-  </div>
-  <div class="section">
-    <div class="security">
-      <div class="title">
-        <h1>Security actif</h1>
-      </div>
-      <div class="security-content">
-        <div class="card" *ngFor="let item of securities">
-          <h1>Nom: <span>{{item.employee_name}}</span></h1>
-          <h1>Heure d'entree: <span>{{item.entry_time}}</span></h1>
-        </div>
+<div class="titre animation1 animation fade01">
+  <h1>
+    Lieu : <span>{{ lieu }}</span>
+  </h1>
+</div>
+<div class="section animation1 animation fade01">
+  <div class="security animation1 animation fade01">
+    <div class="title">
+      <h1>Securites actifs</h1>
+    </div>
+    <div class="security-content">
+      <div class="card" *ngFor="let item of securities">
+        <h1>
+          Nom: <span>{{ item.employee_name }}</span>
+        </h1>
+        <h1>
+          Heure d'entree: <span>{{ item.entry_time }}</span>
+        </h1>
       </div>
     </div>
-    <div class="chart">
-      <div class="legend">
-        <div class="title">
-          <h1>Charte Graphique</h1>
-        </div>
-        <div class="legend-content">
-          <h1>Legend:</h1>
-          <div class="legend-item">
-            <div class="item">legend 1</div>
-            <div class="item">legend 2</div>
-            <div class="item">legend 3</div>
+  </div>
+  <div class="chart animation1 animation fade01">
+    <div class="legend">
+      <div class="chart-title">
+        <h1>Charte Graphique</h1>
+      </div>
+      <div class="legend-content">
+        <h1>RESUME:</h1>
+        <div class="legend-item">
+          <div class="item">
+            Nombre de visite <span>{{ nb_visite }}</span>
+          </div>
+          <div class="item">
+            Nombre de pointage <span>{{ nb_pointage }}</span>
+          </div>
+          <div class="item">
+            Nombre total employee <span>{{ nb_employee }}</span>
           </div>
         </div>
-        <div width="250" height="300">
-          <canvas id="myChartPointage" > {{myChartPointage}}</canvas>
       </div>
+    </div>
+    <div class="sary">
+      <div width="250" height="300">
+        <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
       </div>
-      <div class="sary"></div>
     </div>
   </div>
+
+  <!-- <div class="chart">
+    <div class="chart-title">
+      <h1>Charte Graphique</h1>
+    </div>
+
+    <div class="sary">
+      <div width="250" height="300">
+        <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
+      </div>
+    </div>
+  </div> -->
+</div>
