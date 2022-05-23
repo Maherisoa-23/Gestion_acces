@@ -7,7 +7,7 @@
     <div class="login-content">
       <form>
         <img src="assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
-        <h2 class="title">Gestion Access 2</h2>
+        <h2 class="title">Gestion Acces</h2>
         <p id="omnis">OMNIS Madagascar</p>
 
         <div
@@ -19,7 +19,7 @@
             <i class="fas fa-user"></i>
           </div>
           <div class="div">
-            <h5>Numero</h5>
+            <h5>Numero matricule</h5>
             <input
               type="text"
               class="input-auth"
@@ -60,6 +60,7 @@
         </div>
         <div class="select" *ngIf="numero_matricule != adminMatricule">
           <select name="format" id="format" [(ngModel)]="selected_lieu">
+            <option value="" default selected>Selectionner le lieu</option>
             <option [value]="lieu" *ngFor="let lieu of lieux_name">
               {{ lieu }}
             </option>

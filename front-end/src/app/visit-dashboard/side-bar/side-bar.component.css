@@ -48,6 +48,7 @@ ul {
 ul li {
   height: 70px;
   display: block;
+  cursor: pointer;
 }
 ul li a {
   font-size: 12px;

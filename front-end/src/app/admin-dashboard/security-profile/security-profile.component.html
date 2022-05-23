@@ -1,81 +1,37 @@
 <!-- profil security body -->
-<div class="page-profil">
-    <!--card-profil -->
-    <div class="card-profil">
-        <div class="img-card">
-            <img src="assets/avatar/{{security_name}}.png" alt="" />
-        </div>
-        <div class="content-card">
-            <ul>
-                <li>Nom: <span>{{security_name}}</span></li>
-                <li>Numero matricule: <span>{{matricule_security}}</span></li>
-                <li>poste de garde: <span>{{last_pointage_lieu}}</span></li>
-                <li>dérnière connection: <span>{{last_pointage_date}}</span></li>
-            </ul>
-        </div>
+<div class="page-profil animation1 animation fade01">
+  <!--card-profil -->
+  <div class="card-profil animation1 animation fade01">
+    <div class="img-card">
+      <img src="assets/avatar/{{ security_name }}.png" alt="" />
     </div>
-    <!--card-profil -->
-    <!-- chart -->
-    <div class="chart">
-        <canvas id="myChartPointage"> {{myChartPointage}}</canvas>
+    <div class="content-card">
+      <ul>
+        <li>
+          Nom: <span>{{ security_name }}</span>
+        </li>
+        <li>
+          Numero matricule: <span>{{ matricule_security }}</span>
+        </li>
+        <li>
+          poste de garde: <span>{{ last_pointage_lieu }}</span>
+        </li>
+        <li>
+          dérnière connection: <span>{{ last_pointage_date }}</span>
+        </li>
+      </ul>
     </div>
-    <!-- chart -->
-    <!-- security-register-pointage -->
-    <div class="pointage">
-        <!-- <div class="section">
-            <h1>Ses dérnières activités</h1>
-            <table class="tbl">
-                <thead>
-                  <tr>
-                    <th class="th" (click)="SortByLieu()">
-                      Lieu
-                      <i
-                        *ngIf="lieu_croissant && trie_lieu"
-                        class="fa fa-caret-down dropbtn"
-                      ></i>
-                      <i
-                        *ngIf="!lieu_croissant && trie_lieu"
-                        class="fa fa-caret-up dropbtn"
-                      ></i>
-                    </th>
-                    <th class="th" (click)="SortByDate()">
-                      Date
-                      <i
-                        *ngIf="date_croissant && trie_date"
-                        class="fa fa-caret-down dropbtn"
-                      ></i>
-                      <i
-                        *ngIf="!date_croissant && trie_date"
-                        class="fa fa-caret-up dropbtn"
-                      ></i>
-                    </th>
-                    <th>Heure d'entré</th>
-                    <th>Heure de sortie</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    *ngFor="let item of pointages"
-                    [ngClass]="{
-                      fond1: item.lieu == 'Ambohijatovo',
-                      fond2: item.lieu == 'Mangasoavina',
-                      fond3: item.lieu == 'Andraharo'
-                    }"
-                    (click)="CheckDailyPointage(item)"
-                  >
-                    <td data-label="ID">
-                      {{ item.lieu }}
-                    </td>
-                    <td data-label="Nom">{{ item.date }}</td>
-                    <td data-label="Nom">{{ item.entry_time }}</td>
-                    <td data-label="Date">{{ item.exit_time }}</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div> -->
-    
-        <app-clocking-schedule></app-clocking-schedule>
-      </div>
-    <!-- security-register-pointage -->
+  </div>
+  <!--card-profil -->
+  <!-- chart -->
+  <div class="chart animation2 animation fade02">
+    <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
+  </div>
+  <!-- chart -->
+  <!-- security-register-pointage -->
+  <div class="pointage animation3 animation fade03">
+    <app-clocking-schedule></app-clocking-schedule>
+  </div>
+  <!-- security-register-pointage -->
 </div>
 <!-- profil security body -->
