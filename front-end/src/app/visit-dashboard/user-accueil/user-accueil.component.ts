@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-accueil',
@@ -23,7 +24,7 @@ export class UserAccueilComponent implements OnInit {
   public second!: string;
   public ampm!: string;
   public day!: string;
-  constructor() {
+  constructor(private route : Router) {
   }
 
   ngOnInit(): void {
@@ -46,5 +47,12 @@ export class UserAccueilComponent implements OnInit {
     this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
+  }
+
+  showPointage() {
+    this.route.navigate(['agent/pointage']);
+  }
+  showVisit() {
+    this.route.navigate(['agent/visit-active']);
   }
 }

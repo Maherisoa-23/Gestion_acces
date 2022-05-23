@@ -65,7 +65,7 @@ const appRoutes: Routes = [
       { path: '', component: AccueilComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
       { path: 'security-profile', component: SecurityProfileComponent },
-      { path: 'visit-admin', component: ListVisitAdminComponent },
+      { path: 'visit-admin', component: ListVisitAdminComponent }, 
       { path: 'visit-register', component: VisitRegisterComponent },
       { path: 'pointage-admin', component: PointageComponent },
       { path: 'pointage-register', component: PointageRegisterComponent },
