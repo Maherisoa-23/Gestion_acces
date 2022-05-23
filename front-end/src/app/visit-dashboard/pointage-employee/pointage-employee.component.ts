@@ -4,11 +4,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgToastService } from 'ng-angular-popup';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 @Component({
   selector: 'app-pointage-employee',
   templateUrl: './pointage-employee.component.html',
   styleUrls: ['./pointage-employee.component.css'],
   providers: [DatePipe],
+  animations: [
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter , :leave', [animate(1500)]),
+    ]),
+  ],
 })
 export class PointageEmployeeComponent implements OnInit {
   @Input() enteredValue = '';
@@ -70,6 +83,17 @@ export class PointageEmployeeComponent implements OnInit {
     });
   }
 
+
+  getDep(matricule : number) {
+    for (let index = 0; index < this.employees.length; index++) {
+      const element = this.employees[index];
+      if (element.numero_matricule == matricule){
+        return element.employee_dep_name
+      }
+    }
+    return 'None'
+  }
+
   OnEnter() {
     if (this.isPointed()) {
       this.toast.warning({
@@ -83,6 +107,14 @@ export class PointageEmployeeComponent implements OnInit {
       this.heure = new Date();
       this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
       this.date = this.datePipe.transform(this.date, 'dd:MM:yyyy');
+      var val1 = {
+        numero_matricule: this.getNumeroMatricule(this.enteredValue),
+        employee_name : this.enteredValue,
+        date: this.date.toString(),
+        employee_dep_name : this.getDep(this.getNumeroMatricule(this.enteredValue)),
+        lieu: this.lieu,
+        entry_time: this.heure.toString(),
+      };
       var val = {
         numero_matricule: this.getNumeroMatricule(this.enteredValue),
         date: this.date.toString(),
@@ -112,13 +144,20 @@ export class PointageEmployeeComponent implements OnInit {
       this.authServ.putEmployee(emp).subscribe((res) => {
         console.log(res.toString());
       });
-      setTimeout(() => {
-        this.refreshPointageList();
-      }, 500);
+      this.pointages.push(val1)
     }
     this.enteredValue = '';
   }
 
+
+  getInPointageList(name : string) : any {
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (element.employee_name == name) {
+        return element
+      }
+    }
+  }
   getNumeroMatricule(name: string) {
     for (let index = 0; index < this.employees.length; index++) {
       const element = this.employees[index];
@@ -156,6 +195,7 @@ export class PointageEmployeeComponent implements OnInit {
           }
           // console.log(data.toString() + ' from the active pointage ');
         });
+        this.pointages.splice(this.pointages.indexOf(this.getInPointageList(this.enteredValue)))
       //ajout dans le registre des pointages
       for (let index = 0; index < this.pointages.length; index++) {
         const element = this.pointages[index];
@@ -164,6 +204,16 @@ export class PointageEmployeeComponent implements OnInit {
         ) {
           this.heure = new Date();
           this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+          var val1 = {
+            numero_matricule: this.getNumeroMatricule(this.enteredValue),
+            date: element.date,
+            lieu: element.lieu,
+            employee_name: element.employee_name,
+            employee_dep: element.employee_dep,
+            entry_time: element.entry_time,
+          }
+          //animation miala
+          
           var val = {
             numero_matricule: this.getNumeroMatricule(this.enteredValue),
             date: element.date,
@@ -187,28 +237,10 @@ export class PointageEmployeeComponent implements OnInit {
         }
       }
     }
-
-    setTimeout(() => {
-      this.refreshPointageList();
-    }, 500);
+    
     console.log('refreshed');
     this.enteredValue = '';
   }
-
-  /* isEmployee(): boolean {
-    const md5 = new Md5()
-    const pass = md5.appendStr(this.password).end().toString()
-    for (let index = 0; index < this.employees.length; index++) {
-      const element = this.employees[index];
-      if (
-        element.numero_matricule == this.numero_matricule &&
-        element.password == pass
-      ) {
-        return true
-      };
-    }
-    return false
-  } */
 
   isPointed(): boolean {
     for (let index = 0; index < this.pointages.length; index++) {

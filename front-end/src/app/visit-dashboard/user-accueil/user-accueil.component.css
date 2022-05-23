@@ -224,11 +224,11 @@
   height: 400px;
 }
 .button .card .imgBx {
-  position: relative;
+  position: absolute;
   width: 260px;
-  height: 150px;
+  height: 100px;
   top: -40px;
-  left: 5px;
+  left: 15px;
   z-index: 1;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
@@ -256,7 +256,7 @@
 } */
 .button .card .content {
   position: relative;
-  margin-top: -140px;
+  margin-top: -80px;
   padding: 10px 15px;
   text-align: center;
   color: var(--color-blue);
@@ -267,8 +267,9 @@
 .button .card:hover .content {
   visibility: visible;
   opacity: 1;
-  margin-top: -40px;
+  margin-top: 80px;
   transition-delay: 0.3s;
+  overflow: hidden;
 }
 .button .card .aide {
   position: absolute;
@@ -298,13 +299,11 @@
 /* .help {
   grid-area: help;
   display: grid;
-
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "help1 help2";
   padding: 20px;
 }
-
 .help .help1 {
   grid-area: help1;
   width: 100%;

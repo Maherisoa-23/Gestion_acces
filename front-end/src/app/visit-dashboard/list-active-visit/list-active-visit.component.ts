@@ -19,7 +19,6 @@ import {
     trigger('fade', [
       state('void', style({ opacity: 0 })),
       transition(':enter , :leave', [animate(1000)]),
-      // transition('* => void', [animate(2000, style({ opacity: 0 }))]),
     ]),
   ],
 })
@@ -139,7 +138,7 @@ export class ListActiveVisitComponent implements OnInit {
       exit_time: this.date.toString(),
     };
     if (confirm('Vous êtes sûs?')) {
-      this.service.deleteVisit(item.visit_id).subscribe((data) => {});
+      this.service.deleteVisit(item.CIN).subscribe((data) => {});
       this.service.addVisitsRegister(val).subscribe((data) => {
         if (data.toString() == 'Added successfully to visit register') {
           this.toast.success({
@@ -151,9 +150,6 @@ export class ListActiveVisitComponent implements OnInit {
         // console.log(data.toString() + ' to the visit register ');
       });
     }
-
-    setTimeout(() => {
-      this.refreshVisitsList();
-    }, 500);
+    this.visitsList.splice(this.visitsList.indexOf(item))
   }
 }

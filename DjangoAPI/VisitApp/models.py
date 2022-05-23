@@ -3,10 +3,9 @@ from django.db import models
 # Create your models here.
 
 class Visits(models.Model) :
-    visit_id = models.AutoField(primary_key=True)
     visitor_name = models.CharField(max_length=50)
     motif = models.CharField(max_length=200)
-    CIN = models.IntegerField()
+    CIN = models.IntegerField(primary_key=True)
     lieu = models.CharField(max_length=30, null=True)
     date = models.CharField(max_length=30)
     entry_time = models.CharField(max_length=30)

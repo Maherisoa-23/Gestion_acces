@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VisitService {
-  readonly APIUrl = "http:192.168.1.29:8000"
+  //readonly APIUrl = "http:192.168.1.29:8000"
 
 
-  //readonly APIUrl = "http://localhost:8000"
+  readonly APIUrl = "http://localhost:8000"
   constructor(private http: HttpClient) { }
   
   getVisitsList(): Observable<any[]> {
