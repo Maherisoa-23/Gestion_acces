@@ -17,7 +17,7 @@ import {
   animations: [
     trigger('fade', [
       state('void', style({ opacity: 0 })),
-      transition(':enter , :leave', [animate(1500)]),
+      transition(':enter , :leave', [animate(1000)]),
     ]),
   ],
 })
@@ -45,7 +45,10 @@ export class PointageEmployeeComponent implements OnInit {
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
-    }, 1000);
+
+      //trie décroissant, ze tonga farany no eo ambony
+      this.pointages.sort((b : any,a : any) => a.entry_time.localeCompare(b.entry_time));
+    }, 700);
     this.refreshPointageList();
     this.getEmployeeList();
     
@@ -119,7 +122,7 @@ export class PointageEmployeeComponent implements OnInit {
       }
       setTimeout(() => {
         console.log("direction : " + val1.employee_dep_name)
-        this.pointages.push(val1)
+        this.pointages.unshift(val1)
       }, 500);
 
 
