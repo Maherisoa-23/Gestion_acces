@@ -58,6 +58,7 @@
 .titre h1 i {
   font-size: 25px;
   padding-right: 5px;
+  color: var(--color-text);
 }
 .section {
   width: 100%;

@@ -29,11 +29,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages" (click)="CheckDailyPointage(item)">
-        <td data-label="Nom">{{ item.employee_name }}</td>
-        <td data-label="Date">{{ item.date }}</td>
-        <td data-label="Heure d'entree">{{ item.entry_time }}</td>
-        <td data-label="Heure de sortie">{{ item.exit_time }}</td>
-        <td data-label="Depart">{{ item.lieu }}</td>
+        <td data-label="Nom">
+          <strong>{{ item.employee_name }}</strong>
+        </td>
+        <td data-label="Date">
+          <b>{{ item.date }}</b>
+        </td>
+        <td data-label="Heure d'entree">
+          <b>{{ item.entry_time }}</b>
+        </td>
+        <td data-label="Heure de sortie">
+          <b>{{ item.exit_time }}</b>
+        </td>
+        <td data-label="Lieu">
+          <i>{{ item.lieu }}</i>
+        </td>
         <td data-label="Depart">{{ item.employee_dep_name }}</td>
       </tr>
     </tbody>

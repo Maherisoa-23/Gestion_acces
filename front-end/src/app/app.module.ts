@@ -46,15 +46,13 @@ import { UniquePointageComponent } from './admin-dashboard/unique-pointage/uniqu
 import { ClockingScheduleComponent } from './admin-dashboard/security-profile/clocking-schedule/clocking-schedule.component';
 
 //pour le calendrier
-import { FullCalendarModule } from '@fullcalendar/angular'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import  interactionPlugin  from '@fullcalendar/interaction';
-import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-details.component'
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-details.component';
+import { EmployeeComponent } from './admin-dashboard/employee/employee.component';
 
-FullCalendarModule.registerPlugins([
-  dayGridPlugin,
-  interactionPlugin
-])
+FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
 const appRoutes: Routes = [
   {
@@ -63,14 +61,15 @@ const appRoutes: Routes = [
     component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
+      { path: 'Employee-list', component: EmployeeComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
       { path: 'security-profile', component: SecurityProfileComponent },
-      { path: 'visit-admin', component: ListVisitAdminComponent }, 
+      { path: 'visit-admin', component: ListVisitAdminComponent },
       { path: 'visit-register', component: VisitRegisterComponent },
       { path: 'pointage-admin', component: PointageComponent },
       { path: 'pointage-register', component: PointageRegisterComponent },
       { path: 'lieu-details', component: LieuDetailsComponent },
-      { path: 'unique-pointage', component: UniquePointageComponent }
+      { path: 'unique-pointage', component: UniquePointageComponent },
     ],
   },
   {
@@ -115,6 +114,7 @@ const appRoutes: Routes = [
     UniquePointageComponent,
     ClockingScheduleComponent,
     LieuDetailsComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,7 +126,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgToastModule,
     FullCalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     VisitService,

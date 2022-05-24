@@ -1,8 +1,8 @@
 <div class="titre animation1 animation fade01">
   <h1>Pointage actuel</h1>
 </div>
-<div id="auCentre animation1 animation fade01">
-  <div class="lieu animation1 animation fade01">
+<div id="auCentre" class="animation1 animation fade01">
+  <div class="lieu animation3 animation fade03">
     <h1>
       Lieu: <span>{{ lieu }}</span>
     </h1>
@@ -41,7 +41,7 @@
           <tr>
             <th>ID</th>
             <th>Nom</th>
-            <th>Departement</th>
+            <th>Direction</th>
             <th>Heure d'entré</th>
           </tr>
         </thead>
@@ -51,13 +51,15 @@
               {{ item.pointage_id }}
             </td>
             <td data-label="Nom" *ngIf="item.lieu == lieu">
-              {{ item.employee_name }}
+              <strong> {{ item.employee_name }}</strong>
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Direction" *ngIf="item.lieu == lieu">
               {{ item.employee_dep_name }}
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
-              {{ item.entry_time }}
+            <td data-label="Heure" *ngIf="item.lieu == lieu">
+              <strong>
+                <i> {{ item.entry_time }}</i></strong
+              >
             </td>
           </tr>
         </tbody>
@@ -84,13 +86,15 @@
               {{ item.pointage_id }}
             </td>
             <td data-label="Nom" *ngIf="item.lieu == lieu">
-              {{ item.employee_name }}
+              <strong> {{ item.employee_name }}</strong>
             </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">
               {{ item.employee_dep_name }}
             </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">
-              {{ item.entry_time }}
+              <strong>
+                <i> {{ item.entry_time }}</i></strong
+              >
             </td>
           </tr>
         </tbody>
@@ -117,13 +121,15 @@
               {{ item.pointage_id }}
             </td>
             <td data-label="Nom" *ngIf="item.lieu == lieu">
-              {{ item.employee_name }}
+              <strong> {{ item.employee_name }}</strong>
             </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">
               {{ item.employee_dep_name }}
             </td>
             <td data-label="Date" *ngIf="item.lieu == lieu">
-              {{ item.entry_time }}
+              <strong>
+                <i> {{ item.entry_time }}</i></strong
+              >
             </td>
           </tr>
         </tbody>

@@ -1,5 +1,5 @@
 <div class="titre animation1 animation fade01">
-  <h1><i class="fas fa-user-shield"></i> Les agents de securite</h1>
+  <h1><i class="fa fa-users"></i> Liste des employees</h1>
 </div>
 <div class="section animation1 animation fade01">
   <!--Liste tableau-->
@@ -28,25 +28,27 @@
             class="fa fa-caret-up dropbtn"
           ></i>
         </th>
-        <th>Dérnière connexion</th>
+        <th>Dernier pointage</th>
+        <th>Direction</th>
         <th>Option</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of securities">
-        <td data-label="Id">
+      <tr *ngFor="let item of employees">
+        <td data-label="ID">
           <strong>{{ item.numero_matricule }}</strong>
         </td>
-        <td data-label="Name">
+        <td data-label="Nom">
           <strong>{{ item.employee_name }}</strong>
         </td>
         <td data-label="Pointage">
-          <i> {{ getLastPointageBySec(item.numero_matricule) }}</i>
+          <i>{{ getLastPointageBySec(item.numero_matricule) }}</i>
+        </td>
+        <td data-label="Depart">
+          {{ item.department_name }}
         </td>
         <td>
-          <button class="voirprofil" (click)="ShowSecurityProfile(item)">
-            Voir profile
-          </button>
+          <button class="voirprofil">Voir profile</button>
         </td>
       </tr>
     </tbody>

@@ -3,21 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VisitService {
-  readonly APIUrl = "http://192.168.1.23:8000"
+  // readonly APIUrl = "http://192.168.1.23:8000"
 
+  readonly APIUrl = 'http://localhost:8000';
+  constructor(private http: HttpClient) {}
 
-  //readonly APIUrl = "http://localhost:8000"
-  constructor(private http: HttpClient) { }
-  
   getVisitsList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/visit/');
   }
 
   addVisit(val: any) {
-    return this.http.post(this.APIUrl + '/visit/',val);
+    return this.http.post(this.APIUrl + '/visit/', val);
   }
 
   deleteVisit(id: number) {
@@ -25,15 +24,14 @@ export class VisitService {
   }
 
   updateVisit(val: any) {
-    return this.http.put(this.APIUrl + '/visit/',val);
+    return this.http.put(this.APIUrl + '/visit/', val);
   }
 
   addVisitsRegister(val: any) {
-    return this.http.post(this.APIUrl + '/visits_register/',val);
+    return this.http.post(this.APIUrl + '/visits_register/', val);
   }
 
   getVisitsRegister(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/visits_register/');
   }
-
 }
