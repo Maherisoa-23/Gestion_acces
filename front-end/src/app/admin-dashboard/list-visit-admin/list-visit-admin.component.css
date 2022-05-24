@@ -13,7 +13,7 @@ input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 10px 10px;
   padding: 5px 0;
 }
 .titre h1 {
@@ -21,7 +21,7 @@ input {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--color-blue);
+  color: var(--color-text);
 }
 .lieu {
   display: flex;

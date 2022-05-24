@@ -10,18 +10,18 @@ class Department(models.Model):
     department_name = models.CharField(max_length=50)
     
 class Employee(models.Model) :
-    department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = False, default=1)
+    department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = True, default=1)
     department_name = models.CharField(max_length=50)
     numero_matricule = models.IntegerField(primary_key=True)
-    employee_name = models.CharField(max_length=50)
-    function   = models.CharField(max_length=50)
-    lieu = models.CharField(max_length=30)    
+    employee_name = models.CharField(max_length=100)
+    function   = models.CharField(max_length=200)
     pointed_at = models.CharField(max_length=30, default="not pointed") 
     
 class Pointage(models.Model):
     numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
+    function   = models.CharField(max_length=200)
     pointage_id = models.AutoField(primary_key=True)
     date = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)

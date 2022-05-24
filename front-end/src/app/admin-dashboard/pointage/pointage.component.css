@@ -21,7 +21,7 @@ input {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--color-blue);
+  color: var(--color-text);
 }
 .lieu {
   display: flex;
@@ -50,6 +50,7 @@ input {
   padding: 20px;
   text-align: justify;
   background: var(--color-bg);
+  /* background: var(--color-bg); */
   /* border: 2px solid red; */
 }
 

@@ -25,12 +25,20 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of visitsRegister">
-        <td data-label="Nom">{{ item.visitor_name }}</td>
-        <td data-label="Heure/Date">{{ item.lieu }}</td>
-        <td data-label="Motif">{{ item.date }}</td>
-        <td data-label="Depart">{{ item.entry_time }}</td>
-        <td data-label="Depart">{{ item.exit_time }}</td>
-        <td data-label="Depart">{{ item.motif }}</td>
+        <td data-label="Nom">
+          <strong>{{ item.visitor_name }}</strong>
+        </td>
+        <td data-label="Lieu">
+          <i>{{ item.lieu }}</i>
+        </td>
+        <td data-label="Date">
+          <b>{{ item.date }}</b>
+        </td>
+        <td data-label="Entree">{{ item.entry_time }}</td>
+        <td data-label="Sortie">{{ item.exit_time }}</td>
+        <td data-label="Motif">
+          <i>{{ item.motif }}</i>
+        </td>
       </tr>
     </tbody>
   </table>

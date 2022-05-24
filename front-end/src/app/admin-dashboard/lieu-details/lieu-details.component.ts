@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -27,7 +29,8 @@ export class LieuDetailsComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private authServ: AuthService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -117,5 +120,8 @@ export class LieuDetailsComponent implements OnInit {
         this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
       );
     }
+  }
+  showAccueil() {
+    this.route.navigate(['admin/']);
   }
 }

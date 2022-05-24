@@ -1,13 +1,35 @@
 /*titre*/
 .titre {
-  display: flex;
-  justify-content: flex-start;
+  /* border: 2px solid red; */
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr;
+  margin: 0 10px 10px;
+  padding: 0 5px 5px;
+  /* display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 0 10px;
-  padding: 5px 0;
+  margin: 10px;
+  padding: 5px; */
+  /* background: var(--color-bg);
+    box-shadow: 2px 2px 5px var(--color-titre); */
+}
+.titre button {
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--color-bg);
+  background: var(--color-text);
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
 .titre h1 {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;

@@ -15,7 +15,7 @@ export class AuthentificationComponent implements OnInit {
   authStatus!: boolean;
   authName!: string;
   @Input() numero_matricule: any;
-  readonly adminMatricule = 1111;
+  readonly adminMatricule = 1087;
   @Input() password: string = '';
   @Input() selected_lieu = '';
   Lieu: any; // Objet
@@ -179,6 +179,8 @@ export class AuthentificationComponent implements OnInit {
       console.log(res.toString() + ' to the pointage list');
     });
   }
+
+  
 
   //animation du formulaire d'euthentification
   ClickOnInput1() {
