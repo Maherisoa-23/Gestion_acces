@@ -39,7 +39,8 @@ class Pointage_serializer(serializers.ModelSerializer):
                   'employee_dep_name',
                   'date',
                   'lieu',
-                  'entry_time'
+                  'entry_time',
+                  'function'
                   )
         
 class Pointage_register_serializer(serializers.ModelSerializer):

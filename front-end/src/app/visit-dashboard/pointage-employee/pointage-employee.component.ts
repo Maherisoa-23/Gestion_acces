@@ -45,6 +45,7 @@ export class PointageEmployeeComponent implements OnInit {
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
+      console.log('pointages = ' + this.pointages.length)
 
       //trie décroissant, ze tonga farany no eo ambony
       this.pointages.sort((b : any,a : any) => a.entry_time.localeCompare(b.entry_time));
@@ -189,6 +190,9 @@ export class PointageEmployeeComponent implements OnInit {
       this.enteredValue = '';
     } else {
 
+      //enregistrement dans pointage register
+      this.addPointageRegister(this.enteredValue);
+
       //Pour modifier le pointed_at
       const emp = {
         numero_matricule: this.getNumeroMatricule(this.enteredValue),
@@ -217,8 +221,7 @@ export class PointageEmployeeComponent implements OnInit {
       //animation sortie
       this.pointages = this.pointages.filter((f : any) => { return f.employee_name != this.enteredValue})
 
-      //enregistrement dans pointage register
-      this.addPointageRegister(this.enteredValue);
+      
     }
     this.enteredValue = '';
   }
@@ -253,22 +256,13 @@ export class PointageEmployeeComponent implements OnInit {
   addPointageRegister(employee_name : string) {
     //ajout dans le registre des pointages
     for (let index = 0; index < this.pointages.length; index++) {
+      
       const element = this.pointages[index];
       if (
         element.employee_name == employee_name
       ) {
-        console.log("For the pointage Register ***** ")
         this.heure = new Date();
         this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
-        var val1 = {
-          numero_matricule: this.getNumeroMatricule(employee_name),
-          date: element.date,
-          lieu: element.lieu,
-          employee_name: element.employee_name,
-          employee_dep: element.employee_dep,
-          entry_time: element.entry_time,
-        }
-        
         var val = {
           numero_matricule: this.getNumeroMatricule(employee_name),
           date: element.date,

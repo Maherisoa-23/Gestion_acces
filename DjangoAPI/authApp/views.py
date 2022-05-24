@@ -83,7 +83,7 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse(employee_serializer.data, safe = False)
     return JsonResponse("Failded to delete", safe = False)
 
-@csrf_exempt
+@csrf_exempt 
 def pointage_API(request: HttpRequest, id = 0):
     if request.method == 'GET':
         pointage = Pointage.objects.all()
@@ -93,8 +93,10 @@ def pointage_API(request: HttpRequest, id = 0):
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep_name"] = employee.department_name     
+        pointage_data["employee_dep_name"] = employee.department_name   
+          
         pointage_data["function"] = employee.function    
+        print(" function " + pointage_data["function"])
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
