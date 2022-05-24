@@ -19,7 +19,7 @@ def user_API(request: HttpRequest, id=0):
         return JsonResponse(user_serializer.data, safe=False)
     elif request.method== 'POST':
         user = Pointage.objects.filter(function = "AGENT DE SECURITE")
-        user_serializer = User_serializer(user, many=True)
+        user_serializer = Pointage_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
