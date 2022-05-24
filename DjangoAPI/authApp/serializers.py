@@ -17,7 +17,6 @@ class Employee_serializer(serializers.ModelSerializer):
         fields = (
                   'employee_name',
                   'function',
-                  'lieu',
                   'numero_matricule',
                   'department',
                   'department_name',

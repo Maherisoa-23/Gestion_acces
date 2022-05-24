@@ -19,7 +19,7 @@ def user_API(request: HttpRequest, id=0):
         return JsonResponse(user_serializer.data, safe=False)
     elif request.method== 'POST':
         user_data = JSONParser().parse(request)
-        user_data["password"] = hashlib.md5(user_data["password"].encode()).hexdigest()
+        #user_data["password"] = hashlib.md5(user_data["password"].encode()).hexdigest()
         user_serializer = User_serializer(data=user_data)
         if user_serializer.is_valid():
             user_serializer.save()
@@ -97,7 +97,8 @@ def pointage_API(request: HttpRequest, id = 0):
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep_name"] = employee.department_name         
+        pointage_data["employee_dep_name"] = employee.department_name     
+        pointage_data["function"] = employee.function    
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
@@ -140,7 +141,7 @@ def security_API(request: HttpRequest, id=0):
     #liste de sécurité actif à un lieu 
     elif request.method == 'POST':
         request_data = JSONParser().parse(request)
-        pointage_tab = Pointage.objects.filter(lieu = request_data["lieu"], employee_dep_name = "SECURITE")      
+        pointage_tab = Pointage.objects.filter(lieu = request_data["lieu"], function = "AGENT DE SECURITE")      
         pointage_serializer = Pointage_serializer(pointage_tab, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
     #filtrer les pointages par département
