@@ -1,0 +1,57 @@
+<div class="titre animation1 animation fade01">
+  <h1><i class="fa fa-users"></i> Liste des employees</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table class="tbl animation1 animation fade01">
+    <thead>
+      <tr>
+        <th class="th" (click)="SortByMatricule()">
+          Numero Matricule
+          <i
+            *ngIf="matricule_croissant && trie_matricule"
+            class="fa fa-caret-down dropbtn"
+          ></i>
+          <i
+            *ngIf="!matricule_croissant && trie_matricule"
+            class="fa fa-caret-up dropbtn"
+          ></i>
+        </th>
+        <th class="th" (click)="SortByName()">
+          Nom
+          <i
+            *ngIf="nom_croissant && trie_nom"
+            class="fa fa-caret-down dropbtn"
+          ></i>
+          <i
+            *ngIf="!nom_croissant && trie_nom"
+            class="fa fa-caret-up dropbtn"
+          ></i>
+        </th>
+        <th>Dernier pointage</th>
+        <th>Direction</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of employees">
+        <td data-label="ID">
+          <strong>{{ item.numero_matricule }}</strong>
+        </td>
+        <td data-label="Nom">
+          <strong>{{ item.employee_name }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <i>{{ getLastPointageBySec(item.numero_matricule) }}</i>
+        </td>
+        <td data-label="Depart">
+          {{ item.department_name }}
+        </td>
+        <td>
+          <button class="voirprofil">Voir profile</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>
