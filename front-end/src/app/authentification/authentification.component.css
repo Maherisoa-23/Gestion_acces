@@ -153,13 +153,13 @@ form {
 form .div ul {
   display: block;
   list-style-type: none;
-  font-size: 16px;
-  font-weight: 800px;
-  color: var(--color-green);
+  font-size: 12px;
+  font-weight: 600px;
+  color: var(--color-text);
   letter-spacing: 2px;
   /* background: var(--color-green); */
-  margin-top: 60px;
-  margin-right: 200px;
+  margin-top: -10px;
+  margin-left: 150px;
   /* z-index: 1; */
 }
 

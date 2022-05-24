@@ -33,6 +33,7 @@ export class SecurityAgentComponent implements OnInit {
     }, 500);
   }
 
+  //security = user
   refreshSecurityList() {
     this.authServ
       .getUsersList()

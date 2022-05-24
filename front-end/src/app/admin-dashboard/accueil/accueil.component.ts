@@ -15,6 +15,8 @@ export class AccueilComponent implements OnInit {
   admin: any;
 
   lieux : any
+
+
   // Clock
   Date: Date = new Date();
   private daysArray = [
@@ -48,6 +50,8 @@ export class AccueilComponent implements OnInit {
     this.day = this.daysArray[this.date.getDay()];
     this.refresh();
   }
+
+  //Methode de l'horloge
   private updateDate(date: Date) {
     const hours = date.getHours();
     this.ampm = hours >= 12 ? 'PM' : 'AM';
@@ -60,7 +64,6 @@ export class AccueilComponent implements OnInit {
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
 
-
   refreshPointageList() {
     this.authServ.getPointageList().subscribe((data) => {
       this.pointages = data;
@@ -68,12 +71,14 @@ export class AccueilComponent implements OnInit {
   }
 
   refresh() {
+    const val = "";
     this.refreshLieuxList()
     this.refreshPointageList();
-    this.authServ.getPointageByDep(3).subscribe((data) => {
+    this.authServ.getActiveUsersList(val).subscribe((data) => {
       this.activeSecurityList = data
     });
   }
+
   refreshLieuxList(){
     this.authServ.getLieuList().subscribe((data) => {
       this.lieux = data

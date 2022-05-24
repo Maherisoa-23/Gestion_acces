@@ -42,6 +42,10 @@ export class AuthService {
   getUsersList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/user/');
   }
+  //liste des sécurité présent
+  getActiveUsersList(val : any): Observable<any[]> {
+    return this.http.post<any[]>(this.APIUrl + '/user/', val);
+  }
 
   //Methode pour les employés
 

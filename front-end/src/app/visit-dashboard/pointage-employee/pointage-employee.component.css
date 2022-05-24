@@ -176,10 +176,10 @@ input[type="password"] {
 }
 .container ul {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding-right: 20px;
   list-style-type: none;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800px;
   letter-spacing: 2px;
   color: var(--color-blue);
@@ -188,12 +188,18 @@ input[type="password"] {
 .container ul li {
   margin: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
+  color: var(--color-titre);
+}
+.container ul li span {
+  color: var(--color-red);
 }
 .container ul li:hover {
   color: var(--color-green);
-  border-bottom: 2px solid var(--color-green);
-  font-size: 16px;
+  border: 2px solid var(--color-green);
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 12px;
 }
 .modal form .container .btn-cancel {
   background-color: var(--color-red);

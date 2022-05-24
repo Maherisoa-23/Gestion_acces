@@ -18,13 +18,9 @@ def user_API(request: HttpRequest, id=0):
         user_serializer = User_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
     elif request.method== 'POST':
-        user_data = JSONParser().parse(request)
-        #user_data["password"] = hashlib.md5(user_data["password"].encode()).hexdigest()
-        user_serializer = User_serializer(data=user_data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JsonResponse("Added successfully",safe=False)
-        return JsonResponse("failded to add", safe= False)
+        user = Pointage.objects.filter(function = "AGENT DE SECURITE")
+        user_serializer = User_serializer(user, many=True)
+        return JsonResponse(user_serializer.data, safe=False)
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
         user= User.objects.get(user_id = user_data['user_id'] )

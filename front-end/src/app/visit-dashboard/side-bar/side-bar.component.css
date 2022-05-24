@@ -71,9 +71,9 @@
   margin: 20px 0;
   padding: 0;
   align-items: center;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: capitalize;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--color-fond);
 }
 .users h1 i {
