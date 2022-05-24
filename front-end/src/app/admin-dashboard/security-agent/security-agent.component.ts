@@ -35,7 +35,7 @@ export class SecurityAgentComponent implements OnInit {
 
   refreshSecurityList() {
     this.authServ
-      .getEmployeeListByDep(this.direction_security)
+      .getUsersList()
       .subscribe((data) => {
         this.securities = data;
       });
@@ -58,16 +58,17 @@ export class SecurityAgentComponent implements OnInit {
       const element = this.pointage_register[index];
       if (element.numero_matricule == matricule) {
         this.last_pointage = element;
+        return (
+          'le ' +
+          this.last_pointage.date +
+          ' ' +
+          this.last_pointage.exit_time +
+          ' à ' +
+          this.last_pointage.lieu
+        );
       }
     }
-    return (
-      'le ' +
-      this.last_pointage.date +
-      ' ' +
-      this.last_pointage.exit_time +
-      ' à ' +
-      this.last_pointage.lieu
-    );
+    return " - "
   }
 
   SortByName() {

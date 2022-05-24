@@ -59,16 +59,17 @@ export class EmployeeComponent implements OnInit {
       const element = this.pointage_register[index];
       if (element.numero_matricule == matricule) {
         this.last_pointage = element;
+        return (
+          'le ' +
+          this.last_pointage.date +
+          ' ' +
+          this.last_pointage.exit_time +
+          ' à ' +
+          this.last_pointage.lieu
+        );
       }
     }
-    return (
-      'le ' +
-      this.last_pointage.date +
-      ' ' +
-      this.last_pointage.exit_time +
-      ' à ' +
-      this.last_pointage.lieu
-    );
+    return " - "
   }
 
   SortByName() {
@@ -102,14 +103,4 @@ export class EmployeeComponent implements OnInit {
       this.matricule_croissant = false;
     }
   }
-
-  // ShowSecurityProfile(security: any) {
-  //   this.authServ.refreshPointageList();
-  //   setTimeout(() => {
-  //     this.SecurityServ.matricule_security = security.numero_matricule;
-  //     this.SecurityServ.security_name = security.employee_name;
-  //     this.SecurityServ.pointed_at = security.pointed_at;
-  //     this.route.navigate(['admin/security-profile']);
-  //   }, 1000);
-  // }
 }
