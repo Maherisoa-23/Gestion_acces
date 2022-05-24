@@ -6,27 +6,11 @@
   <table class="tbl animation1 animation fade01">
     <thead>
       <tr>
-        <th class="th" (click)="SortByMatricule()">
+        <th class="th">
           Numero Matricule
-          <i
-            *ngIf="matricule_croissant && trie_matricule"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!matricule_croissant && trie_matricule"
-            class="fa fa-caret-up dropbtn"
-          ></i>
         </th>
-        <th class="th" (click)="SortByName()">
+        <th class="th">
           Nom
-          <i
-            *ngIf="nom_croissant && trie_nom"
-            class="fa fa-caret-down dropbtn"
-          ></i>
-          <i
-            *ngIf="!nom_croissant && trie_nom"
-            class="fa fa-caret-up dropbtn"
-          ></i>
         </th>
         <th>Dérnière connexion</th>
         <th>Option</th>

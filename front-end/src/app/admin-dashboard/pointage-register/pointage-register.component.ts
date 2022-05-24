@@ -10,18 +10,6 @@ declare var $: any;
   styleUrls: ['./pointage-register.component.css'],
 })
 export class PointageRegisterComponent implements OnInit {
-  dep_croissant = false;
-  trie_dep = false;
-  entry_time_croissant = false;
-  trie_entry_time = false;
-  exit_time_croissant = false;
-  trie_exit_time = false;
-  date_croissant = false;
-  trie_date = false;
-  nom_croissant = false;
-  trie_nom = false;
-  trie_lieu = false;
-  lieu_croissant = false;
 
   pointages: any;
   departments: any;
@@ -41,7 +29,10 @@ export class PointageRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.refreshPointageRegisterList();
     this.refreshDepList();
-    //datepicker
+    this.setUpDatePicker()      
+  }
+
+  setUpDatePicker() {
     setTimeout(() => {
       this.isShow = true
       this.dtOptions = {
@@ -50,12 +41,13 @@ export class PointageRegisterComponent implements OnInit {
         lengthMenu : [10, 15, 25],
         processing: true,
       };
-    },500)
+    },600)
+    
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
-    });    
+    }); 
   }
 
   refreshPointageRegisterList() {

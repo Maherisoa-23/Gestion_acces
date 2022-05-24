@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
 import { AuthService } from 'src/app/services/auth.service';
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -17,10 +19,17 @@ export class EmployeeComponent implements OnInit {
   matricule_croissant = false;
   departments: any;
 
+  dtOptions: DataTables.Settings = {};
+  isShow = false
+  //filtrage personnalisé
+  @ViewChild ( DataTableDirective , { static : false }) 
+  datatableElement : any = DataTableDirective ; 
+
   constructor(
     private authServ: AuthService,
     // private SecurityServ: SecurityAgentService,
-    private route: Router
+    private route: Router,
+    private SecurityServ : SecurityAgentService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +38,27 @@ export class EmployeeComponent implements OnInit {
     setTimeout(() => {
       this.refreshSecurityList();
     }, 500);
+    this.setUpDatePicker()
   }
+
+  setUpDatePicker() {
+    setTimeout(() => {
+      this.isShow = true
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        lengthMenu : [10, 15, 25],
+        processing: true,
+      };
+    },600)
+    
+    $('.dateadded').on('change', function (ret: any) {
+      var v = ret.target.value; // getting search input value
+
+      $('#dataTables-example').DataTable().columns(1).search(v).draw();
+    }); 
+  }
+
   refreshDepList() {
     this.authServ.getDepartmentList().subscribe((data) => {
       this.departments = data;
@@ -72,35 +101,13 @@ export class EmployeeComponent implements OnInit {
     return " - "
   }
 
-  SortByName() {
-    this.trie_nom = true;
-    this.trie_matricule = false;
-    if (!this.nom_croissant) {
-      this.employees.sort((a: any, b: any) =>
-        a.employee_name.localeCompare(b.employee_name)
-      );
-      this.nom_croissant = true;
-    } else {
-      this.employees.sort((b: any, a: any) =>
-        a.employee_name.localeCompare(b.employee_name)
-      );
-      this.nom_croissant = false;
-    }
-  }
-
-  SortByMatricule() {
-    this.trie_matricule = true;
-    this.trie_nom = false;
-    if (!this.matricule_croissant) {
-      this.employees.sort(
-        (a: any, b: any) => a.numero_matricule - b.numero_matricule
-      );
-      this.matricule_croissant = true;
-    } else {
-      this.employees.sort(
-        (b: any, a: any) => a.numero_matricule - b.numero_matricule
-      );
-      this.matricule_croissant = false;
-    }
+  ShowSecurityProfile(security: any) {
+    this.authServ.refreshPointageList();
+    setTimeout(() => {
+      this.SecurityServ.matricule_security = security.numero_matricule;
+      this.SecurityServ.security_name = security.employee_name;
+      this.SecurityServ.pointed_at = security.pointed_at;
+      this.route.navigate(['admin/security-profile']);
+    }, 1000);
   }
 }
