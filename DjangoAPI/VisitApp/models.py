@@ -1,11 +1,18 @@
 from django.db import models
 
 # Create your models here.
-
-class Visits(models.Model) :
+class Visitors(models.Model) :
+    visitor_id = models.AutoField(primary_key=True)
     visitor_name = models.CharField(max_length=50)
-    motif = models.CharField(max_length=200)
-    CIN = models.IntegerField(primary_key=True)
+    CIN = models.IntegerField(null=True)
+    comment = models.CharField(max_length=200, null=True) #Au cas ou le visiteur n'as pas de CIN
+
+class Visits_actif(models.Model) :
+    visit_id = models.AutoField(primary_key=True)
+    visitor_name = models.CharField(max_length=50)
+    motif = models.CharField(max_length=300)
+    CIN = models.IntegerField(null=True)
+    comment = models.CharField(max_length=200, null = True) #Au cas ou le visiteur n'as pas de CIN
     lieu = models.CharField(max_length=30, null=True)
     date = models.CharField(max_length=30)
     entry_time = models.CharField(max_length=30)

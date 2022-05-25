@@ -1,12 +1,23 @@
 from rest_framework import serializers
-from VisitApp.models import Visits, Visits_register,Lieu
+from VisitApp.models import Visits_actif, Visits_register,Lieu, Visitors
 
+class Visitor_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Visitors
+        fields = (
+                  'visitor_id',
+                  'visitor_name',
+                  'CIN',
+                  'comment'
+                  )
+        
 class Visit_serializer(serializers.ModelSerializer):
     class Meta:
-        model = Visits
+        model = Visits_actif
         fields = ('visitor_name',
                   'motif',
                   'CIN',
+                  'comment',
                   'lieu',
                   'date',
                   'entry_time'
