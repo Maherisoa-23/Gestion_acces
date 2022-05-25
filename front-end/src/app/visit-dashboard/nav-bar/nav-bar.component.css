@@ -15,7 +15,7 @@ h1 {
   align-items: center;
   margin-left: 30px;
   color: var(--color-blue);
-  text-shadow: 1px 1px 1px var(--color-text);
+  text-shadow: 1px 1px 5px var(--color-fond);
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -34,8 +34,23 @@ p {
   text-transform: none;
   margin: 5px 0 5px 750px;
 }
-
 /*media*/
+@media screen and (max-width: 1300px) {
+  /*header*/
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-blue);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
+  p {
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
   /*header*/
   h1 {

@@ -11,7 +11,11 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--color-blue);
+  color: var(--color-text);
+}
+.titre h1 i {
+  font-size: 25px;
+  padding-right: 5px;
 }
 .section {
   display: grid;
@@ -142,17 +146,14 @@
   justify-content: flex-start;
 }
 .bienvenue h1 {
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 800;
   margin: 20px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-text);
 }
-.bienvenue h1 span {
-  text-transform: uppercase;
-  color: var(--color-blue);
-}
+
 .bienvenue .img {
   width: 80%;
   height: 300px;
