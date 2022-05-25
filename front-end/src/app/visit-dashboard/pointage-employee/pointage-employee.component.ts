@@ -21,6 +21,7 @@ import {
     ]),
   ],
 })
+
 export class PointageEmployeeComponent implements OnInit {
   @Input() enteredValue = '';
 
@@ -53,14 +54,6 @@ export class PointageEmployeeComponent implements OnInit {
     this.refreshPointageList();
     this.getEmployeeList();
     
-  }
-
-  showInfo() {
-    this.toast.info({
-      detail: 'ATTENTION',
-      summary: 'Bien saisir et bien verifier le nom',
-      duration: 5000,
-    });
   }
 
   refreshPointageList() {
@@ -278,5 +271,14 @@ export class PointageEmployeeComponent implements OnInit {
         
       }
     }
+  }
+
+  
+  showInfo() {
+    this.toast.info({
+      detail: 'ATTENTION',
+      summary: 'Bien saisir et bien verifier le nom',
+      duration: 5000,
+    });
   }
 }

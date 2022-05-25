@@ -5,7 +5,7 @@
     onclick="document.getElementById('id01').style.display='block'"
     (click)="showInfo()"
   >
-    Ajout Nouvelle Visite
+    Ajout Nouvelle Visite 
   </button>
 </div>
 
@@ -25,6 +25,18 @@
     <div class="container">
       <label><b>Nom Visiteur </b></label>
       <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
+      <ul *ngFor="let item of visitors">
+        <li
+          *ngIf="
+            item.visitor_name
+              .toLowerCase()
+              .includes(visitor_name.toLowerCase()) && visitor_name
+          "
+          (click)="suggested(item)"
+        >
+          {{ item.visitor_name }} 
+        </li>
+      </ul>
 
       <label><b>Numero CIN </b></label><br />
       <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
