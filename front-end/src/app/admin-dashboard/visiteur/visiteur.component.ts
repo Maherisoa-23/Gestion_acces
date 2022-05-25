@@ -1,23 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
-import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
+import { VisitService } from 'src/app/services/visit.service';
 @Component({
   selector: 'app-visiteur',
   templateUrl: './visiteur.component.html',
   styleUrls: ['./visiteur.component.css'],
 })
 export class VisiteurComponent implements OnInit {
-  employees: any;
-  pointage_register: any;
-  pointages: any;
-  last_pointage: any;
-  trie_nom = false;
-  trie_matricule = false;
-  nom_croissant = false;
-  matricule_croissant = false;
-  departments: any;
+  visitors: any;
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -26,17 +18,16 @@ export class VisiteurComponent implements OnInit {
   datatableElement: any = DataTableDirective;
 
   constructor(
-    private authServ: AuthService,
+    private visitServ: VisitService,
     // private SecurityServ: SecurityAgentService,
     private route: Router,
     private SecurityServ: SecurityAgentService
   ) {}
 
   ngOnInit(): void {
-    this.refreshPointageRegisterList();
-    this.refreshDepList();
+    this.refreshVisitorList();
     setTimeout(() => {
-      this.refreshSecurityList();
+      
     }, 500);
     this.setUpDatePicker();
   }
@@ -59,54 +50,16 @@ export class VisiteurComponent implements OnInit {
     });
   }
 
-  refreshDepList() {
-    this.authServ.getDepartmentList().subscribe((data) => {
-      this.departments = data;
+  refreshVisitorList() {
+    this.visitServ.getVisitorList().subscribe((data) => {
+      this.visitors = data;
     });
   }
 
-  refreshSecurityList() {
-    this.authServ.getEmployeeList().subscribe((data) => {
-      this.employees = data;
-    });
-  }
-
-  refreshPointageList() {
-    this.authServ.getPointageList().subscribe((data) => {
-      this.pointages = data;
-    });
-  }
-
-  refreshPointageRegisterList() {
-    this.authServ.getPointageRegisterList().subscribe((data) => {
-      this.pointage_register = data;
-    });
-  }
-
-  getLastPointageBySec(matricule: number) {
-    for (let index = 0; index < this.pointage_register.length; index++) {
-      const element = this.pointage_register[index];
-      if (element.numero_matricule == matricule) {
-        this.last_pointage = element;
-        return (
-          'le ' +
-          this.last_pointage.date +
-          ' ' +
-          this.last_pointage.exit_time +
-          ' à ' +
-          this.last_pointage.lieu
-        );
-      }
-    }
-    return ' - ';
-  }
-
-  ShowSecurityProfile(security: any) {
-    this.authServ.refreshPointageList();
+  ShowSecurityProfile(visitor: any) {
+    this.visitServ.visitor_name = visitor.visitor_name
     setTimeout(() => {
-      this.SecurityServ.matricule_security = security.numero_matricule;
-      this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.pointed_at;
+      this.visitServ
       this.route.navigate(['admin/Visiteur-profile']);
     }, 1000);
   }
