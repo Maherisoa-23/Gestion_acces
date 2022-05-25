@@ -6,12 +6,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service'; 
 
 @Component({
-  selector: 'app-clocking-schedule',
-  templateUrl: './clocking-schedule.component.html',
-  styleUrls: ['./clocking-schedule.component.css'],
-  providers: [DatePipe],
+  selector: 'app-calendrier-visite',
+  templateUrl: './calendrier-visite.component.html',
+  styleUrls: ['./calendrier-visite.component.css']
 })
-export class ClockingScheduleComponent implements OnInit {
+export class CalendrierVisiteComponent implements OnInit {
 
   matricule_security = 5;
   pointages: any = [];

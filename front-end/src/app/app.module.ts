@@ -53,6 +53,7 @@ import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-detail
 import { EmployeeComponent } from './admin-dashboard/employee/employee.component';
 import { VisiteurComponent } from './admin-dashboard/visiteur/visiteur.component';
 import { VisiteurProfileComponent } from './admin-dashboard/visiteur/visiteur-profile/visiteur-profile.component';
+import { CalendrierVisiteComponent } from './admin-dashboard/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
@@ -121,6 +122,7 @@ const appRoutes: Routes = [
     EmployeeComponent,
     VisiteurComponent,
     VisiteurProfileComponent,
+    CalendrierVisiteComponent,
   ],
   imports: [
     BrowserModule,
