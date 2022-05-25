@@ -51,6 +51,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-details.component';
 import { EmployeeComponent } from './admin-dashboard/employee/employee.component';
+import { VisiteurComponent } from './admin-dashboard/visiteur/visiteur.component';
+import { VisiteurProfileComponent } from './admin-dashboard/visiteur/visiteur-profile/visiteur-profile.component';
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
@@ -62,6 +64,8 @@ const appRoutes: Routes = [
     children: [
       { path: '', component: AccueilComponent },
       { path: 'Employee-list', component: EmployeeComponent },
+      { path: 'Visiteur-list', component: VisiteurComponent },
+      { path: 'Visiteur-profile', component: VisiteurProfileComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
       { path: 'security-profile', component: SecurityProfileComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent },
@@ -115,6 +119,8 @@ const appRoutes: Routes = [
     ClockingScheduleComponent,
     LieuDetailsComponent,
     EmployeeComponent,
+    VisiteurComponent,
+    VisiteurProfileComponent,
   ],
   imports: [
     BrowserModule,

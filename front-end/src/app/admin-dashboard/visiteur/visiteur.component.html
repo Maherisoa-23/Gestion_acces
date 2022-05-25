@@ -1,0 +1,44 @@
+<div class="titre animation1 animation fade01">
+  <h1><i class="fas fa-user-clock"></i>Liste des visiteurs</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table
+    class="tbl animation1 animation fade01"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
+    <thead>
+      <tr>
+        <th class="th">Numero Matricule</th>
+        <th class="th">Nom</th>
+        <th>Dernier pointage</th>
+        <th>Direction</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of employees">
+        <td data-label="ID">
+          <strong>{{ item.numero_matricule }}</strong>
+        </td>
+        <td data-label="Nom">
+          <strong>{{ item.employee_name }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <i>{{ getLastPointageBySec(item.numero_matricule) }}</i>
+        </td>
+        <td data-label="Depart">
+          {{ item.department_name }}
+        </td>
+        <td>
+          <button class="voirprofil" (click)="ShowSecurityProfile(item)">
+            Voir profile
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>
