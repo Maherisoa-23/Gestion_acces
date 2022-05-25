@@ -10,7 +10,7 @@ import { VisitService } from 'src/app/services/visit.service';
 })
 export class VisiteurComponent implements OnInit {
   visitors: any;
-
+  description : any;
   dtOptions: DataTables.Settings = {};
   isShow = false;
   //filtrage personnalisé
@@ -56,8 +56,10 @@ export class VisiteurComponent implements OnInit {
     });
   }
 
-  ShowSecurityProfile(visitor: any) {
+  ShowVisitorProfile(visitor: any) {
     this.visitServ.visitor_name = visitor.visitor_name
+    this.visitServ.CIN = visitor.CIN
+    this.visitServ.description = visitor.description
     setTimeout(() => {
       this.visitServ
       this.route.navigate(['admin/Visiteur-profile']);

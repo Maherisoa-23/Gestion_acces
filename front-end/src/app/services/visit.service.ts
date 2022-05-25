@@ -13,6 +13,8 @@ export class VisitService {
   constructor(private http: HttpClient) {}
 
   visitor_name = ""
+  CIN = 0
+  description = ""
 
   //methode pour les visiteurs
   getVisitorList(): Observable<any[]> {
