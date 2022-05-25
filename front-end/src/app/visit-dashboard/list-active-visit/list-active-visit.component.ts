@@ -27,7 +27,7 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() visitor_name = '';
   @Input() motif = '';
   @Input() CIN = 0;
-  @Input() comment = "";
+  @Input() comment = null;
 
   constructor(
     private visitServ: VisitService,
@@ -118,15 +118,17 @@ export class ListActiveVisitComponent implements OnInit {
       CIN: this.CIN,
       comment : this.comment
     };
-    this.visitServ.addVisitor(val).subscribe((res) => {})
+    this.visitServ.addVisitor(val).subscribe((res) => {
+      alert(res.toString())
+    })
   }
 
   isNewVisitor(visitor : string) {
     for (let index = 0; index < this.visitors.length; index++) {
       const element = this.visitors[index];
-      if (element.visitor_name == visitor) return true
+      if (element.visitor_name == visitor) return false
     }
-    return false
+    return true
   }
 
   exit(item: any) {
