@@ -1,0 +1,39 @@
+<div class="titre animation1 animation fade01">
+  <h1><i class="fas fa-user-shield"></i> Les agents de securite</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table class="tbl animation1 animation fade01">
+    <thead>
+      <tr>
+        <th class="th">
+          Numero Matricule
+        </th>
+        <th class="th">
+          Nom
+        </th>
+        <th>Dérnière connexion</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of securities">
+        <td data-label="Id">
+          <strong>{{ item.numero_matricule }}</strong>
+        </td>
+        <td data-label="Name">
+          <strong>{{ item.user_name }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <i> {{ getLastPointageBySec(item.numero_matricule) }}</i>
+        </td>
+        <td>
+          <button class="voirprofil" (click)="ShowSecurityProfile(item)">
+            Voir profile
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>

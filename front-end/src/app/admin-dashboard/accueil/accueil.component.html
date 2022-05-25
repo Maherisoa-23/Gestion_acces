@@ -1,0 +1,61 @@
+<!--body-->
+<div class="accueil-container">
+  <div class="clocks anim3 animate fade3">
+    <!-- bienvenue -->
+    <div class="bienvenue">
+      <h1>Bienvenue <span>Admin</span></h1>
+      <div class="img">
+        <img src="assets/img/undraw_hello_re_3evm.svg" />
+      </div>
+    </div>
+    <!-- bienvenu -->
+    <div class="heure">
+      <div id="clock">
+        <h2>{{ Date | date: "fullDate" }}</h2>
+        <div id="time">
+          <div>
+            <span id="hour">{{ hour }}</span> <span>Heures</span>
+          </div>
+          <div>
+            <span id="minutes">{{ minute }}</span> <span>Minutes</span>
+          </div>
+          <div>
+            <span id="seconds">{{ second }}</span> <span>Secondes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- date/heure -->
+  </div>
+  <!--header-->
+  <div class="accueil-header">
+    <!--eto-->
+    <app-lieu-card
+      *ngFor="let item of lieux"
+      [lieu]="item.lieu_name"
+      [entry_time]="item.entry_time"
+    ></app-lieu-card>
+  </div>
+  <!--header-end-->
+
+  <!--diagramme-->
+  <div class="accueil-body anim2 animate fade2">
+    <app-chart-generale></app-chart-generale>
+  </div>
+  <!--diagramme-end-->
+
+  <!--sidebar-->
+  <div class="accueil-sidebar anim2 animate fade2">
+    <div class="security">
+      <h3>Securités actifs</h3>
+      <button (click)="refresh()" class="actualiser">actualiser</button>
+      <ul>
+        <li *ngFor="let item of activeSecurityList">
+          {{ item.employee_name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--end-sidebar-->
+</div>
+<!--body-end-->

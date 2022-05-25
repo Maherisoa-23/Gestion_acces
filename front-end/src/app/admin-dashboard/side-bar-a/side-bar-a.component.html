@@ -1,0 +1,61 @@
+<div class="entete">
+  <!-- <div class="logo">
+    <img src="assets/images/logoOmnis.png" class="img-fluid LogoOmnis" />
+  </div> -->
+  <div class="logo-text">
+    <h1>OMNIS</h1>
+    <p>Dashboard</p>
+  </div>
+</div>
+<div class="users">
+  <!-- <h1><i class="fas fa-id-card-alt"></i></h1> -->
+  <h1><i class="fas fa-user-circle"></i></h1>
+  <h1 class="anim1 animate fade1">Bienvenue admin</h1>
+</div>
+
+<ul>
+  <li>
+    <a (click)="showAccueil()"><i class="fas fa-home"></i> Accueil </a>
+  </li>
+  <li>
+    <div class="dropdown">
+      <a
+        ><i class="fas fa-clock"></i>
+        Visite
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-content">
+        <a routerLink="visit-admin">Visite actif</a>
+        <hr />
+        <a routerLink="visit-register"> Registre des visites</a>
+        <hr />
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="dropdown">
+      <a
+        ><i class="fas fa-fingerprint"></i>
+        Pointage
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-content">
+        <a routerLink="pointage-admin">Pointage actif</a>
+        <hr />
+        <a routerLink="pointage-register"> Registre des Pointages</a>
+        <hr />
+      </div>
+    </div>
+  </li>
+  <li>
+    <a routerLink="Employee-list"><i class="fa fa-users"></i> Employees </a>
+  </li>
+  <li>
+    <a routerLink="security-agent"
+      ><i class="fas fa-user-shield"></i> sécurités
+    </a>
+  </li>
+  <li>
+    <a (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+  </li>
+</ul>

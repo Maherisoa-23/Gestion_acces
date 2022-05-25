@@ -1,0 +1,46 @@
+<div class="titre animation1 animation fade01">
+  <h1>Registre des visites</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--navigation-->
+  <div class="topnav">
+    <a class="active"
+      ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
+      <input type="date" [(ngModel)]="DateSelected" class="dateadded" />
+    </a>
+  </div>
+  <!--navigation-->
+  <!--Liste tableau-->
+  <table class="tbl" datatable [dtOptions]="dtOptions" *ngIf="isShow">
+    <thead>
+      <tr>
+        <th class="th">Nom</th>
+        <th class="th">Lieu</th>
+        <th class="th">Date</th>
+
+        <th class="th">Heure d'entrée</th>
+        <th class="th">Heure d'entrée</th>
+        <th>Motif</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of visitsRegister">
+        <td data-label="Nom">
+          <strong>{{ item.visitor_name }}</strong>
+        </td>
+        <td data-label="Lieu">
+          <i>{{ item.lieu }}</i>
+        </td>
+        <td data-label="Date">
+          <b>{{ item.date }}</b>
+        </td>
+        <td data-label="Entree">{{ item.entry_time }}</td>
+        <td data-label="Sortie">{{ item.exit_time }}</td>
+        <td data-label="Motif">
+          <i>{{ item.motif }}</i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>

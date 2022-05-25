@@ -1,0 +1,94 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03">
+  <button
+    class="btn-content"
+    onclick="document.getElementById('id01').style.display='block'"
+    (click)="showInfo()"
+  >
+    Ajout Nouvelle Visite
+  </button>
+</div>
+
+<!--modal-->
+<div id="id01" class="modal">
+  <form class="modal-content animate">
+    <h1>Nouveau visiteur</h1>
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+
+    <div class="container">
+      <label><b>Nom Visiteur </b></label>
+      <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
+
+      <label><b>Numero CIN </b></label><br />
+      <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
+
+      <label><b>Motif </b></label>
+      <textarea
+        id="subject"
+        [(ngModel)]="motif"
+        name="motif"
+        style="height: 200px"
+      ></textarea>
+      <button
+        type="submit"
+        class="btn-ajout"
+        (click)="addVisit()"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
+        Ajouter
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="showWarn()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<!--Tableau-->
+<div class="section animation1 animation fade01">
+  <div class="titre animation1 animation fade01">
+    <h1>
+      Visite actuelle a: <span>{{ lieu }}</span>
+    </h1>
+  </div>
+
+  <table class="tbl animation1 animation fade01">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>Nom</th>
+        <th>Heure d'entrée</th>
+        <th>Motif</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr @fade *ngFor="let item of visitsList">
+        <!-- <td data-label="ID" *ngIf="item.lieu == lieu">{{ item.visit_id }}</td> -->
+        <td data-label="Nom" *ngIf="item.lieu == lieu">
+          {{ item.visitor_name }}
+        </td>
+        <td data-label="Heure/Date" *ngIf="item.lieu == lieu">
+          {{ item.entry_time }}
+        </td>
+        <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
+        <td data-label="#" *ngIf="item.lieu == lieu">
+          <button class="bouton" (click)="exit(item)">
+            <span>Sortir</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

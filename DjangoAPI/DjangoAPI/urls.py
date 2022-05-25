@@ -23,5 +23,6 @@ from django.urls import include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^',include('VisitApp.urls'))
+    re_path(r'^',include('VisitApp.urls')),
+    re_path(r'^',include('authApp.urls'))
 ]

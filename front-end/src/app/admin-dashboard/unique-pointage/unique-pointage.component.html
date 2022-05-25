@@ -1,0 +1,51 @@
+<div class="titre">
+  <button (click)="showAccueil()">Precedent</button>
+
+  <h1>DETAILS</h1>
+</div>
+<div class="section">
+  <div class="date">
+    <h1>
+      Pointage du : <span>{{ dailyPointages[0].date }}</span>
+    </h1>
+  </div>
+</div>
+<div class="section">
+  <div class="nom">
+    <h2>
+      Nom: <span>{{ dailyPointages[0].employee_name }}</span>
+    </h2>
+    <h2>
+      Numero matricule: <span> {{ dailyPointages[0].numero_matricule }}</span>
+    </h2>
+    <h2>
+      Direction: <span> {{ dailyPointages[0].employee_dep_name }}</span>
+    </h2>
+    <h2>
+      Il a fait: <span> {{ dailyPointages.length }}</span> pointages
+    </h2>
+  </div>
+</div>
+<div class="section">
+  <div class="nom">
+    <h2>
+      Liste de pointage de: <span>{{ dailyPointages[0].employee_name }}</span>
+    </h2>
+  </div>
+  <div class="liste">
+    <ul>
+      <li *ngFor="let item of dailyPointages">
+        <h2>
+          Lieu à : <span>{{ item.lieu }}</span>
+        </h2>
+        <h2>
+          Entré à : <span>{{ item.entry_time }}</span>
+        </h2>
+        <h2>
+          Sorti à <span>{{ item.exit_time }}</span>
+        </h2>
+        <!-- reponsive??? -->
+      </li>
+    </ul>
+  </div>
+</div>

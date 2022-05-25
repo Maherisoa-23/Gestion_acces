@@ -1,0 +1,288 @@
+.anim1 {
+  -webkit-animation-delay: 1.4s;
+  -moz-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+.anim10 {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.animate {
+  -webkit-animation-duration: 1.7s;
+  animation-duration: 1.7s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+}
+@-webkit-keyframes fade1 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fade1 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fade1 {
+  -webkit-animation-name: fade1;
+  animation-name: fade1;
+}
+@-webkit-keyframes fade10 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fade10 {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fade10 {
+  -webkit-animation-name: fade10;
+  animation-name: fade10;
+}
+
+/* animation */
+.entete {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.entete .logo-text p {
+  font-size: 14px;
+  color: var(--color-fond);
+  text-align: center;
+  margin: 10px 10px 15px 10px;
+  letter-spacing: 2px;
+  /* filter: brightness(90%);*/
+}
+.entete .logo-text h1 {
+  font-size: 25px;
+  text-align: center;
+  margin: 20px 20px 5px 20px;
+  color: var(--color-fond);
+  letter-spacing: 3px;
+}
+.users {
+  border-top: 2px solid var(--color-fond);
+  border-bottom: 2px solid var(--color-fond);
+}
+.users h1 {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 0;
+  align-items: center;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  color: var(--color-fond);
+}
+.users h1 i {
+  font-size: 40px;
+  color: var(--color-bg);
+}
+ul {
+  list-style-type: none;
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+ul li {
+  height: 70px;
+  display: block;
+  cursor: pointer;
+}
+ul li a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-bg);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 20px;
+  display: block;
+}
+ul li a:hover {
+  border-left: 6px solid var(--color-bg);
+  transition: 0.3s;
+  color: var(--color-bg);
+  background: rgba(0, 128, 0, 0.66);
+  counter-reset: white;
+  font-size: 14px;
+}
+ul li a i {
+  font-size: 22px;
+  color: var(--color-bg);
+  margin-right: 15px;
+  margin-left: 15px;
+}
+ul li a:hover i {
+  color: var(--color-bg);
+}
+/*bouton deroulant*/
+ul li .dropdown {
+  overflow: hidden;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+ul li .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+ul li .dropdown-content a {
+  float: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-blue);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+ul li .dropdown-content a:hover {
+  background-color: #ddd;
+}
+ul li .dropdown:hover .dropdown-content {
+  display: block;
+  margin-left: 40%;
+}
+
+/*media*/
+@media screen and (max-width: 1300px) {
+  /*sidebar*/
+  .entete,
+  .users {
+    display: none;
+  }
+  img,
+  hr,
+  h1 {
+    display: none;
+  }
+  .users {
+    border: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0 15px 0;
+  }
+  ul li {
+    height: 20px;
+    margin: 10px 15px;
+  }
+  ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 5px;
+  }
+  ul li a:hover {
+    border-left: 0;
+    border-bottom: 3px solid #35aa49;
+    border-radius: 0;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+  }
+  ul li .dropdown:hover .dropdown-content {
+    display: block;
+    margin-left: 0;
+  }
+
+  ul li a i {
+    display: none;
+  }
+}
+
+/*media*/
+@media screen and (max-width: 768px) {
+  /*sidebar*/
+  .entete,
+  .users {
+    display: none;
+  }
+  img,
+  hr,
+  h1 {
+    display: none;
+  }
+  .users {
+    border: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0 15px 0;
+  }
+  ul li {
+    height: 20px;
+    margin: 10px 15px;
+  }
+  ul li a {
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 5px;
+  }
+  ul li a:hover {
+    border-left: 0;
+    border-bottom: 3px solid #35aa49;
+    border-radius: 0;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+  }
+  ul li .dropdown:hover .dropdown-content {
+    display: block;
+    margin-left: 0;
+  }
+
+  ul li a i {
+    display: none;
+  }
+}
