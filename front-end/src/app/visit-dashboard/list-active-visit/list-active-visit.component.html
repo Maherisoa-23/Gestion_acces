@@ -5,14 +5,14 @@
     onclick="document.getElementById('id01').style.display='block'"
     (click)="showInfo()"
   >
-    Ajout Nouvelle Visite 
+    Ajout Nouvelle Visite
   </button>
 </div>
 
 <!--modal-->
 <div id="id01" class="modal">
   <form class="modal-content animate">
-    <h1>Nouveau visiteur</h1>
+    <h1>Ajout visiteur</h1>
     <div class="imgcontainer">
       <span
         onclick="document.getElementById('id01').style.display='none'"
@@ -34,12 +34,21 @@
           "
           (click)="suggested(item)"
         >
-          {{ item.visitor_name }} 
+          {{ item.visitor_name }}
         </li>
       </ul>
 
+      <label><b> CIN ?</b></label>
+      <input type="checkbox" id="OUI" name="OUI" />
+      <label for="OUI">OUI</label>
+      <input type="checkbox" id="NON" name="NON" />
+      <label for="NON">NON</label><br />
+
       <label><b>Numero CIN </b></label><br />
       <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
+      <label><b>Description</b></label
+      ><br />
+      <input type="text" name="" /> <br />
 
       <label><b>Motif </b></label>
       <textarea
