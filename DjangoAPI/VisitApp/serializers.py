@@ -8,7 +8,8 @@ class Visitor_serializer(serializers.ModelSerializer):
                   'visitor_id',
                   'visitor_name',
                   'CIN',
-                  'comment'
+                  'comment',
+                  'description',
                   )
         
 class Visit_serializer(serializers.ModelSerializer):

@@ -121,6 +121,7 @@ export class ListActiveVisitComponent implements OnInit {
     this.visitServ.addVisitor(val).subscribe((res) => {
       alert(res.toString())
     })
+    this.refreshVisitorList()
   }
 
   isNewVisitor(visitor : string) {

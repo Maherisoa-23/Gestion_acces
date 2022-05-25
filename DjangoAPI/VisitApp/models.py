@@ -6,6 +6,7 @@ class Visitors(models.Model) :
     visitor_name = models.CharField(max_length=50)
     CIN = models.CharField(null=True, max_length=12)
     comment = models.CharField(max_length=200, null=True) #Au cas ou le visiteur n'as pas de CIN
+    description = models.CharField(max_length=200, default="none")
 
 class Visits_actif(models.Model) :
     visit_id = models.AutoField(primary_key=True)
