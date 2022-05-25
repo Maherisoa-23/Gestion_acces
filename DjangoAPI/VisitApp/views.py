@@ -12,9 +12,9 @@ from VisitApp.serializers import Visit_serializer, Visits_register_serializer,Li
 @csrf_exempt
 def visitor_API(request: HttpRequest, id=0):
     if request.method == 'GET':
-        visits_actif = Visitors.objects.all()
-        visits_actif_serializer = Visitor_serializer(visits_actif, many=True)
-        return JsonResponse(visits_actif_serializer.data, safe=False)
+        visitor = Visitors.objects.all()
+        visitor_serializer = Visitor_serializer(visitor, many=True)
+        return JsonResponse(visitor_serializer.data, safe=False)
     elif request.method== 'POST':
         visitor_data = JSONParser().parse(request)
         visitor_serializer = Visitor_serializer(data=visitor_data)
@@ -22,16 +22,8 @@ def visitor_API(request: HttpRequest, id=0):
             visitor_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
-    elif request.method == 'PUT':
-        visit_data = JSONParser().parse(request)
-        visit= Visits_actif.objects.get(visit_id = visit_data['visit_id'] )
-        visit_serializer = Visit_serializer(visit,data=visit_data)
-        if visit_serializer.is_valid():
-            visit_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        visit=Visits_actif.objects.get(CIN =id)
+        visit=Visitors.objects.get(pk =id)
         visit.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
