@@ -71,6 +71,20 @@ export class AuthService {
     return this.http.put(this.APIUrl + '/lieu/', val);
   }
 
+  //Methode pour les stagiaires
+
+  getStagiaireList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/stagiaire/');
+  }
+
+  putStagiaire(val: any) {
+    return this.http.put(this.APIUrl + '/stagiaire/', val);
+  }
+
+  addStagiaire(val: any) {
+    return this.http.post(this.APIUrl + '/stagiaire/', val);
+  }
+
   //Methode pour les pointages
 
   getPointageList(): Observable<any[]> {

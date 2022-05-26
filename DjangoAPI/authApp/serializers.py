@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Pointage
-from authApp.models import User,Employee,Department,Pointage,Pointage_register
+from authApp.models import User,Employee,Department,Pointage,Pointage_register,Stagiaire
 
 class User_serializer(serializers.ModelSerializer):
     class Meta:
@@ -21,6 +21,22 @@ class Employee_serializer(serializers.ModelSerializer):
                   'department',
                   'department_name',
                   'pointed_at',
+                  )
+        
+class Stagiaire_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stagiaire
+        fields = (
+                  'stagiaire_id',
+                  'stagiaire_name',
+                  'descritpion',
+                  'department',
+                  'department_name',
+                  'pointed_at',
+                  'start_date',
+                  'end_date',
+                  'duree',
+                  'isActif'
                   )
 
 class Department_serializer(serializers.ModelSerializer):
