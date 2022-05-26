@@ -26,8 +26,10 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() visit_id = 1;
   @Input() visitor_name = '';
   @Input() motif = '';
-  @Input() CIN = 0;
+  @Input() CIN : any = 0 ;
   @Input() comment = null;
+  @Input() description = null;
+
 
   constructor(
     private visitServ: VisitService,
@@ -41,10 +43,12 @@ export class ListActiveVisitComponent implements OnInit {
 
   visitors : any = [];
 
-  visite: any;
+  visite: any; 
   date: any;
   Date: any;
   entry_time: any;
+
+  haveCIN = true;
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -71,55 +75,30 @@ export class ListActiveVisitComponent implements OnInit {
   }
 
   suggested(visitor: any) {
+    if (visitor.comment == null) this.haveCIN = true 
+    else this.haveCIN = false
     this.visitor_name = visitor.visitor_name;
     this.CIN = visitor.CIN
+    this.comment = visitor.comment
+    this.description = visitor.description
   }
 
-  addVisit() {
-    if (this.isNewVisitor(this.visitor_name))
-      this.addNewVisitor()
-    this.Date = new Date();
-    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
-    this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
-    var val = {
-      visitor_name: this.visitor_name,
-      motif: this.motif,
-      CIN: this.CIN,
-      lieu: this.lieu,
-      date: this.date.toString(),
-      entry_time: this.entry_time.toString(),
-    };
-    this.visitsList.unshift(val);
-
-    this.visitServ.addVisit(val).subscribe((res) => {
-      if (res.toString() == 'Added successfully') {
-        this.toast.success({
-          detail: 'SUCCES',
-          summary: 'Ajout réussi',
-          duration: 5000,
-        });
-      } else {
-        this.toast.error({
-          detail: 'ERREUR',
-          summary: 'Ajout impossible',
-          duration: 5000,
-        });
-      }
-    });
-
-    this.visitor_name = '';
-    this.CIN = 0;
-    this.motif = '';
+  //Au cas ou le visiteur n'as pas de CIN
+  NoCIN(){
+    if (this.haveCIN) this.haveCIN = false;
+    else this.haveCIN = true;
+    this.comment = null;
+    this.CIN = null
   }
 
   addNewVisitor() {
     const val = {
       visitor_name: this.visitor_name,
       CIN: this.CIN,
-      comment : this.comment
+      comment : this.comment,
+      description : this.description
     };
     this.visitServ.addVisitor(val).subscribe((res) => {
-      alert(res.toString())
     })
     this.refreshVisitorList()
   }
@@ -161,6 +140,44 @@ export class ListActiveVisitComponent implements OnInit {
       this.visitsList = this.visitsList.filter((f : any) => { return f.CIN != item.CIN})
     }
   }
+
+  addVisit() {
+    if (this.isNewVisitor(this.visitor_name))
+      this.addNewVisitor()
+    this.Date = new Date();
+    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+    this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
+    var val = {
+      visitor_name: this.visitor_name,
+      motif: this.motif,
+      CIN: this.CIN,
+      lieu: this.lieu,
+      date: this.date.toString(),
+      entry_time: this.entry_time.toString(),
+    };
+    this.visitsList.unshift(val);
+
+    this.visitServ.addVisit(val).subscribe((res) => {
+      if (res.toString() == 'Added successfully') {
+        this.toast.success({
+          detail: 'SUCCES',
+          summary: 'Ajout réussi',
+          duration: 5000,
+        });
+      } else {
+        this.toast.error({
+          detail: 'ERREUR',
+          summary: 'Ajout impossible',
+          duration: 5000,
+        });
+      }
+    });
+
+    this.visitor_name = '';
+    this.CIN = 0;
+    this.motif = '';
+  }
+
 
   //Les messages  
   showSuccess() {
