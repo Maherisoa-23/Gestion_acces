@@ -13,7 +13,6 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 })
 export class ClockingScheduleComponent implements OnInit {
 
-  matricule_security = 5;
   employee_name = ""
   pointages: any = [];
   pointage_register: any = [];
@@ -24,7 +23,7 @@ export class ClockingScheduleComponent implements OnInit {
   constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
   handleDateClick(arg: any) {
-    this.authServ.numero_matricule = this.matricule_security;
+    this.authServ.employee_name = this.employee_name
     this.authServ.dateDailyPointage = arg.dateStr;
     this.route.navigate(['admin/unique-pointage']);
   }

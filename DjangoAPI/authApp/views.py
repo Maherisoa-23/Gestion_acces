@@ -226,7 +226,7 @@ def daily_pointage_API(request: HttpRequest, id=0):
     #pointage d'un employée que est passé par plusieurs locaux en une journée
     if request.method == 'POST':
         request_data = JSONParser().parse(request)
-        pointage_tab = Pointage_register.objects.filter(numero_matricule = request_data["numero_matricule"], date = request_data["date"])      
+        pointage_tab = Pointage_register.objects.filter(employee_name = request_data["employee_name"], date = request_data["date"])      
         pointage_serializer = Pointage_register_serializer(pointage_tab, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("wrong ", safe = False)

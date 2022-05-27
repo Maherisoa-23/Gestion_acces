@@ -16,7 +16,7 @@ export class AuthService {
 
   //pour passer des données entre les composants.
   dateDailyPointage = '';
-  numero_matricule = 0;
+  employee_name = "";
 
   // readonly APIUrl = "http://192.168.1.23:8000"
 

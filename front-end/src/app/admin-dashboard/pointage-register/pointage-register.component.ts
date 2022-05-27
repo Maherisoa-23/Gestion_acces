@@ -63,7 +63,7 @@ export class PointageRegisterComponent implements OnInit {
 
   CheckDailyPointage(item: any) {
     this.authServ.dateDailyPointage = item.date;
-    this.authServ.numero_matricule = item.numero_matricule;
+    this.authServ.employee_name = item.employee_name;
     this.route.navigate(['admin/unique-pointage']);
   }
 
