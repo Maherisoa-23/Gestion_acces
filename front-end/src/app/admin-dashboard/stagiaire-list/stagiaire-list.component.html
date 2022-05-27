@@ -28,18 +28,16 @@
         name="stagiaire_name"
         [(ngModel)]="stagiaire_name"
       /><br />
-      <label><b>Description </b></label>
+      <label><b>Description {{description}}</b></label>
       <input type="text" name="description" [(ngModel)]="description" /><br />
       <label for="select"><b>Direction</b></label>
       <select name="pets" id="select" [(ngModel)]="direction">
-        <option value="" default selected>Selectionner la Direction</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
+        <option *ngFor="let item of depTab">{{item.department_short_name}}</option>
       </select>
       <br />
-      <label><b>Date debut </b></label>
+      <label><b>Date debut : {{date_debut}}</b></label>
       <input type="date" name="date_debut" [(ngModel)]="date_debut" /><br />
-      <label><b>Date fin </b></label>
+      <label><b>Date fin : {{date_fin}} </b></label>
       <input type="date" name="date_fin" [(ngModel)]="date_fin" /><br /><br />
 
       <button

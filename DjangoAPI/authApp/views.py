@@ -87,8 +87,6 @@ def stagiaire_API(request: HttpRequest, id=0):
         return JsonResponse(stagiaire_serializer.data, safe=False)
     elif request.method== 'POST':
         stagiaire_data = JSONParser().parse(request)
-        department = Department.objects.get(pk=stagiaire_data["department"])
-        stagiaire_data["department_name"] = department.department_short_name
         stagiaire_serializer = Stagiaire_serializer(data=stagiaire_data)
         if stagiaire_serializer.is_valid():
             stagiaire_serializer.save() 

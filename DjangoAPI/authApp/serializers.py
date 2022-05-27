@@ -29,8 +29,7 @@ class Stagiaire_serializer(serializers.ModelSerializer):
         fields = (
                   'stagiaire_id',
                   'stagiaire_name',
-                  'descritpion',
-                  'department',
+                  'description',
                   'department_name',
                   'pointed_at',
                   'start_date',

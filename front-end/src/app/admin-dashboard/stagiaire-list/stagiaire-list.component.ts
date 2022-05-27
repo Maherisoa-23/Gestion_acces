@@ -6,17 +6,19 @@ import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-stagiaire-list',
   templateUrl: './stagiaire-list.component.html',
   styleUrls: ['./stagiaire-list.component.css'],
+  providers: [DatePipe]
 })
 export class StagiaireListComponent implements OnInit {
   stagiaires: any;
   @Input() stagiaire_name!: string;
   @Input() description!: string;
-  @Input() direction!: string;
+  @Input() direction: string = "DSI";
   @Input() date_debut!: Date;
   @Input() date_fin!: Date;
 
@@ -26,14 +28,18 @@ export class StagiaireListComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false })
   datatableElement: any = DataTableDirective;
 
+  depTab : any = []
+
   constructor(
     private authServ: AuthService,
     private stgServ: StagiaireService,
     private securityServ : SecurityAgentService,
-    private route: Router
+    private route: Router,
+    private datePipe : DatePipe
   ) {}
 
   ngOnInit(): void {
+    this.refreshDepList()
     this.refreshStagiaireList();
     setTimeout(() => {}, 500);
     this.setUpDatePicker();
@@ -57,8 +63,33 @@ export class StagiaireListComponent implements OnInit {
     });
   }
 
+  refreshDepList() {
+    this.authServ.getDepartmentList().subscribe((data) => {
+      this.depTab = data
+    })
+  }
+  getDepID(name : string){
+    for (let index = 0; index < this.depTab.length; index++) {
+      const element = this.depTab[index];
+      if (element.department_short_name == name){
+        return element.departement_id
+      }
+    }
+  }
   addStagiaire() {
-    console.log(this.direction);
+    const tmp = this.datePipe.transform(this.date_debut, 'yyyy-MM-dd');
+    const tmp2 = this.datePipe.transform(this.date_fin, 'yyyy-MM-dd'); 
+    const val = {
+      stagiaire_name : this.stagiaire_name,
+      description : this.description,
+      start_date : this.date_debut.toString(),
+      end_date : this.date_fin.toString(),
+      department_name : this.direction.toString(),
+    }
+
+    this.authServ.addStagiaire(val).subscribe((res) => {
+      alert(res.toString())
+    })
   }
   refreshStagiaireList() {
     this.authServ.getStagiaireList().subscribe((data) => {
