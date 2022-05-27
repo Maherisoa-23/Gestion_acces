@@ -52,7 +52,7 @@ export class PointageEmployeeComponent implements OnInit {
       this.lieu = Lieu.lieu_name;
       console.log('pointages = ' + this.pointages.length)
 
-      //trie décroissant, ze tonga farany no eo ambony
+      //trie décroissant, ze tonga farany no  eo ambony
       this.pointages.sort((b: any, a: any) => a.entry_time.localeCompare(b.entry_time));
     }, 700);
     this.refreshPointageList();
@@ -216,10 +216,10 @@ export class PointageEmployeeComponent implements OnInit {
     } else {
 
       //enregistrement dans pointage register
-      //this.addPointageRegister(this.enteredValue);
+      this.addPointageRegister(this.enteredValue);
 
       //Pour modifier le pointed_at de employée
-      console.log("isStagiaire = "+this.isStagiaire)
+      console.log("isStagiaire = " + this.isStagiaire)
       if (!this.isStagiaire) {
         const emp = {
           numero_matricule: this.getNumeroMatricule(this.enteredValue),
@@ -249,7 +249,7 @@ export class PointageEmployeeComponent implements OnInit {
       else {
         const stg = {
           stagiaire_name: this.enteredValue,
-          employee_name : this.enteredValue,
+          employee_name: this.enteredValue,
           pointed_at: "not pointed",
           isActif: false
         }
@@ -294,7 +294,7 @@ export class PointageEmployeeComponent implements OnInit {
     }
     return false;
   }
-  
+
 
   getInPointageList(name: string): any {
     for (let index = 0; index < this.pointages.length; index++) {
@@ -333,7 +333,7 @@ export class PointageEmployeeComponent implements OnInit {
     else this.isStagiaire = false
   }
 
-  isStg(name : string) {
+  isStg(name: string) {
     for (let index = 0; index < this.stagiaires.length; index++) {
       const element = this.stagiaires[index];
       if (element.stagiaire_name == name) return true
@@ -352,28 +352,55 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   addPointageRegister(employee_name: string) {
-    //ajout dans le registre des pointages
-    for (let index = 0; index < this.pointages.length; index++) {
+    if (this.isStg(employee_name)) {
+      for (let index = 0; index < this.pointages.length; index++) {
 
-      const element = this.pointages[index];
-      if (
-        element.employee_name == employee_name
-      ) {
-        this.heure = new Date();
-        this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
-        var val = {
-          numero_matricule: this.getNumeroMatricule(employee_name),
-          date: element.date,
-          lieu: element.lieu,
-          employee_name: element.employee_name,
-          employee_dep: element.employee_dep,
-          entry_time: element.entry_time,
-          exit_time: this.heure.toString(),
-        };
-        this.authServ.addPointageRegister(val).subscribe((res) => {
-          console.log(res.toString() + ' to the pointage register');
-        });
+        const element = this.pointages[index];
+        if (
+          element.employee_name == employee_name
+        ) {
+          this.heure = new Date();
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+          var val1 = {
+            function: "stagiaire",
+            date: element.date,
+            lieu: element.lieu,
+            employee_name: element.employee_name,
+            employee_dep_name: element.employee_dep_name,
+            entry_time: element.entry_time,
+            exit_time: this.heure.toString(),
+          };
+          this.authServ.addPointageRegister(val1).subscribe((res) => {
+            console.log(res.toString() + ' to the pointage register');
+          });
 
+        }
+      }
+    }
+    else {
+      //ajout dans le registre des pointages des employées
+      for (let index = 0; index < this.pointages.length; index++) {
+
+        const element = this.pointages[index];
+        if (
+          element.employee_name == employee_name
+        ) {
+          this.heure = new Date();
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+          var val = {
+            numero_matricule: this.getNumeroMatricule(employee_name),
+            date: element.date,
+            lieu: element.lieu,
+            employee_name: element.employee_name,
+            employee_dep_name: element.employee_dep_name,
+            entry_time: element.entry_time,
+            exit_time: this.heure.toString(),
+          };
+          this.authServ.addPointageRegister(val).subscribe((res) => {
+            console.log(res.toString() + ' to the pointage register');
+          });
+
+        }
       }
     }
   }

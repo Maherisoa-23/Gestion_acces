@@ -27,8 +27,9 @@ export class StagiaireRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
-    this.refreshDepList();
-    this.setUpDatePicker();
+    setTimeout(() => {
+      this.setUpDatePicker();
+    }, 500);
   }
 
   setUpDatePicker() {
@@ -44,19 +45,14 @@ export class StagiaireRegisterComponent implements OnInit {
 
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
+
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
     });
   }
 
   refreshPointageRegisterList() {
     this.authServ.getPointageRegisterList().subscribe((data) => {
-      this.pointages = data;
-    });
-  }
-
-  refreshDepList() {
-    this.authServ.getDepartmentList().subscribe((data) => {
-      this.departments = data;
+      this.pointages = data; 
     });
   }
 

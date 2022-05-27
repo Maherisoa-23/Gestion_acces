@@ -11,11 +11,11 @@
 <div class="section animation1 animation fade01">
   <!--Liste tableau-->
   <table
-    id="dataTables-example"
-    class="tbl"
-    datatable
-    [dtOptions]="dtOptions"
-    *ngIf="isShow"
+  id="dataTables-example"
+  class="tbl"
+  datatable
+  [dtOptions]="dtOptions"
+  *ngIf="isShow"
   >
     <thead>
       <tr>
@@ -24,27 +24,25 @@
         <th>Heure d'entree</th>
         <th>Heure de sortie</th>
         <th>Lieu</th>
-        <th>Date fin</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages" (click)="CheckDailyPointage(item)">
-        <td data-label="Nom" *ngIf="item.function == 'stagiaire'">
+        <td data-label="Nom" *ngIf="item.numero_matricule == null">
           <strong>{{ item.employee_name }}</strong>
         </td>
-        <td data-label="Date" *ngIf="item.function == 'stagiaire'">
+        <td data-label="Date" *ngIf="item.numero_matricule == null">
           <b>{{ item.date }}</b>
         </td>
-        <td data-label="Heure d'entree" *ngIf="item.function == 'stagiaire'">
+        <td data-label="Heure d'entree" *ngIf="item.numero_matricule == null">
           <b>{{ item.entry_time }}</b>
         </td>
-        <td data-label="Heure de sortie" *ngIf="item.function == 'stagiaire'">
+        <td data-label="Heure de sortie" *ngIf="item.numero_matricule == null">
           <b>{{ item.exit_time }}</b>
         </td>
-        <td data-label="Lieu" *ngIf="item.function == 'stagiaire'">
+        <td data-label="Lieu" *ngIf="item.numero_matricule == null">
           <i>{{ item.lieu }}</i>
         </td>
-        <td data-label="Depart" *ngIf="item.function == 'stagiaire'">{{ item.employee_dep_name }}</td>
       </tr>
     </tbody>
   </table>
