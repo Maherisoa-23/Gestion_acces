@@ -44,7 +44,8 @@ class Department_serializer(serializers.ModelSerializer):
     class Meta:
         model = Department
         fields = ('department_id',
-                  'department_name'
+                  'department_name',
+                  'department_short_name'
                   )               
              
 class Pointage_serializer(serializers.ModelSerializer):
@@ -57,7 +58,9 @@ class Pointage_serializer(serializers.ModelSerializer):
                   'date',
                   'lieu',
                   'entry_time',
-                  'function'
+                  'function',
+                  'start_date',
+                  'end_date',
                   )
         
 class Pointage_register_serializer(serializers.ModelSerializer):

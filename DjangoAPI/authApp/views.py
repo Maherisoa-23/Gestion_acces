@@ -60,7 +60,7 @@ def employee_API(request: HttpRequest, id=0):
     elif request.method== 'POST':
         employee_data = JSONParser().parse(request)
         department = Department.objects.get(pk=employee_data["department"])
-        employee_data["department_name"] = department.department_name
+        employee_data["department_name"] = department.department_short_name
         employee_serializer = Employee_serializer(data=employee_data)
         if employee_serializer.is_valid():
             employee_serializer.save()
@@ -88,7 +88,7 @@ def stagiaire_API(request: HttpRequest, id=0):
     elif request.method== 'POST':
         stagiaire_data = JSONParser().parse(request)
         department = Department.objects.get(pk=stagiaire_data["department"])
-        stagiaire_data["department_name"] = department.department_name
+        stagiaire_data["department_name"] = department.department_short_name
         stagiaire_serializer = Stagiaire_serializer(data=stagiaire_data)
         if stagiaire_serializer.is_valid():
             stagiaire_serializer.save()
@@ -102,10 +102,11 @@ def stagiaire_API(request: HttpRequest, id=0):
         stagiaire.save()
         return JsonResponse("Update successfully",safe=False)
         #return JsonResponse("failded to Update", safe= False)
-    ''' elif request.method == 'DELETE':
-        employee=Employee.objects.filter(department =id)
-        employee_serializer = Employee_serializer(employee, many=True)
-        return JsonResponse(employee_serializer.data, safe = False) '''
+    elif request.method == 'DELETE':
+        stagiaire_data = JSONParser().parse(request)
+        stagiaire=Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'])
+        stagiaire_serializer = Stagiaire_serializer(stagiaire)
+        return JsonResponse(stagiaire_serializer.data, safe = False) 
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt 

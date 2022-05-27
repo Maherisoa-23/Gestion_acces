@@ -22,6 +22,7 @@ export class StagiaireActifComponent implements OnInit {
     });
   }
 
+
   switchAndraharo() {
     this.authServ.lieu = 'Andraharo';
     this.lieu = this.authServ.lieu;

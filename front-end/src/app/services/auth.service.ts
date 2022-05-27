@@ -85,6 +85,10 @@ export class AuthService {
     return this.http.post(this.APIUrl + '/stagiaire/', val);
   }
 
+  getStagiaire(val : any) {
+    return this.http.delete(this.APIUrl + '/stagiaire/', val);
+  }
+
   //Methode pour les pointages
 
   getPointageList(): Observable<any[]> {

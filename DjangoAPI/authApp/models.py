@@ -7,7 +7,8 @@ class User(models.Model) :
     
 class Department(models.Model):
     department_id = models.AutoField(primary_key=True)
-    department_name = models.CharField(max_length=50)
+    department_name = models.CharField(max_length=100)
+    department_short_name = models.CharField(max_length=10)
     
 class Employee(models.Model) :
     department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = True, default=1)
@@ -38,7 +39,10 @@ class Pointage(models.Model):
     pointage_id = models.AutoField(primary_key=True)
     date = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)
-    entry_time = models.CharField(max_length=50)
+    entry_time = models.CharField(max_length=50) 
+    #pour les stagiaires   
+    start_date = models.CharField(max_length=50, null=True) 
+    end_date = models.CharField(max_length=50, null=True)
     
 class Pointage_register(models.Model):
     numero_matricule = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = False)
