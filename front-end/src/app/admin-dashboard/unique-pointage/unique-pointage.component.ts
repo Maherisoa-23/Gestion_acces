@@ -13,6 +13,8 @@ export class UniquePointageComponent implements OnInit {
   employee_name = "";
   date = '2022-05-10';
   dailyPointages: any;
+
+  isShow = false
   constructor(
     private authServ: AuthService,
     private route: Router,
@@ -24,6 +26,9 @@ export class UniquePointageComponent implements OnInit {
     this.date = this.authServ.dateDailyPointage;
     console.log("name : " + this.employee_name + +" date : " + this.date)
     this.getDailyPointage();
+    setTimeout(() => {
+      this.isShow = true
+    }, 700);
   }
 
   getDailyPointage() {
