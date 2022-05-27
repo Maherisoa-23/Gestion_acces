@@ -5,6 +5,7 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
+import { StagiaireService } from 'src/app/services/stagiaire.service';
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -27,8 +28,8 @@ export class StagiaireListComponent implements OnInit {
 
   constructor(
     private authServ: AuthService,
-    // private SecurityServ: SecurityAgentService,
-    private route: Router,
+    private stgServ: StagiaireService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +66,11 @@ export class StagiaireListComponent implements OnInit {
   }
 
   showStagiaireProfile(item : any) {
-    
+    this.stgServ.stagiaire_name = item.stagiaire_name;
+    this.stgServ.departement = item.department_name;
+    this.stgServ.description = item.descritpion;
+    this.stgServ.start_date = item.start_date;
+    this.stgServ.end_date = item.end_date;
+    this.route.navigate(['admin/stagiaire-profile']);
   }
 }

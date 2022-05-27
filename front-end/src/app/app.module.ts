@@ -39,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // code format
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-registerLocaleData(localeFr, 'fr');
 import { LOCALE_ID } from '@angular/core';
 import { NgToastModule } from 'ng-angular-popup';
 import { UniquePointageComponent } from './admin-dashboard/unique-pointage/unique-pointage.component';
@@ -57,6 +56,9 @@ import { StagiaireActifComponent } from './admin-dashboard/stagiaire-actif/stagi
 import { StagiaireRegisterComponent } from './admin-dashboard/stagiaire-register/stagiaire-register.component';
 import { StagiaireListComponent } from './admin-dashboard/stagiaire-list/stagiaire-list.component';
 import { StagiaireProfileComponent } from './admin-dashboard/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
+
+registerLocaleData(localeFr, 'fr');
+
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
