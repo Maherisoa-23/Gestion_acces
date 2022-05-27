@@ -29,6 +29,7 @@ export class StagiaireListComponent implements OnInit {
   constructor(
     private authServ: AuthService,
     private stgServ: StagiaireService,
+    private securityServ : SecurityAgentService,
     private route: Router
   ) {}
 
@@ -71,6 +72,7 @@ export class StagiaireListComponent implements OnInit {
     this.stgServ.description = item.descritpion;
     this.stgServ.start_date = item.start_date;
     this.stgServ.end_date = item.end_date;
+    this.securityServ.security_name = item.stagiaire_name
     this.route.navigate(['admin/stagiaire-profile']);
   }
 }

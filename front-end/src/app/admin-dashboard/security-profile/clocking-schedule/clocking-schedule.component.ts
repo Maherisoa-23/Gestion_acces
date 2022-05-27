@@ -14,6 +14,7 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 export class ClockingScheduleComponent implements OnInit {
 
   matricule_security = 5;
+  employee_name = ""
   pointages: any = [];
   pointage_register: any = [];
   post: any = [];
@@ -30,10 +31,10 @@ export class ClockingScheduleComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
-    if (this.SecurityServ.matricule_security != 0)
-      this.matricule_security = this.SecurityServ.matricule_security;
+    if (this.SecurityServ.security_name != "")
+      this.employee_name = this.SecurityServ.security_name;
     setTimeout(() => {
-      this.getLastPointageBySec(this.matricule_security);
+      this.getLastPointageBySec(this.employee_name);
     }, 500)
     setTimeout(() => {
       this.getPresentDate()
@@ -53,10 +54,10 @@ export class ClockingScheduleComponent implements OnInit {
       this.pointage_register = data;
     });
   }
-  getLastPointageBySec(matricule: number) {
+  getLastPointageBySec(employee_name: string) {
     for (let index = 0; index < this.pointage_register.length; index++) {
       const element = this.pointage_register[index];
-      if (element.numero_matricule == matricule) {
+      if (element.employee_name == employee_name) {
         this.pointages.push(element)
       }
     }
