@@ -12,10 +12,7 @@ export class StagiaireActifComponent implements OnInit {
   constructor(private authServ: AuthService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
-      this.lieu = Lieu.lieu_name;
-    }, 1000);
+    this.lieu = "Ambohijatovo"
     this.refreshPointageList();
   }
 
@@ -28,16 +25,13 @@ export class StagiaireActifComponent implements OnInit {
   switchAndraharo() {
     this.authServ.lieu = 'Andraharo';
     this.lieu = this.authServ.lieu;
-    this.refreshPointageList();
   }
   switchAmbohijatovo() {
     this.authServ.lieu = 'Ambohijatovo';
     this.lieu = this.authServ.lieu;
-    this.refreshPointageList();
   }
   switchMangasoavina() {
     this.authServ.lieu = 'Mangasoavina';
     this.lieu = this.authServ.lieu;
-    this.refreshPointageList();
   }
 }

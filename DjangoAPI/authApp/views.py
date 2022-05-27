@@ -118,15 +118,24 @@ def pointage_API(request: HttpRequest, id = 0):
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep_name"] = employee.department_name   
-          
+        pointage_data["employee_dep_name"] = employee.department_name         
         pointage_data["function"] = employee.function    
-        print(" function " + pointage_data["function"])
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
-        return JsonResponse("failded to add", safe= False)    
+        return JsonResponse("failded to add", safe= False) 
+    elif request.method== 'PUT':
+        pointage_data = JSONParser().parse(request)
+        stagiaire = Stagiaire.objects.get(stagiaire_name=pointage_data["stagiaire_name"])
+        pointage_data["employee_name"] = stagiaire.stagiaire_name
+        pointage_data["employee_dep_name"] = stagiaire.department_name     
+        pointage_data["function"] = "stagiaire"   
+        pointage_serializer = Pointage_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Pointage stagiaire added successfully",safe=False)
+        return JsonResponse("Pointage stagiaire failded to add", safe= False)   
     elif request.method == 'DELETE':
         pointage=Pointage.objects.get(numero_matricule =id)
         pointage.delete()

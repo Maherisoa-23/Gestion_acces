@@ -28,9 +28,10 @@ class Stagiaire(models.Model) :
     end_date = models.CharField(max_length=50) 
     duree = models.CharField(max_length=50) 
     isActif = models.BooleanField(default=True)
+    function   = models.CharField(max_length=50, default="stagiaire")
     
 class Pointage(models.Model):
-    numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
     function   = models.CharField(max_length=200)

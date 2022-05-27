@@ -36,7 +36,8 @@ class Stagiaire_serializer(serializers.ModelSerializer):
                   'start_date',
                   'end_date',
                   'duree',
-                  'isActif'
+                  'isActif',
+                  'function'
                   )
 
 class Department_serializer(serializers.ModelSerializer):

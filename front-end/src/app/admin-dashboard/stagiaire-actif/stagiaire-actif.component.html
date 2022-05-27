@@ -48,21 +48,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of pointages">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
-              {{ item.pointage_id }}
+            <td data-label="ID" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
+              {{ item.employee_name }}
             </td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">
-              <strong> {{ item.employee_name }}</strong>
+            <td data-label="Nom" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
+              <strong> {{ item.employee_dep_name }}</strong>
             </td>
-            <td data-label="Direction" *ngIf="item.lieu == lieu">
+            <td data-label="Direction" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               {{ item.employee_dep_name }}
             </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu">
+            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >
             </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu">
+            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >
@@ -89,21 +89,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of pointages">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
+            <td data-label="ID" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               {{ item.pointage_id }}
             </td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">
+            <td data-label="Nom" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong> {{ item.employee_name }}</strong>
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               {{ item.employee_dep_name }}
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >
@@ -130,21 +130,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of pointages">
-            <td data-label="ID" *ngIf="item.lieu == lieu">
+            <td data-label="ID" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               {{ item.pointage_id }}
             </td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu">
+            <td data-label="Nom" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong> {{ item.employee_name }}</strong>
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               {{ item.employee_dep_name }}
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >
             </td>
-            <td data-label="Date" *ngIf="item.lieu == lieu">
+            <td data-label="Date" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
               <strong>
                 <i> {{ item.entry_time }}</i></strong
               >

@@ -97,7 +97,6 @@ export class PointageEmployeeComponent implements OnInit {
         summary: 'Employé déjà présent à ' + this.pointed_at,
         duration: 3000,
       });
-      // alert('Employé déjà présent à : ' + this.pointed_at);
     } else {
       this.date = new Date();
       this.heure = new Date();
