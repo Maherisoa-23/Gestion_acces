@@ -88,19 +88,19 @@
           <strong>{{ item.stagiaire_name }}</strong>
         </td>
         <td data-label="Nom">
-          <strong>{{ item.description }}</strong>
+          <strong>{{ item.descritpion }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.date_debut }}</strong>
+          <strong>{{ item.start_date }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.date_fin }}</strong>
+          <strong>{{ item.end_date }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.direction }}</strong>
+          <strong>{{ item.department_name }}</strong>
         </td>
         <td>
-          <button class="voirprofil" (click)="ShowSecurityProfile(item)">
+          <button class="voirprofil" (click)="showStagiaireProfile(item)">
             Voir profile
           </button>
         </td>

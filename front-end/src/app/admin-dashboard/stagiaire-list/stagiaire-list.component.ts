@@ -4,6 +4,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -25,15 +26,13 @@ export class StagiaireListComponent implements OnInit {
   datatableElement: any = DataTableDirective;
 
   constructor(
-    private visitServ: VisitService,
+    private authServ: AuthService,
     // private SecurityServ: SecurityAgentService,
     private route: Router,
-    private SecurityServ: SecurityAgentService,
-    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
-    // this.refreshStagiaireList();
+    this.refreshStagiaireList();
     setTimeout(() => {}, 500);
     this.setUpDatePicker();
   }
@@ -56,20 +55,16 @@ export class StagiaireListComponent implements OnInit {
     });
   }
 
-  // refreshStagiaireList() {
-  //   this.visitServ.getVisitorList().subscribe((data) => {
-  //     this.stagiaires = data;
-  //   });
-  // }
-
-  ShowSecurityProfile(visitor: any) {
-    this.visitServ.visitor_name = visitor.visitor_name;
-    setTimeout(() => {
-      this.visitServ;
-      this.route.navigate(['admin/stagiaire-profile']);
-    }, 1000);
-  }
   addStagiaire() {
     console.log(this.direction);
+  }
+  refreshStagiaireList() {
+    this.authServ.getStagiaireList().subscribe((data) => {
+      this.stagiaires = data
+    })
+  }
+
+  showStagiaireProfile(item : any) {
+    
   }
 }
