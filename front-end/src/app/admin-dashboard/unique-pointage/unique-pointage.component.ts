@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 // import { Router } from '@angular/router';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-unique-pointage',
@@ -18,7 +18,8 @@ export class UniquePointageComponent implements OnInit {
   constructor(
     private authServ: AuthService,
     private route: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location : Location
   ) { }
 
   ngOnInit(): void {
@@ -46,5 +47,9 @@ export class UniquePointageComponent implements OnInit {
   }
   showAccueil() {
     this.route.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

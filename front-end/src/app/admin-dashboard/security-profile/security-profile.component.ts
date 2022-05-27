@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-security-profile',
@@ -37,7 +39,8 @@ export class SecurityProfileComponent implements OnInit {
     private SecurityServ: SecurityAgentService,
     private authServ: AuthService,
     private route: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -116,5 +119,9 @@ export class SecurityProfileComponent implements OnInit {
     this.authServ.dateDailyPointage = item.date;
     this.authServ.employee_name = item.employee_name;
     this.route.navigate(['admin/unique-pointage']);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
