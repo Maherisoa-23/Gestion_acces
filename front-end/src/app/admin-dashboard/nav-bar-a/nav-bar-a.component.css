@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap");
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1000px 1fr;
+  grid-template-rows: 1fr;
+  /* border: 2px solid red; */
 }
 img {
   width: 50px;
@@ -11,7 +14,7 @@ img {
 }
 h1 {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-left: 30px;
   color: var(--color-blue);
@@ -21,22 +24,30 @@ h1 {
   letter-spacing: 1px;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+  /* border: 2px solid red; */
 }
 
 p {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin-left: 30px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   color: var(--color-blue);
   font-size: 25px;
   font-weight: 600;
   text-align: center;
   font-family: "Big Shoulders Display", Sans-serif;
   text-transform: none;
-  margin: 5px 0 5px 750px;
+  /* margin: 5px 0 5px 750px; */
 }
 /*media*/
 @media screen and (max-width: 1300px) {
   /*header*/
+  .nav {
+    display: flex;
+  }
   h1 {
     display: flex;
     justify-content: center;

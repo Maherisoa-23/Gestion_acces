@@ -4,12 +4,12 @@ import { DataTableDirective } from 'angular-datatables';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
 @Component({
-  selector: 'app-visiteur',
-  templateUrl: './visiteur.component.html',
-  styleUrls: ['./visiteur.component.css'],
+  selector: 'app-stagiaire-list',
+  templateUrl: './stagiaire-list.component.html',
+  styleUrls: ['./stagiaire-list.component.css'],
 })
-export class VisiteurComponent implements OnInit {
-  visitors: any;
+export class StagiaireListComponent implements OnInit {
+  stagiaires: any;
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -22,13 +22,35 @@ export class VisiteurComponent implements OnInit {
     // private SecurityServ: SecurityAgentService,
     private route: Router,
     private SecurityServ: SecurityAgentService
-  ) {}
+  ) {
+    this.stagiaires = [
+      {
+        stagiaire_name: 'Lucas',
+        stagiaire_etab: 'Lucas',
+        stagiaire_datedebut: 'Lucas',
+        stagiaire_datefin: 'Lucas',
+        stagiaire_dir: 'Lucas',
+      },
+      {
+        stagiaire_name: 'Lucas',
+        stagiaire_etab: 'Lucas',
+        stagiaire_datedebut: 'Lucas',
+        stagiaire_datefin: 'Lucas',
+        stagiaire_dir: 'Lucas',
+      },
+      {
+        stagiaire_name: 'Lucas',
+        stagiaire_etab: 'Lucas',
+        stagiaire_datedebut: 'Lucas',
+        stagiaire_datefin: 'Lucas',
+        stagiaire_dir: 'Lucas',
+      },
+    ];
+  }
 
   ngOnInit(): void {
-    this.refreshVisitorList();
-    setTimeout(() => {
-      
-    }, 500);
+    // this.refreshStagiaireList();
+    setTimeout(() => {}, 500);
     this.setUpDatePicker();
   }
 
@@ -50,17 +72,17 @@ export class VisiteurComponent implements OnInit {
     });
   }
 
-  refreshVisitorList() {
-    this.visitServ.getVisitorList().subscribe((data) => {
-      this.visitors = data;
-    });
-  }
+  // refreshStagiaireList() {
+  //   this.visitServ.getVisitorList().subscribe((data) => {
+  //     this.stagiaires = data;
+  //   });
+  // }
 
   ShowSecurityProfile(visitor: any) {
-    this.visitServ.visitor_name = visitor.visitor_name
+    this.visitServ.visitor_name = visitor.visitor_name;
     setTimeout(() => {
-      this.visitServ
-      this.route.navigate(['admin/Visiteur-profile']);
+      this.visitServ;
+      this.route.navigate(['admin/stagiaire-profile']);
     }, 1000);
   }
 }

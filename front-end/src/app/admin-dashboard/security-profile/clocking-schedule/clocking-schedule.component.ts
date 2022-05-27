@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { SecurityAgentService } from 'src/app/services/security-agent.service'; 
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
 
 @Component({
   selector: 'app-clocking-schedule',

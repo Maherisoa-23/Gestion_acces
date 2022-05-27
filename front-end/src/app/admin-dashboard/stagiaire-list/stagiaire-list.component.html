@@ -1,5 +1,5 @@
 <div class="titre animation1 animation fade01">
-  <h1><i class="fas fa-user-clock"></i>Liste des visiteurs</h1>
+  <h1><i class="fas fa-user-clock"></i>Liste des stagiaires</h1>
 </div>
 <div class="section animation1 animation fade01">
   <!--Liste tableau-->
@@ -12,25 +12,29 @@
     <thead>
       <tr>
         <th class="th">Nom</th>
-        <th class="th">CIN</th>
-        <th>Dernière visite</th>
-        <th>Date</th>
+        <th class="th">Etablissement</th>
+        <th>Date debut</th>
+        <th>Date fin</th>
+        <th>Direction</th>
         <th>Option</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of visitors">
+      <tr *ngFor="let item of stagiaires">
         <td data-label="ID">
-          <strong>{{ item.visitor_name }}</strong>
+          <strong>{{ item.stagiaire_name }}</strong>
         </td>
         <td data-label="Nom">
-          <strong>{{ item.CIN }}</strong>
+          <strong>{{ item.stagiaire_etab }}</strong>
         </td>
         <td data-label="Pointage">
-          <i>-</i>
+          <strong>{{ item.stagiaire_datedebut }}</strong>
         </td>
-        <td data-label="Depart">
-          - 
+        <td data-label="Pointage">
+          <strong>{{ item.stagiaire_datefin }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.stagiaire_dir }}</strong>
         </td>
         <td>
           <button class="voirprofil" (click)="ShowSecurityProfile(item)">

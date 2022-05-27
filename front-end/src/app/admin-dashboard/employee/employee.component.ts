@@ -36,7 +36,7 @@ export class EmployeeComponent implements OnInit {
     this.refreshPointageRegisterList();
     this.refreshDepList();
     setTimeout(() => {
-      this.refreshEmployeeList();
+      this.refreshSecurityList();
     }, 500);
     this.setUpDatePicker()
   }
@@ -65,7 +65,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  refreshEmployeeList() {
+  refreshSecurityList() {
     this.authServ.getEmployeeList().subscribe((data) => {
       this.employees = data;
     });

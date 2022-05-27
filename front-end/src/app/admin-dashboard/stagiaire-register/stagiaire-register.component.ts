@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: 'app-pointage-register',
-  templateUrl: './pointage-register.component.html',
-  styleUrls: ['./pointage-register.component.css'],
+  selector: 'app-stagiaire-register',
+  templateUrl: './stagiaire-register.component.html',
+  styleUrls: ['./stagiaire-register.component.css'],
 })
-export class PointageRegisterComponent implements OnInit {
+export class StagiaireRegisterComponent implements OnInit {
   pointages: any;
   departments: any;
   DateSelected: any;
@@ -66,10 +66,4 @@ export class PointageRegisterComponent implements OnInit {
     this.authServ.numero_matricule = item.numero_matricule;
     this.route.navigate(['admin/unique-pointage']);
   }
-
-  // ChangeDate(DateSelected: Date) {
-  //   if(DateSelected == item.date){
-
-  //   }
-  // }
 }

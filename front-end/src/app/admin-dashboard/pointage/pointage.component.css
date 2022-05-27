@@ -45,7 +45,7 @@ input {
   width: 98%;
   height: auto;
   margin: auto;
-  /* margin-top: 20px; */
+  margin-top: 20px;
   margin-right: 50px;
   padding: 20px;
   text-align: justify;
@@ -360,6 +360,54 @@ input {
   }
 }
 @media screen and (max-width: 900px) {
+  #auCentre {
+    width: 100%;
+  }
+  h1 {
+    font-size: 14px;
+  }
+  .barre {
+    height: auto;
+  }
+  .onglet {
+    font-size: 10px;
+    text-transform: capitalize;
+  }
+  .actif {
+    color: #edeeee;
+    background-color: var(--color-green);
+    height: auto;
+  }
+  .rubrique .section .tbl thead {
+    display: none;
+  }
+  .rubrique .section .tbl,
+  .rubrique .section .tbl tbody,
+  .rubrique .section .tbl tr,
+  .rubrique .section .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .rubrique .section .tbl tr {
+    margin-bottom: 15px;
+  }
+  .rubrique .section .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .rubrique .section .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+@media screen and (max-width: 1300px) {
   #auCentre {
     width: 100%;
   }

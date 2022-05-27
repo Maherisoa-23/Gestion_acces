@@ -53,7 +53,10 @@ import { LieuDetailsComponent } from './admin-dashboard/lieu-details/lieu-detail
 import { EmployeeComponent } from './admin-dashboard/employee/employee.component';
 import { VisiteurComponent } from './admin-dashboard/visiteur/visiteur.component';
 import { VisiteurProfileComponent } from './admin-dashboard/visiteur/visiteur-profile/visiteur-profile.component';
-import { CalendrierVisiteComponent } from './admin-dashboard/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
+import { StagiaireActifComponent } from './admin-dashboard/stagiaire-actif/stagiaire-actif.component';
+import { StagiaireRegisterComponent } from './admin-dashboard/stagiaire-register/stagiaire-register.component';
+import { StagiaireListComponent } from './admin-dashboard/stagiaire-list/stagiaire-list.component';
+import { StagiaireProfileComponent } from './admin-dashboard/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
@@ -75,6 +78,10 @@ const appRoutes: Routes = [
       { path: 'pointage-register', component: PointageRegisterComponent },
       { path: 'lieu-details', component: LieuDetailsComponent },
       { path: 'unique-pointage', component: UniquePointageComponent },
+      { path: 'stagiaire-admin', component: StagiaireActifComponent },
+      { path: 'stagiaire-register', component: StagiaireRegisterComponent },
+      { path: 'stagiaire-list', component: StagiaireListComponent },
+      { path: 'stagiaire-profile', component: StagiaireProfileComponent },
     ],
   },
   {
@@ -122,7 +129,10 @@ const appRoutes: Routes = [
     EmployeeComponent,
     VisiteurComponent,
     VisiteurProfileComponent,
-    CalendrierVisiteComponent,
+    StagiaireActifComponent,
+    StagiaireRegisterComponent,
+    StagiaireListComponent,
+    StagiaireProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,17 +3,16 @@
 </div>
 <div class="section animation1 animation fade01">
   <!--Liste tableau-->
-  <table class="tbl animation1 animation fade01" datatable
-  [dtOptions]="dtOptions"
-  *ngIf="isShow">
+  <table
+    class="tbl animation1 animation fade01"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
     <thead>
       <tr>
-        <th class="th">
-          Numero Matricule
-        </th>
-        <th class="th">
-          Nom
-        </th>
+        <th class="th">Numero Matricule</th>
+        <th class="th">Nom</th>
         <th>Dernier pointage</th>
         <th>Direction</th>
         <th>Option</th>
@@ -34,7 +33,9 @@
           {{ item.department_name }}
         </td>
         <td>
-          <button class="voirprofil" (click)="ShowSecurityProfile(item)">Voir profile</button>
+          <button class="voirprofil" (click)="ShowSecurityProfile(item)">
+            Voir profile
+          </button>
         </td>
       </tr>
     </tbody>

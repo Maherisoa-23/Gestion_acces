@@ -3,10 +3,28 @@
   <!--card-profil -->
   <div class="card-profil animation1 animation fade01">
     <div class="img-card">
-      <img src="assets/avatar/{{ security_name }}.png" alt="" />
+      <i class="fas fa-user-tie"></i>
     </div>
+    <div class="profile"><h1>Profile</h1></div>
     <div class="content-card">
-      <ul>
+      <div class="range">
+        <div class="gauche">Nom</div>
+        <div class="droite">{{ security_name }}</div>
+      </div>
+      <div class="range">
+        <div class="gauche">Matricule</div>
+        <div class="droite">{{ matricule_security }}</div>
+      </div>
+      <div class="range">
+        <div class="gauche">Dernier poste</div>
+        <div class="droite">{{ last_pointage_lieu }}</div>
+      </div>
+      <div class="range">
+        <div class="gauche">Dernier pointage</div>
+        <div class="droite">{{ last_pointage_date }}</div>
+      </div>
+
+      <!-- <ul>
         <li>
           Nom: <span>{{ security_name }}</span>
         </li>
@@ -19,7 +37,7 @@
         <li>
           dérnière connexion: <span>{{ last_pointage_date }}</span>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
   <!--card-profil -->

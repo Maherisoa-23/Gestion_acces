@@ -12,14 +12,13 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
   providers: [DatePipe],
 })
 export class SecurityProfileComponent implements OnInit {
-
   pointage_register: any;
   matricule_security = 5;
-  security_name = "Toky";
+  security_name = 'Toky';
   last_pointage: any;
-  last_pointage_lieu = "";
-  last_pointage_date = "";
-  pointages :any = [];
+  last_pointage_lieu = '';
+  last_pointage_date = '';
+  pointages: any = [];
 
   myChartPointage: any;
 
@@ -29,23 +28,29 @@ export class SecurityProfileComponent implements OnInit {
   date_croissant = false;
 
   //pour le chart.js
-  today: any
-  date: any
-  dateTab: any = []
+  today: any;
+  date: any;
+  dateTab: any = [];
 
-  constructor(private elementRef: ElementRef,private SecurityServ: SecurityAgentService, private authServ: AuthService, private route: Router, private datePipe: DatePipe) { }
+  constructor(
+    private elementRef: ElementRef,
+    private SecurityServ: SecurityAgentService,
+    private authServ: AuthService,
+    private route: Router,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
-    this.last_pointage_lieu = this.SecurityServ.pointed_at
+    this.last_pointage_lieu = this.SecurityServ.pointed_at;
     this.refreshPointageRegisterList();
     if (this.SecurityServ.matricule_security != 0)
       this.matricule_security = this.SecurityServ.matricule_security;
     this.security_name = this.SecurityServ.security_name;
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
-    }, 500)
-    this.getLastSevenDay()
-    this.chartit(); 
+    }, 500);
+    this.getLastSevenDay();
+    this.chartit();
   }
 
   refreshPointageRegisterList() {
@@ -58,35 +63,45 @@ export class SecurityProfileComponent implements OnInit {
     for (let index = 0; index < this.pointage_register.length; index++) {
       const element = this.pointage_register[index];
       if (element.numero_matricule == matricule) {
-        this.pointages.push(element)
-        this.last_pointage = element
+        this.pointages.push(element);
+        this.last_pointage = element;
       }
     }
     this.last_pointage_date = this.last_pointage.date;
-    if (this.last_pointage_lieu == "not pointed") {
+    if (this.last_pointage_lieu == 'not pointed') {
       this.last_pointage_lieu = this.last_pointage.lieu;
     }
   }
 
   getLastSevenDay() {
-    this.today = new Date()
+    this.today = new Date();
     for (let index = 1; index < 8; index++) {
       this.date = new Date(this.today.setDate(this.today.getDate() - 1));
-      this.dateTab.push(this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString())
+      this.dateTab.push(
+        this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
+      );
     }
   }
 
   chartit() {
-    const labels = this.dateTab
+    const labels = this.dateTab;
     const data_pointage = {
       labels: labels,
       datasets: [
         {
           label: 'Activité',
-          data: [[7.15,15.3],[8.12,16.5],[7.45,15.6],[10.5,13.35],[9.25,16.25],[7.55,15.3],[8.30,15.30]],
+          data: [
+            [7.15, 15.3],
+            [8.12, 16.5],
+            [7.45, 15.6],
+            [10.5, 13.35],
+            [9.25, 16.25],
+            [7.55, 15.3],
+            [8.3, 15.3],
+          ],
           backgroundColor: '#ca212680',
-        }
-      ]
+        },
+      ],
     };
 
     let htmlRefPointage =
@@ -97,10 +112,9 @@ export class SecurityProfileComponent implements OnInit {
     });
   }
 
-  CheckDailyPointage(item : any) {
+  CheckDailyPointage(item: any) {
     this.authServ.dateDailyPointage = item.date;
     this.authServ.numero_matricule = item.numero_matricule;
-    this.route.navigate(['admin/unique-pointage'])
+    this.route.navigate(['admin/unique-pointage']);
   }
-
 }

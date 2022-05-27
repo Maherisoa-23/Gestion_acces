@@ -122,7 +122,6 @@
 }
 /*media*/
 @media screen and (max-width: 768px) {
-  /*liste tableau*/
   .section .tbl thead {
     display: none;
   }

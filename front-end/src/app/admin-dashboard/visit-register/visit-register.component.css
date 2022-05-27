@@ -260,7 +260,7 @@
   .section .tbl tr,
   .section .tbl td {
     display: block;
-    width: 100%;
+    /* width: 100%; */
   }
   .section .tbl tr {
     margin-bottom: 15px;
@@ -279,6 +279,13 @@
     font-weight: 600;
     font-size: 14px;
     text-align: left;
+  }
+  .section .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 10px auto 40px;
+    /* border: 2px solid var(--color-blue); */
   }
 }
 
