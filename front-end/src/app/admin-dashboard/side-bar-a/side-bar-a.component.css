@@ -1,12 +1,12 @@
 .anim1 {
-  -webkit-animation-delay: 4s;
-  -moz-animation-delay: 4s;
-  animation-delay: 4s;
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  animation-delay: 3s;
 }
 
 .animate {
-  -webkit-animation-duration: 2.5s;
-  animation-duration: 2.5s;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
 }

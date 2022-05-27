@@ -83,8 +83,8 @@
   animation-delay: 1.8s;
 }
 .animate {
-  -webkit-animation-duration: 2.5s;
-  animation-duration: 2.5s;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
 }

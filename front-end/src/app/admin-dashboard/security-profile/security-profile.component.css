@@ -381,30 +381,46 @@
   }
   /* page-profil */
   .card-profil {
+    grid-area: card-profil;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 0;
+    /* border-radius: 10px; */
+    width: 100%;
+    /* display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--color-blue);
+  margin: 10px auto; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    border: 2px solid var(--color-text);
+  }
+  .card-profil .img-card {
+    width: 100%;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    color: var(--color-blue);
-    margin: 10px;
+    /* margin: 10px 20px 10px 20px; */
     /* border: 2px solid red; */
   }
-  .card-profil .img-card {
-    width: 100px;
-    height: 100px;
-    margin: 20px auto;
+  .card-profil .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-blue);
   }
   .card-profil .content-card {
     width: 100%;
-    height: 70%;
-
-    background: var(--color-blue);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    text-align: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     /* border: 5px solid yellow; */
   }
   .chart {
@@ -457,34 +473,66 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
+    padding-right: 0px;
+    padding: 5px;
   }
   /* page-profil */
   .card-profil {
+    grid-area: card-profil;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 0;
+    /* border-radius: 10px; */
+    width: 100%;
+    /* display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--color-blue);
+  margin: 10px auto; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    border: 2px solid var(--color-text);
+    padding: 5px;
+  }
+  .card-profil .img-card {
+    width: 100%;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    color: var(--color-blue);
-    margin: 10px;
+    /* margin: 10px 20px 10px 20px; */
     /* border: 2px solid red; */
   }
-  .card-profil .img-card {
-    width: 100px;
-    height: 100px;
-    margin: 20px auto;
+  .card-profil .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    /* border: 2px solid red; */
   }
   .card-profil .content-card {
     width: 100%;
-    height: 70%;
-
-    background: var(--color-blue);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    text-align: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     /* border: 5px solid yellow; */
+  }
+  .card-profil .content-card .range {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    color: var(--color-text);
+    margin: 5px 10px;
+    padding-top: 7px;
+    border-top: 2px solid var(--color-text);
   }
   .chart {
     margin: 20px auto;
@@ -495,7 +543,7 @@
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
     margin: 10px auto;
-    border-radius: 10px;
+    border-radius: 0px;
     height: max-content;
   }
   /*liste tableau*/
@@ -529,38 +577,3 @@
     text-align: left;
   }
 }
-@media screen and (max-width: 1100px) {
-  /*liste tableau*/
-
-  .pointage .section .tbl thead {
-    display: none;
-  }
-  .pointage .section .tbl,
-  .pointage .section .tbl tbody,
-  .pointage .section .tbl tr,
-  .pointage .section .tbl td {
-    display: block;
-    width: 100%;
-  }
-  .pointage .section .tbl tr {
-    margin-bottom: 15px;
-  }
-  .pointage .section .tbl tbody tr td {
-    text-align: right;
-    padding-left: 50%;
-    position: relative;
-  }
-  .pointage .section .tbl td:before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15px;
-    font-weight: 600;
-    font-size: 14px;
-    text-align: left;
-  }
-}
-/*
-@media screen and (max-width: 760px) {
-} */

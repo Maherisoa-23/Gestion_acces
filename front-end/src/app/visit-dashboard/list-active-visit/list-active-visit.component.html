@@ -1,6 +1,10 @@
 <!--btn ajout-->
 <div class="btn animation3 animation fade03">
-  <button class="btn-content" onclick="document.getElementById('id01').style.display='block'" (click)="showInfo()">
+  <button
+    class="btn-content"
+    onclick="document.getElementById('id01').style.display='block'"
+    (click)="showInfo()"
+  >
     Ajout Nouvelle Visite
   </button>
 </div>
@@ -10,19 +14,26 @@
   <form class="modal-content animate">
     <h1>Ajout visiteur</h1>
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close"
-        title="Close Modal">&times;</span>
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
     </div>
 
     <div class="container">
       <label><b>Nom Visiteur </b></label>
       <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
       <ul *ngFor="let item of visitors">
-        <li *ngIf="
+        <li
+          *ngIf="
             item.visitor_name
               .toLowerCase()
               .includes(visitor_name.toLowerCase()) && visitor_name
-          " (click)="suggested(item)">
+          "
+          (click)="suggested(item)"
+        >
           {{ item.visitor_name }}
         </li>
       </ul>
@@ -32,26 +43,44 @@
       <label for="OUI">OUI</label>
       <input type="checkbox" id="NON" name="NON" />
       <label for="NON">NON</label><br /> -->
-      <span (click)="NoCIN()">pas de CIN?</span>
       <span *ngIf="haveCIN">
         <label><b>Numero CIN </b></label><br />
         <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
       </span>
       <span *ngIf="!haveCIN">
-        <label><b>Autre Piéce justificative</b></label><br />
+        <label><b>Autre Piéce justificative</b></label
+        ><br />
         <input type="text" name="comment" [(ngModel)]="comment" /> <br />
       </span>
-      <label><b>Description</b></label><br />
+      <label class="spanina" for="cin"><b>Pas de CIN</b></label>
+      <input type="checkbox" (click)="NoCIN()" id="cin" />
+      <!-- <span class="spanina"></span> -->
+      <br /><br />
+      <label><b>Description</b></label
+      ><br />
       <input type="text" name="description" [(ngModel)]="description" /> <br />
 
       <label><b>Motif </b></label>
-      <textarea id="subject" [(ngModel)]="motif" name="motif" style="height: 200px"></textarea>
-      <button type="submit" class="btn-ajout" (click)="addVisit()"
-        onclick="document.getElementById('id01').style.display='none'">
+      <textarea
+        id="subject"
+        [(ngModel)]="motif"
+        name="motif"
+        style="height: 200px"
+      ></textarea>
+      <button
+        type="submit"
+        class="btn-ajout"
+        (click)="addVisit()"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
         Ajouter
       </button>
-      <button class="btn-cancel" type="button" onclick="document.getElementById('id01').style.display='none'"
-        (click)="showWarn()">
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="showWarn()"
+      >
         Cancel
       </button>
     </div>

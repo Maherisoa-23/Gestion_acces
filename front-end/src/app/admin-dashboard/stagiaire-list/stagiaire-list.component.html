@@ -1,5 +1,68 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03">
+  <button
+    class="btn-content"
+    onclick="document.getElementById('id01').style.display='block'"
+  >
+    Ajout Nouveau Stagiaire
+  </button>
+</div>
+
+<!--modal-->
+<div id="id01" class="modal">
+  <form class="modal-content animate">
+    <h1>Ajout Stagiaire</h1>
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+
+    <div class="container">
+      <label><b>Nom Stagiaire </b></label>
+      <input
+        type="text"
+        name="stagiaire_name"
+        [(ngModel)]="stagiaire_name"
+      /><br />
+      <label><b>Description </b></label>
+      <input type="text" name="description" [(ngModel)]="description" /><br />
+      <label for="select"><b>Direction</b></label>
+      <select name="pets" id="select" [(ngModel)]="direction">
+        <option value="" default selected>Selectionner la Direction</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+      </select>
+      <br />
+      <label><b>Date debut </b></label>
+      <input type="date" name="date_debut" [(ngModel)]="date_debut" /><br />
+      <label><b>Date fin </b></label>
+      <input type="date" name="date_fin" [(ngModel)]="date_fin" /><br /><br />
+
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="addStagiaire()"
+      >
+        Ajouter
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<!-- modal******************* -->
 <div class="titre animation1 animation fade01">
-  <h1><i class="fas fa-user-clock"></i>Liste des stagiaires</h1>
+  <h1><i class="fas fa-user-tag"></i>Liste des stagiaires</h1>
 </div>
 <div class="section animation1 animation fade01">
   <!--Liste tableau-->
@@ -12,10 +75,10 @@
     <thead>
       <tr>
         <th class="th">Nom</th>
-        <th class="th">Etablissement</th>
-        <th>Date debut</th>
-        <th>Date fin</th>
-        <th>Direction</th>
+        <th class="th">description</th>
+        <th>date_debut</th>
+        <th>date_fin</th>
+        <th>direction</th>
         <th>Option</th>
       </tr>
     </thead>
@@ -25,16 +88,16 @@
           <strong>{{ item.stagiaire_name }}</strong>
         </td>
         <td data-label="Nom">
-          <strong>{{ item.stagiaire_etab }}</strong>
+          <strong>{{ item.description }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.stagiaire_datedebut }}</strong>
+          <strong>{{ item.date_debut }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.stagiaire_datefin }}</strong>
+          <strong>{{ item.date_fin }}</strong>
         </td>
         <td data-label="Pointage">
-          <strong>{{ item.stagiaire_dir }}</strong>
+          <strong>{{ item.direction }}</strong>
         </td>
         <td>
           <button class="voirprofil" (click)="ShowSecurityProfile(item)">

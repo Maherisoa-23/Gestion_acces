@@ -142,14 +142,14 @@
   animation-delay: 2s;
 }
 .anima3 {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .animate {
-  -webkit-animation-duration: 2.5s;
-  animation-duration: 2.5s;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
 }

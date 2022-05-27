@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
+import { NgToastService } from 'ng-angular-popup';
+
 @Component({
   selector: 'app-stagiaire-list',
   templateUrl: './stagiaire-list.component.html',
@@ -10,6 +12,11 @@ import { VisitService } from 'src/app/services/visit.service';
 })
 export class StagiaireListComponent implements OnInit {
   stagiaires: any;
+  @Input() stagiaire_name!: string;
+  @Input() description!: string;
+  @Input() direction!: string;
+  @Input() date_debut!: Date;
+  @Input() date_fin!: Date;
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -21,32 +28,9 @@ export class StagiaireListComponent implements OnInit {
     private visitServ: VisitService,
     // private SecurityServ: SecurityAgentService,
     private route: Router,
-    private SecurityServ: SecurityAgentService
-  ) {
-    this.stagiaires = [
-      {
-        stagiaire_name: 'Lucas',
-        stagiaire_etab: 'Lucas',
-        stagiaire_datedebut: 'Lucas',
-        stagiaire_datefin: 'Lucas',
-        stagiaire_dir: 'Lucas',
-      },
-      {
-        stagiaire_name: 'Lucas',
-        stagiaire_etab: 'Lucas',
-        stagiaire_datedebut: 'Lucas',
-        stagiaire_datefin: 'Lucas',
-        stagiaire_dir: 'Lucas',
-      },
-      {
-        stagiaire_name: 'Lucas',
-        stagiaire_etab: 'Lucas',
-        stagiaire_datedebut: 'Lucas',
-        stagiaire_datefin: 'Lucas',
-        stagiaire_dir: 'Lucas',
-      },
-    ];
-  }
+    private SecurityServ: SecurityAgentService,
+    private toast: NgToastService
+  ) {}
 
   ngOnInit(): void {
     // this.refreshStagiaireList();
@@ -84,5 +68,8 @@ export class StagiaireListComponent implements OnInit {
       this.visitServ;
       this.route.navigate(['admin/stagiaire-profile']);
     }, 1000);
+  }
+  addStagiaire() {
+    console.log(this.direction);
   }
 }
