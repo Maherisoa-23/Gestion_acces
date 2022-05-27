@@ -40,9 +40,21 @@
               .toLowerCase()
               .includes(enteredValue.toLowerCase()) && enteredValue
           "
-          (click)="suggested(item.employee_name)"
+          (click)="suggestedEmp(item.employee_name)"
         >
           {{ item.employee_name }}- <span>{{ item.department_name }}</span>
+        </li>
+      </ul>
+      <ul *ngFor="let item of stagiaires" >
+        <li
+          *ngIf="
+            item.stagiaire_name
+              .toLowerCase()
+              .includes(enteredValue.toLowerCase()) && enteredValue
+          "
+          (click)="suggestedStg(item.stagiaire_name)"
+        >
+          {{ item.stagiaire_name }}- <span>{{ item.department_name }}  Stagiaire</span>
         </li>
       </ul>
 
@@ -89,9 +101,9 @@
               .toLowerCase()
               .includes(enteredValue.toLowerCase()) && enteredValue
           "
-          (click)="suggested(item.employee_name)"
+          (click)="suggestedExit(item.employee_name)"
         >
-          {{ item.employee_name }}
+          {{ item.employee_name }} {{ item.employee_dep_name }}<span *ngIf="item.function == 'stagiaire'">  Stagiaire</span>
         </li>
       </ul>
       <button

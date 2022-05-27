@@ -44,7 +44,6 @@ export class StagiaireRegisterComponent implements OnInit {
 
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
-
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
     });
   }

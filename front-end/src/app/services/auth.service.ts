@@ -105,16 +105,21 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/pointage_register/');
   }
 
+  //pour employé
   addPointage(val: any) {
     return this.http.post(this.APIUrl + '/pointage/', val);
+  }
+  //pour stagiaire
+  addPointageStg(val: any) {
+    return this.http.put(this.APIUrl + '/pointage/', val);
   }
 
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
   }
 
-  deletePointage(id: number) {
-    return this.http.delete(this.APIUrl + '/pointage/' + id);
+  deletePointage(val: any) {
+    return this.http.put(this.APIUrl + '/pointage_register/', val);
   }
   //filtre des pointages par départements
   getPointageByDep(dep_id: number) {

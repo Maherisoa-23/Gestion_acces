@@ -29,22 +29,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages" (click)="CheckDailyPointage(item)">
-        <td data-label="Nom">
+        <td data-label="Nom" *ngIf="item.function == 'stagiaire'">
           <strong>{{ item.employee_name }}</strong>
         </td>
-        <td data-label="Date">
+        <td data-label="Date" *ngIf="item.function == 'stagiaire'">
           <b>{{ item.date }}</b>
         </td>
-        <td data-label="Heure d'entree">
+        <td data-label="Heure d'entree" *ngIf="item.function == 'stagiaire'">
           <b>{{ item.entry_time }}</b>
         </td>
-        <td data-label="Heure de sortie">
+        <td data-label="Heure de sortie" *ngIf="item.function == 'stagiaire'">
           <b>{{ item.exit_time }}</b>
         </td>
-        <td data-label="Lieu">
+        <td data-label="Lieu" *ngIf="item.function == 'stagiaire'">
           <i>{{ item.lieu }}</i>
         </td>
-        <td data-label="Depart">{{ item.employee_dep_name }}</td>
+        <td data-label="Depart" *ngIf="item.function == 'stagiaire'">{{ item.employee_dep_name }}</td>
       </tr>
     </tbody>
   </table>
