@@ -58,6 +58,8 @@ export class VisiteurComponent implements OnInit {
 
   ShowSecurityProfile(visitor: any) {
     this.visitServ.visitor_name = visitor.visitor_name
+    this.visitServ.CIN = visitor.CIN
+    this.visitServ.description = visitor.description
     setTimeout(() => {
       this.visitServ
       this.route.navigate(['admin/Visiteur-profile']);

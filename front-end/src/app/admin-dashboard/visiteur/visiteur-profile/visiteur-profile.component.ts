@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
   selector: 'app-visiteur-profile',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisiteurProfileComponent implements OnInit {
 
-  constructor() { }
+  visitor_name = ""  
+  CIN = 0
+  description = ""
+  lastVisit = ""
+
+  constructor(private visitServ: VisitService) { }
 
   ngOnInit(): void {
+    this.visitor_name = this.visitServ.visitor_name
+    this.CIN = this.visitServ.CIN
+    this.description = this.visitServ.description
+    this.lastVisit = this.visitServ.lastVisit
   }
 
 }

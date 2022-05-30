@@ -109,6 +109,7 @@ export class ListActiveVisitComponent implements OnInit {
     this.comment = null;
     this.CIN = null;
   }
+  
   addVisit() {
     if (this.isNewVisitor(this.visitor_name)) this.addNewVisitor();
     this.Date = new Date();
