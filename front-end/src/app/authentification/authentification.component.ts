@@ -118,7 +118,7 @@ export class AuthentificationComponent implements OnInit {
             });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 500);
-          //this.saveConnection()
+          this.saveConnection()
           break;
         } 
       }

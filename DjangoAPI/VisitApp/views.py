@@ -50,7 +50,7 @@ def visit_API(request: HttpRequest, id=0):
             return JsonResponse("Update successfully",safe=False)
         return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        visit=Visits_actif.objects.get(CIN =id)
+        visit=Visits_actif.objects.get(visitor_name = id)
         visit.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)

@@ -293,6 +293,31 @@ button:hover {
 .container {
   padding: 16px;
 }
+.container ul {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: 800px;
+  letter-spacing: 2px;
+  color: var(--color-green);
+  /* background: #000; */
+}
+.container ul li {
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  /* color: var(--color-titre); */
+}
+
+.container ul li:hover {
+  color: var(--color-green);
+  border: 2px solid var(--color-green);
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 12px;
+}
 .modal form .container .btn-cancel {
   background-color: var(--color-red);
   border: none;
