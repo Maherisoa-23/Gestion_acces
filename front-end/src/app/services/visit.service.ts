@@ -12,10 +12,12 @@ export class VisitService {
   readonly APIUrl = 'http://localhost:8000';
   constructor(private http: HttpClient) {}
 
+  comment = ""
   visitor_name = ""  
   CIN = 0
   description = ""
-  lastVisit = ""
+  lastVisit : any
+  Nbvisit = 0
 
   //methode pour les visiteurs
   getVisitorList(): Observable<any[]> {

@@ -47,13 +47,27 @@ export class VisiteurComponent implements OnInit {
   }
 
   ShowSecurityProfile(visitor: any) {
+    this.visitServ.comment = visitor.comment
+    this.visitServ.lastVisit = this.getLastVisite(visitor.visitor_name)
     this.visitServ.visitor_name = visitor.visitor_name
     this.visitServ.CIN = visitor.CIN
     this.visitServ.description = visitor.description
+    this.visitServ.Nbvisit = this.countNbVisit(visitor.visitor_name)
     setTimeout(() => {
       this.visitServ
       this.route.navigate(['admin/Visiteur-profile']);
     }, 1000);
+  }
+
+  countNbVisit(visitor_name : string) {
+    let cpt = 0;
+    for (let index = 0; index < this.visits.length; index++) {
+      const element = this.visits[index];
+      if (element.visitor_name == visitor_name) {
+        cpt++
+      }
+    }
+    return cpt;
   }
 
   getLastVisite(visitor : string) {

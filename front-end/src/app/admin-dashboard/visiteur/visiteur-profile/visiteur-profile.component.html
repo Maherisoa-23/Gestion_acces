@@ -9,9 +9,13 @@
       <h1>{{visitor_name}}</h1>
     </div>
     <div class="apropos">
-      <div class="apropos-list">
+      <div class="apropos-list" *ngIf="CIN">
         <div class="apropos-list-item">CIN</div>
         <div class="apropos-list-value">{{CIN}}</div>
+      </div>
+      <div class="apropos-list" *ngIf="comment">
+        <div class="apropos-list-item">pas de CIN</div>
+        <div class="apropos-list-value">{{comment}}</div>
       </div>
       <div class="apropos-list">
         <div class="apropos-list-item">Description</div>
@@ -19,11 +23,11 @@
       </div>
       <div class="apropos-list">
         <div class="apropos-list-item">Derniere visite</div>
-        <div class="apropos-list-value">012345</div>
+        <div class="apropos-list-value">{{lastVisit}}</div>
       </div>
       <div class="apropos-list">
         <div class="apropos-list-item">Nombre de visite</div>
-        <div class="apropos-list-value">012345</div>
+        <div class="apropos-list-value">{{Nbvisit}}</div>
       </div>
     </div>
   </div>
