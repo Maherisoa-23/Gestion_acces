@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
-import { SecurityAgentService } from 'src/app/services/security-agent.service'; 
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { VisitService } from 'src/app/services/visit.service';
 })
 export class CalendrierVisiteComponent implements OnInit {
 
+  visits: any = []
   visits_register: any = [];
   post: any = [];
   calendarOptions: CalendarOptions | any;
@@ -19,7 +20,7 @@ export class CalendrierVisiteComponent implements OnInit {
 
   constructor(private visitServ: VisitService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
-  handleDateClick(arg: any) { 
+  handleDateClick(arg: any) {
     //this.visitServ.dateDailyPointage = arg.dateStr;
     //this.route.navigate(['admin/unique-pointage']);
   }
@@ -27,6 +28,7 @@ export class CalendrierVisiteComponent implements OnInit {
   ngOnInit(): void {
     this.refreshVisitsRegisterList();
     setTimeout(() => {
+      console.log(this.visits_register)
       this.getPresentDate()
     }, 1000);
     setTimeout(() => {
@@ -38,33 +40,39 @@ export class CalendrierVisiteComponent implements OnInit {
     }, 1000);
   }
 
-
   refreshVisitsRegisterList() {
     this.visitServ.getVisitsRegister().subscribe((data) => {
       this.visits_register = data;
     });
   }
 
+  getAllVisitByName() {
+    for (let index = 0; index < this.visits_register.length; index++) {
+      const element = this.visits_register[index];
 
+    }
+  }
 
   getPresentDate() {
     for (let index = 0; index < this.visits_register.length; index++) {
       const element = this.visits_register[index];
-      let entry_time = this.convertTime(element.entry_time);
-      if (element.lieu == "Ambohijatovo") {
-        this.val = {
-          title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#c92128"
+      if (element.visitor_name == this.visitServ.visitor_name) {
+        let entry_time = this.convertTime(element.entry_time);
+        if (element.lieu == "Ambohijatovo") {
+          this.val = {
+            title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#c92128"
+          }
+        } else if (element.lieu == "Andraharo") {
+          this.val = {
+            title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#35aa49"
+          }
+        } else {
+          this.val = {
+            title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#1e546b"
+          }
         }
-      } else if (element.lieu == "Andraharo") {
-        this.val = {
-          title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#35aa49"
-        }
-      } else {
-        this.val = {
-          title: entry_time + " - " + this.convertTime(element.exit_time), date: element.date, color: "#1e546b"
-        }
+        this.post.push(this.val)
       }
-      this.post.push(this.val)
     }
   }
 
