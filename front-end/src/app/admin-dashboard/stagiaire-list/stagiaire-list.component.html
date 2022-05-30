@@ -28,7 +28,7 @@
         name="stagiaire_name"
         [(ngModel)]="stagiaire_name"
       /><br />
-      <label><b>Description {{description}}</b></label>
+      <label><b>Description </b></label>
       <input type="text" name="description" [(ngModel)]="description" /><br />
       <label for="select"><b>Direction</b></label>
       <select name="pets" id="select" [(ngModel)]="direction">
@@ -86,7 +86,7 @@
           <strong>{{ item.stagiaire_name }}</strong>
         </td>
         <td data-label="Nom">
-          <strong>{{ item.descritpion }}</strong>
+          <strong>{{ item.description }}</strong>
         </td>
         <td data-label="Pointage">
           <strong>{{ item.start_date }}</strong>

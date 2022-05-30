@@ -1,17 +1,21 @@
 <div class="titre animation1 animation fade01">
   <h1>Registre des visites</h1>
 </div>
+<div class="topnav animation1 animation fade01">
+  <a class="active"
+    ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
+    <input type="date" [(ngModel)]="DateSelected" class="dateadded" />
+  </a>
+</div>
 <div class="section animation1 animation fade01">
-  <!--navigation-->
-  <div class="topnav">
-    <a class="active"
-      ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
-      <input type="date" [(ngModel)]="DateSelected" class="dateadded" />
-    </a>
-  </div>
-  <!--navigation-->
   <!--Liste tableau-->
-  <table class="tbl" datatable [dtOptions]="dtOptions" *ngIf="isShow">
+  <table
+    id="dataTables-example"
+    class="tbl"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
     <thead>
       <tr>
         <th class="th">Nom</th>

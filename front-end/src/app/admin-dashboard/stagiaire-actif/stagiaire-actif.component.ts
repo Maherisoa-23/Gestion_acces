@@ -26,13 +26,16 @@ export class StagiaireActifComponent implements OnInit {
   switchAndraharo() {
     this.authServ.lieu = 'Andraharo';
     this.lieu = this.authServ.lieu;
+    this.refreshPointageList()
   }
   switchAmbohijatovo() {
     this.authServ.lieu = 'Ambohijatovo';
     this.lieu = this.authServ.lieu;
+    this.refreshPointageList()
   }
   switchMangasoavina() {
     this.authServ.lieu = 'Mangasoavina';
     this.lieu = this.authServ.lieu;
+    this.refreshPointageList()
   }
 }

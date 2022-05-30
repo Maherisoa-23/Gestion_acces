@@ -56,6 +56,7 @@ import { StagiaireActifComponent } from './admin-dashboard/stagiaire-actif/stagi
 import { StagiaireRegisterComponent } from './admin-dashboard/stagiaire-register/stagiaire-register.component';
 import { StagiaireListComponent } from './admin-dashboard/stagiaire-list/stagiaire-list.component';
 import { StagiaireProfileComponent } from './admin-dashboard/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
+import { CalendrierVisiteComponent } from './admin-dashboard/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -135,6 +136,7 @@ const appRoutes: Routes = [
     StagiaireRegisterComponent,
     StagiaireListComponent,
     StagiaireProfileComponent,
+    CalendrierVisiteComponent
   ],
   imports: [
     BrowserModule,

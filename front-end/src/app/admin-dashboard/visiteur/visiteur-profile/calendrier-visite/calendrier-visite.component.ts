@@ -2,8 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
-import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service'; 
+import { VisitService } from 'src/app/services/visit.service';
 
 @Component({
   selector: 'app-calendrier-visite',
@@ -12,28 +12,20 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
 })
 export class CalendrierVisiteComponent implements OnInit {
 
-  matricule_security = 5;
-  pointages: any = [];
-  pointage_register: any = [];
+  visits_register: any = [];
   post: any = [];
   calendarOptions: CalendarOptions | any;
   val: any;
 
-  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) { }
+  constructor(private visitServ: VisitService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
-  handleDateClick(arg: any) {
-    this.authServ.numero_matricule = this.matricule_security;
-    this.authServ.dateDailyPointage = arg.dateStr;
-    this.route.navigate(['admin/unique-pointage']);
+  handleDateClick(arg: any) { 
+    //this.visitServ.dateDailyPointage = arg.dateStr;
+    //this.route.navigate(['admin/unique-pointage']);
   }
 
   ngOnInit(): void {
-    this.refreshPointageRegisterList();
-    if (this.SecurityServ.matricule_security != 0)
-      this.matricule_security = this.SecurityServ.matricule_security;
-    setTimeout(() => {
-      this.getLastPointageBySec(this.matricule_security);
-    }, 500)
+    this.refreshVisitsRegisterList();
     setTimeout(() => {
       this.getPresentDate()
     }, 1000);
@@ -47,22 +39,17 @@ export class CalendrierVisiteComponent implements OnInit {
   }
 
 
-  refreshPointageRegisterList() {
-    this.authServ.getPointageRegisterList().subscribe((data) => {
-      this.pointage_register = data;
+  refreshVisitsRegisterList() {
+    this.visitServ.getVisitsRegister().subscribe((data) => {
+      this.visits_register = data;
     });
   }
-  getLastPointageBySec(matricule: number) {
-    for (let index = 0; index < this.pointage_register.length; index++) {
-      const element = this.pointage_register[index];
-      if (element.numero_matricule == matricule) {
-        this.pointages.push(element)
-      }
-    }
-  }
+
+
+
   getPresentDate() {
-    for (let index = 0; index < this.pointages.length; index++) {
-      const element = this.pointages[index];
+    for (let index = 0; index < this.visits_register.length; index++) {
+      const element = this.visits_register[index];
       let entry_time = this.convertTime(element.entry_time);
       if (element.lieu == "Ambohijatovo") {
         this.val = {

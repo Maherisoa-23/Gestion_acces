@@ -137,7 +137,7 @@ export class AuthentificationComponent implements OnInit {
   saveConnection() {
     this.date = new Date();
     this.heure = new Date();
-    this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
+    this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
     this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy');
 
     var val = {

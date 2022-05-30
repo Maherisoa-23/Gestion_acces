@@ -362,7 +362,7 @@ export class PointageEmployeeComponent implements OnInit {
           element.employee_name == employee_name
         ) {
           this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss');
           var val1 = {
             function: "stagiaire",
             date: element.date,

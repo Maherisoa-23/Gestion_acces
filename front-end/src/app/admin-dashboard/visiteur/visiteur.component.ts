@@ -9,7 +9,9 @@ import { VisitService } from 'src/app/services/visit.service';
   styleUrls: ['./visiteur.component.css'],
 })
 export class VisiteurComponent implements OnInit {
-  visitors: any;
+  visitors: any = [];
+
+  visits : any = [];
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -25,11 +27,44 @@ export class VisiteurComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.refreshVisitorList();
+    this.refreshVisitRegisterList();
     setTimeout(() => {
-      
+      this.refreshVisitorList();
     }, 500);
     this.setUpDatePicker();
+  }
+
+  refreshVisitRegisterList() {
+    this.visitServ.getVisitsRegister().subscribe((data) => {
+      this.visits = data;
+    });
+  }
+
+  refreshVisitorList() {
+    this.visitServ.getVisitorList().subscribe((data) => {
+      this.visitors = data;
+    });
+  }
+
+  ShowSecurityProfile(visitor: any) {
+    this.visitServ.visitor_name = visitor.visitor_name
+    this.visitServ.CIN = visitor.CIN
+    this.visitServ.description = visitor.description
+    setTimeout(() => {
+      this.visitServ
+      this.route.navigate(['admin/Visiteur-profile']);
+    }, 1000);
+  }
+
+  getLastVisite(visitor : string) {
+    let lastVisit;
+    for (let index = 0; index < this.visits.length; index++) {
+      const element = this.visits[index];
+      if (element.visitor_name == visitor) {
+        lastVisit = element.lieu + ", le " + element.date
+      }
+    }
+    return lastVisit
   }
 
   setUpDatePicker() {
@@ -48,21 +83,5 @@ export class VisiteurComponent implements OnInit {
 
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
     });
-  }
-
-  refreshVisitorList() {
-    this.visitServ.getVisitorList().subscribe((data) => {
-      this.visitors = data;
-    });
-  }
-
-  ShowSecurityProfile(visitor: any) {
-    this.visitServ.visitor_name = visitor.visitor_name
-    this.visitServ.CIN = visitor.CIN
-    this.visitServ.description = visitor.description
-    setTimeout(() => {
-      this.visitServ
-      this.route.navigate(['admin/Visiteur-profile']);
-    }, 1000);
   }
 }

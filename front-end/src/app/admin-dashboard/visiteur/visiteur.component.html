@@ -12,25 +12,21 @@
     <thead>
       <tr>
         <th class="th">Nom</th>
-        <th class="th">CIN</th>
+        <th class="th">Description</th>
         <th>Dernière visite</th>
-        <th>Date</th>
         <th>Option</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of visitors">
-        <td data-label="ID">
+        <td data-label="Nom">
           <strong>{{ item.visitor_name }}</strong>
         </td>
-        <td data-label="Nom">
-          <strong>{{ item.CIN }}</strong>
+        <td data-label="Description">
+          <strong>{{ item.description }}</strong>
         </td>
-        <td data-label="Pointage">
-          <i>-</i>
-        </td>
-        <td data-label="Depart">
-          - 
+        <td data-label="Visite">
+          <i>{{getLastVisite(item.visitor_name)}}</i>
         </td>
         <td>
           <button class="voirprofil" (click)="ShowSecurityProfile(item)">

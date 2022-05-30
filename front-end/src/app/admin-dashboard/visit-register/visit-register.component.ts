@@ -1,40 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { VisitService } from 'src/app/services/visit.service';
+import { DataTableDirective } from 'angular-datatables';
+
 declare var $: any;
 
 @Component({
   selector: 'app-visit-register',
   templateUrl: './visit-register.component.html',
-  styleUrls: ['./visit-register.component.css']
+  styleUrls: ['./visit-register.component.css'],
 })
 export class VisitRegisterComponent implements OnInit {
+  visitsRegister: any;
 
-  visitsRegister : any;
-
-  dtOptions: DataTables.Settings = {};
-  isShow = false
-  table : any;
+  departments: any;
   DateSelected: any;
 
-  constructor(private visitServ: VisitService) { }
+  dtOptions: DataTables.Settings = {};
+  isShow = false;
+  table: any;
+
+  //filtrage personnalisé
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement: any = DataTableDirective;
+
+  depSelected: any;
+
+  constructor(private visitServ: VisitService) {}
 
   ngOnInit(): void {
     this.refreshVisitRegisterList();
-    //datepicker
+    this.setUpDatePicker();
+  }
+  setUpDatePicker() {
     setTimeout(() => {
-      this.isShow = true
+      this.isShow = true;
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 5,
-        lengthMenu : [5, 10, 25],
+        pageLength: 10,
+        lengthMenu: [10, 15, 25],
         processing: true,
       };
-    },500)
+    }, 600);
+
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
-      $('#dataTables-example').DataTable().columns(1).search(v).draw();
-    }); 
+      $('#dataTables-example').DataTable().columns(2).search(v).draw();
+    });
   }
 
   refreshVisitRegisterList() {
@@ -42,5 +54,4 @@ export class VisitRegisterComponent implements OnInit {
       this.visitsRegister = data;
     });
   }
-
 }
