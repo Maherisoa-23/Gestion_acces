@@ -43,37 +43,11 @@ export class AuthentificationComponent implements OnInit {
     this.refreshUsersList();
     this.authStatus = this.authService.isAuth;
   }
-  //Les messages de notification, de succes et d"erreur
-  showSuccess() {
-    this.toast.success({
-      detail: 'Bienvenue',
-      summary: 'Vous êtes connecté',
-      duration: 5000,
-    });
-  }
 
-  showErrorAdmin() {
-    this.toast.error({
-      detail: 'ERROR',
-      summary: 'Verifier bien votre matricule et votre mot de passe',
-      duration: 5000,
+  refreshUsersList() {
+    this.authService.getUsersList().subscribe((data) => {
+      this.usersList = data;
     });
-  }
-
-  showErrorAgent() {
-    this.toast.error({
-      detail: 'ERROR',
-      summary: 'Verifier bien votre matricule et le choix du lieu',
-      duration: 4000,
-    });
-  }
-  getLieuId(lieu: string) {
-    if (lieu == 'Ambohijatovo') return 1;
-    else {
-      if (lieu == 'Andraharo') return 2;
-      else if (lieu == 'Mangasoavina') return 3;
-      else return 4;
-    }
   }
 
   refreshLieuList() {
@@ -88,12 +62,6 @@ export class AuthentificationComponent implements OnInit {
         }
       }
     }, 1200);
-  }
-
-  refreshUsersList() {
-    this.authService.getUsersList().subscribe((data) => {
-      this.usersList = data;
-    });
   }
 
   onSignIn() {
@@ -120,7 +88,7 @@ export class AuthentificationComponent implements OnInit {
           });
           this.showSuccess();
           break;
-        } else this.showErrorAdmin();
+        } else this.showError("Vérifier votre numéro matricule et votre mot de passe");
         break;
       } else {
         if (
@@ -156,10 +124,14 @@ export class AuthentificationComponent implements OnInit {
       }
       setTimeout(() => {
         if (!this.ok)
-          this.showErrorAgent();
+          this.showError("Vérifier votre numéro matricule et le choix du lieu");
       }, 500);
       
     }
+  }
+
+  suggested(numero_matricule: any) {
+    this.numero_matricule = numero_matricule;
   }
 
   saveConnection() {
@@ -180,6 +152,32 @@ export class AuthentificationComponent implements OnInit {
     });
   }
 
+
+  //Les messages de notification, de succes et d"erreur
+  showSuccess() {
+    this.toast.success({
+      detail: 'Bienvenue',
+      summary: 'Vous êtes connecté',
+      duration: 5000,
+    });
+  }
+
+  showError(msg : string) {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+  
+  getLieuId(lieu: string) {
+    if (lieu == 'Ambohijatovo') return 1;
+    else {
+      if (lieu == 'Andraharo') return 2;
+      else if (lieu == 'Mangasoavina') return 3;
+      else return 4;
+    }
+  }
   
 
   //animation du formulaire d'euthentification
@@ -190,7 +188,4 @@ export class AuthentificationComponent implements OnInit {
     this.input2 = true;
   }
 
-  suggested(numero_matricule: any) {
-    this.numero_matricule = numero_matricule;
-  }
 }

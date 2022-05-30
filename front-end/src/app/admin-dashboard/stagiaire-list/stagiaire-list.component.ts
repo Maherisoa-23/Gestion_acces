@@ -77,8 +77,6 @@ export class StagiaireListComponent implements OnInit {
     }
   }
   addStagiaire() {
-    const tmp = this.datePipe.transform(this.date_debut, 'yyyy-MM-dd');
-    const tmp2 = this.datePipe.transform(this.date_fin, 'yyyy-MM-dd'); 
     const val = {
       stagiaire_name : this.stagiaire_name,
       description : this.description,
@@ -90,6 +88,9 @@ export class StagiaireListComponent implements OnInit {
     this.authServ.addStagiaire(val).subscribe((res) => {
       alert(res.toString())
     })
+    setTimeout(() => {
+      this.refreshStagiaireList()
+    }, 500);
   }
   refreshStagiaireList() {
     this.authServ.getStagiaireList().subscribe((data) => {
