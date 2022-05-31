@@ -57,6 +57,7 @@ import { StagiaireRegisterComponent } from './admin-dashboard/stagiaire-register
 import { StagiaireListComponent } from './admin-dashboard/stagiaire-list/stagiaire-list.component';
 import { StagiaireProfileComponent } from './admin-dashboard/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
 import { CalendrierVisiteComponent } from './admin-dashboard/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
+import { EmployeeProfileComponent } from './admin-dashboard/employee/employee-profile/employee-profile.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -70,9 +71,10 @@ const appRoutes: Routes = [
     component: AdminDashboardComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'Employee-list', component: EmployeeComponent },
-      { path: 'Visiteur-list', component: VisiteurComponent },
-      { path: 'Visiteur-profile', component: VisiteurProfileComponent },
+      { path: 'employee-list', component: EmployeeComponent },
+      { path: 'employee-profile', component: EmployeeProfileComponent },
+      { path: 'visiteur-list', component: VisiteurComponent },
+      { path: 'visiteur-profile', component: VisiteurProfileComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
       { path: 'security-profile', component: SecurityProfileComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent },
@@ -136,7 +138,8 @@ const appRoutes: Routes = [
     StagiaireRegisterComponent,
     StagiaireListComponent,
     StagiaireProfileComponent,
-    CalendrierVisiteComponent
+    CalendrierVisiteComponent,
+    EmployeeProfileComponent
   ],
   imports: [
     BrowserModule,

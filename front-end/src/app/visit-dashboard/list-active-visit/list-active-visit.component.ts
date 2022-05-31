@@ -27,8 +27,8 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() visitor_name = '';
   @Input() motif = '';
   @Input() CIN: any = 0;
-  @Input() comment = null;
-  @Input() description = null;
+  @Input() comment : any = null;
+  @Input() description : any = null;
 
   constructor(
     private visitServ: VisitService,
@@ -138,6 +138,8 @@ export class ListActiveVisitComponent implements OnInit {
     this.visitor_name = '';
     this.CIN = 0;
     this.motif = '';
+    this.comment = "";
+    this.description = ""
   }
 
   exit(item: any) {

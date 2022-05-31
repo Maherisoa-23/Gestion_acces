@@ -55,7 +55,7 @@ export class VisiteurComponent implements OnInit {
     this.visitServ.Nbvisit = this.countNbVisit(visitor.visitor_name)
     setTimeout(() => {
       this.visitServ
-      this.route.navigate(['admin/Visiteur-profile']);
+      this.route.navigate(['admin/visiteur-profile']);
     }, 1000);
   }
 

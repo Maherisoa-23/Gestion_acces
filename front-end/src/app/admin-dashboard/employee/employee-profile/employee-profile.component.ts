@@ -5,14 +5,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { Location } from '@angular/common';
 
-
 @Component({
-  selector: 'app-security-profile',
-  templateUrl: './security-profile.component.html',
-  styleUrls: ['./security-profile.component.css'],
+  selector: 'app-employee-profile',
+  templateUrl: './employee-profile.component.html',
+  styleUrls: ['./employee-profile.component.css'],
   providers: [DatePipe],
 })
-export class SecurityProfileComponent implements OnInit {
+export class EmployeeProfileComponent implements OnInit {
   pointage_register: any;
   matricule_security = 5;
   security_name = '';
@@ -43,7 +42,7 @@ export class SecurityProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.SecurityServ.security_name == "") this.route.navigate(['/admin/security-agent'])
+    if (this.SecurityServ.security_name == "") this.route.navigate(['/admin/employee-list'])
     this.last_pointage_lieu = this.SecurityServ.pointed_at;
     this.refreshPointageRegisterList();
     if (this.SecurityServ.matricule_security != 0)

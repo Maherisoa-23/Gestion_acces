@@ -101,13 +101,13 @@ export class EmployeeComponent implements OnInit {
     return " - "
   }
 
-  ShowSecurityProfile(security: any) {
+  ShowEmployeeProfile(security: any) {
     this.authServ.refreshPointageList();
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
       this.SecurityServ.pointed_at = security.pointed_at;
-      this.route.navigate(['admin/security-profile']);
+      this.route.navigate(['admin/employee-profile']);
     }, 1000);
   }
 }

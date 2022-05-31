@@ -1,0 +1,37 @@
+<button (click)="goBack()">Retour</button
+    ><!-- profil security body -->
+    <div class="page-profil animation1 animation fade01">
+      <!--card-profil -->
+      <div class="card-profil animation1 animation fade01">
+        <div class="img-card">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="profile"><h1>Profile</h1></div>
+        <div class="content-card">
+          <div class="range">
+            <div class="gauche">Nom</div>
+            <div class="droite">{{ security_name }}</div>
+          </div>
+          <div class="range">
+            <div class="gauche">Matricule</div>
+            <div class="droite">{{ matricule_security }}</div>
+          </div>
+          <div class="range">
+            <div class="gauche">Dernier poste</div>
+            <div class="droite">{{ last_pointage_lieu }}</div>
+          </div>
+          <div class="range">
+            <div class="gauche">Dernier pointage</div>
+            <div class="droite">{{ last_pointage_date }}</div>
+          </div>
+        </div>
+      </div>
+      <!--card-profil -->
+      <!-- security-register-pointage -->
+      <div class="pointage animation3 animation fade03">
+        <app-clocking-schedule></app-clocking-schedule>
+      </div>
+      <!-- security-register-pointage -->
+    </div>
+    <!-- profil security body -->
+    

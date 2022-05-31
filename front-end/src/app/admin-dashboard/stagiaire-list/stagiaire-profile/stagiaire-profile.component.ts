@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 
 @Component({
@@ -14,9 +15,10 @@ start_date = ""
 end_date = ""
 status = "Encore actif"
 
-  constructor(private stgServ: StagiaireService) { }
+  constructor(private stgServ: StagiaireService, private route: Router) { }
 
   ngOnInit(): void {
+    if (this.stgServ.stagiaire_name == "") this.route.navigate(['/admin/stagiaire-list'])
     this.initialisation()
   }
 
