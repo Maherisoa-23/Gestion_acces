@@ -118,16 +118,13 @@ body {
   /*wrapper*/
   .wrapper- {
     grid-template-areas:
-      "header header "
       "sidebar sidebar "
       "content content ";
-    grid-template-rows: 70px auto 1fr;
+    grid-template-rows: auto 1fr;
   }
   /*header*/
   .header {
-    grid-area: header;
-    margin: 0;
-    background-color: var(--color-bg);
+    display: none;
   }
 
   /*sidebar*/

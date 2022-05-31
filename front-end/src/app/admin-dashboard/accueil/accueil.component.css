@@ -401,15 +401,6 @@ h2 {
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 1300px) {
-  /*accueil*/
-  /* .accueil-container {
-    grid-template-areas:
-      "clock clock"
-      "header  header"
-      "sidebar  sidebar"
-      "contenu  contenu";
-    grid-template-rows: 1fr 1fr auto auto;
-  } */
   .accueil-container {
     grid-gap: 2px;
     grid-template-columns: 1fr 350px;
@@ -577,12 +568,12 @@ h2 {
 @media screen and (max-width: 700px) {
   /*accueil*/
   .accueil-container {
-    grid-template-rows: 210px 1fr auto auto;
+    grid-template-rows: 1fr auto auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "clock clock"
-      "header  header"
-      "sidebar  sidebar"
-      "contenu  contenu";
+      "header"
+      "sidebar"
+      "contenu ";
   }
   /*header*/
   .accueil-header {
@@ -590,12 +581,7 @@ h2 {
     justify-content: center;
     align-items: center;
     margin: 10px;
-    /* border: 2px solid red; */
   }
-  /* .accueil-header .card {
-    margin: 10px;
-  } */
-  /*sidebar*/
   .accueil-sidebar {
     height: 100%;
     width: 90%;
@@ -638,18 +624,6 @@ h2 {
 }
 
 @media screen and (max-width: 320px) {
-  /* .accueil-container {
-    display: grid;
-    width: 100%;
-    grid-gap: 5px;
-    grid-template-columns: 1fr 350px;
-    grid-template-rows: 350px 310px 1fr;
-    grid-template-areas:
-      "clock  clock"
-      "header header "
-      "contenu  sidebar";
-  } */
-  /*accueil*/
   .accueil-container {
     grid-template-columns: 320px;
     grid-template-rows: 210px 1fr auto auto;

@@ -63,6 +63,9 @@ p {
   }
 }
 @media screen and (max-width: 768px) {
+  .nav {
+    display: none
+  }
   /*header*/
   h1 {
     display: flex;
