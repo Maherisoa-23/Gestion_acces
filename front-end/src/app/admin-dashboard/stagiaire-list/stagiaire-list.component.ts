@@ -114,7 +114,7 @@ export class StagiaireListComponent implements OnInit {
   showStagiaireProfile(item : any) {
     this.stgServ.stagiaire_name = item.stagiaire_name;
     this.stgServ.departement = item.department_name;
-    this.stgServ.description = item.descritpion;
+    this.stgServ.description = item.description;
     this.stgServ.start_date = item.start_date;
     this.stgServ.end_date = item.end_date;
     this.securityServ.security_name = item.stagiaire_name

@@ -79,6 +79,6 @@ export class SecurityAgentComponent implements OnInit {
       this.SecurityServ.security_name = security.user_name;
       this.SecurityServ.pointed_at = security.pointed_at;
       this.route.navigate(['admin/security-profile']);
-    }, 1000);
+    }, 500);
   }
 }

@@ -1,3 +1,22 @@
+/*legende calendrier*/
+.legende {
+  display: flex;
+  flex-direction: row;
+}
+.bar-color {
+  margin-top: 5px;
+  width: 30px;
+  height: 10px;
+}
+.vert {
+  background-color: #37a94a;
+}
+.rouge {
+  background-color: #ca2126;
+}
+.bleu {
+  background-color: #1e546b;
+}
 /* animation */
 .animation1 {
   -webkit-animation-delay: 0.8s;

@@ -19,7 +19,7 @@ status = "Encore actif"
 
   ngOnInit(): void {
     if (this.stgServ.stagiaire_name == "") this.route.navigate(['/admin/stagiaire-list'])
-    this.initialisation()
+    this.initialisation() 
   }
 
   initialisation() {

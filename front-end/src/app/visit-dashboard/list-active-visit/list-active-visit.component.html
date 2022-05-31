@@ -37,12 +37,6 @@
           {{ item.visitor_name }}
         </li>
       </ul>
-
-      <!-- <label><b> CIN ?</b></label>
-      <input type="checkbox" id="OUI" name="OUI" />
-      <label for="OUI">OUI</label>
-      <input type="checkbox" id="NON" name="NON" />
-      <label for="NON">NON</label><br /> -->
       <span *ngIf="haveCIN">
         <label><b>Numero CIN </b></label><br />
         <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
