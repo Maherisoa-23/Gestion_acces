@@ -141,6 +141,9 @@
   color: var(--color-blue);
   /* text-align: center; */
 }
+.section .card:hover{
+  cursor: pointer;
+}
 .section .card .logo {
   display: flex;
   justify-content: center;

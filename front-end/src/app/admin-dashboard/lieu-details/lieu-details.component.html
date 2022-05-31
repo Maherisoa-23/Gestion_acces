@@ -10,9 +10,9 @@
       <h1>Securites actifs</h1>
     </div>
     <div class="security-content">
-      <div class="card" *ngFor="let item of securities">
-        <div class="logo"><i class="fas fa-user-alt"></i></div>
-        <div class="info">
+      <div class="card" *ngFor="let item of securities" (click)="ShowSecurityProfile(item)">
+        <div class="logo" ><i class="fas fa-user-alt"></i></div>
+        <div class="info" >
           <div class="nom">
             Nom: <span>{{ item.employee_name }}</span>
           </div>

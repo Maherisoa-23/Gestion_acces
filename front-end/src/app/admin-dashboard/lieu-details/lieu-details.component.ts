@@ -4,6 +4,7 @@ import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
 
 @Component({
   selector: 'app-lieu-details',
@@ -30,7 +31,8 @@ export class LieuDetailsComponent implements OnInit {
     private elementRef: ElementRef,
     private authServ: AuthService,
     private datePipe: DatePipe,
-    private route: Router
+    private route: Router,
+    private SecurityServ : SecurityAgentService
   ) {}
 
   ngOnInit(): void {
@@ -123,5 +125,15 @@ export class LieuDetailsComponent implements OnInit {
   }
   showAccueil() {
     this.route.navigate(['admin/']);
+  }
+
+  ShowSecurityProfile(security: any) {
+    this.authServ.refreshPointageList();
+    setTimeout(() => {
+      this.SecurityServ.matricule_security = security.numero_matricule;
+      this.SecurityServ.security_name = security.employee_name;
+      this.SecurityServ.pointed_at = security.lieu;
+      this.route.navigate(['admin/security-profile']);
+    }, 500);
   }
 }
