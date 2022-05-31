@@ -135,6 +135,9 @@ export class AuthService {
     return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
   }
   //pour les pointages
+  getTabPointageCounting(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/pointage_counter/');
+  }
   getAllPointageByLieuAndDate(val: any) {
     return this.http.post(this.APIUrl + '/pointage_counter/', val);
   }
