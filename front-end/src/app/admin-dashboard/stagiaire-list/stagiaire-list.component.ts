@@ -16,11 +16,11 @@ import { DatePipe } from '@angular/common';
 })
 export class StagiaireListComponent implements OnInit {
   stagiaires: any;
-  @Input() stagiaire_name!: string;
-  @Input() description!: string;
-  @Input() direction: string = "DSI";
-  @Input() date_debut!: Date;
-  @Input() date_fin!: Date;
+  @Input() stagiaire_name = "";
+  @Input() description = "";
+  @Input() direction = "";
+  @Input() date_debut : any = "";
+  @Input() date_fin : any = "";
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -35,7 +35,7 @@ export class StagiaireListComponent implements OnInit {
     private stgServ: StagiaireService,
     private securityServ : SecurityAgentService,
     private route: Router,
-    private datePipe : DatePipe
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +63,12 @@ export class StagiaireListComponent implements OnInit {
     });
   }
 
+  refreshStagiaireList() {
+    this.authServ.getStagiaireList().subscribe((data) => {
+      this.stagiaires = data
+    })
+  }
+
   refreshDepList() {
     this.authServ.getDepartmentList().subscribe((data) => {
       this.depTab = data
@@ -76,26 +82,33 @@ export class StagiaireListComponent implements OnInit {
       }
     }
   }
-  addStagiaire() {
-    const val = {
-      stagiaire_name : this.stagiaire_name,
-      description : this.description,
-      start_date : this.date_debut.toString(),
-      end_date : this.date_fin.toString(),
-      department_name : this.direction.toString(),
-    }
 
-    this.authServ.addStagiaire(val).subscribe((res) => {
-      alert(res.toString())
-    })
-    setTimeout(() => {
-      this.refreshStagiaireList()
-    }, 500);
+  addStagiaire() {
+    if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.date_debut == "" || this.date_fin == "") {
+      this.showError("Vérifier bien tous les informations")
+    }
+    else {
+      const val = {
+        stagiaire_name : this.stagiaire_name,
+        description : this.description,
+        start_date : this.date_debut.toString(),
+        end_date : this.date_fin.toString(),
+        department_name : this.direction.toString(),
+      }
+      this.authServ.addStagiaire(val).subscribe((res) => {
+        if (res.toString() == "Added successfully") {
+          this.reinitialisationDonnee()
+          this.showSuccess("Stagiaire ajouté avec succès")
+        }
+      })
+      setTimeout(() => {
+        this.refreshStagiaireList()
+      }, 500);
+    }
   }
-  refreshStagiaireList() {
-    this.authServ.getStagiaireList().subscribe((data) => {
-      this.stagiaires = data
-    })
+
+  reinitialisationDonnee() {
+    this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
   }
 
   showStagiaireProfile(item : any) {
@@ -106,5 +119,38 @@ export class StagiaireListComponent implements OnInit {
     this.stgServ.end_date = item.end_date;
     this.securityServ.security_name = item.stagiaire_name
     this.route.navigate(['admin/stagiaire-profile']);
+  }
+
+  //Les messages
+  showSuccess(msg: string) {
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+
+  showError(msg: string) {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+
+  showInfo(msg: string) {
+    this.toast.info({
+      detail: 'ATTENTION',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+
+  showWarn() {
+    this.toast.warning({
+      detail: 'ANNULER',
+      summary: 'Ajout annulé',
+      duration: 3000,
+    });
   }
 }

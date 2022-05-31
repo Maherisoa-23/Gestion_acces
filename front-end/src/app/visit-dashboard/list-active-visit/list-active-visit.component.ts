@@ -167,7 +167,7 @@ export class ListActiveVisitComponent implements OnInit {
         // console.log(data.toString() + ' to the visit register ');
       });
     }
-  }
+  } 
 
   //Les messages
   showSuccess(msg: string) {
