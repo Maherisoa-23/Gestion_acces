@@ -1,6 +1,6 @@
-<div class="titre animation1 animation fade01">
-  <h1>Registre des pointages stagiaire</h1>
-</div>
+ <div class="titre animation1 animation fade01">
+  <h1>Registre des pointages des stagiaires</h1>
+</div> 
 <div class="topnav animation1 animation fade01">
   <a class="active"
     ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
@@ -8,41 +8,43 @@
   </a>
 </div>
 
-<div class="section animation1 animation fade01">
+<div class="section animation1 animation fade01"> 
   <!--Liste tableau-->
   <table
-  id="dataTables-example"
-  class="tbl"
-  datatable
-  [dtOptions]="dtOptions"
-  *ngIf="isShow"
+    id="dataTables-example"
+    class="tbl"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
   >
     <thead>
       <tr>
         <th>Nom</th>
-        <th>Direction</th>
+        <th>Date</th>
         <th>Heure d'entree</th>
         <th>Heure de sortie</th>
         <th>Lieu</th>
+        <th>Departement</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of pointages" (click)="CheckDailyPointage(item)">
-        <td data-label="Nom" *ngIf="item.numero_matricule == null">
+      <tr *ngFor="let item of pointageStg" (click)="CheckDailyPointage(item)">
+        <td data-label="Nom">
           <strong>{{ item.employee_name }}</strong>
         </td>
-        <td data-label="Date" *ngIf="item.numero_matricule == null">
+        <td data-label="Date">
           <b>{{ item.date }}</b>
         </td>
-        <td data-label="Heure d'entree" *ngIf="item.numero_matricule == null">
+        <td data-label="Heure d'entree">
           <b>{{ item.entry_time }}</b>
         </td>
-        <td data-label="Heure de sortie" *ngIf="item.numero_matricule == null">
+        <td data-label="Heure de sortie">
           <b>{{ item.exit_time }}</b>
         </td>
-        <td data-label="Lieu" *ngIf="item.numero_matricule == null">
+        <td data-label="Lieu">
           <i>{{ item.lieu }}</i>
         </td>
+        <td data-label="Depart">{{ item.employee_dep_name }}</td>
       </tr>
     </tbody>
   </table>

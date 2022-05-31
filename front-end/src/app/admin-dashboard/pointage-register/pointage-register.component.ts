@@ -39,6 +39,7 @@ export class PointageRegisterComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
+        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
       };
     }, 600);
 
@@ -66,10 +67,4 @@ export class PointageRegisterComponent implements OnInit {
     this.authServ.employee_name = item.employee_name;
     this.route.navigate(['admin/unique-pointage']);
   }
-
-  // ChangeDate(DateSelected: Date) {
-  //   if(DateSelected == item.date){
-
-  //   }
-  // }
 }

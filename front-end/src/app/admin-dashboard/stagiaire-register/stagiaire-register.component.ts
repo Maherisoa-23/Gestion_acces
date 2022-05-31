@@ -11,6 +11,7 @@ declare var $: any;
 })
 export class StagiaireRegisterComponent implements OnInit {
   pointages: any;
+  pointageStg: any = [];
   departments: any;
   DateSelected: any;
 
@@ -40,6 +41,7 @@ export class StagiaireRegisterComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
+        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
       };
     }, 600);
 
@@ -54,7 +56,16 @@ export class StagiaireRegisterComponent implements OnInit {
     this.authServ.getPointageRegisterList().subscribe((data) => {
       this.pointages = data; 
     });
+    setTimeout(() => {
+      for (let index = 0; index < this.pointages.length; index++) {
+        const element = this.pointages[index];
+        if (element.numero_matricule == null) {
+          this.pointageStg.push(element)
+        } 
+      }
+    }, 1000);
   }
+
 
   CheckDailyPointage(item: any) {
     this.authServ.dateDailyPointage = item.date;
