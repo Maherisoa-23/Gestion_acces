@@ -36,7 +36,7 @@ export class AuthentificationComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private toast: NgToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.refreshLieuList();
@@ -102,31 +102,33 @@ export class AuthentificationComponent implements OnInit {
             this.showSuccess();
             this.router.navigate(['agent/accueil']);
           });
-          console.log('lieu this  = ' + this.authService.lieu);
-
           localStorage.setItem('user', JSON.stringify(element));
           this.authService
             .getLieu(this.getLieuId(this.authService.lieu))
             .subscribe((data) => {
               this.Lieu = data;
             });
-            
+
           setTimeout(() => {
+            this.date = new Date();
+            this.heure = new Date();
+            this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
             this.Lieu.isActive = true;
-            this.authService.putLieu(this.Lieu).subscribe((res) => {
-              console.log(res.toString());
-            });
+            this.Lieu.entry_time = this.heure.toString()
+              this.authService.putLieu(this.Lieu).subscribe((res) => {
+                console.log(res.toString());
+              });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 500);
           this.saveConnection()
           break;
-        } 
+        }
       }
       setTimeout(() => {
         if (!this.ok)
           this.showError("Vérifier votre numéro matricule et le choix du lieu");
       }, 500);
-      
+
     }
   }
 
@@ -162,14 +164,14 @@ export class AuthentificationComponent implements OnInit {
     });
   }
 
-  showError(msg : string) {
+  showError(msg: string) {
     this.toast.error({
       detail: 'ERROR',
       summary: msg,
       duration: 3000,
     });
   }
-  
+
   getLieuId(lieu: string) {
     if (lieu == 'Ambohijatovo') return 1;
     else {
@@ -178,7 +180,7 @@ export class AuthentificationComponent implements OnInit {
       else return 4;
     }
   }
-  
+
 
   //animation du formulaire d'euthentification
   ClickOnInput1() {

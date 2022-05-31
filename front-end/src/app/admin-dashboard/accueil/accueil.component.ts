@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
+import { SecurityAgentService } from 'src/app/services/security-agent.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -35,7 +37,7 @@ export class AccueilComponent implements OnInit {
   public ampm!: string;
   public day!: string;
 
-  constructor(private authServ: AuthService) {
+  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) {
   }
 
   ngOnInit(): void {
@@ -85,6 +87,15 @@ export class AccueilComponent implements OnInit {
     });
   }
 
+  ShowSecurityProfile(security: any) {
+    this.authServ.refreshPointageList();
+    setTimeout(() => {
+      this.SecurityServ.matricule_security = security.numero_matricule;
+      this.SecurityServ.security_name = security.employee_name;
+      this.SecurityServ.pointed_at = security.pointed_at;
+      this.route.navigate(['admin/security-profile']);
+    }, 1000);
+  }
 
 
 }

@@ -92,7 +92,7 @@ def visit_counter_API(request: HttpRequest, id=0):
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)
         visits_actif = Visits_actif.objects.filter(lieu = lieu.lieu_name)
-        nb_visit = Visits_actif.count()
+        nb_visit = visits_actif.count()
         return JsonResponse(nb_visit, safe = False)
     return JsonResponse("wrong lieu_id", safe = False)
 
@@ -113,6 +113,7 @@ def lieu_API(request: HttpRequest, id=0):
         lieu_data = JSONParser().parse(request)
         lieu= Lieu.objects.get(pk = lieu_data['lieu_id'])
         lieu.isActive = lieu_data['isActive']
+        lieu.entry_time = lieu_data['entry_time']
         lieu.save()
         return JsonResponse("Update successfully",safe=False)
     #un lieu en particulier

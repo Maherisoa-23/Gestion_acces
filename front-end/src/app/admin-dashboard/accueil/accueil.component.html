@@ -50,7 +50,7 @@
       <h3>Securités actifs</h3>
       <button (click)="refresh()" class="actualiser">actualiser</button>
       <ul>
-        <li *ngFor="let item of activeSecurityList">
+        <li *ngFor="let item of activeSecurityList" (click)="ShowSecurityProfile(item)">
           {{ item.employee_name }}
         </li>
       </ul>
