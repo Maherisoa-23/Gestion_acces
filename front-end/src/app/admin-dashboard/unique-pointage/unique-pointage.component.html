@@ -17,7 +17,7 @@
         Nom: <span>{{ dailyPointages[0].employee_name }}</span>
       </h2>
       <h2>
-        Numero matricule: <span> {{ dailyPointages[0].numero_matricule }}</span>
+        Numero matricule: <span *ngIf="dailyPointages[0].numero_matricule"> {{ dailyPointages[0].numero_matricule }}</span> <span *ngIf="!dailyPointages[0].numero_matricule"> stagiaire </span>
       </h2>
       <h2>
         Direction: <span> {{ dailyPointages[0].employee_dep_name }}</span>

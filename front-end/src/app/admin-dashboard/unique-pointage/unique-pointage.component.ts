@@ -23,6 +23,7 @@ export class UniquePointageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authServ.employee_name == "") this.location.back();
     this.employee_name = this.authServ.employee_name;
     this.date = this.authServ.dateDailyPointage;
     console.log("name : " + this.employee_name + +" date : " + this.date)

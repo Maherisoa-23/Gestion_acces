@@ -34,11 +34,9 @@ export class SecurityProfileComponent implements OnInit {
   dateTab: any = [];
 
   constructor(
-    private elementRef: ElementRef,
     private SecurityServ: SecurityAgentService,
     private authServ: AuthService,
     private route: Router,
-    private datePipe: DatePipe,
     private location: Location
   ) {}
 
