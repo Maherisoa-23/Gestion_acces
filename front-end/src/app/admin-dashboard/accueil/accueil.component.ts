@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AccueilComponent implements OnInit {
 
   pointages: any;
-  activeSecurityList: any;
+  activeSecurityList: any = [];
   myChart: any;
   admin: any;
 
@@ -76,9 +76,21 @@ export class AccueilComponent implements OnInit {
     const val = "";
     this.refreshLieuxList()
     this.refreshPointageList();
-    this.authServ.getActiveUsersList(val).subscribe((data) => {
+    /* this.authServ.getActiveUsersList(val).subscribe((data) => {
       this.activeSecurityList = data
-    });
+    }); */
+    setTimeout(() => {
+      this.getActiveSecurity()
+    }, 500);
+  }
+
+  getActiveSecurity() {
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (element.function == "AGENT DE SECURITE") {
+        this.activeSecurityList.push(element)
+      }
+    }
   }
 
   refreshLieuxList(){
@@ -92,7 +104,7 @@ export class AccueilComponent implements OnInit {
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.pointed_at;
+      this.SecurityServ.pointed_at = security.lieu;
       this.route.navigate(['admin/security-profile']);
     }, 1000);
   }

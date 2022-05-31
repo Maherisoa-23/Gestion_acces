@@ -43,13 +43,16 @@ export class SecurityProfileComponent implements OnInit {
   ngOnInit(): void {
     if (this.SecurityServ.security_name == "") this.route.navigate(['/admin/security-agent'])
     this.last_pointage_lieu = this.SecurityServ.pointed_at;
+    console.log(this.last_pointage_lieu) 
     this.refreshPointageRegisterList();
     if (this.SecurityServ.matricule_security != 0)
       this.matricule_security = this.SecurityServ.matricule_security;
     this.security_name = this.SecurityServ.security_name;
+    this.last_pointage_date = "actif"
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
     }, 500);
+        
   }
 
   refreshPointageRegisterList() {
@@ -66,7 +69,8 @@ export class SecurityProfileComponent implements OnInit {
         this.last_pointage = element;
       }
     }
-    this.last_pointage_date = this.last_pointage.date;
+    if (this.last_pointage_lieu == "not pointed")
+      this.last_pointage_date = this.last_pointage.date;
     this.last_pointage_lieu = this.last_pointage.lieu;
   }
 

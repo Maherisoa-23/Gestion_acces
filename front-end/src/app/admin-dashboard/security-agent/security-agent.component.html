@@ -13,12 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of securities">
+      <tr *ngFor="let item of tab">
         <td data-label="Id">
           <strong>{{ item.numero_matricule }}</strong>
         </td>
         <td data-label="Name">
-          <strong>{{ item.user_name }}</strong>
+          <strong>{{ item.employee_name }}</strong>
         </td>
         <td data-label="Pointage">
           <i> {{ getLastPointageBySec(item.numero_matricule) }}</i>
