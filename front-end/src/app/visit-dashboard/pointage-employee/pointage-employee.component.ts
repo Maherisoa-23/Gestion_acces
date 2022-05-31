@@ -173,7 +173,7 @@ export class PointageEmployeeComponent implements OnInit {
           this.authServ.addPointageStg(val2).subscribe((res) => {
             if (res.toString() == 'Pointage stagiaire added successfully') {
               console.log(val2.stagiaire_name)
-              this.showSuccess('Stagiaire : fin du période le : ' + this.getStgEndDate(val2.stagiaire_name))
+              this.showWarning('Stagiaire : fin du période le : ' + this.getStgEndDate(val2.stagiaire_name))
             } else {
               alert("erreur interne, contacter les developpeurs")
               //this.showError("erreur interne, contacter les developpeurs")
@@ -417,6 +417,13 @@ export class PointageEmployeeComponent implements OnInit {
   }
   showSuccess(msg: string) {
     this.toast.success({
+      detail: 'SUCCES',
+      summary: msg,
+      duration: 3000,
+    })
+  }
+  showWarning(msg: string) {
+    this.toast.warning({
       detail: 'SUCCES',
       summary: msg,
       duration: 3000,
