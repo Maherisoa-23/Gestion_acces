@@ -63,6 +63,7 @@ export class ClockingScheduleComponent implements OnInit {
   }
   getPresentDate() {
     for (let index = 0; index < this.pointages.length; index++) {
+      
       const element = this.pointages[index];
       let entry_time = this.convertTime(element.entry_time);
       if (element.lieu == "Ambohijatovo") {
@@ -80,6 +81,7 @@ export class ClockingScheduleComponent implements OnInit {
       }
       this.post.push(this.val)
     }
+    console.log(this.post.length)
   }
 
   convertTime(timeString: string) {

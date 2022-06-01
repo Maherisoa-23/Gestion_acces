@@ -388,7 +388,7 @@ export class PointageEmployeeComponent implements OnInit {
           element.employee_name == employee_name
         ) {
           this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss');
           var val = {
             numero_matricule: this.getNumeroMatricule(employee_name),
             date: element.date,

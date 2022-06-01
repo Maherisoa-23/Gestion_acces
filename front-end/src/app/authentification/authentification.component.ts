@@ -141,7 +141,7 @@ export class AuthentificationComponent implements OnInit {
     this.date = new Date();
     this.heure = new Date();
     this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
-    this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy');
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
     var val = {
       numero_matricule: this.numero_matricule,

@@ -33,6 +33,8 @@ export class SecurityProfileComponent implements OnInit {
   date: any;
   dateTab: any = [];
 
+  photoName = "Tojo.png"
+
   constructor(
     private SecurityServ: SecurityAgentService,
     private authServ: AuthService,

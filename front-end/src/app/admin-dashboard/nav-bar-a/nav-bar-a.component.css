@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap");
 .nav {
   display: grid;
-  grid-template-columns: auto 1000px 1fr;
+  grid-template-columns: 10% 70% 1fr;
   grid-template-rows: 1fr;
   /* border: 2px solid red; */
 }
