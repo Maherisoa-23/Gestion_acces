@@ -37,19 +37,19 @@
           {{ item.visitor_name }}
         </li>
       </ul>
+      <label class="spanina" for="cin"><b>Pas de CIN</b></label>
+      <input type="checkbox" (click)="NoCIN()" id="cin" />
+      <!-- <span class="spanina"></span> -->
+      <br /><br />
       <span *ngIf="haveCIN">
         <label><b>Numero CIN </b></label><br />
         <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
-      </span>
+      </span> 
       <span *ngIf="!haveCIN">
         <label><b>Autre Piéce justificative</b></label
         ><br />
         <input type="text" name="comment" [(ngModel)]="comment" /> <br />
       </span>
-      <label class="spanina" for="cin"><b>Pas de CIN</b></label>
-      <input type="checkbox" (click)="NoCIN()" id="cin" />
-      <!-- <span class="spanina"></span> -->
-      <br /><br />
       <label><b>Description</b></label
       ><br />
       <input type="text" name="description" [(ngModel)]="description" /> <br />

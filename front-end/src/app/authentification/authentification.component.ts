@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5';
 import { DatePipe } from '@angular/common';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentification',
@@ -33,12 +33,13 @@ export class AuthentificationComponent implements OnInit {
   usersList: any = [];
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private route: Router,
     private datePipe: DatePipe,
     private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('user')) this.route.navigate(['/agent/accueil']);
     this.refreshLieuList();
     this.refreshUsersList();
     this.authStatus = this.authService.isAuth;
@@ -83,7 +84,7 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
 
-            this.router.navigate(['admin']);
+            this.route.navigate(['admin']);
             localStorage.setItem('admin1', JSON.stringify(element));
           });
           this.showSuccess();
@@ -100,7 +101,7 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.showSuccess();
-            this.router.navigate(['agent/accueil']);
+            this.route.navigate(['agent/accueil']);
           });
           localStorage.setItem('user', JSON.stringify(element));
           this.authService
