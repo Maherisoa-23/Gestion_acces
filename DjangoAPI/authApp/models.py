@@ -17,6 +17,7 @@ class Employee(models.Model) :
     employee_name = models.CharField(max_length=100)
     function   = models.CharField(max_length=200)
     pointed_at = models.CharField(max_length=30, default="not pointed") 
+    photoName = models.CharField(max_length=30, default="Tojo.png")
     
 class Stagiaire(models.Model) :
     stagiaire_id = models.AutoField(primary_key=True)

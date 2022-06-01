@@ -21,6 +21,7 @@ class Employee_serializer(serializers.ModelSerializer):
                   'department',
                   'department_name',
                   'pointed_at',
+                  'photoName'
                   )
         
 class Stagiaire_serializer(serializers.ModelSerializer):

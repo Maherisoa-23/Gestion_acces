@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
   providers: [DatePipe],
 })
 export class EmployeeProfileComponent implements OnInit {
-  pointage_register: any;
+  pointage_register: any; 
   matricule_security = 5;
   security_name = '';
   last_pointage: any;
@@ -32,12 +32,12 @@ export class EmployeeProfileComponent implements OnInit {
   date: any;
   dateTab: any = [];
 
+  photoName = "Tojo.png"
+
   constructor(
-    private elementRef: ElementRef,
     private SecurityServ: SecurityAgentService,
     private authServ: AuthService,
     private route: Router,
-    private datePipe: DatePipe,
     private location: Location
   ) {}
 
@@ -48,6 +48,7 @@ export class EmployeeProfileComponent implements OnInit {
     if (this.SecurityServ.matricule_security != 0)
       this.matricule_security = this.SecurityServ.matricule_security;
     this.security_name = this.SecurityServ.security_name;
+    this.photoName = this.SecurityServ.photoName
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
     }, 500);
