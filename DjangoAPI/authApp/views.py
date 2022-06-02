@@ -1,3 +1,4 @@
+import django
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -6,6 +7,8 @@ from django.http.request import HttpRequest
 from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire
 from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer
 from VisitApp.models import Lieu
+
+from django.core.files.storage import default_storage
 
 # Create your views here.
 @csrf_exempt
@@ -229,3 +232,9 @@ def daily_pointage_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("wrong ", safe = False)
 
+@csrf_exempt
+def SaveFile(request):
+    file = request.FILES["uploadedFile"]
+    file_name = default_storage.save(file.name , file)
+    
+    return JsonResponse(file_name,safe=False)

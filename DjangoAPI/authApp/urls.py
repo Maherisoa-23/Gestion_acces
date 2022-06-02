@@ -1,5 +1,8 @@
 from django.urls import re_path
 from authApp import views
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     re_path(r'^user/$',views.user_API),
@@ -18,4 +21,5 @@ urlpatterns = [
     re_path(r'^pointage_counter/$',views.pointage_counter_API),
     re_path(r'^pointage_counter/([0-9]+)$',views.pointage_counter_API),
     re_path(r'^daily_pointage/$',views.daily_pointage_API),
-    ]
+    re_path(r'^save_file/$',views.SaveFile),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
