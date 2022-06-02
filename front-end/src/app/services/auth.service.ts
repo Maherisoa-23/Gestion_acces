@@ -21,6 +21,7 @@ export class AuthService {
   //readonly APIUrl = "http://192.168.1.23:8000"
 
   readonly APIUrl = 'http://localhost:8000';
+  readonly PhotoUrl = this.APIUrl +  "/media/";
 
   constructor(private http: HttpClient) {}
 
@@ -35,6 +36,10 @@ export class AuthService {
 
   signOut() {
     this.isAuth = false;
+  }
+
+  UploadPhoto(val:any){
+    return this.http.post(this.APIUrl+'/save_file',val);
   }
 
   getUsersList(): Observable<any[]> {

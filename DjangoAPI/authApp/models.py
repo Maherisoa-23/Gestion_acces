@@ -17,8 +17,8 @@ class Employee(models.Model) :
     employee_name = models.CharField(max_length=100)
     function   = models.CharField(max_length=200)
     pointed_at = models.CharField(max_length=30, default="not pointed") 
-    photoName = models.CharField(max_length=30, default="Tojo.png")
-    
+    photoName = models.CharField(max_length=30, default="anonymous.png")
+ 
 class Stagiaire(models.Model) :
     stagiaire_id = models.AutoField(primary_key=True)
     stagiaire_name = models.CharField(max_length=100, unique=True)
@@ -29,7 +29,8 @@ class Stagiaire(models.Model) :
     end_date = models.CharField(max_length=50) 
     duree = models.CharField(max_length=50, null=True) 
     isActif = models.BooleanField(default=True)
-    function   = models.CharField(max_length=50, default="stagiaire")
+    function   = models.CharField(max_length=50, default="stagiaire") 
+    photoName = models.CharField(max_length=30, default="anonymous.png")
     
 class Pointage(models.Model):
     numero_matricule = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)

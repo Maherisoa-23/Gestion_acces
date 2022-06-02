@@ -29,6 +29,9 @@ export class StagiaireListComponent implements OnInit {
   datatableElement: any = DataTableDirective;
 
   depTab : any = []
+  photoName = "anonymous.png"
+  photoPath = ""
+
 
   constructor(
     private authServ: AuthService,
@@ -38,7 +41,8 @@ export class StagiaireListComponent implements OnInit {
     private toast: NgToastService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    this.photoPath = this.authServ.PhotoUrl + this.photoName
     this.refreshDepList()
     this.refreshStagiaireList();
     setTimeout(() => {}, 500);
@@ -94,6 +98,7 @@ export class StagiaireListComponent implements OnInit {
         start_date : this.date_debut.toString(),
         end_date : this.date_fin.toString(),
         department_name : this.direction.toString(),
+        photoName : this.photoName,
       }
       this.authServ.addStagiaire(val).subscribe((res) => {
         if (res.toString() == "Added successfully") {
@@ -105,6 +110,17 @@ export class StagiaireListComponent implements OnInit {
         this.refreshStagiaireList()
       }, 500);
     }
+  }
+
+  uploadPhoto(event : any) {
+    let file = event.target.file[0];
+    const formData : FormData = new FormData()
+    formData.append('uploadedFile',file,file.name); 
+
+    this.authServ.UploadPhoto(formData).subscribe((data) => {
+      this.photoName = data.toString();
+      this.photoPath = this.authServ.PhotoUrl + this.photoName
+    })
   }
 
   reinitialisationDonnee() {

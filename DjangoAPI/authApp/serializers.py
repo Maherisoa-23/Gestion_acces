@@ -37,7 +37,8 @@ class Stagiaire_serializer(serializers.ModelSerializer):
                   'end_date',
                   'duree',
                   'isActif',
-                  'function'
+                  'function',
+                  'photoName'
                   )
 
 class Department_serializer(serializers.ModelSerializer):
