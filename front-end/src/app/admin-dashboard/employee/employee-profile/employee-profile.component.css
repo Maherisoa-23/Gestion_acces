@@ -140,9 +140,12 @@
   background: var(--color-bg);
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* 
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr; */
   border: 2px solid var(--color-text);
 }
 button {

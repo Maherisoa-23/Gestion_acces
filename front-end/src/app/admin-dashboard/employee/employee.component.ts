@@ -109,6 +109,8 @@ export class EmployeeComponent implements OnInit {
       this.SecurityServ.security_name = security.employee_name;
       this.SecurityServ.pointed_at = security.pointed_at;
       this.SecurityServ.photoName = security.photoName;
+      this.SecurityServ.fonction = security.function;
+      this.SecurityServ.direction = security.department_name;
       this.route.navigate(['admin/employee-profile']);
     }, 1000);
   }

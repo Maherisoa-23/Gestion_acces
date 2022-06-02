@@ -8,6 +8,8 @@ export class SecurityAgentService {
   security_name : any = "";
   pointed_at : any;
   photoName = "Tojo.png"
+  fonction = ""
+  direction = ""
 
   constructor() { }
 }

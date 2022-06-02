@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class VisitService {
 
-  readonly APIUrl = "http://192.168.1.23:8000"
+  //readonly APIUrl = "http://192.168.1.23:8000"
 
-  //readonly APIUrl = 'http://localhost:8000';
+  readonly APIUrl = 'http://localhost:8000';
   constructor(private http: HttpClient) {}
 
   comment = ""

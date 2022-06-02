@@ -32,8 +32,8 @@ export class LieuDetailsComponent implements OnInit {
     private authServ: AuthService,
     private datePipe: DatePipe,
     private route: Router,
-    private SecurityServ : SecurityAgentService
-  ) {}
+    private SecurityServ: SecurityAgentService
+  ) { }
 
   ngOnInit(): void {
     this.id_lieu = this.getLieuId(this.lieu);
@@ -95,45 +95,46 @@ export class LieuDetailsComponent implements OnInit {
   }
 
   chartit() {
+    this.dateTab.unshift("date : ")
     const data_pointage = {
       labels: this.dateTab,
       datasets: [
         {
-          label: this.lieu,
-          data: this.data,
+          label: "pointage " + this.lieu,
+          //data: this.data, version finale mais pour démonstration sans donnéeon va initialiser d'abord les données
+          data: [0, 71, 84, 62, 57, 73, 77, 68],
           backgroundColor: '#ca212680',
-          maxBarThickness: 12,
         },
-      ],
-    };
-    let htmlRefPointage =
-      this.elementRef.nativeElement.querySelector(`#myChartPointage`);
-    this.myChartPointage = new Chart(htmlRefPointage, {
-      type: 'bar',
-      data: data_pointage,
-    });
+      ]
+};
+let htmlRefPointage =
+  this.elementRef.nativeElement.querySelector(`#myChartPointage`);
+this.myChartPointage = new Chart(htmlRefPointage, {
+  type: 'bar',
+  data: data_pointage,
+});
   }
 
-  getLastSevenDay() {
-    this.today = new Date();
-    for (let index = 1; index < 8; index++) {
-      this.date = new Date(this.today.setDate(this.today.getDate() - 1));
-      this.dateTab.push(
-        this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
-      );
-    }
+getLastSevenDay() {
+  this.today = new Date();
+  for (let index = 1; index < 8; index++) {
+    this.date = new Date(this.today.setDate(this.today.getDate() - 1));
+    this.dateTab.push(
+      this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
+    );
   }
-  showAccueil() {
-    this.route.navigate(['admin/']);
-  }
+}
+showAccueil() {
+  this.route.navigate(['admin/']);
+}
 
-  ShowSecurityProfile(security: any) {
-    this.authServ.refreshPointageList();
-    setTimeout(() => {
-      this.SecurityServ.matricule_security = security.numero_matricule;
-      this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.lieu;
-      this.route.navigate(['admin/security-profile']);
-    }, 500);
-  }
+ShowSecurityProfile(security: any) {
+  this.authServ.refreshPointageList();
+  setTimeout(() => {
+    this.SecurityServ.matricule_security = security.numero_matricule;
+    this.SecurityServ.security_name = security.employee_name;
+    this.SecurityServ.pointed_at = security.lieu;
+    this.route.navigate(['admin/security-profile']);
+  }, 500);
+}
 }

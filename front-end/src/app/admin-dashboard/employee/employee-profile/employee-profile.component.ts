@@ -33,6 +33,8 @@ export class EmployeeProfileComponent implements OnInit {
   dateTab: any = [];
 
   photoName = "Tojo.png"
+  direction = ""
+  fonction = ""
 
   constructor(
     private SecurityServ: SecurityAgentService,
@@ -47,11 +49,17 @@ export class EmployeeProfileComponent implements OnInit {
     this.refreshPointageRegisterList();
     if (this.SecurityServ.matricule_security != 0)
       this.matricule_security = this.SecurityServ.matricule_security;
-    this.security_name = this.SecurityServ.security_name;
-    this.photoName = this.SecurityServ.photoName
+    this.initialisationData()
     setTimeout(() => {
       this.getLastPointageBySec(this.matricule_security);
     }, 500);
+  }
+
+  initialisationData() {
+    this.security_name = this.SecurityServ.security_name;
+    this.photoName = this.SecurityServ.photoName;
+    this.direction = this.SecurityServ.direction;
+    this.fonction = this.SecurityServ.fonction;
   }
 
   refreshPointageRegisterList() {
