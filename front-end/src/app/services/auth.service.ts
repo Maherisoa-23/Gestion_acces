@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   UploadPhoto(val:any){
-    return this.http.post(this.APIUrl+'/save_file',val);
+    return this.http.post(this.APIUrl+'/save_file/',val);
   }
 
   getUsersList(): Observable<any[]> {

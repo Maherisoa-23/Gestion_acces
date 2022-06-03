@@ -10,5 +10,6 @@ export class StagiaireService {
   start_date = ""
   end_date = ""
   isActif = true
+  photoPath = ""
   constructor() { }
 }

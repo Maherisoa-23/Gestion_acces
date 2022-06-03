@@ -350,6 +350,17 @@ span.psw {
 .th:hover {
   cursor: pointer;
 }
+
+.img-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-upload-photo {
+  width: auto;
+  height: 50px;
+}
 /*media*/
 @media screen and (max-width: 768px) {
   .section .tbl thead {

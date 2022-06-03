@@ -40,7 +40,11 @@
       <input type="date" name="date_debut" [(ngModel)]="date_debut" /><br />
       <label><b>Date fin : {{date_fin}} </b></label>
       <input type="date" name="date_fin" [(ngModel)]="date_fin" /><br /><br />
-
+      <label><b> Photo de profil :  </b></label>
+      <div class="img-card">
+        <input class="btn-upload-photo" type="file" (change)="uploadPhoto($event)">
+        <img [src] = photoPath alt="pdp" width="230px">
+      </div>
       <button
         type="submit"
         class="btn-ajout"

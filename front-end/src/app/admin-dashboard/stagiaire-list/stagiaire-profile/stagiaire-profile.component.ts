@@ -14,6 +14,7 @@ description = ""
 start_date = ""
 end_date = ""
 status = "Encore actif"
+photoPath = ""
 
   constructor(private stgServ: StagiaireService, private route: Router) { }
 
@@ -28,6 +29,7 @@ status = "Encore actif"
     this.description = this.stgServ.description;
     this.start_date = this.stgServ.start_date;
     this.end_date = this.stgServ.end_date;
+    this.photoPath = this.stgServ.photoPath;
     if (!this.stgServ.isActif) this.status = "non actif"
   }
   

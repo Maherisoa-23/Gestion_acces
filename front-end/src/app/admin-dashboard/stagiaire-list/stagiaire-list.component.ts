@@ -113,7 +113,7 @@ export class StagiaireListComponent implements OnInit {
   }
 
   uploadPhoto(event : any) {
-    let file = event.target.file[0];
+    var file = event.target.files[0];
     const formData : FormData = new FormData()
     formData.append('uploadedFile',file,file.name); 
 
@@ -133,6 +133,7 @@ export class StagiaireListComponent implements OnInit {
     this.stgServ.description = item.description;
     this.stgServ.start_date = item.start_date;
     this.stgServ.end_date = item.end_date;
+    this.stgServ.photoPath = this.authServ.PhotoUrl + item.photoName
     this.securityServ.security_name = item.stagiaire_name
     this.route.navigate(['admin/stagiaire-profile']);
   }
