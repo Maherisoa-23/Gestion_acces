@@ -11,7 +11,6 @@ class Department(models.Model):
     department_short_name = models.CharField(max_length=10)
     
 class Employee(models.Model) :
-    department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = True, default=1)
     department_name = models.CharField(max_length=50)
     numero_matricule = models.IntegerField(primary_key=True)
     employee_name = models.CharField(max_length=100)

@@ -18,7 +18,6 @@ class Employee_serializer(serializers.ModelSerializer):
                   'employee_name',
                   'function',
                   'numero_matricule',
-                  'department',
                   'department_name',
                   'pointed_at',
                   'photoName'

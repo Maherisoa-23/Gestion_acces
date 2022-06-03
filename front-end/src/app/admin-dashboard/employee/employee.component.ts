@@ -12,11 +12,12 @@ import { NgToastService } from 'ng-angular-popup';
 export class EmployeeComponent implements OnInit {
   employees: any;
 
-  @Input() employee_name= "";
-  @Input() fonction= "";
-  @Input() direction= "";
-  @Input() numero_matricule= "";
+  @Input() employee_name = "";
+  @Input() function = "";
+  @Input() direction = "";
+  @Input() numero_matricule = 0;
 
+  isEdit = false;
   pointage_register: any;
   pointages: any;
   last_pointage: any;
@@ -33,23 +34,22 @@ export class EmployeeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   isShow = false
   //filtrage personnalisé
-  @ViewChild ( DataTableDirective , { static : false }) 
-  datatableElement : any = DataTableDirective ; 
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement: any = DataTableDirective;
 
   constructor(
     private authServ: AuthService,
     // private SecurityServ: SecurityAgentService,
     private route: Router,
-    private SecurityServ : SecurityAgentService,
+    private SecurityServ: SecurityAgentService,
     private toast: NgToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.reinitialisationDonnee();
     this.refreshPointageRegisterList();
     this.refreshDepList();
-    setTimeout(() => {
-      this.refreshSecurityList();
-    }, 500);
+    this.refreshEmployeeList();
     this.setUpDatePicker()
   }
 
@@ -59,17 +59,17 @@ export class EmployeeComponent implements OnInit {
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10,
-        lengthMenu : [10, 15, 25],
+        lengthMenu: [10, 15, 25],
         processing: true,
-        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
+        language: { url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json" }
       };
-    },600)
-    
+    }, 600)
+
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
-    }); 
+    });
   }
 
   refreshDepList() {
@@ -78,7 +78,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  refreshSecurityList() {
+  refreshEmployeeList() {
     this.authServ.getEmployeeList().subscribe((data) => {
       this.employees = data;
     });
@@ -113,39 +113,95 @@ export class EmployeeComponent implements OnInit {
     }
     return " - "
   }
-addEmployee(){}
 
-uploadPhoto(event : any) {
-  var file = event.target.files[0];
-  const formData : FormData = new FormData()
-  formData.append('uploadedFile',file,file.name); 
+  addEmployee() {
+    if (this.employee_name == "" || this.function == "" || this.direction == "" || this.numero_matricule == 0) {
+      this.showError("Vérifier bien tous les informations")
+    }
+    else {
+      const val = {
+        employee_name: this.employee_name,
+        numero_matricule: this.numero_matricule,
+        function: this.function,
+        department_name: this.direction,
+        photoName: this.photoName,
+        pointed_at: "not pointed",
+      }
+      this.authServ.addEmployee(val).subscribe((res) => {
+        if (res.toString() == "Added successfully") {
+          this.reinitialisationDonnee()
+          this.showSuccess("Nouvel employé ajouté avec succès")
+        } else this.showError('Erreur')
+      })
+      setTimeout(() => {
+        this.refreshEmployeeList()
+      }, 500);
+    }
+  }
 
-  this.authServ.UploadPhoto(formData).subscribe((data) => {
-    this.photoName = data.toString();
+  uploadPhoto(event: any) {
+    var file = event.target.files[0];
+    const formData: FormData = new FormData()
+    formData.append('uploadedFile', file, file.name);
+
+    this.authServ.UploadPhoto(formData).subscribe((data) => {
+      this.photoName = data.toString();
+      this.photoPath = this.authServ.PhotoUrl + this.photoName
+    })
+  }
+
+  updateUpdate() {
+    if (this.employee_name == "" || this.function == "" || this.direction == "" || this.numero_matricule == 0) {
+      this.showError("Vérifier bien tous les informations")
+    }
+    else {
+      const val = {
+        employee_name: this.employee_name,
+        numero_matricule: this.numero_matricule,
+        function: this.function,
+        department_name: this.direction,
+        photoName: this.photoName,
+        pointed_at: "not pointed",
+      }
+      this.authServ.updateEmployeeEntity(val).subscribe((res) => {
+        if (res.toString() == "Updated Successfully!!") {
+          this.reinitialisationDonnee()
+          this.showSuccess("Employée modifié avec succès")
+        }
+      })
+      this.refreshEmployeeList()
+    }
+  }
+
+  reinitialisationDonnee() {
+    this.isEdit =false
+    this.employee_name = this.direction = this.function = ""
+    this.numero_matricule = 0
+    this.photoName = "anonymous.png";
     this.photoPath = this.authServ.PhotoUrl + this.photoName
-  })
-}
-  ShowEmployeeProfile(security: any) {
+  }
+
+  ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
     setTimeout(() => {
-      this.SecurityServ.matricule_security = security.numero_matricule;
-      this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.pointed_at;
-      this.SecurityServ.photoName = security.photoName;
-      this.SecurityServ.fonction = security.function;
-      this.SecurityServ.direction = security.department_name;
+      this.SecurityServ.matricule_security = emp.numero_matricule;
+      this.SecurityServ.security_name = emp.employee_name;
+      this.SecurityServ.pointed_at = emp.pointed_at;
+      this.SecurityServ.photoName = emp.photoName;
+      this.SecurityServ.fonction = emp.function;
+      this.SecurityServ.direction = emp.department_name;
       this.route.navigate(['admin/employee-profile']);
     }, 1000);
   }
 
-  editEmployee(security: any){
-    this.authServ.refreshPointageList();
-    setTimeout(() => {
-      this.employee_name= security.employee_name;
-      this.fonction=security.function;
-      this.direction=security.department_name;
-      this.numero_matricule=security.numero_matricule;
-    }, 1000);
+  editEmployee(emp: any) {
+    this.isEdit = true
+    this.employee_name = emp.employee_name;
+    this.function = emp.function;
+    this.direction = emp.department_name;
+    this.numero_matricule = emp.numero_matricule;
+    this.photoName = emp.photoName;
+    this.photoPath = this.authServ.PhotoUrl + this.photoName;
     this.showInfo('Verifier bien les informations');
   }
   //Les messages

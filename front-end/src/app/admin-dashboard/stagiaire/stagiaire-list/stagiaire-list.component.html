@@ -51,7 +51,7 @@
         class="btn-ajout"
         onclick="document.getElementById('id01').style.display='none'"
         (click)="addStagiaire()"
-        *ngIf="!direction"
+        *ngIf="!isEdit"
       >
         Ajouter
       </button>
@@ -60,7 +60,7 @@
         class="btn-modif"
         onclick="document.getElementById('id01').style.display='none'"
         (click)="updateStagiaire()"
-        *ngIf="direction"
+        *ngIf="isEdit"
       >
         Modifier stagiaire
       </button>

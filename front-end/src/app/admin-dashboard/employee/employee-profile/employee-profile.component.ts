@@ -27,6 +27,8 @@ export class EmployeeProfileComponent implements OnInit {
   trie_date = false;
   date_croissant = false;
 
+  photoPath =""
+
   //pour le chart.js
   today: any;
   date: any;
@@ -60,6 +62,7 @@ export class EmployeeProfileComponent implements OnInit {
     this.photoName = this.SecurityServ.photoName;
     this.direction = this.SecurityServ.direction;
     this.fonction = this.SecurityServ.fonction;
+    this.photoPath = this.authServ.PhotoUrl + this.photoName
   }
 
   refreshPointageRegisterList() {

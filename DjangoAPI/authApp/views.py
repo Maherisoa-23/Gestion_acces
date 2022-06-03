@@ -62,8 +62,6 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse(employee_serializer.data, safe=False)
     elif request.method== 'POST':
         employee_data = JSONParser().parse(request)
-        department = Department.objects.get(pk=employee_data["department"])
-        employee_data["department_name"] = department.department_short_name
         employee_serializer = Employee_serializer(data=employee_data)
         if employee_serializer.is_valid():
             employee_serializer.save()
@@ -71,11 +69,12 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'PUT':
         employee_data = JSONParser().parse(request)
-        employee= Employee.objects.get(numero_matricule = employee_data['numero_matricule'] )
-        employee.pointed_at = employee_data["pointed_at"]
-        employee.save()
-        return JsonResponse("Update successfully",safe=False)
-        #return JsonResponse("failded to Update", safe= False)
+        employee=Employee.objects.get(pk=employee_data['numero_matricule'])
+        employee_serializer=Employee_serializer(employee,data=employee_data)
+        if employee_serializer.is_valid():
+            employee_serializer.save()
+            return JsonResponse("Updated Successfully!!", safe=False)
+        return JsonResponse("Failed to Update.", safe=False)
     elif request.method == 'DELETE':
         employee=Employee.objects.filter(department =id)
         employee_serializer = Employee_serializer(employee, many=True)
@@ -246,6 +245,14 @@ def pointageStg(request):
     stagiaire.pointed_at = stagiaire_data["pointed_at"]
     stagiaire.isActif = stagiaire_data["isActif"]
     stagiaire.save()
+    return JsonResponse("Update successfully",safe=False)
+
+@csrf_exempt
+def pointageEmp(request):
+    employee_data = JSONParser().parse(request)
+    employee= Employee.objects.get(numero_matricule = employee_data['numero_matricule'] )
+    employee.pointed_at = employee_data["pointed_at"]
+    employee.save()
     return JsonResponse("Update successfully",safe=False)
 
 

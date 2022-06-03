@@ -34,6 +34,7 @@ export class StagiaireListComponent implements OnInit {
   stagiaire_id = ""
   pointed_at = ""
 
+  isEdit = false
 
   constructor(
     private authServ: AuthService,
@@ -143,6 +144,7 @@ export class StagiaireListComponent implements OnInit {
   }
 
   EditStagiaire(stagiaire : any) {
+    this.isEdit = true
     this.stagiaire_name = stagiaire.stagiaire_name;
     this.description = stagiaire.description;
     this.date_debut = stagiaire.start_date;
@@ -165,6 +167,7 @@ export class StagiaireListComponent implements OnInit {
   }
 
   reinitialisationDonnee() {
+    this.isEdit = false
     this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
     this.photoName = "anonymous.png";
     this.photoPath = this.authServ.PhotoUrl + this.photoName

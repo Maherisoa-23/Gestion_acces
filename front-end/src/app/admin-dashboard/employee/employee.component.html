@@ -18,6 +18,7 @@
         onclick="document.getElementById('id01').style.display='none'"
         class="close"
         title="Close Modal"
+        (click)="reinitialisationDonnee()"
         >&times;</span
       >
     </div>
@@ -30,7 +31,7 @@
         [(ngModel)]="employee_name"
       /><br />
       <label><b>Fonction </b></label>
-      <input type="text" name="fonction" [(ngModel)]="fonction" /><br />
+      <input type="text" name="function" [(ngModel)]="function" /><br />
       <label for="select"><b>Direction</b></label>
       <select name="pets" id="select" [(ngModel)]="direction">
         <option *ngFor="let item of departments">{{item.department_short_name}}</option>
@@ -41,20 +42,31 @@
       <label><b> Photo de profil :  </b></label>
       <div class="img-card">
         <input class="btn-upload-photo" type="file" (change)="uploadPhoto($event)">
-        <img [src] = photoPath alt="pdp" width="230px">
+        <img [src] = photoPath alt="pdp" height="150px">
       </div><br>
       <button
         type="submit"
         class="btn-ajout"
         onclick="document.getElementById('id01').style.display='none'"
         (click)="addEmployee()"
+        *ngIf="!isEdit"
       >
         Ajouter
+      </button>
+      <button
+        type="submit"
+        class="btn-modif"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="updateUpdate()"
+        *ngIf="isEdit"
+      >
+        Modifier
       </button>
       <button
         class="btn-cancel"
         type="button"
         onclick="document.getElementById('id01').style.display='none'"
+        (click)="reinitialisationDonnee()"
       >
         Cancel
       </button>
@@ -99,7 +111,7 @@
           <button class="voirprofil" (click)="ShowEmployeeProfile(item)">
             Voir profile
           </button>
-          <button class="voirprofil2"  onclick="document.getElementById('id01').style.display='block'"     (click) = "editEmployee(item)">
+          <button class="voirprofil2"  onclick="document.getElementById('id01').style.display='block'" (click) = "editEmployee(item)">
             Modifier 
           </button>
           
