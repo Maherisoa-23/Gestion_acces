@@ -125,6 +125,8 @@ export class StagiaireListComponent implements OnInit {
 
   reinitialisationDonnee() {
     this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
+    this.photoName = "anonymous.png";
+    this.photoPath = this.authServ.PhotoUrl + this.photoName
   }
 
   showStagiaireProfile(item : any) {
@@ -136,6 +138,15 @@ export class StagiaireListComponent implements OnInit {
     this.stgServ.photoPath = this.authServ.PhotoUrl + item.photoName
     this.securityServ.security_name = item.stagiaire_name
     this.route.navigate(['admin/stagiaire-profile']);
+  }
+
+  EditStagiaire(stagiaire : any) {
+    this.stagiaire_name = stagiaire.stagiaire_name;
+    this.description = stagiaire.description;
+    this.date_debut = stagiaire.date_debut;
+    this.date_fin = stagiaire.date_fin;
+    this.direction = stagiaire.department_name;
+    this.photoPath = this.authServ.PhotoUrl + stagiaire.photoName
   }
 
   //Les messages
