@@ -16,13 +16,12 @@ export class AuthService {
 
   //pour passer des données entre les composants.
   dateDailyPointage = '';
-  numero_matricule = 0;
+  employee_name = "";
 
-  // readonly APIUrl = "http://192.168.1.23:8000"
+  //readonly APIUrl = "http://192.168.1.23:8000"
 
   readonly APIUrl = 'http://localhost:8000';
-
-  // readonly APIUrl = 'http://localhost:8000';
+  readonly PhotoUrl = this.APIUrl +  "/media/";
 
   constructor(private http: HttpClient) {}
 
@@ -37,6 +36,10 @@ export class AuthService {
 
   signOut() {
     this.isAuth = false;
+  }
+
+  UploadPhoto(val:any){
+    return this.http.post(this.APIUrl+'/save_file/',val);
   }
 
   getUsersList(): Observable<any[]> {
@@ -73,6 +76,24 @@ export class AuthService {
     return this.http.put(this.APIUrl + '/lieu/', val);
   }
 
+  //Methode pour les stagiaires
+
+  getStagiaireList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/stagiaire/');
+  }
+
+  putStagiaire(val: any) {
+    return this.http.put(this.APIUrl + '/stagiaire/', val);
+  }
+
+  addStagiaire(val: any) {
+    return this.http.post(this.APIUrl + '/stagiaire/', val);
+  }
+
+  getStagiaire(val : any) {
+    return this.http.delete(this.APIUrl + '/stagiaire/', val);
+  }
+
   //Methode pour les pointages
 
   getPointageList(): Observable<any[]> {
@@ -89,16 +110,21 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/pointage_register/');
   }
 
+  //pour employé
   addPointage(val: any) {
     return this.http.post(this.APIUrl + '/pointage/', val);
+  }
+  //pour stagiaire
+  addPointageStg(val: any) {
+    return this.http.put(this.APIUrl + '/pointage/', val);
   }
 
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
   }
 
-  deletePointage(id: number) {
-    return this.http.delete(this.APIUrl + '/pointage/' + id);
+  deletePointage(val: any) {
+    return this.http.put(this.APIUrl + '/pointage_register/', val);
   }
   //filtre des pointages par départements
   getPointageByDep(dep_id: number) {
@@ -114,6 +140,9 @@ export class AuthService {
     return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
   }
   //pour les pointages
+  getTabPointageCounting(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/pointage_counter/');
+  }
   getAllPointageByLieuAndDate(val: any) {
     return this.http.post(this.APIUrl + '/pointage_counter/', val);
   }

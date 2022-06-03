@@ -62,6 +62,7 @@ export class LieuCardComponent implements OnInit {
     this.authServ.getLieu(this.id_lieu)
       .subscribe((data) => {
         this.nb_employee = data.total_employee;
+        this.entry_time = data.entry_time;
       });
   }
 

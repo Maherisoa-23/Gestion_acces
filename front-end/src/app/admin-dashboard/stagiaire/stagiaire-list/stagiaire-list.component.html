@@ -1,0 +1,114 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03">
+  <button
+    class="btn-content"
+    onclick="document.getElementById('id01').style.display='block'"
+    (click) = "showInfo('Verifier bien les informations')"
+  >
+    Ajout Nouveau Stagiaire
+  </button>
+</div>
+
+<!--modal-->
+<div id="id01" class="modal">
+  <form class="modal-content animate">
+    <h1>Ajout Stagiaire</h1>
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+
+    <div class="container">
+      <label><b>Nom Stagiaire </b></label>
+      <input
+        type="text"
+        name="stagiaire_name"
+        [(ngModel)]="stagiaire_name"
+      /><br />
+      <label><b>Description </b></label>
+      <input type="text" name="description" [(ngModel)]="description" /><br />
+      <label for="select"><b>Direction</b></label>
+      <select name="pets" id="select" [(ngModel)]="direction">
+        <option *ngFor="let item of depTab">{{item.department_short_name}}</option>
+      </select>
+      <br />
+      <label><b>Date debut : {{date_debut}}</b></label>
+      <input type="date" name="date_debut" [(ngModel)]="date_debut" /><br />
+      <label><b>Date fin : {{date_fin}} </b></label>
+      <input type="date" name="date_fin" [(ngModel)]="date_fin" /><br /><br />
+      <label><b> Photo de profil :  </b></label>
+      <div class="img-card">
+        <input class="btn-upload-photo" type="file" (change)="uploadPhoto($event)">
+        <img [src] = photoPath alt="pdp" width="230px">
+      </div>
+      <button
+        type="submit"
+        class="btn-ajout"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="addStagiaire()"
+      >
+        Ajouter
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        onclick="document.getElementById('id01').style.display='none'"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<!-- modal******************* -->
+<div class="titre animation1 animation fade01">
+  <h1><i class="fas fa-user-tag"></i>Liste des stagiaires</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table
+    class="tbl animation1 animation fade01"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
+    <thead>
+      <tr>
+        <th class="th">Nom</th>
+        <th class="th">description</th>
+        <th>date_debut</th>
+        <th>date_fin</th>
+        <th>direction</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of stagiaires">
+        <td data-label="ID">
+          <strong>{{ item.stagiaire_name }}</strong>
+        </td>
+        <td data-label="Nom">
+          <strong>{{ item.description }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.start_date }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.end_date }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.department_name }}</strong>
+        </td>
+        <td>
+          <button class="voirprofil" (click)="showStagiaireProfile(item)">
+            Voir profile
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>

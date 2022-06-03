@@ -1,0 +1,38 @@
+<!-- profil security body -->
+<div class="page-profil animation1 animation fade01">
+  <div class="card-profil animation1 animation fade01">
+    <h1>Profil Visiteur</h1>
+  </div>
+  <div class="chart animation2 animation fade02">
+    <div class="img"><i class="fas fa-user-tie"></i></div>
+    <div class="nom">
+      <h1>{{visitor_name}}</h1>
+    </div>
+    <div class="apropos">
+      <div class="apropos-list" *ngIf="CIN">
+        <div class="apropos-list-item">CIN</div>
+        <div class="apropos-list-value">{{CIN}}</div>
+      </div>
+      <div class="apropos-list" *ngIf="comment">
+        <div class="apropos-list-item">pas de CIN</div>
+        <div class="apropos-list-value">{{comment}}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Description</div>
+        <div class="apropos-list-value">{{description}}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Derniere visite</div>
+        <div class="apropos-list-value">{{lastVisit}}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Nombre de visite</div>
+        <div class="apropos-list-value">{{Nbvisit}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="pointage animation3 animation fade03">
+    <app-calendrier-visite></app-calendrier-visite>
+  </div>
+</div>
+<!-- profil security body -->

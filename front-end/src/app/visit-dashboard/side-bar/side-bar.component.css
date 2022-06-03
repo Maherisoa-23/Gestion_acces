@@ -8,6 +8,11 @@
   -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
 }
+.anim10 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
 
 .animate {
   -webkit-animation-duration: 1.7s;
@@ -81,7 +86,9 @@
 }
 .entete .logo-text p {
   font-size: 14px;
+  font-weight: 600;
   color: var(--color-fond);
+  text-transform: uppercase;
   text-align: center;
   margin: 10px 10px 15px 10px;
   letter-spacing: 2px;
@@ -104,8 +111,8 @@
   margin: 20px 0;
   padding: 0;
   align-items: center;
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-size: 14px;
+  letter-spacing: 1px;
   text-transform: capitalize;
   color: var(--color-fond);
 }

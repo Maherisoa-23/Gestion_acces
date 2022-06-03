@@ -49,6 +49,7 @@ export class EmployeeComponent implements OnInit {
         pageLength: 10,
         lengthMenu : [10, 15, 25],
         processing: true,
+        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
       };
     },600)
     
@@ -101,13 +102,16 @@ export class EmployeeComponent implements OnInit {
     return " - "
   }
 
-  ShowSecurityProfile(security: any) {
+  ShowEmployeeProfile(security: any) {
     this.authServ.refreshPointageList();
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
       this.SecurityServ.pointed_at = security.pointed_at;
-      this.route.navigate(['admin/security-profile']);
+      this.SecurityServ.photoName = security.photoName;
+      this.SecurityServ.fonction = security.function;
+      this.SecurityServ.direction = security.department_name;
+      this.route.navigate(['admin/employee-profile']);
     }, 1000);
   }
 }

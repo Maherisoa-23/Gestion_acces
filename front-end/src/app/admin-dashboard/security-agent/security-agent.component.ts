@@ -17,6 +17,7 @@ export class SecurityAgentComponent implements OnInit {
   trie_matricule = false;
   nom_croissant = false;
   matricule_croissant = false;
+  tab : any = []
 
   readonly direction_security = 3;
 
@@ -36,10 +37,18 @@ export class SecurityAgentComponent implements OnInit {
   //security = user
   refreshSecurityList() {
     this.authServ
-      .getUsersList()
+      .getEmployeeList()
       .subscribe((data) => {
         this.securities = data;
       });
+    setTimeout(() => {
+      for (let index = 0; index < this.securities.length; index++) {
+        const element = this.securities[index];
+        if (element.function == "AGENT DE SECURITE") {
+          this.tab.push(element)
+        }
+      }
+    }, 500);
   }
 
   refreshPointageList() {
@@ -76,9 +85,10 @@ export class SecurityAgentComponent implements OnInit {
     this.authServ.refreshPointageList();
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
-      this.SecurityServ.security_name = security.user_name;
+      this.SecurityServ.security_name = security.employee_name;
       this.SecurityServ.pointed_at = security.pointed_at;
+      this.SecurityServ.photoName = security.photoName
       this.route.navigate(['admin/security-profile']);
-    }, 1000);
+    }, 500);
   }
 }

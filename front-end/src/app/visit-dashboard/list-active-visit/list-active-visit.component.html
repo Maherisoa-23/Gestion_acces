@@ -12,7 +12,7 @@
 <!--modal-->
 <div id="id01" class="modal">
   <form class="modal-content animate">
-    <h1>Nouveau visiteur</h1>
+    <h1>Ajout visiteur</h1>
     <div class="imgcontainer">
       <span
         onclick="document.getElementById('id01').style.display='none'"
@@ -25,9 +25,34 @@
     <div class="container">
       <label><b>Nom Visiteur </b></label>
       <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
-
-      <label><b>Numero CIN </b></label><br />
-      <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
+      <ul *ngFor="let item of visitors">
+        <li
+          *ngIf="
+            item.visitor_name
+              .toLowerCase()
+              .includes(visitor_name.toLowerCase()) && visitor_name
+          "
+          (click)="suggested(item)"
+        >
+          {{ item.visitor_name }}
+        </li>
+      </ul>
+      <label class="spanina" for="cin"><b>Pas de CIN</b></label>
+      <input type="checkbox" (click)="NoCIN()" id="cin" />
+      <!-- <span class="spanina"></span> -->
+      <br /><br />
+      <span *ngIf="haveCIN">
+        <label><b>Numero CIN </b></label><br />
+        <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
+      </span> 
+      <span *ngIf="!haveCIN">
+        <label><b>Autre Piéce justificative</b></label
+        ><br />
+        <input type="text" name="comment" [(ngModel)]="comment" /> <br />
+      </span>
+      <label><b>Description</b></label
+      ><br />
+      <input type="text" name="description" [(ngModel)]="description" /> <br />
 
       <label><b>Motif </b></label>
       <textarea
@@ -70,7 +95,7 @@
         <th>Nom</th>
         <th>Heure d'entrée</th>
         <th>Motif</th>
-        <th>#</th>
+        <th>option</th>
       </tr>
     </thead>
     <tbody>

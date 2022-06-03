@@ -10,19 +10,19 @@ import { AuthService } from 'src/app/services/auth.service';
   providers: [DatePipe],
 })
 export class ChartGeneraleComponent implements OnInit {
-  @Input() tab_visit_counting: any = [];
+  tab_visit_counting: any = [];
+  tab_pointage_counting: any = [];
 
-  myChartVisite: any;
   myChartPointage: any;
+  chartPointageActif: any;
   today: any
   date: any
   dateTab: any = []
-  tab_pointage: any = []
   tmp: any
 
-  ambohijatovo_tab : any
-  andraharo_tab : any
-  mangasoavin_tab : any
+  ambohijatovo_tab: any
+  andraharo_tab: any
+  mangasoavin_tab: any
 
   constructor(private elementRef: ElementRef, private authServ: AuthService, private datePipe: DatePipe) { }
 
@@ -38,12 +38,15 @@ export class ChartGeneraleComponent implements OnInit {
     this.refreshCounting();
     setTimeout(() => {
       this.chartit();
-    }, 2000);
+    }, 1500);
   }
 
   refreshCounting() {
     this.authServ.getTabVisitCounting().subscribe((data) => {
       this.tab_visit_counting = data;
+    });
+    this.authServ.getTabPointageCounting().subscribe((data) => {
+      this.tab_pointage_counting = data;
     });
   }
 
@@ -55,7 +58,7 @@ export class ChartGeneraleComponent implements OnInit {
     }
   }
 
-  getPointageByLieuDate(lieu : string) {
+  getPointageByLieuDate(lieu: string) {
     const val = {
       lieu: lieu,
       date0: this.dateTab[0],
@@ -78,7 +81,36 @@ export class ChartGeneraleComponent implements OnInit {
   }
 
   chartit() {
+    //pointage actif chart pie
     const data_pointage = {
+      labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: this.tab_pointage_counting,
+          backgroundColor: ["#ca212680","#37a94a80","#1e546b80"],
+        }
+      ]
+    };
+    let htmlRefPointage = this.elementRef.nativeElement.querySelector(`#myChartPointage`);
+    this.chartPointageActif = new Chart (htmlRefPointage, {
+      type: 'pie',
+      data: data_pointage,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Pie Chart'
+          }
+        }
+      },
+    })
+    //Registre pointages des 7 dernières jours
+    const data_pointage_register = {
       labels: this.dateTab,
       datasets: [
         {
@@ -101,11 +133,11 @@ export class ChartGeneraleComponent implements OnInit {
         },
       ],
     };
-    let htmlRefPointage =
-      this.elementRef.nativeElement.querySelector(`#myChartPointage`);
-    this.myChartPointage = new Chart(htmlRefPointage, {
+    let htmlRefPointageRegister =
+      this.elementRef.nativeElement.querySelector(`#myChartPointageRegister`);
+    this.myChartPointage = new Chart(htmlRefPointageRegister, {
       type: 'bar',
-      data: data_pointage,
+      data: data_pointage_register,
     });
   }
 

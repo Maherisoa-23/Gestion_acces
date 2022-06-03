@@ -44,6 +44,7 @@ export class SideBarComponent implements OnInit {
     });
     setTimeout(() => {
       this.Lieu.isActive = false
+      this.Lieu.entry_time = "non actif"
       this.authService.putLieu(this.Lieu).subscribe((res) => {
         console.log(res.toString());
       });
@@ -53,7 +54,6 @@ export class SideBarComponent implements OnInit {
     //this.saveConnectionRegister();
     localStorage.removeItem('lieu');
     localStorage.removeItem('user');
-    
     
   }
 

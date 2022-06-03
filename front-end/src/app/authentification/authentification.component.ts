@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5';
 import { DatePipe } from '@angular/common';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentification',
@@ -33,47 +33,22 @@ export class AuthentificationComponent implements OnInit {
   usersList: any = [];
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private route: Router,
     private datePipe: DatePipe,
     private toast: NgToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('user')) this.route.navigate(['/agent/accueil']);
     this.refreshLieuList();
     this.refreshUsersList();
     this.authStatus = this.authService.isAuth;
   }
-  //Les messages de notification, de succes et d"erreur
-  showSuccess() {
-    this.toast.success({
-      detail: 'Bienvenue',
-      summary: 'Vous êtes connecté',
-      duration: 5000,
-    });
-  }
 
-  showErrorAdmin() {
-    this.toast.error({
-      detail: 'ERROR',
-      summary: 'Verifier bien votre matricule et votre mot de passe',
-      duration: 5000,
+  refreshUsersList() {
+    this.authService.getUsersList().subscribe((data) => {
+      this.usersList = data;
     });
-  }
-
-  showErrorAgent() {
-    this.toast.error({
-      detail: 'ERROR',
-      summary: 'Verifier bien votre matricule et le choix du lieu',
-      duration: 4000,
-    });
-  }
-  getLieuId(lieu: string) {
-    if (lieu == 'Ambohijatovo') return 1;
-    else {
-      if (lieu == 'Andraharo') return 2;
-      else if (lieu == 'Mangasoavina') return 3;
-      else return 4;
-    }
   }
 
   refreshLieuList() {
@@ -88,12 +63,6 @@ export class AuthentificationComponent implements OnInit {
         }
       }
     }, 1200);
-  }
-
-  refreshUsersList() {
-    this.authService.getUsersList().subscribe((data) => {
-      this.usersList = data;
-    });
   }
 
   onSignIn() {
@@ -115,12 +84,12 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
 
-            this.router.navigate(['admin']);
+            this.route.navigate(['admin']);
             localStorage.setItem('admin1', JSON.stringify(element));
           });
           this.showSuccess();
           break;
-        } else this.showErrorAdmin();
+        } else this.showError("Vérifier votre numéro matricule et votre mot de passe");
         break;
       } else {
         if (
@@ -132,41 +101,47 @@ export class AuthentificationComponent implements OnInit {
             this.authStatus = this.authService.isAuth;
             this.authService.userName = element.user_name;
             this.showSuccess();
-            this.router.navigate(['agent/accueil']);
+            this.route.navigate(['agent/accueil']);
           });
-          console.log('lieu this  = ' + this.authService.lieu);
-
           localStorage.setItem('user', JSON.stringify(element));
           this.authService
             .getLieu(this.getLieuId(this.authService.lieu))
             .subscribe((data) => {
               this.Lieu = data;
             });
-            
+
           setTimeout(() => {
+            this.date = new Date();
+            this.heure = new Date();
+            this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
             this.Lieu.isActive = true;
-            this.authService.putLieu(this.Lieu).subscribe((res) => {
-              console.log(res.toString());
-            });
+            this.Lieu.entry_time = this.heure.toString()
+              this.authService.putLieu(this.Lieu).subscribe((res) => {
+                console.log(res.toString());
+              });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 500);
-          //this.saveConnection()
+          this.saveConnection()
           break;
-        } 
+        }
       }
       setTimeout(() => {
         if (!this.ok)
-          this.showErrorAgent();
+          this.showError("Vérifier votre numéro matricule et le choix du lieu");
       }, 500);
-      
+
     }
+  }
+
+  suggested(numero_matricule: any) {
+    this.numero_matricule = numero_matricule;
   }
 
   saveConnection() {
     this.date = new Date();
     this.heure = new Date();
-    this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
-    this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy');
+    this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
     var val = {
       numero_matricule: this.numero_matricule,
@@ -180,7 +155,33 @@ export class AuthentificationComponent implements OnInit {
     });
   }
 
-  
+
+  //Les messages de notification, de succes et d"erreur
+  showSuccess() {
+    this.toast.success({
+      detail: 'Bienvenue',
+      summary: 'Vous êtes connecté',
+      duration: 5000,
+    });
+  }
+
+  showError(msg: string) {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+
+  getLieuId(lieu: string) {
+    if (lieu == 'Ambohijatovo') return 1;
+    else {
+      if (lieu == 'Andraharo') return 2;
+      else if (lieu == 'Mangasoavina') return 3;
+      else return 4;
+    }
+  }
+
 
   //animation du formulaire d'euthentification
   ClickOnInput1() {
@@ -190,7 +191,4 @@ export class AuthentificationComponent implements OnInit {
     this.input2 = true;
   }
 
-  suggested(numero_matricule: any) {
-    this.numero_matricule = numero_matricule;
-  }
 }

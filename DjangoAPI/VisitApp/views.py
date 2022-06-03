@@ -12,9 +12,9 @@ from VisitApp.serializers import Visit_serializer, Visits_register_serializer,Li
 @csrf_exempt
 def visitor_API(request: HttpRequest, id=0):
     if request.method == 'GET':
-        visits_actif = Visitors.objects.all()
-        visits_actif_serializer = Visitor_serializer(visits_actif, many=True)
-        return JsonResponse(visits_actif_serializer.data, safe=False)
+        visitor = Visitors.objects.all()
+        visitor_serializer = Visitor_serializer(visitor, many=True)
+        return JsonResponse(visitor_serializer.data, safe=False)
     elif request.method== 'POST':
         visitor_data = JSONParser().parse(request)
         visitor_serializer = Visitor_serializer(data=visitor_data)
@@ -22,16 +22,8 @@ def visitor_API(request: HttpRequest, id=0):
             visitor_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
-    elif request.method == 'PUT':
-        visit_data = JSONParser().parse(request)
-        visit= Visits_actif.objects.get(visit_id = visit_data['visit_id'] )
-        visit_serializer = Visit_serializer(visit,data=visit_data)
-        if visit_serializer.is_valid():
-            visit_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        visit=Visits_actif.objects.get(CIN =id)
+        visit=Visitors.objects.get(pk =id)
         visit.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
@@ -58,7 +50,7 @@ def visit_API(request: HttpRequest, id=0):
             return JsonResponse("Update successfully",safe=False)
         return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        visit=Visits_actif.objects.get(CIN =id)
+        visit=Visits_actif.objects.get(visitor_name = id)
         visit.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
@@ -100,7 +92,7 @@ def visit_counter_API(request: HttpRequest, id=0):
     elif request.method == 'DELETE':
         lieu = Lieu.objects.get(pk = id)
         visits_actif = Visits_actif.objects.filter(lieu = lieu.lieu_name)
-        nb_visit = Visits_actif.count()
+        nb_visit = visits_actif.count()
         return JsonResponse(nb_visit, safe = False)
     return JsonResponse("wrong lieu_id", safe = False)
 
@@ -121,6 +113,7 @@ def lieu_API(request: HttpRequest, id=0):
         lieu_data = JSONParser().parse(request)
         lieu= Lieu.objects.get(pk = lieu_data['lieu_id'])
         lieu.isActive = lieu_data['isActive']
+        lieu.entry_time = lieu_data['entry_time']
         lieu.save()
         return JsonResponse("Update successfully",safe=False)
     #un lieu en particulier

@@ -11,7 +11,7 @@
   width: 100%;
   grid-gap: 5px;
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 300px 310px 1fr;
+  grid-template-rows: 120px 310px 1fr;
   grid-template-areas:
     "clock  clock"
     "header header "
@@ -28,7 +28,6 @@
 /*.clock  bienvenue */
 .clocks .bienvenue {
   grid-area: bienvenue;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -46,10 +45,6 @@
   text-transform: uppercase;
   color: var(--color-blue);
 }
-.clocks .bienvenue .img {
-  width: 500px;
-  height: 300px;
-}
 .clocks .bienvenue .img img {
   margin-left: 100px;
   max-width: 100%;
@@ -62,53 +57,51 @@
   overflow: hidden;
 }
 
-.clocks .heure #clock h2 {
-  position: relative;
+h2 {
   display: block;
   color: var(--color-text);
   text-align: center;
-  margin: 40px 0;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   font-size: 1.5em;
 }
 
-.clocks .heure #clock #time {
+#time {
   display: flex;
 }
 
-.clocks .heure #clock #time div {
+#time div {
   position: relative;
   margin: 0 5px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0004); */
 }
 
-.clocks .heure #clock #time div span {
+#time div span {
   position: relative;
   display: block;
   width: 150px;
-  height: 120px;
+  height: 80px;
   background: var(--color-green);
   color: #fff;
   font-weight: 300;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.5em;
   z-index: 10;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   /* border-radius: 3px; */
 }
 
-.clocks .heure #clock #time div #minutes {
+#time div #minutes {
   background: var(--color-blue);
 }
-.clocks .heure #clock #time div span:nth-child(2) #minutes {
+#time div span:nth-child(2) #minutes {
   background: var(--color-blue);
 }
 
-.clocks .heure #clock #time div span:nth-child(2) {
+#time div span:nth-child(2) {
   height: 30px;
   font-size: 0.7em;
   letter-spacing: 0.2em;
@@ -118,15 +111,15 @@
   background: var(--color-blue);
   text-transform: uppercase;
 }
-.clocks .heure #clock #time div:first-child span {
+#time div:first-child span {
   background: var(--color-green);
 }
 
-.clocks .heure #clock #time div:last-child span {
+#time div:last-child span {
   background: var(--color-red);
 }
 
-.clocks .heure #clock #time div:last-child span:nth-child(2) {
+#time div:last-child span:nth-child(2) {
   background: var(--color-red);
 }
 
@@ -137,19 +130,19 @@
   animation-delay: 0.7s;
 }
 .anim2 {
-  -webkit-animation-delay: 1.6s;
-  -moz-animation-delay: 1.6s;
-  animation-delay: 1.6s;
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  animation-delay: 2s;
 }
-.anim3 {
-  -webkit-animation-delay: 0.1s;
-  -moz-animation-delay: 0.1s;
-  animation-delay: 0.1s;
+.anima3 {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .animate {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
 }
@@ -210,7 +203,7 @@
   animation-name: fade2;
 }
 
-@-webkit-keyframes fade3 {
+@-webkit-keyframes fade03 {
   from {
     opacity: 0;
     -webkit-transform: translate3d(0, -100%, 0);
@@ -222,7 +215,7 @@
     transform: none;
   }
 }
-@keyframes fade3 {
+@keyframes fade03 {
   from {
     opacity: 0;
     -webkit-transform: translate3d(0, -100%, 0);
@@ -234,9 +227,9 @@
     transform: none;
   }
 }
-.fade3 {
-  -webkit-animation-name: fade3;
-  animation-name: fade3;
+.fade03 {
+  -webkit-animation-name: fade03;
+  animation-name: fade03;
 }
 /* animation  */
 /*sidebar*/
@@ -408,31 +401,15 @@
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 1300px) {
-  /*accueil*/
-  /* .accueil-container {
-    grid-template-areas:
-      "clock clock"
-      "header  header"
-      "sidebar  sidebar"
-      "contenu  contenu";
-    grid-template-rows: 1fr 1fr auto auto;
-  } */
   .accueil-container {
     grid-gap: 2px;
     grid-template-columns: 1fr 350px;
-    grid-template-rows: 300px 310px 1fr;
+    grid-template-rows: 120px 310px 1fr;
     grid-template-areas:
       "clock  clock"
       "header header "
       "contenu  sidebar";
   }
-  /*header*/
-  /* .accueil-header {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-  } */
   .accueil-header {
     grid-area: header;
     background: var(--color-fond);
@@ -459,77 +436,30 @@
   .accueil-body {
     margin: 30px 30px;
   }
-  /* .clocks {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      "bienvenue"
-      "heure";
-  } */
   .clocks {
     grid-area: clock;
     margin: 10px 30px;
-    /* border: 2px solid red; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "bienvenue heure";
   }
-  /* c */
-
-  /* c */
-
-  /* .clocks .bienvenue .img {
-    width: 86%;
-    height: 300px;
-  }
-  .clocks .bienvenue .img img {
-    margin-left: 50px;
-    max-width: 100%;
-  }
-
-  .clocks .heure {
-    grid-area: heure;
-    display: flex;
-    justify-content: center;
-    background: var(--color-fond);
-    overflow: hidden;
-  }
-  .clocks .heure #clock h2 {
-    font-size: 1em;
-  }
-  .clocks .heure #clock #time div span {
-    position: relative;
-    display: block;
-    width: 150px;
-    height: 120px;
-    background: var(--color-green);
-    color: #fff;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    z-index: 10;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-  } */
-  .clocks .bienvenue .img {
+.bienvenue .img {
     width: 400px;
     height: 300px;
   }
-  .clocks .bienvenue .img img {
+.bienvenue .img img {
     margin-left: 100px;
     max-width: 100%;
   }
   /*.clocks  heure */
-  .clocks .heure {
+.heure {
     grid-area: heure;
     display: flex;
     justify-content: center;
     overflow: hidden;
   }
 
-  .clocks .heure #clock h2 {
+.heure h2 {
     position: relative;
     display: block;
     color: var(--color-text);
@@ -541,17 +471,17 @@
     font-size: 1.5em;
   }
 
-  .clocks .heure #clock #time {
+.heure #time {
     display: flex;
   }
 
-  .clocks .heure #clock #time div {
+.heure #time div {
     position: relative;
     margin: 0 5px;
     /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0004); */
   }
 
-  .clocks .heure #clock #time div span {
+.heure #time div span {
     position: relative;
     display: block;
     width: 150px;
@@ -586,9 +516,6 @@
     align-items: center;
     margin: 10px;
   }
-  /* .accueil-header .card {
-    margin: 10px;
-  } */
   /*sidebar*/
   .accueil-sidebar {
     height: 100%;
@@ -604,11 +531,11 @@
     grid-template-rows: 1fr;
     grid-template-areas: "bienvenue";
   }
-  .clocks .bienvenue {
+.bienvenue {
     height: 400px;
     background: var(--color-bg);
   }
-  .clocks .bienvenue h1 {
+.bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -617,48 +544,29 @@
     color: var(--color-text);
   }
 
-  .clocks .bienvenue .img {
+.bienvenue .img {
     width: 80%;
     height: 300px;
   }
-  .clocks .bienvenue .img img {
+.bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-  .clocks .heure {
+.heure {
     display: none;
   }
-  /* .clocks .heure #clock h2 {
-    font-size: 1em;
-  }
-  .clocks .heure #clock #time div span {
-    position: relative;
-    display: block;
-    width: 100px;
-    height: 120px;
-    background: var(--color-green);
-    color: #fff;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    z-index: 10;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-  } */
 }
 
 @media screen and (max-width: 700px) {
   /*accueil*/
   .accueil-container {
-    grid-template-rows: 210px 1fr auto auto;
+    grid-template-rows: 1fr auto auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "clock clock"
-      "header  header"
-      "sidebar  sidebar"
-      "contenu  contenu";
+      "header"
+      "sidebar"
+      "contenu ";
   }
   /*header*/
   .accueil-header {
@@ -666,12 +574,7 @@
     justify-content: center;
     align-items: center;
     margin: 10px;
-    /* border: 2px solid red; */
   }
-  /* .accueil-header .card {
-    margin: 10px;
-  } */
-  /*sidebar*/
   .accueil-sidebar {
     height: 100%;
     width: 90%;
@@ -686,11 +589,11 @@
     grid-template-rows: 1fr;
     grid-template-areas: "bienvenue";
   }
-  .clocks .bienvenue {
+.bienvenue {
     height: 200px;
     background: var(--color-bg);
   }
-  .clocks .bienvenue h1 {
+.bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -699,78 +602,36 @@
     color: var(--color-text);
   }
 
-  .clocks .bienvenue .img {
+.bienvenue .img {
     width: 80%;
     height: 300px;
   }
-  .clocks .bienvenue .img img {
+.bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-  .clocks .heure {
+.heure {
     display: none;
   }
-  /* .clocks .heure #clock h2 {
-    font-size: 1em;
-  }
-  .clocks .heure #clock #time div span {
-    position: relative;
-    display: block;
-    width: 100px;
-    height: 120px;
-    background: var(--color-green);
-    color: #fff;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    z-index: 10;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-  } */
 }
 
 @media screen and (max-width: 320px) {
-  /* .accueil-container {
-    display: grid;
-    width: 100%;
-    grid-gap: 5px;
-    grid-template-columns: 1fr 350px;
-    grid-template-rows: 350px 310px 1fr;
-    grid-template-areas:
-      "clock  clock"
-      "header header "
-      "contenu  sidebar";
-  } */
   /*accueil*/
   .accueil-container {
-    grid-template-columns: 320px;
-    grid-template-rows: 210px 1fr auto auto;
+    grid-template-rows: 1fr auto auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "clock"
       "header"
       "sidebar"
-      "contenu";
+      "contenu ";
   }
   /*header*/
   .accueil-header {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    /* margin: 0px; */
-    /* border: 2px solid red; */
   }
-  /* .accueil-header .card {
-    margin: 10px;
-  } */
-  /* grid-area: header; */
-  /* background: var(--color-fond); */
-  /* display: flex; */
-  /* justify-content: space-around; */
-  /* flex-wrap: wrap; */
-  /*sidebar*/
   .accueil-sidebar {
     height: 100%;
     width: 100%;
@@ -791,13 +652,13 @@
     width: 100%;
     margin: 15px 10px;
   }
-  .clocks .bienvenue {
+.bienvenue {
     width: 92%;
     height: 200px;
     justify-content: center;
     background: var(--color-bg);
   }
-  .clocks .bienvenue h1 {
+.bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -806,16 +667,16 @@
     color: var(--color-text);
   }
 
-  .clocks .bienvenue .img {
+.bienvenue .img {
     width: 80%;
     height: 300px;
   }
-  .clocks .bienvenue .img img {
+.bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-  .clocks .heure {
+.heure {
     display: none;
   }
   .accueil-body {
@@ -830,12 +691,3 @@
     border-radius: 15px;
   }
 }
-/* @media (max-width: 400px) {
-  .accueil-body .side,
-  .accueil-body .middle {
-    width: 100%;
-  }
-  .accueil-body .right {
-    display: none;
-  }
-} */

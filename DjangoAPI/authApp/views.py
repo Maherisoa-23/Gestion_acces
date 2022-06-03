@@ -1,14 +1,14 @@
-from asyncio.windows_events import NULL
-import re
+import django
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
-import hashlib
 
-from authApp.models import User,Pointage,Employee,Department,Pointage_register
-from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer
+from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire
+from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer
 from VisitApp.models import Lieu
+
+from django.core.files.storage import default_storage
 
 # Create your views here.
 @csrf_exempt
@@ -63,8 +63,7 @@ def employee_API(request: HttpRequest, id=0):
     elif request.method== 'POST':
         employee_data = JSONParser().parse(request)
         department = Department.objects.get(pk=employee_data["department"])
-        employee_data["department_name"] = department.department_name
-        employee_data["password"] = hashlib.md5(employee_data["password"].encode()).hexdigest()
+        employee_data["department_name"] = department.department_short_name
         employee_serializer = Employee_serializer(data=employee_data)
         if employee_serializer.is_valid():
             employee_serializer.save()
@@ -83,6 +82,34 @@ def employee_API(request: HttpRequest, id=0):
         return JsonResponse(employee_serializer.data, safe = False)
     return JsonResponse("Failded to delete", safe = False)
 
+@csrf_exempt
+def stagiaire_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        stagiaire = Stagiaire.objects.all()
+        stagiaire_serializer = Stagiaire_serializer(stagiaire, many=True)
+        return JsonResponse(stagiaire_serializer.data, safe=False)
+    elif request.method== 'POST':
+        stagiaire_data = JSONParser().parse(request)
+        stagiaire_serializer = Stagiaire_serializer(data=stagiaire_data)
+        if stagiaire_serializer.is_valid():
+            stagiaire_serializer.save() 
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        stagiaire_data = JSONParser().parse(request)
+        stagiaire= Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'] )
+        stagiaire.pointed_at = stagiaire_data["pointed_at"]
+        stagiaire.isActif = stagiaire_data["isActif"]
+        stagiaire.save()
+        return JsonResponse("Update successfully",safe=False)
+        #return JsonResponse("failded to Update", safe= False)
+    elif request.method == 'DELETE':
+        stagiaire_data = JSONParser().parse(request)
+        stagiaire=Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'])
+        stagiaire_serializer = Stagiaire_serializer(stagiaire)
+        return JsonResponse(stagiaire_serializer.data, safe = False) 
+    return JsonResponse("Failded to delete", safe = False)
+
 @csrf_exempt 
 def pointage_API(request: HttpRequest, id = 0):
     if request.method == 'GET':
@@ -93,20 +120,33 @@ def pointage_API(request: HttpRequest, id = 0):
         pointage_data = JSONParser().parse(request)
         employee = Employee.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep_name"] = employee.department_name   
-          
+        pointage_data["employee_dep_name"] = employee.department_name         
         pointage_data["function"] = employee.function    
-        print(" function " + pointage_data["function"])
         pointage_serializer = Pointage_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)    
-    elif request.method == 'DELETE':
-        pointage=Pointage.objects.get(numero_matricule =id)
+    #pointage des stagiaires
+    elif request.method== 'PUT':
+        pointage_data = JSONParser().parse(request)
+        stagiaire = Stagiaire.objects.get(stagiaire_name=pointage_data["stagiaire_name"])
+        pointage_data["employee_name"] = stagiaire.stagiaire_name
+        pointage_data["employee_dep_name"] = stagiaire.department_name     
+        pointage_data["function"] = "stagiaire"  
+        pointage_data["start_date"] = stagiaire.start_date
+        pointage_data["end_date"] = stagiaire.end_date 
+        pointage_serializer = Pointage_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Pointage stagiaire added successfully",safe=False)
+        return JsonResponse("Pointage stagiaire failded to add", safe= False)   
+    ''' elif request.method == 'DELETE': #tsy mandeha
+        pointage_data = JSONParser().parse(request)
+        pointage=Pointage.objects.get(employee_name =pointage_data["employee_name"])
         pointage.delete()
         return JsonResponse("Delete successfully", safe = False)
-    return JsonResponse("Failded to delete", safe = False)
+    return JsonResponse("Failded to delete", safe = False) '''
 
 @csrf_exempt
 def pointage_register_API(request: HttpRequest, id=0):
@@ -116,14 +156,16 @@ def pointage_register_API(request: HttpRequest, id=0):
         return JsonResponse(pointage_serializer.data, safe=False)
     elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
-        employee = Employee.objects.get(pk=pointage_data["numero_matricule"])
-        pointage_data["employee_name"] = employee.employee_name
-        pointage_data["employee_dep_name"] = employee.department_name 
         pointage_serializer = Pointage_register_serializer(data=pointage_data)
         if pointage_serializer.is_valid():
             pointage_serializer.save()
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        pointage_data = JSONParser().parse(request)
+        pointage=Pointage.objects.get(employee_name =pointage_data["employee_name"])
+        pointage.delete()
+        return JsonResponse("Delete successfully", safe = False)
     elif request.method == 'DELETE':
         pointage=Pointage_register.objects.get(pointage_id =id)
         pointage.delete()
@@ -185,8 +227,14 @@ def daily_pointage_API(request: HttpRequest, id=0):
     #pointage d'un employée que est passé par plusieurs locaux en une journée
     if request.method == 'POST':
         request_data = JSONParser().parse(request)
-        pointage_tab = Pointage_register.objects.filter(numero_matricule = request_data["numero_matricule"], date = request_data["date"])      
+        pointage_tab = Pointage_register.objects.filter(employee_name = request_data["employee_name"], date = request_data["date"])      
         pointage_serializer = Pointage_register_serializer(pointage_tab, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
     return JsonResponse("wrong ", safe = False)
 
+@csrf_exempt
+def SaveFile(request):
+    file = request.FILES["uploadedFile"]
+    file_name = default_storage.save(file.name , file)
+    
+    return JsonResponse(file_name,safe=False)

@@ -3,12 +3,13 @@ from VisitApp.models import Visits_actif, Visits_register,Lieu, Visitors
 
 class Visitor_serializer(serializers.ModelSerializer):
     class Meta:
-        model = Visitors
+        model = Visitors 
         fields = (
                   'visitor_id',
                   'visitor_name',
                   'CIN',
-                  'comment'
+                  'comment',
+                  'description',
                   )
         
 class Visit_serializer(serializers.ModelSerializer):

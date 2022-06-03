@@ -29,9 +29,12 @@
         <hr />
         <a routerLink="visit-register"> Registre des visites</a>
         <hr />
+        <a routerLink="visiteur-list"> Liste visiteur</a>
+        <hr />
       </div>
     </div>
   </li>
+
   <li>
     <div class="dropdown">
       <a
@@ -48,11 +51,28 @@
     </div>
   </li>
   <li>
-    <a routerLink="Employee-list"><i class="fa fa-users"></i> Employees </a>
+    <div class="dropdown">
+      <a
+        ><i class="fas fa-user-tag"></i>
+        Stagiaire
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-content">
+        <a routerLink="stagiaire-admin">Stagiaire actif</a>
+        <hr />
+        <a routerLink="stagiaire-register"> Pointages stagiaires</a>
+        <hr />
+        <a routerLink="stagiaire-list"> Liste stagiaire</a>
+        <hr />
+      </div>
+    </div>
+  </li>
+  <li>
+    <a routerLink="employee-list"><i class="fa fa-users"></i> Employees </a>
   </li>
   <li>
     <a routerLink="security-agent"
-      ><i class="fas fa-user-shield"></i> sécurités
+      ><i class="far fa-address-card"></i>Agents
     </a>
   </li>
   <li>
