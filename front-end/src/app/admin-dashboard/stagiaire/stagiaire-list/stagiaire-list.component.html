@@ -51,8 +51,18 @@
         class="btn-ajout"
         onclick="document.getElementById('id01').style.display='none'"
         (click)="addStagiaire()"
+        *ngIf="!direction"
       >
         Ajouter
+      </button>
+      <button
+        type="submit"
+        class="btn-modif"
+        onclick="document.getElementById('id01').style.display='none'"
+        (click)="updateStagiaire()"
+        *ngIf="direction"
+      >
+        Modifier stagiaire
       </button>
       <button
         class="btn-cancel"
@@ -66,6 +76,8 @@
   </form>
 </div>
 <!-- modal******************* -->
+
+
 <div class="titre animation1 animation fade01">
   <h1><i class="fas fa-user-tag"></i>Liste des stagiaires</h1>
 </div>
@@ -84,7 +96,7 @@
         <th>date_debut</th>
         <th>date_fin</th>
         <th>direction</th>
-        <th>Option</th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
@@ -104,11 +116,11 @@
         <td data-label="Pointage">
           <strong>{{ item.department_name }}</strong>
         </td>
-        <td>
+        <td class="options">
           <button class="voirprofil" (click)="showStagiaireProfile(item)">
             Voir profile
           </button>
-          <button onclick="document.getElementById('id01').style.display='block'" class="voirprofil" (click)="EditStagiaire(item)">
+          <button onclick="document.getElementById('id01').style.display='block'" class="modiferStg" (click)="EditStagiaire(item)">
             Modifier
           </button>
         </td>

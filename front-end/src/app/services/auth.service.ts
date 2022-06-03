@@ -82,12 +82,17 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/stagiaire/');
   }
 
+  //modifer stagiaire table lors d'un pointage
   putStagiaire(val: any) {
-    return this.http.put(this.APIUrl + '/stagiaire/', val);
+    return this.http.put(this.APIUrl + '/pointageStg/', val);
   }
 
   addStagiaire(val: any) {
     return this.http.post(this.APIUrl + '/stagiaire/', val);
+  }
+
+  updateStagiaireEntity(val: any) {
+    return this.http.put(this.APIUrl + '/stagiaire/', val);
   }
 
   getStagiaire(val : any) {

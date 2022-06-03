@@ -35,8 +35,6 @@ class Stagiaire_serializer(serializers.ModelSerializer):
                   'pointed_at',
                   'start_date',
                   'end_date',
-                  'duree',
-                  'isActif',
                   'function',
                   'photoName'
                   )

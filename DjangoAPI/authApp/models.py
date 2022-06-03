@@ -26,9 +26,7 @@ class Stagiaire(models.Model) :
     description   = models.CharField(max_length=200)
     pointed_at = models.CharField(max_length=30, default="not pointed") 
     start_date = models.CharField(max_length=50) 
-    end_date = models.CharField(max_length=50) 
-    duree = models.CharField(max_length=50, null=True) 
-    isActif = models.BooleanField(default=True)
+    end_date = models.CharField(max_length=50)
     function   = models.CharField(max_length=50, default="stagiaire") 
     photoName = models.CharField(max_length=30, default="anonymous.png")
     
