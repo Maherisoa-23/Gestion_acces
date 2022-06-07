@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { Location } from '@angular/common';
 import { NgToastService } from 'ng-angular-popup';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-employee-profile',
@@ -24,7 +25,6 @@ export class EmployeeProfileComponent implements OnInit {
 
   pointage_register: any;
   matricule_security = 5;
-  security_name = '';
   last_pointage: any;
   last_pointage_lieu = '';
   last_pointage_date = '';
@@ -53,8 +53,9 @@ export class EmployeeProfileComponent implements OnInit {
     private authServ: AuthService,
     private route: Router,
     private location: Location,
-    private toast: NgToastService
-  ) {}
+    private toast: NgToastService,
+    private modalService: NgbModal
+  ) {} 
 
   ngOnInit(): void {
     this.reinitialisationDonnee();
@@ -74,12 +75,13 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   initialisationData() {
-    this.security_name = this.SecurityServ.security_name;
+    this.employee_name = this.SecurityServ.security_name;
     this.photoName = this.SecurityServ.photoName;
     this.direction = this.SecurityServ.direction;
     this.fonction = this.SecurityServ.fonction;
     this.photoPath = this.authServ.PhotoUrl + this.photoName;
   }
+  
   reinitialisationDonnee() {
     this.isEdit = false;
     this.employee_name = this.direction = this.function = '';
@@ -123,6 +125,15 @@ export class EmployeeProfileComponent implements OnInit {
     this.last_pointage_lieu = this.last_pointage.lieu;
   }
 
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+    this.editEmployee()
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+  }
+
   uploadPhoto(event: any) {
     var file = event.target.files[0];
     const formData: FormData = new FormData();
@@ -153,11 +164,10 @@ export class EmployeeProfileComponent implements OnInit {
       };
       this.authServ.updateEmployeeEntity(val).subscribe((res) => {
         if (res.toString() == 'Updated Successfully!!') {
-          this.reinitialisationDonnee();
           this.showSuccess('Employée modifié avec succès');
+          this.closeModal()
         }
       });
-      this.refreshEmployeeList();
     }
   }
 
@@ -173,14 +183,14 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   deleteEmployee() {
-    if(confirm("vous êtes sûr?")) {
+    if(confirm("vous êtes sûr? cette action est irréversible!!")) {
       this.authServ.deleteEmployee(this.SecurityServ.matricule_security).subscribe((res) => {
         this.showSuccess(res.toString())
       })
+      setTimeout(() => {
+        this.route.navigate(['/admin/employee-list']);
+      }, 1000);
     }
-    setTimeout(() => {
-      this.route.navigate(['/admin/employee-list']);
-    }, 1000);
   }
 
   CheckDailyPointage(item: any) {

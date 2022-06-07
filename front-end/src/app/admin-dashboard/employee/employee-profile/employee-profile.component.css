@@ -189,18 +189,18 @@ button {
   border-top: 6px solid var(--color-blue);
 }
 
-.chart .img {
+.img {
   grid-area: img;
   /* border: 2px solid var(--color-text); */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.chart .img i {
+.img i {
   font-size: 100px;
 }
 
-.chart .nom {
+.nom {
   grid-area: nom;
   /* border: 2px solid var(--color-text); */
   display: flex;
@@ -208,7 +208,7 @@ button {
   align-items: center;
   padding: 10px;
 }
-.chart .nom h1 {
+.nom h1 {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -216,7 +216,7 @@ button {
   color: var(--color-text);
   text-align: center;
 }
-.chart .apropos {
+.apropos {
   grid-area: apropos;
   /* height: auto; */
   margin-top: 5px;
@@ -225,7 +225,7 @@ button {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto;
 }
-.chart .apropos .apropos-list {
+.apropos .apropos-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-size: 16px;
@@ -237,19 +237,19 @@ button {
   height: auto;
   /* border: 2px solid red; */
 }
-.chart .apropos .apropos-list .apropos-list-item {
+.apropos .apropos-list .apropos-list-item {
   display: flex;
   /* align-items: center; */
   justify-content: flex-start;
 }
-.chart .apropos .apropos-list .apropos-list-value {
+.apropos .apropos-list .apropos-list-value {
   display: flex;
   /* align-items: center; */
   justify-content: flex-start;
   color: var(--color-blue);
   font-size: 14px;
 }
-.chart .edit {
+.edit {
   /* border: 2px solid red; */
   grid-area: edit;
   display: flex;
@@ -258,7 +258,7 @@ button {
   align-items: center;
   /* margin: 10px; */
 }
-.chart .edit button {
+.edit button {
   width: 150px;
   height: 50px;
   margin: 5px 10px;
@@ -269,10 +269,10 @@ button {
   color: var(--color-bg);
   cursor: pointer;
 }
-.chart .edit .modifier {
+.edit .modifier {
   background: var(--color-green);
 }
-.chart .edit .supprimer {
+.edit .supprimer {
   background: var(--color-red);
 }
 /* ----------------------------- */
@@ -294,14 +294,14 @@ button {
 /* table */
 
 /*TABLE*/
-.pointage .section {
+.section {
   width: 100%;
   grid-column: 1 / -1;
 
   padding-right: 10px;
   padding-left: 10px;
 }
-.pointage .section h1 {
+.section h1 {
   text-align: center;
   color: var(--color-titre);
   font-size: 1.5rem;
@@ -311,16 +311,16 @@ button {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-.pointage .section .tbl {
+.tbl {
   width: 100%;
   border-collapse: collapse;
   padding: 0 10%;
   margin: 0 auto 40px;
 }
-.pointage .section .tbl thead {
+.tbl thead {
   background-color: var(--color-blue);
 }
-.pointage .section .tbl thead tr th {
+.tbl thead tr th {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.35px;
@@ -331,18 +331,15 @@ button {
   border-top: 1px solid #dee2e685;
   border-bottom: 1px solid #dee2e685;
 }
-/* .pointage .section .tbl tbody tr {
-  background-color: var(--color-fond);
-  color: var(--color-blue);
-} */
-.pointage .section .tbl tbody tr:hover {
+
+.tbl tbody tr:hover {
   background-color: var(--color-green);
   color: var(--color-bg);
 }
-.pointage .section .tbl tbody {
+.tbl tbody {
   background: var(--color-fond);
 }
-.pointage .section .tbl tbody tr td {
+.tbl tbody tr td {
   font-size: 14px;
   letter-spacing: 0.35px;
   font-weight: bold;
@@ -351,20 +348,20 @@ button {
   border-top: 1px solid var(--color-blue);
   border-bottom: 1px solid var(--color-blue);
 }
-.pointage .section .tbl tbody .fond1 {
+.tbl tbody .fond1 {
   color: var(--color-red);
   /* color: var(--color-bg); */
 }
-.pointage .section .tbl tbody .fond2 {
+.tbl tbody .fond2 {
   color: var(--color-blue);
   /* color: var(--color-bg); */
 }
-.pointage .section .tbl tbody .fond3 {
+.tbl tbody .fond3 {
   color: var(--color-green);
   /* color: var(--color-bg); */
 }
 
-.pointage .section .tbl tbody tr td .bouton {
+.tbl tbody tr td .bouton {
   width: 100px;
   text-decoration: none;
   line-height: 35px;
@@ -383,13 +380,13 @@ button {
   opacity: 1;
 }
 
-.pointage .section .tbl tbody tr td .bouton span {
+.tbl tbody tr td .bouton span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
-.pointage .section .tbl tbody tr td .bouton span:after {
+.tbl tbody tr td .bouton span:after {
   content: "\00bb";
   position: absolute;
   opacity: 0;
@@ -397,10 +394,10 @@ button {
   right: -20px;
   transition: 0.5s;
 }
-.pointage .section .tbl tbody tr td .bouton:hover span {
+.tbl tbody tr td .bouton:hover span {
   padding-right: 25px;
 }
-.pointage .section .tbl tbody tr td .bouton:hover span:after {
+.tbl tbody tr td .bouton:hover span:after {
   opacity: 1;
   right: 0;
 }
@@ -449,7 +446,7 @@ textarea {
 .container {
   padding: 16px;
 }
-.modal form .container .btn-cancel {
+.btn-cancel {
   background-color: var(--color-red);
   border: none;
   color: white;
@@ -458,10 +455,10 @@ textarea {
   font-size: 16px;
   margin: 4px 2px;
 }
-.modal form .container .btn-cancel:hover {
+.btn-cancel:hover {
   box-shadow: 2px 2px 2px rgb(52, 14, 14);
 }
-.modal form .container .btn-ajout {
+.btn-ajout {
   background-color: var(--color-green);
   border: none;
   color: white;
@@ -472,10 +469,10 @@ textarea {
   opacity: 1;
   transition: 0.3s;
 }
-.modal form .container .btn-ajout:hover {
+.btn-ajout:hover {
   box-shadow: 2px 2px 2px rgb(19, 64, 32);
 }
-.modal form .container .btn-modif {
+.btn-modif {
   background-color: #33678f;
   border: none;
   color: white;
@@ -487,7 +484,7 @@ textarea {
   transition: 0.3s;
 }
 
-.modal form .container label {
+.container label {
   color: var(--color-blue);
   text-transform: capitalize;
   letter-spacing: 2px;
@@ -575,7 +572,7 @@ span.psw {
 
 /* responsive */
 @media screen and (max-width: 460px) {
-  .pointage .section .tbl tbody tr td .bouton {
+  .tbl tbody tr td .bouton {
     width: 50px;
   }
 }
@@ -594,11 +591,6 @@ span.psw {
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
     /* border-radius: 10px; */
     width: 100%;
-    /* display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: var(--color-blue);
-  margin: 10px auto; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
@@ -645,25 +637,25 @@ span.psw {
   }
   /*liste tableau*/
 
-  .pointage .section .tbl thead {
+  .tbl thead {
     display: none;
   }
-  .pointage .section .tbl,
-  .pointage .section .tbl tbody,
-  .pointage .section .tbl tr,
-  .pointage .section .tbl td {
+  .tbl,
+  .tbl tbody,
+  .tbl tr,
+  .tbl td {
     display: block;
     width: 100%;
   }
-  .pointage .section .tbl tr {
+  .tbl tr {
     margin-bottom: 15px;
   }
-  .pointage .section .tbl tbody tr td {
+  .tbl tbody tr td {
     text-align: right;
     padding-left: 50%;
     position: relative;
   }
-  .pointage .section .tbl td:before {
+  .tbl td:before {
     content: attr(data-label);
     position: absolute;
     left: 0;
@@ -756,25 +748,25 @@ span.psw {
   }
   /*liste tableau*/
 
-  .pointage .section .tbl thead {
+  .tbl thead {
     display: none;
   }
-  .pointage .section .tbl,
-  .pointage .section .tbl tbody,
-  .pointage .section .tbl tr,
-  .pointage .section .tbl td {
+  .tbl,
+  .tbl tbody,
+  .tbl tr,
+  .tbl td {
     display: block;
     width: 100%;
   }
-  .pointage .section .tbl tr {
+  .tbl tr {
     margin-bottom: 15px;
   }
-  .pointage .section .tbl tbody tr td {
+  .tbl tbody tr td {
     text-align: right;
     padding-left: 50%;
     position: relative;
   }
-  .pointage .section .tbl td:before {
+  .tbl td:before {
     content: attr(data-label);
     position: absolute;
     left: 0;

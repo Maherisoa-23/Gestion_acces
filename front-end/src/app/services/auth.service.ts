@@ -105,8 +105,8 @@ export class AuthService {
     return this.http.put(this.APIUrl + '/stagiaire/', val);
   }
 
-  getStagiaire(val : any) {
-    return this.http.delete(this.APIUrl + '/stagiaire/', val);
+  deleteStagiaire(val : any) {
+    return this.http.delete(this.APIUrl + '/stagiaire/' + val);
   }
 
   //Methode pour les pointages
