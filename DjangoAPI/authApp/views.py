@@ -103,10 +103,9 @@ def stagiaire_API(request: HttpRequest, id=0):
             return JsonResponse("Updated Successfully!!", safe=False)
         return JsonResponse("Failed to Update.", safe=False)
     elif request.method == 'DELETE':
-        stagiaire_data = JSONParser().parse(request)
-        stagiaire=Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'])
-        stagiaire_serializer = Stagiaire_serializer(stagiaire)
-        return JsonResponse(stagiaire_serializer.data, safe = False) 
+        stagiaire=Stagiaire.objects.get(pk = id)
+        stagiaire.delete()
+        return JsonResponse("deleted successfully", safe = False) 
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt 

@@ -29,12 +29,9 @@ export class SecurityAgentComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshPointageRegisterList();
-    setTimeout(() => {
-      this.refreshSecurityList();
-    }, 500);
+    this.refreshSecurityList();
   }
 
-  //security = user
   refreshSecurityList() {
     this.authServ
       .getEmployeeList()
@@ -81,14 +78,16 @@ export class SecurityAgentComponent implements OnInit {
     return " - "
   }
 
-  ShowSecurityProfile(security: any) {
+  ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
     setTimeout(() => {
-      this.SecurityServ.matricule_security = security.numero_matricule;
-      this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.pointed_at;
-      this.SecurityServ.photoName = security.photoName
-      this.route.navigate(['admin/security-profile']);
+      this.SecurityServ.matricule_security = emp.numero_matricule;
+      this.SecurityServ.security_name = emp.employee_name;
+      this.SecurityServ.pointed_at = emp.pointed_at;
+      this.SecurityServ.photoName = emp.photoName;
+      this.SecurityServ.fonction = emp.function;
+      this.SecurityServ.direction = emp.department_name;
+      this.route.navigate(['admin/employee-profile']);
     }, 500);
   }
 }

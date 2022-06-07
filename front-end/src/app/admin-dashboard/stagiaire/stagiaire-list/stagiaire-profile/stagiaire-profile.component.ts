@@ -111,8 +111,9 @@ export class StagiaireProfileComponent implements OnInit {
 
   deleteStagiaire() {
     if(confirm("vous êtes sûr? cette action est irréversible!!")) {
-      this.authServ.deleteStagiaire(this.stagiaire_name).subscribe((res) => {
-        this.showSuccess(res.toString())
+      this.authServ.deleteStagiaire(this.stagiaire_id).subscribe((res) => {
+        if (res.toString() == "deleted successfully")
+          this.showSuccess(res.toString())
       })
       setTimeout(() => {
         this.route.navigate(['/admin/stagiaire-list']);

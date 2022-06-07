@@ -36,14 +36,15 @@ export class AccueilComponent implements OnInit {
   public second!: string;
   public ampm!: string;
   public day!: string;
+  tabSecurity : any = []
 
   constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) {
   }
 
   ngOnInit(): void {
+    this.refreshSecurityList();
     if (localStorage.getItem('admin1') != null) {
       this.admin = JSON.parse(localStorage.getItem('admin1') || '{}');
-      console.log("admin name = " + this.admin.user_name)
     }
     setInterval(() => {
       const date = new Date();
@@ -76,11 +77,24 @@ export class AccueilComponent implements OnInit {
     const val = "";
     this.refreshLieuxList()
     this.refreshPointageList();
-    /* this.authServ.getActiveUsersList(val).subscribe((data) => {
-      this.activeSecurityList = data
-    }); */
     setTimeout(() => {
       this.getActiveSecurity()
+    }, 500);
+  }
+  refreshSecurityList() {
+    let tmp : any;
+    this.authServ
+      .getEmployeeList()
+      .subscribe((data) => {
+        tmp = data;
+      });
+    setTimeout(() => {
+      for (let index = 0; index < tmp.length; index++) {
+        const element = tmp[index];
+        if (element.function == "AGENT DE SECURITE") {
+          this.tabSecurity.push(element)
+        }
+      }
     }, 500);
   }
 
@@ -93,20 +107,32 @@ export class AccueilComponent implements OnInit {
     }
   }
 
+  getSecurity(name : string) {
+    for (let index = 0; index < this.tabSecurity.length; index++) {
+      const element = this.tabSecurity[index];
+      if (element.employee_name == name) return element
+    }
+    return null
+  }
+
   refreshLieuxList(){
     this.authServ.getLieuList().subscribe((data) => {
       this.lieux = data
     });
   }
 
-  ShowSecurityProfile(security: any) {
+  ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
+    const security = this.getSecurity(emp.employee_name)
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
-      this.SecurityServ.pointed_at = security.lieu;
-      this.route.navigate(['admin/security-profile']);
-    }, 1000);
+      this.SecurityServ.pointed_at = security.pointed_at;
+      this.SecurityServ.photoName = security.photoName;
+      this.SecurityServ.fonction = security.function;
+      this.SecurityServ.direction = security.department_name;
+      this.route.navigate(['admin/employee-profile']);
+    }, 500);
   }
 
 

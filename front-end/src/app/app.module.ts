@@ -27,7 +27,6 @@ import { AdminGuard } from './services/admin-guard.service';
 import { ChartGeneraleComponent } from './admin-dashboard/accueil/chart-generale/chart-generale.component';
 import { LieuCardComponent } from './admin-dashboard/accueil/lieu-card/lieu-card.component';
 import { PointageRegisterComponent } from './admin-dashboard/pointage/pointage-register/pointage-register.component';
-import { SecurityProfileComponent } from './admin-dashboard/security-agent/security-profile/security-profile.component';
 import { VisitRegisterComponent } from './admin-dashboard/visite/visit-register/visit-register.component';
 import { SecurityAgentComponent } from './admin-dashboard/security-agent/security-agent.component';
 import { UserAccueilComponent } from './visit-dashboard/user-accueil/user-accueil.component';
@@ -42,7 +41,7 @@ import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
 import { NgToastModule } from 'ng-angular-popup';
 import { UniquePointageComponent } from './admin-dashboard/pointage/unique-pointage/unique-pointage.component';
-import { ClockingScheduleComponent } from './admin-dashboard/security-agent/security-profile/clocking-schedule/clocking-schedule.component';
+import { ClockingScheduleComponent } from './admin-dashboard/clocking-schedule/clocking-schedule.component';
 
 //pour le calendrier
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -56,9 +55,9 @@ import { StagiaireActifComponent } from './admin-dashboard/stagiaire/stagiaire-a
 import { StagiaireRegisterComponent } from './admin-dashboard/stagiaire/stagiaire-register/stagiaire-register.component';
 import { StagiaireListComponent } from './admin-dashboard/stagiaire/stagiaire-list/stagiaire-list.component';
 import { StagiaireProfileComponent } from './admin-dashboard/stagiaire/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
-import { CalendrierVisiteComponent } from './admin-dashboard/visite/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
 import { EmployeeProfileComponent } from './admin-dashboard/employee/employee-profile/employee-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendrierVisiteComponent } from './admin-dashboard/visite/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -77,7 +76,6 @@ const appRoutes: Routes = [
       { path: 'visiteur-list', component: VisiteurComponent },
       { path: 'visiteur-profile', component: VisiteurProfileComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
-      { path: 'security-profile', component: SecurityProfileComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent },
       { path: 'visit-register', component: VisitRegisterComponent },
       { path: 'pointage-admin', component: PointageComponent },
@@ -125,7 +123,6 @@ const appRoutes: Routes = [
     ChartGeneraleComponent,
     LieuCardComponent,
     PointageRegisterComponent,
-    SecurityProfileComponent,
     VisitRegisterComponent,
     SecurityAgentComponent,
     UserAccueilComponent,
@@ -139,8 +136,8 @@ const appRoutes: Routes = [
     StagiaireRegisterComponent,
     StagiaireListComponent,
     StagiaireProfileComponent,
-    CalendrierVisiteComponent,
-    EmployeeProfileComponent
+    EmployeeProfileComponent,
+    CalendrierVisiteComponent
   ],
   imports: [
     BrowserModule,

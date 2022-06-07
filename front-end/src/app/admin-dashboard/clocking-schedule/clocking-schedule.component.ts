@@ -81,7 +81,6 @@ export class ClockingScheduleComponent implements OnInit {
       }
       this.post.push(this.val)
     }
-    console.log(this.post.length)
   }
 
   convertTime(timeString: string) {

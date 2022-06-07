@@ -176,7 +176,7 @@ export class EmployeeComponent implements OnInit {
       this.SecurityServ.fonction = emp.function;
       this.SecurityServ.direction = emp.department_name;
       this.route.navigate(['admin/employee-profile']);
-    }, 1000);
+    }, 500);
   }
 
   //Methode pour les modals
