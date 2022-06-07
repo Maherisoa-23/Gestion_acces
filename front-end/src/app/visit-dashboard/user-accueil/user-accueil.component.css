@@ -328,7 +328,7 @@
   border: 3px solid var(--color-red);
 }
 .button .card:hover {
-  height: 400px;
+  height: auto;
 }
 .button .card .imgBx {
   position: absolute;

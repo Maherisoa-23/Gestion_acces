@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 
 @Component({
@@ -9,24 +11,48 @@ import { StagiaireService } from 'src/app/services/stagiaire.service';
   styleUrls: ['./stagiaire-profile.component.css']
 })
 export class StagiaireProfileComponent implements OnInit {
-stagiaire_name = ""
-departement = ""
-description = ""
-start_date = ""
-end_date = ""
-status = "Encore actif"
-photoPath = ""
+  @Input() stagiaire_name = ""
+  @Input() description = ""
+  @Input() start_date = ""
+  @Input() end_date = ""
+  @Input() direction = "";
 
-  constructor(private stgServ: StagiaireService, private route: Router, private modalService: NgbModal) { }
+  status = "Encore actif"
+  photoPath = ""
+
+  dtOptions: DataTables.Settings = {};
+  isShow = false;
+
+  depTab: any = []
+  photoName = "anonymous.png"
+  stagiaire_id = 0
+  pointed_at = ""
+
+  isEdit = false
+
+  constructor(private stgServ: StagiaireService,
+    private route: Router,
+    private modalService: NgbModal,
+    private authServ: AuthService,
+    private toast: NgToastService
+  ) { }
 
   ngOnInit(): void {
     if (this.stgServ.stagiaire_name == "") this.route.navigate(['/admin/stagiaire-list'])
-    this.initialisation() 
+    this.initialisation()
+    this.refreshDepList()
+  }
+
+  refreshDepList() {
+    this.authServ.getDepartmentList().subscribe((data) => {
+      this.depTab = data
+    })
   }
 
   initialisation() {
+    this.stagiaire_id = this.stgServ.stagiaire_id
     this.stagiaire_name = this.stgServ.stagiaire_name;
-    this.departement = this.stgServ.departement;
+    this.direction = this.stgServ.departement;
     this.description = this.stgServ.description;
     this.start_date = this.stgServ.start_date;
     this.end_date = this.stgServ.end_date;
@@ -41,5 +67,73 @@ photoPath = ""
   closeModal() {
     this.modalService.dismissAll()
   }
-  
+
+  updateStagiaire() {
+    if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.start_date == "" || this.end_date == "") {
+      this.showError("Vérifier bien tous les informations")
+    }
+    else {
+      const val = {
+        stagiaire_id: this.stgServ.stagiaire_id,
+        stagiaire_name: this.stagiaire_name,
+        description: this.description,
+        department_name: this.direction.toString(),
+        pointed_at: 'not pointed',
+        start_date: this.start_date.toString(),
+        end_date: this.end_date.toString(),
+        function: "stagiaire",
+        photoName: this.photoName,
+      }
+      this.authServ.updateStagiaireEntity(val).subscribe((res) => {
+        if (res.toString() == "Updated Successfully!!") {
+          this.showSuccess("Stagiaire modifié avec succès")
+          setTimeout(() => {
+            this.closeModal()
+          }, 500);
+        }
+        else {
+          this.showError(res.toString())
+        }
+      })
+    }
+  }
+
+  uploadPhoto(event : any) {
+    var file = event.target.files[0];
+    const formData : FormData = new FormData()
+    formData.append('uploadedFile',file,file.name); 
+
+    this.authServ.UploadPhoto(formData).subscribe((data) => {
+      this.photoName = data.toString();
+      this.photoPath = this.authServ.PhotoUrl + this.photoName
+    })
+  }
+
+  deleteStagiaire() {
+    if(confirm("vous êtes sûr? cette action est irréversible!!")) {
+      this.authServ.deleteStagiaire(this.stagiaire_name).subscribe((res) => {
+        this.showSuccess(res.toString())
+      })
+      setTimeout(() => {
+        this.route.navigate(['/admin/stagiaire-list']);
+      }, 1000);
+    }
+  }
+
+  //Les messages
+  showSuccess(msg: string) {
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+
+  showError(msg: string) {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: msg,
+      duration: 3000,
+    });
+  }
 }

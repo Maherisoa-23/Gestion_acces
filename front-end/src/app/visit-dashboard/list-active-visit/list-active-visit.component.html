@@ -9,20 +9,23 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h1>Ajout visiteur</h1>
-  <div class="imgcontainer">
-    <span (click)="closeModal()" title="Close Modal">&times;</span>
-  </div>
+    <div class="imgcontainer">
+      <span (click)="closeModal()" title="Close Modal">&times;</span>
+    </div>
   </div>
 
   <div class="container-perso">
     <label><b>Nom Visiteur </b></label>
     <input type="text" [(ngModel)]="visitor_name" name="visitor_name" />
     <ul *ngFor="let item of visitors">
-      <li *ngIf="
-              item.visitor_name
-                .toLowerCase()
-                .includes(visitor_name.toLowerCase()) && visitor_name
-            " (click)="suggested(item)">
+      <li
+        *ngIf="
+          item.visitor_name
+            .toLowerCase()
+            .includes(visitor_name.toLowerCase()) && visitor_name
+        "
+        (click)="suggested(item)"
+      >
         {{ item.visitor_name }}
       </li>
     </ul>
@@ -35,14 +38,21 @@
       <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
     </span>
     <span *ngIf="!haveCIN">
-      <label><b>Autre Piéce justificative</b></label><br />
+      <label><b>Autre Piéce justificative</b></label
+      ><br />
       <input type="text" name="comment" [(ngModel)]="comment" /> <br />
     </span>
-    <label><b>Description</b></label><br />
+    <label><b>Description</b></label
+    ><br />
     <input type="text" name="description" [(ngModel)]="description" /> <br />
 
     <label><b>Motif </b></label>
-    <textarea id="subject" [(ngModel)]="motif" name="motif" style="height: 200px"></textarea>
+    <textarea
+      id="subject"
+      [(ngModel)]="motif"
+      name="motif"
+      style="height: 200px"
+    ></textarea>
     <button type="submit" class="btn-ajout" (click)="addVisit()">
       Ajouter
     </button>

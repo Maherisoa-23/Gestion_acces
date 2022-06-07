@@ -154,7 +154,16 @@
   transform: translateY(4px);
 }
 /*modal*/
-input[type="text"]{
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
+}
+input[type="text"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -162,6 +171,36 @@ input[type="text"]{
   border: 1px solid var(--color-blue);
   box-sizing: border-box;
   color: var(--color-blue);
+}
+.modal-body label {
+  color: var(--color-blue);
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+.modal-body ul {
+  display: block;
+  justify-content: flex-end;
+  padding-right: 20px;
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: 800px;
+  letter-spacing: 2px;
+  color: var(--color-green);
+}
+.modal-body ul li {
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.modal-body ul li span {
+  color: var(--color-red);
+}
+.modal-body ul li:hover {
+  color: var(--color-green);
+  border: 2px solid var(--color-green);
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 12px;
 }
 /* Center the image and position the close button */
 .imgcontainer {

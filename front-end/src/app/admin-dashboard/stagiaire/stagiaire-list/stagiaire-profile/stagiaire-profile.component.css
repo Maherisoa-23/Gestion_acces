@@ -194,18 +194,18 @@ button {
   border-top: 6px solid var(--color-blue);
 }
 
-.chart .img {
+.img {
   grid-area: img;
   /* border: 2px solid var(--color-text); */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.chart .img i {
+.img i {
   font-size: 100px;
 }
 
-.chart .nom {
+.nom {
   grid-area: nom;
   /* border: 2px solid var(--color-text); */
   display: flex;
@@ -213,7 +213,7 @@ button {
   align-items: center;
   padding: 10px;
 }
-.chart .nom h1 {
+.nom h1 {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -221,7 +221,7 @@ button {
   color: var(--color-text);
   text-align: center;
 }
-.chart .apropos {
+.apropos {
   grid-area: apropos;
   /* height: auto; */
   margin-top: 5px;
@@ -230,7 +230,7 @@ button {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto auto;
 }
-.chart .apropos .apropos-list {
+.apropos-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-size: 16px;
@@ -242,19 +242,19 @@ button {
   height: auto;
   /* border: 2px solid red; */
 }
-.chart .apropos .apropos-list .apropos-list-item {
+.apropos-list-item {
   display: flex;
   /* align-items: center; */
   justify-content: flex-start;
 }
-.chart .apropos .apropos-list .apropos-list-value {
+.apropos-list-value {
   display: flex;
   /* align-items: center; */
   justify-content: flex-start;
   color: var(--color-blue);
   font-size: 14px;
 }
-.chart .edit {
+.edit {
   /* border: 2px solid red; */
   grid-area: edit;
   display: flex;
@@ -263,7 +263,7 @@ button {
   align-items: center;
   /* margin: 10px; */
 }
-.chart .edit button {
+.edit button {
   width: 150px;
   height: 50px;
   margin: 5px 10px;
@@ -274,10 +274,10 @@ button {
   color: var(--color-bg);
   cursor: pointer;
 }
-.chart .edit .modifier {
+.modifier {
   background: var(--color-green);
 }
-.chart .edit .supprimer {
+.supprimer {
   background: var(--color-red);
 }
 
@@ -415,7 +415,7 @@ button {
     margin: 0px;
     padding: 10px;
   }
-  .chart .apropos .apropos-list {
+  .apropos-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-size: 16px;

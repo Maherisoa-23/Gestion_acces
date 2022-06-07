@@ -86,6 +86,7 @@ ul {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
+  padding-left: 0;
 }
 ul li {
   height: 60px;
@@ -132,6 +133,7 @@ ul li .dropdown1-content {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  /* background: red; */
 }
 
 ul li .dropdown1-content a {
@@ -139,10 +141,11 @@ ul li .dropdown1-content a {
   font-size: 12px;
   font-weight: 600;
   color: var(--color-blue);
-  padding: 12px 16px;
+  padding: 1px 16px;
   text-decoration: none;
   display: block;
   text-align: left;
+  /* background: #000; */
 }
 ul li .dropdown1-content a:hover {
   background-color: #ddd;
