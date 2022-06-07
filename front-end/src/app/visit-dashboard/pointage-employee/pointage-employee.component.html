@@ -2,15 +2,21 @@
 <div class="btn animation3 animation fade03">
   <button
     class="btn-content entre"
+    (click)="showModal(enter)"
+  >
+    Entree
+  </button>
+  <!-- <button
+    class="btn-content entre"
     onclick="document.getElementById('id01').style.display='block'"
     (click)="showInfo()"
   >
     Entree
-  </button>
+  </button> -->
   <button
     class="btn-content exit"
-    onclick="document.getElementById('id02').style.display='block'"
-    (click)="refreshPointagesThisLieuList()"
+    (click)="
+    showModal(exit)"
   >
     Sortie
   </button>
@@ -18,20 +24,15 @@
 <!--end-bouton ajout + sorti-->
 
 <!--Modal-entre-->
-<div id="id01" class="modal">
-  <form class="modal-content animate">
-    <h1>Pointage d'entree</h1>
-    <div class="imgcontainer">
-      <span
-        onclick="document.getElementById('id01').style.display='none'"
-        class="close"
-        title="Close Modal"
-        >&times;</span
-      >
-    </div>
-
-    <div class="container">
-      <label><b>Nom : </b></label>
+<ng-template #enter let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pointage d'entree</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label><b>Nom : </b></label>
       <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
       <ul *ngFor="let item of employees">
         <li
@@ -57,73 +58,59 @@
           {{ item.stagiaire_name }}- <span>{{ item.department_name }}  Stagiaire</span>
         </li>
       </ul> 
-
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
       <button
-        type="submit"
-        class="btn-ajout"
-        onclick="document.getElementById('id01').style.display='none'"
-        (click)="OnEnter()"
-      >
-        Confirmer
-      </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        onclick="document.getElementById('id01').style.display='none'"
-      >
-        Annuler
-      </button>
-    </div>
-  </form>
-</div>
+      type="button"
+      class="btn-ajout"
+      (click)="onEnter()"
+    >
+      Confirmer
+    </button>
+    <button type="button" class="btn-cancel" (click)="closeModal()">annuler</button>
+  </div>
+</ng-template>
 <!--Modal-entre-end-->
 
 <!--Modal-sorti-->
-<div id="id02" class="modal">
-  <form class="modal-content animate">
-    <h1>Pointage de sortie</h1>
-    <div class="imgcontainer">
-      <span
-        onclick="document.getElementById('id02').style.display='none'"
-        class="close"
-        title="Close Modal"
-        >&times;</span
-      >
-    </div>
-
-    <div class="container">
-      <label><b>Nom : </b></label>
-      <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
-      <ul *ngFor="let item of pointagesbyLieu">
-        <li
-          *ngIf="
-            item.employee_name
-              .toLowerCase()
-              .includes(enteredValue.toLowerCase()) && enteredValue
-          "
-          (click)="suggestedExit(item.employee_name)"
-        >
-          {{ item.employee_name }} {{ item.employee_dep_name }} <span *ngIf="item.function == 'stagiaire'">  Stagiaire</span>
-        </li>
-      </ul>
+<ng-template #exit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pointage de sortie</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label><b>Nom : </b></label>
+        <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
+        <ul *ngFor="let item of pointagesbyLieu">
+          <li
+            *ngIf="
+              item.employee_name
+                .toLowerCase()
+                .includes(enteredValue.toLowerCase()) && enteredValue
+            "
+            (click)="suggestedExit(item.employee_name)"
+          >
+            {{ item.employee_name }} {{ item.employee_dep_name }} <span *ngIf="item.function == 'stagiaire'">  Stagiaire</span>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
       <button
-        type="submit"
-        class="btn-ajout"
-        onclick="document.getElementById('id02').style.display='none'"
-        (click)="OnExit()"
-      >
-        Confirmer
-      </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        onclick="document.getElementById('id02').style.display='none'"
-      >
-        Cancel
-      </button>
-    </div>
-  </form>
-</div>
+      type="button"
+      class="btn-ajout"
+      (click)="onExit()"
+    >
+      Confirmer
+    </button>
+    <button type="button" class="btn-cancel" (click)="closeModal()">annuler</button>
+  </div>
+</ng-template>
 <!--Modal-sorti-end-->
 
 <!--tableau-pointage-->

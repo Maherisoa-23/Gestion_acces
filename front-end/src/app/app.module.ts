@@ -58,6 +58,7 @@ import { StagiaireListComponent } from './admin-dashboard/stagiaire/stagiaire-li
 import { StagiaireProfileComponent } from './admin-dashboard/stagiaire/stagiaire-list/stagiaire-profile/stagiaire-profile.component';
 import { CalendrierVisiteComponent } from './admin-dashboard/visite/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
 import { EmployeeProfileComponent } from './admin-dashboard/employee/employee-profile/employee-profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -152,6 +153,7 @@ const appRoutes: Routes = [
     NgToastModule,
     FullCalendarModule,
     BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     VisitService,
