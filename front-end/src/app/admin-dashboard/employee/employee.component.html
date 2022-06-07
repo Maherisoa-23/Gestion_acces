@@ -3,7 +3,7 @@
   <button
     class="btn-content"
     onclick="document.getElementById('id01').style.display='block'"
-    (click) = "showInfo('Verifier bien les informations')"
+    (click)="showInfo('Verifier bien les informations')"
   >
     Ajout Nouveau Employe
   </button>
@@ -34,16 +34,27 @@
       <input type="text" name="function" [(ngModel)]="function" /><br />
       <label for="select"><b>Direction</b></label>
       <select name="pets" id="select" [(ngModel)]="direction">
-        <option *ngFor="let item of departments">{{item.department_short_name}}</option>
+        <option *ngFor="let item of departments">
+          {{ item.department_short_name }}
+        </option>
       </select>
       <br />
       <label><b>Numero Matricule</b></label>
-      <input type="number" name="numero_matricule" [(ngModel)]="numero_matricule" /><br />
-      <label><b> Photo de profil :  </b></label>
+      <input
+        type="number"
+        name="numero_matricule"
+        [(ngModel)]="numero_matricule"
+      /><br />
+      <label><b> Photo de profil : </b></label>
       <div class="img-card">
-        <input class="btn-upload-photo" type="file" (change)="uploadPhoto($event)">
-        <img [src] = photoPath alt="pdp" height="150px">
-      </div><br>
+        <input
+          class="btn-upload-photo"
+          type="file"
+          (change)="uploadPhoto($event)"
+        />
+        <img [src]="photoPath" alt="pdp" height="150px" />
+      </div>
+      <br />
       <button
         type="submit"
         class="btn-ajout"
@@ -111,10 +122,9 @@
           <button class="voirprofil" (click)="ShowEmployeeProfile(item)">
             Voir profile
           </button>
-          <button class="voirprofil2"  onclick="document.getElementById('id01').style.display='block'" (click) = "editEmployee(item)">
+          <!-- <button class="voirprofil2"  onclick="document.getElementById('id01').style.display='block'" (click) = "editEmployee(item)">
             Modifier 
-          </button>
-          
+          </button> -->
         </td>
       </tr>
     </tbody>

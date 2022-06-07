@@ -12,9 +12,9 @@ import { NgToastService } from 'ng-angular-popup';
 export class EmployeeComponent implements OnInit {
   employees: any;
 
-  @Input() employee_name = "";
-  @Input() function = "";
-  @Input() direction = "";
+  @Input() employee_name = '';
+  @Input() function = '';
+  @Input() direction = '';
   @Input() numero_matricule = 0;
 
   isEdit = false;
@@ -28,11 +28,11 @@ export class EmployeeComponent implements OnInit {
   departments: any;
   // depTab : any = []
 
-  photoName = "anonymous.png"
-  photoPath = ""
+  photoName = 'anonymous.png';
+  photoPath = '';
 
   dtOptions: DataTables.Settings = {};
-  isShow = false
+  isShow = false;
   //filtrage personnalisé
   @ViewChild(DataTableDirective, { static: false })
   datatableElement: any = DataTableDirective;
@@ -43,27 +43,29 @@ export class EmployeeComponent implements OnInit {
     private route: Router,
     private SecurityServ: SecurityAgentService,
     private toast: NgToastService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.reinitialisationDonnee();
     this.refreshPointageRegisterList();
     this.refreshDepList();
     this.refreshEmployeeList();
-    this.setUpDatePicker()
+    this.setUpDatePicker();
   }
 
   setUpDatePicker() {
     setTimeout(() => {
-      this.isShow = true
+      this.isShow = true;
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
-        language: { url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json" }
+        language: {
+          url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json',
+        },
       };
-    }, 600)
+    }, 600);
 
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
@@ -111,74 +113,82 @@ export class EmployeeComponent implements OnInit {
         );
       }
     }
-    return " - "
+    return ' - ';
   }
 
   addEmployee() {
-    if (this.employee_name == "" || this.function == "" || this.direction == "" || this.numero_matricule == 0) {
-      this.showError("Vérifier bien tous les informations")
-    }
-    else {
+    if (
+      this.employee_name == '' ||
+      this.function == '' ||
+      this.direction == '' ||
+      this.numero_matricule == 0
+    ) {
+      this.showError('Vérifier bien tous les informations');
+    } else {
       const val = {
         employee_name: this.employee_name,
         numero_matricule: this.numero_matricule,
         function: this.function,
         department_name: this.direction,
         photoName: this.photoName,
-        pointed_at: "not pointed",
-      }
+        pointed_at: 'not pointed',
+      };
       this.authServ.addEmployee(val).subscribe((res) => {
-        if (res.toString() == "Added successfully") {
-          this.reinitialisationDonnee()
-          this.showSuccess("Nouvel employé ajouté avec succès")
-        } else this.showError('Erreur')
-      })
+        if (res.toString() == 'Added successfully') {
+          this.reinitialisationDonnee();
+          this.showSuccess('Nouvel employé ajouté avec succès');
+        } else this.showError('Erreur');
+      });
       setTimeout(() => {
-        this.refreshEmployeeList()
+        this.refreshEmployeeList();
       }, 500);
     }
   }
 
   uploadPhoto(event: any) {
     var file = event.target.files[0];
-    const formData: FormData = new FormData()
+    const formData: FormData = new FormData();
     formData.append('uploadedFile', file, file.name);
 
     this.authServ.UploadPhoto(formData).subscribe((data) => {
       this.photoName = data.toString();
-      this.photoPath = this.authServ.PhotoUrl + this.photoName
-    })
+      this.photoPath = this.authServ.PhotoUrl + this.photoName;
+    });
   }
 
   updateUpdate() {
-    if (this.employee_name == "" || this.function == "" || this.direction == "" || this.numero_matricule == 0) {
-      this.showError("Vérifier bien tous les informations")
-    }
-    else {
+    if (
+      this.employee_name == '' ||
+      this.function == '' ||
+      this.direction == '' ||
+      this.numero_matricule == 0
+    ) {
+      this.showError('Vérifier bien tous les informations');
+    } else {
       const val = {
         employee_name: this.employee_name,
         numero_matricule: this.numero_matricule,
         function: this.function,
         department_name: this.direction,
         photoName: this.photoName,
-        pointed_at: "not pointed",
-      }
+        pointed_at: 'not pointed',
+      };
       this.authServ.updateEmployeeEntity(val).subscribe((res) => {
-        if (res.toString() == "Updated Successfully!!") {
-          this.reinitialisationDonnee()
-          this.showSuccess("Employée modifié avec succès")
+        if (res.toString() == 'Updated Successfully!!') {
+          this.reinitialisationDonnee();
+          this.showSuccess('Employée modifié avec succès');
         }
-      })
-      this.refreshEmployeeList()
+      });
+      this.refreshEmployeeList();
     }
   }
 
   reinitialisationDonnee() {
-    this.isEdit =false
-    this.employee_name = this.direction = this.function = ""
-    this.numero_matricule = 0
-    this.photoName = "anonymous.png";
-    this.photoPath = this.authServ.PhotoUrl + this.photoName
+    this.isEdit = false;
+    this.employee_name = this.direction = this.function = '';
+    this.numero_matricule = 0;
+    this.photoName = 'anonymous.png';
+    this.photoPath = this.authServ.PhotoUrl + this.photoName;
   }
 
   ShowEmployeeProfile(emp: any) {
@@ -195,7 +205,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   editEmployee(emp: any) {
-    this.isEdit = true
+    this.isEdit = true;
     this.employee_name = emp.employee_name;
     this.function = emp.function;
     this.direction = emp.department_name;
