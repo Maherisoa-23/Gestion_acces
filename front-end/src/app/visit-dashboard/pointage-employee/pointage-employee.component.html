@@ -56,7 +56,7 @@
         >
           {{ item.stagiaire_name }}- <span>{{ item.department_name }}  Stagiaire</span>
         </li>
-      </ul>
+      </ul> 
 
       <button
         type="submit"
@@ -103,7 +103,7 @@
           "
           (click)="suggestedExit(item.employee_name)"
         >
-          {{ item.employee_name }} {{ item.employee_dep_name }}<span *ngIf="item.function == 'stagiaire'">  Stagiaire</span>
+          {{ item.employee_name }} {{ item.employee_dep_name }} <span *ngIf="item.function == 'stagiaire'">  Stagiaire</span>
         </li>
       </ul>
       <button
