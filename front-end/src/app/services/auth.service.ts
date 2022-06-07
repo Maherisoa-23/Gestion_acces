@@ -56,12 +56,22 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/employee/');
   }
 
-  getEmployeeListByDep(dep_id: number): Observable<any[]> {
-    return this.http.delete<any[]>(this.APIUrl + '/employee/' + dep_id);
+  addEmployee(val: any) {
+    return this.http.post(this.APIUrl + '/employee/', val);
   }
 
-  putEmployee(val: any) {
+  updateEmployeeEntity(val: any) {
     return this.http.put(this.APIUrl + '/employee/', val);
+  }
+
+  deleteEmployee(id: number) {
+    return this.http.delete(this.APIUrl + '/employee/' + id);
+  }
+
+
+  //modifer employee table lors d'un pointage
+  putEmployee(val: any) {
+    return this.http.put(this.APIUrl + '/pointageEmp/', val);
   }
 
   getDepartmentList(): Observable<any[]> {
@@ -82,16 +92,21 @@ export class AuthService {
     return this.http.get<any[]>(this.APIUrl + '/stagiaire/');
   }
 
+  //modifer stagiaire table lors d'un pointage
   putStagiaire(val: any) {
-    return this.http.put(this.APIUrl + '/stagiaire/', val);
+    return this.http.put(this.APIUrl + '/pointageStg/', val);
   }
 
   addStagiaire(val: any) {
     return this.http.post(this.APIUrl + '/stagiaire/', val);
   }
 
-  getStagiaire(val : any) {
-    return this.http.delete(this.APIUrl + '/stagiaire/', val);
+  updateStagiaireEntity(val: any) {
+    return this.http.put(this.APIUrl + '/stagiaire/', val);
+  }
+
+  deleteStagiaire(val : any) {
+    return this.http.delete(this.APIUrl + '/stagiaire/' + val);
   }
 
   //Methode pour les pointages

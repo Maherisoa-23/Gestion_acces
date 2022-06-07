@@ -10,6 +10,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-list-active-visit',
   templateUrl: './list-active-visit.component.html',
@@ -27,13 +28,14 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() visitor_name = '';
   @Input() motif = '';
   @Input() CIN: any = 0;
-  @Input() comment : any = null;
-  @Input() description : any = null;
+  @Input() comment: any = null;
+  @Input() description: any = null;
 
   constructor(
     private visitServ: VisitService,
     private datePipe: DatePipe,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) { }
 
   visitsList: any = [];
@@ -50,6 +52,7 @@ export class ListActiveVisitComponent implements OnInit {
   haveCIN = true;
 
   ngOnInit(): void {
+    this.initialisationDonnee()
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
@@ -102,6 +105,21 @@ export class ListActiveVisitComponent implements OnInit {
     this.description = visitor.description;
   }
 
+  initialisationDonnee() {
+    this.visitor_name = this.description = this.motif = ""
+    this.CIN = 0
+    this.comment = null
+  }
+
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+    this.initialisationDonnee()
+  }
+
   //Au cas ou le visiteur n'as pas de CIN
   NoCIN() {
     if (this.haveCIN) this.haveCIN = false;
@@ -109,37 +127,34 @@ export class ListActiveVisitComponent implements OnInit {
     this.comment = null;
     this.CIN = null;
   }
-  
+
   addVisit() {
-    if (this.isNewVisitor(this.visitor_name)) this.addNewVisitor();
-    this.Date = new Date();
-    this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
-    this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
-    var val = {
-      visitor_name: this.visitor_name,
-      motif: this.motif,
-      CIN: this.CIN,
-      lieu: this.lieu,
-      date: this.date.toString(),
-      entry_time: this.entry_time.toString(),
-    };
+    if (this.checkValidInput()) {
+      if (this.isNewVisitor(this.visitor_name)) this.addNewVisitor();
+      this.Date = new Date();
+      this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+      this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
+      var val = {
+        visitor_name: this.visitor_name,
+        motif: this.motif,
+        CIN: this.CIN,
+        comment : this.comment,
+        lieu: this.lieu,
+        date: this.date.toString(),
+        entry_time: this.entry_time.toString(),
+      };
 
-
-    this.visitServ.addVisit(val).subscribe((res) => {
-      if (res.toString() == 'Added successfully') {
-        this.showSuccess('Ajout reussi');
-        //animation d'entré
-        this.visitsList.unshift(val);
-      } else {
-        this.showError('Ajout impossible');
-      }
-    });
-
-    this.visitor_name = '';
-    this.CIN = 0;
-    this.motif = '';
-    this.comment = "";
-    this.description = ""
+      this.visitServ.addVisit(val).subscribe((res) => {
+        if (res.toString() == 'Added successfully') {
+          this.showSuccess('Ajout reussi');
+          this.closeModal()
+          //animation d'entré
+          this.visitsList.unshift(val);
+        } else {
+          this.showError('Erreur interne');
+        }
+      });
+    }
   }
 
   exit(item: any) {
@@ -167,7 +182,24 @@ export class ListActiveVisitComponent implements OnInit {
         // console.log(data.toString() + ' to the visit register ');
       });
     }
-  } 
+  }
+
+  checkValidInput() {
+    if (this.visitor_name == "" || this.description == "" || this.motif == "" || this.CIN == 0) {
+      this.showError("Veuillez bien remplir toutes les champs")
+      return false
+    } else {
+      if (!this.haveCIN && this.comment == null) {
+        this.showError("Veuillez bien remplir toutes les champs")
+        return false
+      }
+    }
+    if (this.haveCIN && this.CIN.toString().length != 12) {
+      this.showError("Entrer un numéro de CIN valide")
+      return false
+    }
+    return true
+  }
 
   //Les messages
   showSuccess(msg: string) {

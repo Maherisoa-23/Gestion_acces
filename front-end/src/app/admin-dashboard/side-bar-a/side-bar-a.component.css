@@ -61,11 +61,11 @@
   color: var(--color-fond);
   letter-spacing: 3px;
 }
-.users {
+.users1 {
   border-top: 2px solid var(--color-fond);
   border-bottom: 2px solid var(--color-fond);
 }
-.users h1 {
+.users1 h1 {
   display: flex;
   justify-content: center;
   margin: 20px 0;
@@ -76,7 +76,7 @@
   text-transform: capitalize;
   color: var(--color-fond);
 }
-.users h1 i {
+.users1 h1 i {
   font-size: 40px;
   color: var(--color-bg);
 }
@@ -120,12 +120,12 @@ ul li a:hover i {
   color: var(--color-bg);
 }
 /*bouton deroulant*/
-ul li .dropdown {
+ul li .dropdown1 {
   overflow: hidden;
 }
 
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-ul li .dropdown-content {
+/* Dropdown1 container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown1 content */
+ul li .dropdown1-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -134,7 +134,7 @@ ul li .dropdown-content {
   z-index: 1;
 }
 
-ul li .dropdown-content a {
+ul li .dropdown1-content a {
   float: none;
   font-size: 12px;
   font-weight: 600;
@@ -144,10 +144,10 @@ ul li .dropdown-content a {
   display: block;
   text-align: left;
 }
-ul li .dropdown-content a:hover {
+ul li .dropdown1-content a:hover {
   background-color: #ddd;
 }
-ul li .dropdown:hover .dropdown-content {
+ul li .dropdown1:hover .dropdown1-content {
   display: block;
   margin-left: 30%;
   margin-top: -10px;
@@ -157,7 +157,7 @@ ul li .dropdown:hover .dropdown-content {
 @media screen and (max-width: 1300px) {
   /*sidebar*/
   .entete,
-  .users {
+  .users1 {
     display: none;
   }
   img,
@@ -165,7 +165,7 @@ ul li .dropdown:hover .dropdown-content {
   h1 {
     display: none;
   }
-  .users {
+  .users1 {
     border: 0;
   }
 
@@ -194,7 +194,7 @@ ul li .dropdown:hover .dropdown-content {
     color: #fff;
     font-size: 16px;
   }
-  ul li .dropdown:hover .dropdown-content {
+  ul li .dropdown1:hover .dropdown1-content {
     display: block;
     margin-left: 0;
     margin-top: -5px;
@@ -209,7 +209,7 @@ ul li .dropdown:hover .dropdown-content {
 @media screen and (max-width: 768px) {
   /*sidebar*/
   .entete,
-  .users {
+  .users1 {
     display: none;
   }
   img,
@@ -217,7 +217,7 @@ ul li .dropdown:hover .dropdown-content {
   h1 {
     display: none;
   }
-  .users {
+  .users1 {
     border: 0;
   }
 
@@ -246,7 +246,7 @@ ul li .dropdown:hover .dropdown-content {
     color: #fff;
     font-size: 14px;
   }
-  ul li .dropdown:hover .dropdown-content {
+  ul li .dropdown1:hover .dropdown1-content {
     display: block;
     margin-left: 0;
     margin-top: -5px;

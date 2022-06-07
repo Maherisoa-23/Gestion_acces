@@ -18,7 +18,6 @@ class Employee_serializer(serializers.ModelSerializer):
                   'employee_name',
                   'function',
                   'numero_matricule',
-                  'department',
                   'department_name',
                   'pointed_at',
                   'photoName'
@@ -35,8 +34,6 @@ class Stagiaire_serializer(serializers.ModelSerializer):
                   'pointed_at',
                   'start_date',
                   'end_date',
-                  'duree',
-                  'isActif',
                   'function',
                   'photoName'
                   )

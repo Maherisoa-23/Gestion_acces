@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 
 @Component({
@@ -16,7 +17,7 @@ end_date = ""
 status = "Encore actif"
 photoPath = ""
 
-  constructor(private stgServ: StagiaireService, private route: Router) { }
+  constructor(private stgServ: StagiaireService, private route: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     if (this.stgServ.stagiaire_name == "") this.route.navigate(['/admin/stagiaire-list'])
@@ -31,6 +32,14 @@ photoPath = ""
     this.end_date = this.stgServ.end_date;
     this.photoPath = this.stgServ.photoPath;
     if (!this.stgServ.isActif) this.status = "non actif"
+  }
+
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
   }
   
 }

@@ -11,7 +11,6 @@ class Department(models.Model):
     department_short_name = models.CharField(max_length=10)
     
 class Employee(models.Model) :
-    department = models.ForeignKey(Department ,on_delete=models.CASCADE, null = True, default=1)
     department_name = models.CharField(max_length=50)
     numero_matricule = models.IntegerField(primary_key=True)
     employee_name = models.CharField(max_length=100)
@@ -26,9 +25,7 @@ class Stagiaire(models.Model) :
     description   = models.CharField(max_length=200)
     pointed_at = models.CharField(max_length=30, default="not pointed") 
     start_date = models.CharField(max_length=50) 
-    end_date = models.CharField(max_length=50) 
-    duree = models.CharField(max_length=50, null=True) 
-    isActif = models.BooleanField(default=True)
+    end_date = models.CharField(max_length=50)
     function   = models.CharField(max_length=50, default="stagiaire") 
     photoName = models.CharField(max_length=30, default="anonymous.png")
     

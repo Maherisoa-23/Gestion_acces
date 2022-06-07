@@ -1,6 +1,6 @@
 <!--body-->
-<div class="accueil-container">
-  <div class="clocks anima3 animate fade03">
+<div class="accueil1-container">
+  <div class="clocks1 anima3 animate fade03">
     <div class="bienvenue">
       <h1>Bienvenue <span>Admin</span></h1>
       <div id="clock">
@@ -20,7 +20,7 @@
     </div>
   </div>
   <!--header-->
-  <div class="accueil-header">
+  <div class="accueil1-header">
     <!--eto-->
     <app-lieu-card
       *ngFor="let item of lieux"
@@ -31,18 +31,21 @@
   <!--header-end-->
 
   <!--diagramme-->
-  <div class="accueil-body anim2 animate fade2">
+  <div class="accueil1-body anim2 animate fade2">
     <app-chart-generale></app-chart-generale>
   </div>
   <!--diagramme-end-->
 
   <!--sidebar-->
-  <div class="accueil-sidebar anim2 animate fade2">
+  <div class="accueil1-sidebar anim2 animate fade2">
     <div class="security">
       <h3>Securités actifs</h3>
       <button (click)="refresh()" class="actualiser">actualiser</button>
       <ul>
-        <li *ngFor="let item of activeSecurityList" (click)="ShowSecurityProfile(item)">
+        <li
+          *ngFor="let item of activeSecurityList"
+          (click)="ShowSecurityProfile(item)"
+        >
           {{ item.employee_name }}
         </li>
       </ul>

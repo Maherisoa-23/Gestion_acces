@@ -115,7 +115,7 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.btn .btn-content {
+.btn-content {
   margin: 20px auto 40px;
   height: 100px;
   width: 300px;
@@ -129,33 +129,32 @@
   transition: 0.3s;
   box-shadow: 0 9px #999;
 }
-.btn .exit {
+.exit {
   background: var(--color-red);
 }
-.btn .entre {
+.entre {
   background: var(--color-green);
 }
-.btn .exit:hover {
+.exit:hover {
   background-color: #a64043;
   font-size: 20px;
 }
-.btn .entre:hover {
+.entre:hover {
   background-color: #3e8e41;
   font-size: 20px;
 }
-.btn .exit:active {
+.exit:active {
   background-color: #a64043;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.btn .entre:active {
+.entre:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 /*modal*/
-input[type="text"],
-input[type="password"] {
+input[type="text"]{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -201,7 +200,7 @@ input[type="password"] {
   border-radius: 3px;
   font-size: 12px;
 }
-.modal form .container .btn-cancel {
+.btn-cancel {
   background-color: var(--color-red);
   border: none;
   color: white;
@@ -210,10 +209,10 @@ input[type="password"] {
   font-size: 16px;
   margin: 4px 2px;
 }
-.modal form .container .btn-cancel:hover {
+.btn-cancel:hover {
   box-shadow: 2px 2px 2px rgb(52, 14, 14);
 }
-.modal form .container .btn-ajout {
+.btn-ajout {
   background-color: var(--color-green);
   border: none;
   color: white;
@@ -224,7 +223,7 @@ input[type="password"] {
   opacity: 1;
   transition: 0.3s;
 }
-.modal form .container .btn-ajout:hover {
+.btn-ajout:hover {
   box-shadow: 2px 2px 2px rgb(19, 64, 32);
 }
 

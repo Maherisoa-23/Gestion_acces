@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.accueil-container {
+.accueil1-container {
   display: grid;
   width: 100%;
   grid-gap: 5px;
@@ -17,7 +17,7 @@
     "header header "
     "contenu  sidebar";
 }
-.clocks {
+.clocks1 {
   grid-area: clock;
   margin: 0px 30px;
   display: grid;
@@ -26,13 +26,13 @@
   /* border: 2px solid red; */
 }
 /*.clock  bienvenue */
-.clocks .bienvenue {
+.clocks1 .bienvenue {
   grid-area: bienvenue;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.clocks .bienvenue h1 {
+.clocks1 .bienvenue h1 {
   font-size: 25px;
   font-weight: 600;
   /* margin: 20px; */
@@ -41,16 +41,16 @@
   letter-spacing: 1px;
   color: var(--color-text);
 }
-.clocks .bienvenue h1 span {
+.clocks1 .bienvenue h1 span {
   text-transform: uppercase;
   color: var(--color-blue);
 }
-.clocks .bienvenue .img img {
+.clocks1 .bienvenue .img img {
   margin-left: 100px;
   max-width: 100%;
 }
-/*.clocks  heure */
-.clocks .heure {
+/*.clocks1  heure */
+.clocks1 .heure {
   grid-area: heure;
   display: flex;
   justify-content: center;
@@ -233,14 +233,14 @@ h2 {
 }
 /* animation  */
 /*sidebar*/
-.accueil-sidebar {
+.accueil1-sidebar {
   grid-area: sidebar;
   background: var(--color-fond);
   margin: 10px 30px;
   height: auto;
 }
 
-.accueil-sidebar .security {
+.accueil1-sidebar .security {
   background: white;
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
   width: 100%;
@@ -254,7 +254,7 @@ h2 {
   /* align-items: center; */
 }
 
-.accueil-sidebar .security h3 {
+.accueil1-sidebar .security h3 {
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
@@ -264,7 +264,7 @@ h2 {
   padding: 10px;
 }
 
-.accueil-sidebar .security .actualiser {
+.accueil1-sidebar .security .actualiser {
   background: var(--color-green);
   color: var(--color-bg);
   font-size: 16px;
@@ -276,13 +276,13 @@ h2 {
   padding: 10px;
 }
 
-.accueil-sidebar .security ul {
+.accueil1-sidebar .security ul {
   margin: 20px;
   list-style-type: none;
   text-transform: capitalizes;
 }
 
-.accueil-sidebar .security ul li {
+.accueil1-sidebar .security ul li {
   border-bottom: 2px solid var(--color-fond);
   margin: 2px;
   padding: 10px;
@@ -291,13 +291,13 @@ h2 {
   transition: 0.3s ease;
 }
 
-.accueil-sidebar .security ul li:hover {
+.accueil1-sidebar .security ul li:hover {
   font-size: 18.5px;
   margin-left: 4px;
 }
 
 /*header*/
-.accueil-header {
+.accueil1-header {
   grid-area: header;
   background: var(--color-fond);
   display: flex;
@@ -306,7 +306,7 @@ h2 {
 }
 
 /*body/diagramme*/
-.accueil-body {
+.accueil1-body {
   grid-area: contenu;
   background: #fff;
   padding: 15px;
@@ -315,46 +315,46 @@ h2 {
   border-radius: 15px;
 }
 
-.accueil-body .heading {
+.accueil1-body .heading {
   font-size: 25px;
   margin-right: 25px;
 }
 
-.accueil-body .fa {
+.accueil1-body .fa {
   font-size: 25px;
 }
 
-.accueil-body .accueil-body .checked {
+.accueil1-body .accueil1-body .checked {
   color: orange;
 }
 
 /* Three column layout */
-.accueil-body .side {
+.accueil1-body .side {
   float: left;
   width: 15%;
   margin-top: 10px;
 }
 
-.accueil-body .middle {
+.accueil1-body .middle {
   margin-top: 10px;
   float: left;
   width: 70%;
 }
 
 /* Place text to the right */
-.accueil-body .right {
+.accueil1-body .right {
   text-align: right;
 }
 
 /* Clear floats after the columns */
-.accueil-body .row:after {
+.accueil1-body .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
 /* The bar container */
-.accueil-body .bar-container {
+.accueil1-body .bar-container {
   width: 100%;
   background-color: #f1f1f1;
   text-align: center;
@@ -362,31 +362,31 @@ h2 {
 }
 
 /* Individual bars */
-.accueil-body .bar-5 {
+.accueil1-body .bar-5 {
   width: 60%;
   height: 18px;
   background-color: #04aa6d;
 }
 
-.accueil-body .bar-4 {
+.accueil1-body .bar-4 {
   width: 30%;
   height: 18px;
   background-color: #2196f3;
 }
 
-.accueil-body .bar-3 {
+.accueil1-body .bar-3 {
   width: 10%;
   height: 18px;
   background-color: #00bcd4;
 }
 
-.accueil-body .bar-2 {
+.accueil1-body .bar-2 {
   width: 4%;
   height: 18px;
   background-color: #ff9800;
 }
 
-.accueil-body .bar-1 {
+.accueil1-body .bar-1 {
   width: 15%;
   height: 18px;
   background-color: #f44336;
@@ -401,7 +401,7 @@ h2 {
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 1300px) {
-  .accueil-container {
+  .accueil1-container {
     grid-gap: 2px;
     grid-template-columns: 1fr 350px;
     grid-template-rows: 120px 310px 1fr;
@@ -410,56 +410,56 @@ h2 {
       "header header "
       "contenu  sidebar";
   }
-  .accueil-header {
+  .accueil1-header {
     grid-area: header;
     background: var(--color-fond);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
   }
-  /* .accueil-header .card {
+  /* .accueil1-header .card {
     margin: 10px auto;
   } */
   /*sidebar*/
-  /* .accueil-sidebar {
+  /* .accueil1-sidebar {
     height: 100%;
     width: 90%;
     margin: 10px auto 0;
   } */
-  .accueil-sidebar {
+  .accueil1-sidebar {
     grid-area: sidebar;
     background: var(--color-fond);
     margin: 30px 30px;
     height: auto;
   }
   /*body*/
-  .accueil-body {
+  .accueil1-body {
     margin: 30px 30px;
   }
-  .clocks {
+  .clocks1 {
     grid-area: clock;
     margin: 10px 30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "bienvenue heure";
   }
-.bienvenue .img {
+  .bienvenue .img {
     width: 400px;
     height: 300px;
   }
-.bienvenue .img img {
+  .bienvenue .img img {
     margin-left: 100px;
     max-width: 100%;
   }
-  /*.clocks  heure */
-.heure {
+  /*.clocks1  heure */
+  .heure {
     grid-area: heure;
     display: flex;
     justify-content: center;
     overflow: hidden;
   }
 
-.heure h2 {
+  .heure h2 {
     position: relative;
     display: block;
     color: var(--color-text);
@@ -471,17 +471,17 @@ h2 {
     font-size: 1.5em;
   }
 
-.heure #time {
+  .heure #time {
     display: flex;
   }
 
-.heure #time div {
+  .heure #time div {
     position: relative;
     margin: 0 5px;
     /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0004); */
   }
 
-.heure #time div span {
+  .heure #time div span {
     position: relative;
     display: block;
     width: 150px;
@@ -500,8 +500,8 @@ h2 {
 }
 
 @media screen and (max-width: 900px) {
-  /*accueil*/
-  .accueil-container {
+  /*accueil1*/
+  .accueil1-container {
     grid-template-rows: 400px 1fr auto auto;
     grid-template-areas:
       "clock clock"
@@ -510,32 +510,32 @@ h2 {
       "contenu  contenu";
   }
   /*header*/
-  .accueil-header {
+  .accueil1-header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 10px;
   }
   /*sidebar*/
-  .accueil-sidebar {
+  .accueil1-sidebar {
     height: 100%;
     width: 90%;
     margin: 10px auto 0;
   }
   /*body*/
-  .accueil-body {
+  .accueil1-body {
     height: max-content;
   }
-  .clocks {
+  .clocks1 {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "bienvenue";
   }
-.bienvenue {
+  .bienvenue {
     height: 400px;
     background: var(--color-bg);
   }
-.bienvenue h1 {
+  .bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -544,23 +544,23 @@ h2 {
     color: var(--color-text);
   }
 
-.bienvenue .img {
+  .bienvenue .img {
     width: 80%;
     height: 300px;
   }
-.bienvenue .img img {
+  .bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-.heure {
+  .heure {
     display: none;
   }
 }
 
 @media screen and (max-width: 700px) {
-  /*accueil*/
-  .accueil-container {
+  /*accueil1*/
+  .accueil1-container {
     grid-template-rows: 1fr auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -569,31 +569,31 @@ h2 {
       "contenu ";
   }
   /*header*/
-  .accueil-header {
+  .accueil1-header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 10px;
   }
-  .accueil-sidebar {
+  .accueil1-sidebar {
     height: 100%;
     width: 90%;
     margin: 10px auto 0;
   }
   /*body*/
-  .accueil-body {
+  .accueil1-body {
     height: max-content;
   }
-  .clocks {
+  .clocks1 {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "bienvenue";
   }
-.bienvenue {
+  .bienvenue {
     height: 200px;
     background: var(--color-bg);
   }
-.bienvenue h1 {
+  .bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -602,23 +602,23 @@ h2 {
     color: var(--color-text);
   }
 
-.bienvenue .img {
+  .bienvenue .img {
     width: 80%;
     height: 300px;
   }
-.bienvenue .img img {
+  .bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-.heure {
+  .heure {
     display: none;
   }
 }
 
 @media screen and (max-width: 320px) {
-  /*accueil*/
-  .accueil-container {
+  /*accueil1*/
+  .accueil1-container {
     grid-template-rows: 1fr auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -627,24 +627,24 @@ h2 {
       "contenu ";
   }
   /*header*/
-  .accueil-header {
+  .accueil1-header {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   }
-  .accueil-sidebar {
+  .accueil1-sidebar {
     height: 100%;
     width: 100%;
     margin: 10px;
     /* border: 2px solid yellow; */
   }
   /*body*/
-  /* .accueil-body {
+  /* .accueil1-body {
     height: max-content;
     border: 2px solid green;
   } */
 
-  .clocks {
+  .clocks1 {
     grid-template-columns: 320px;
     /* border: 2px solid cyan; */
     grid-template-rows: 1fr;
@@ -652,13 +652,13 @@ h2 {
     width: 100%;
     margin: 15px 10px;
   }
-.bienvenue {
+  .bienvenue {
     width: 92%;
     height: 200px;
     justify-content: center;
     background: var(--color-bg);
   }
-.bienvenue h1 {
+  .bienvenue h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 20px;
@@ -667,19 +667,19 @@ h2 {
     color: var(--color-text);
   }
 
-.bienvenue .img {
+  .bienvenue .img {
     width: 80%;
     height: 300px;
   }
-.bienvenue .img img {
+  .bienvenue .img img {
     margin-left: 50px;
     max-width: 100%;
   }
 
-.heure {
+  .heure {
     display: none;
   }
-  .accueil-body {
+  .accueil1-body {
     grid-area: contenu;
     /* display: flex;
     justify-content: center; */

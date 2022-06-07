@@ -1,3 +1,72 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03">
+  <button
+    class="btn-content"
+    (click)="showModal(add)"
+  >
+    Ajout Nouveau Employée
+  </button>
+</div>
+
+<!--modal-->
+<ng-template #add let-modal>
+  <div class="modal-header">
+    <h1>Ajout nouveau Employee</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Nom Employee </b></label>
+      <input
+        type="text"
+        name="employee_name"
+        [(ngModel)]="employee_name"
+      /><br />
+      <label><b>Fonction </b></label>
+      <input type="text" name="function" [(ngModel)]="function" /><br />
+      <label for="select"><b>Direction</b></label>
+      <select name="pets" id="select" [(ngModel)]="direction">
+        <option *ngFor="let item of departments">
+          {{ item.department_short_name }}
+        </option>
+      </select>
+      <br />
+      <label><b>Numero Matricule</b></label>
+      <input
+        type="number"
+        name="numero_matricule"
+        [(ngModel)]="numero_matricule"
+      /><br />
+      <label><b> Photo de profil : </b></label>
+      <div class="img-card">
+        <input
+          class="btn-upload-photo"
+          type="file"
+          (change)="uploadPhoto($event)"
+        />
+        <img [src]="photoPath" alt="pdp" height="150px" />
+      </div>
+      <br />
+      <button
+        type="submit"
+        class="btn-modif"
+        (click)="addEmployee()"
+      >
+        ajouter
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
 <div class="titre animation1 animation fade01">
   <h1><i class="fa fa-users"></i> Liste des employees</h1>
 </div>
@@ -32,10 +101,13 @@
         <td data-label="Depart">
           {{ item.department_name }}
         </td>
-        <td>
+        <td id="option">
           <button class="voirprofil" (click)="ShowEmployeeProfile(item)">
             Voir profile
           </button>
+          <!-- <button class="voirprofil2"  onclick="document.getElementById('id01').style.display='block'" (click) = "editEmployee(item)">
+            Modifier 
+          </button> -->
         </td>
       </tr>
     </tbody>

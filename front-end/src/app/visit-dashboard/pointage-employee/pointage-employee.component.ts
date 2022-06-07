@@ -9,6 +9,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-pointage-employee',
   templateUrl: './pointage-employee.component.html',
@@ -31,19 +32,20 @@ export class PointageEmployeeComponent implements OnInit {
   employees: any = [];
   date: any;
   heure: any;
-  isEmp = false;
   isPoind = false;
 
   stagiaires: any = []
   isStagiaire = false
 
-
   pointed_at: any; // si l"employée est déjà pointé à un autre locaux
+
+  closeResult = ''; //pour les modals
 
   constructor(
     private authServ: AuthService,
     private datePipe: DatePipe,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -138,93 +140,106 @@ export class PointageEmployeeComponent implements OnInit {
     return "erreur "
   }
 
+  //Methode pour les modals
+  showModal(content: any) {
+    this.enteredValue = ""
+    this.refreshPointagesThisLieuList();
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+  }
+
   //Methode de pointage entré
-  OnEnter() {
-    this.date = new Date();
-    this.heure = new Date();
-    if (this.isPointed()) {
-      this.showError('Employé déjà présent à ' + this.pointed_at)
+  onEnter() {
+    if (!this.isEmployee()) {
+      this.showError("Vérifier bien le nom")
     }
     else {
-      this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
-      this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
-      //Pour animation d'ajout
-      const matricule = this.getNumeroMatricule(this.enteredValue)
-      var val1 = {
-        numero_matricule: matricule,
-        employee_name: this.enteredValue,
-        date: this.date.toString(),
-        employee_dep_name: this.getDep(this.enteredValue),
-        lieu: this.lieu,
-        entry_time: this.heure.toString(),
-      }
-
-      //pointage stagiaire
-      if (this.isStagiaire) {
-        
-        if (this.checkValidDate(this.getStgEndDate(this.enteredValue))) {
-          var val2 = {
-            stagiaire_name: this.enteredValue,
-            date: this.date.toString(),
-            lieu: this.lieu,
-            entry_time: this.heure.toString()
-          };
-          this.authServ.addPointageStg(val2).subscribe((res) => {
-            if (res.toString() == 'Pointage stagiaire added successfully') {
-              console.log(val2.stagiaire_name)
-              this.showWarning('Stagiaire : fin du période le : ' + this.getStgEndDate(val2.stagiaire_name))
-            } else {
-              alert("erreur interne, contacter les developpeurs")
-              //this.showError("erreur interne, contacter les developpeurs")
-            }
-          });
-          //Pour modifier le pointed_at
-          const stg = {
-            stagiaire_name: this.enteredValue,
-            pointed_at: this.lieu,
-            isActif: false
-          }
-          this.authServ.putStagiaire(stg).subscribe((res) => { });
-          //pour animation
-          setTimeout(() => {
-            this.pointages.unshift(val1)
-          }, 500);
-        } else {
-          this.showError("Période de stage déjà terminé, pointer le dans la visite")
-        }
+      this.date = new Date();
+      this.heure = new Date();
+      if (this.isPointed()) {
+        this.showError('Employé déjà présent à ' + this.pointed_at)
       }
       else {
-        this.authServ.addPointage(val1).subscribe((res) => {
-          if (res.toString() == 'Added successfully') {
-            this.showSuccess("Pointage d'entrée reussi")
+        this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+        this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+
+        //Pour animation d'ajout
+        const matricule = this.getNumeroMatricule(this.enteredValue)
+        var val1 = {
+          numero_matricule: matricule,
+          employee_name: this.enteredValue,
+          date: this.date.toString(),
+          employee_dep_name: this.getDep(this.enteredValue),
+          lieu: this.lieu,
+          entry_time: this.heure.toString(),
+        }
+
+        //pointage stagiaire
+        if (this.isStagiaire) {
+
+          if (this.checkValidDate(this.getStgEndDate(this.enteredValue))) {
+            var val2 = {
+              stagiaire_name: this.enteredValue,
+              date: this.date.toString(),
+              lieu: this.lieu,
+              entry_time: this.heure.toString()
+            };
+            this.authServ.addPointageStg(val2).subscribe((res) => {
+              if (res.toString() == 'Pointage stagiaire added successfully') {
+                console.log(val2.stagiaire_name)
+                this.showWarning('Stagiaire : fin du période le : ' + this.getStgEndDate(val2.stagiaire_name))
+                this.closeModal()
+              } else {
+                alert("erreur interne, cotés serveur django")
+                //this.showError("erreur interne, contacter les developpeurs")
+              }
+            });
+            //Pour modifier le pointed_at
+            const stg = {
+              stagiaire_name: this.enteredValue,
+              pointed_at: this.lieu,
+              isActif: false
+            }
+            this.authServ.putStagiaire(stg).subscribe((res) => { });
             //pour animation
             setTimeout(() => {
               this.pointages.unshift(val1)
             }, 500);
-          } else { this.showError("Il y a une erreur interne") }
-        });
-        //Pour modifier le pointed_at
-        const emp = {
-          numero_matricule: this.getNumeroMatricule(this.enteredValue),
-          pointed_at: this.lieu,
-        };
-        this.authServ.putEmployee(emp).subscribe((res) => { });
+          } else {
+            this.showError("Période de stage déjà terminé, pointer le dans la visite")
+          }
+        }
+        else {
+          this.authServ.addPointage(val1).subscribe((res) => {
+            if (res.toString() == 'Added successfully') {
+              this.showSuccess("Pointage d'entrée reussi")
+              this.closeModal();
+              //pour animation
+              setTimeout(() => {
+                this.pointages.unshift(val1)
+              }, 500);
+            } else { this.showError("Il y a une erreur interne") }
+          });
+          //Pour modifier le pointed_at
+          const emp = {
+            numero_matricule: this.getNumeroMatricule(this.enteredValue),
+            pointed_at: this.lieu,
+          };
+          this.authServ.putEmployee(emp).subscribe((res) => { });
+        }
       }
+      this.enteredValue = '';
+      this.refreshPointagesThisLieuList()
+
     }
-    this.enteredValue = '';
-    this.refreshPointagesThisLieuList()
   }
   //Methode de pointage sortie
-  OnExit() {
+  onExit() {
     if (!this.isPointed()) {
-      this.toast.warning({
-        detail: 'OOhh',
-        summary: 'Employé non présent ou déjà parti',
-        duration: 5000,
-      });
-      // alert('Employé non présent ou déjà parti');
-      this.enteredValue = '';
+      this.showError("Vérifier bien le nom")
     } else {
 
       //enregistrement dans pointage register
@@ -244,17 +259,11 @@ export class PointageEmployeeComponent implements OnInit {
           .deletePointage(emp)
           .subscribe((data) => {
             if (data.toString() == 'Delete successfully') {
-              this.toast.success({
-                detail: 'SUCCES',
-                summary: 'Pointage de sortie bien reussi',
-                duration: 5000,
-              });
+              this.showSuccess('Pointage de sortie bien reussi');
+              this.closeModal();
+              this.enteredValue = '';
             } else {
-              this.toast.error({
-                detail: 'ERREUR',
-                summary: 'Erreur de pointage ',
-                duration: 5000,
-              });
+              this.showError("Erreur interne")
             }
           });
       }
@@ -271,17 +280,11 @@ export class PointageEmployeeComponent implements OnInit {
           .deletePointage(stg)
           .subscribe((data) => {
             if (data.toString() == 'Delete successfully') {
-              this.toast.success({
-                detail: 'SUCCES',
-                summary: 'Pointage de sortie bien reussi',
-                duration: 5000,
-              });
+              this.showSuccess('Pointage de sortie bien reussi')
+              this.closeModal()
+              this.enteredValue = '';
             } else {
-              this.toast.error({
-                detail: 'ERREUR',
-                summary: 'Erreur de pointage ',
-                duration: 5000,
-              });
+              this.showError("Erreur interne")
             }
           });
 
@@ -291,7 +294,6 @@ export class PointageEmployeeComponent implements OnInit {
       this.pointages = this.pointages.filter((f: any) => { return f.employee_name != this.enteredValue })
 
     }
-    this.enteredValue = '';
   }
 
   //Pour les stagiaires
@@ -311,6 +313,25 @@ export class PointageEmployeeComponent implements OnInit {
         element.employee_name == this.enteredValue
       ) {
         this.pointed_at = element.lieu;
+        return true;
+      }
+    }
+    return false;
+  }
+  isEmployee(): boolean {
+    for (let index = 0; index < this.employees.length; index++) {
+      const element = this.employees[index];
+      if (
+        element.employee_name == this.enteredValue
+      ) {
+        return true;
+      }
+    }
+    for (let index = 0; index < this.stagiaires.length; index++) {
+      const element = this.stagiaires[index];
+      if (
+        element.stagiaire_name == this.enteredValue
+      ) {
         return true;
       }
     }
@@ -406,7 +427,7 @@ export class PointageEmployeeComponent implements OnInit {
       }
     }
   }
-
+ 
   //les messages
   showError(msg: string) {
     this.toast.error({

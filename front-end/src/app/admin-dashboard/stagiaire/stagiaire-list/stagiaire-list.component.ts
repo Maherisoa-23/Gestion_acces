@@ -31,7 +31,10 @@ export class StagiaireListComponent implements OnInit {
   depTab : any = []
   photoName = "anonymous.png"
   photoPath = ""
+  stagiaire_id = ""
+  pointed_at = ""
 
+  isEdit = false
 
   constructor(
     private authServ: AuthService,
@@ -112,6 +115,46 @@ export class StagiaireListComponent implements OnInit {
     }
   }
 
+  updateStagiaire() {
+    if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.date_debut == "" || this.date_fin == "") {
+      this.showError("Vérifier bien tous les informations")
+    }
+    else {
+      const val = {
+        stagiaire_id : this.stagiaire_id,
+        stagiaire_name : this.stagiaire_name,
+        description : this.description,
+        pointed_at : this.pointed_at,
+        start_date : this.date_debut.toString(),
+        end_date : this.date_fin.toString(),
+        department_name : this.direction.toString(),
+        function : "stagiaire",
+        photoName : this.photoName,
+      }
+      this.authServ.updateStagiaireEntity(val).subscribe((res) => {
+        if (res.toString() == "Updated Successfully!!") {
+          this.reinitialisationDonnee()
+          this.showSuccess("Stagiaire modifié avec succès")
+        }
+      })
+      setTimeout(() => {
+        this.refreshStagiaireList()
+      }, 500);
+    }
+  }
+
+  EditStagiaire(stagiaire : any) {
+    this.isEdit = true
+    this.stagiaire_name = stagiaire.stagiaire_name;
+    this.description = stagiaire.description;
+    this.date_debut = stagiaire.start_date;
+    this.date_fin = stagiaire.end_date;
+    this.direction = stagiaire.department_name;
+    this.photoPath = this.authServ.PhotoUrl + stagiaire.photoName
+    this.stagiaire_id = stagiaire.stagiaire_id;
+    this.pointed_at = stagiaire.pointed_at;
+  }
+
   uploadPhoto(event : any) {
     var file = event.target.files[0];
     const formData : FormData = new FormData()
@@ -124,7 +167,10 @@ export class StagiaireListComponent implements OnInit {
   }
 
   reinitialisationDonnee() {
+    this.isEdit = false
     this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
+    this.photoName = "anonymous.png";
+    this.photoPath = this.authServ.PhotoUrl + this.photoName
   }
 
   showStagiaireProfile(item : any) {
