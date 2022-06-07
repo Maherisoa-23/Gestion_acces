@@ -56,7 +56,7 @@
         type="submit"
         class="btn-modif"
         onclick="document.getElementById('id01').style.display='none'"
-        (click)="updateUpdate()"
+        (click)="updateEmployee()"
         *ngIf="isEdit"
       >
         Modifier
@@ -114,7 +114,7 @@
       >
         Modifier
       </button>
-      <button class="supprimer">Supprimer</button>
+      <button class="supprimer" (click)="deleteEmployee()">Supprimer</button>
     </div>
   </div>
 

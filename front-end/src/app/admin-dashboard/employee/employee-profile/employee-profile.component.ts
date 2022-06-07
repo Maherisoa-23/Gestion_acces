@@ -134,7 +134,7 @@ export class EmployeeProfileComponent implements OnInit {
     });
   }
 
-  updateUpdate() {
+  updateEmployee() {
     if (
       this.employee_name == '' ||
       this.function == '' ||
@@ -171,6 +171,18 @@ export class EmployeeProfileComponent implements OnInit {
     this.photoPath = this.authServ.PhotoUrl + this.photoName;
     this.showInfo('Verifier bien les informations');
   }
+
+  deleteEmployee() {
+    if(confirm("vous êtes sûr?")) {
+      this.authServ.deleteEmployee(this.SecurityServ.matricule_security).subscribe((res) => {
+        this.showSuccess(res.toString())
+      })
+    }
+    setTimeout(() => {
+      this.route.navigate(['/admin/employee-list']);
+    }, 1000);
+  }
+
   CheckDailyPointage(item: any) {
     this.authServ.dateDailyPointage = item.date;
     this.authServ.employee_name = item.employee_name;

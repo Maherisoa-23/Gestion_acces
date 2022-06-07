@@ -64,6 +64,11 @@ export class AuthService {
     return this.http.put(this.APIUrl + '/employee/', val);
   }
 
+  deleteEmployee(id: number) {
+    return this.http.delete(this.APIUrl + '/employee/' + id);
+  }
+
+
   //modifer employee table lors d'un pointage
   putEmployee(val: any) {
     return this.http.put(this.APIUrl + '/pointageEmp/', val);
