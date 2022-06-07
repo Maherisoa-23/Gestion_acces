@@ -4,6 +4,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { NgToastService } from 'ng-angular-popup';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -17,7 +18,6 @@ export class EmployeeComponent implements OnInit {
   @Input() direction = '';
   @Input() numero_matricule = 0;
 
-  isEdit = false;
   pointage_register: any;
   pointages: any;
   last_pointage: any;
@@ -42,7 +42,8 @@ export class EmployeeComponent implements OnInit {
     // private SecurityServ: SecurityAgentService,
     private route: Router,
     private SecurityServ: SecurityAgentService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -137,7 +138,9 @@ export class EmployeeComponent implements OnInit {
         if (res.toString() == 'Added successfully') {
           this.reinitialisationDonnee();
           this.showSuccess('Nouvel employé ajouté avec succès');
-        } else this.showError('Erreur');
+          this.closeModal()
+          this.ShowEmployeeProfile(val);
+        } else this.showError('Erreur vérifier bien les informations');
       });
       setTimeout(() => {
         this.refreshEmployeeList();
@@ -156,35 +159,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  updateUpdate() {
-    if (
-      this.employee_name == '' ||
-      this.function == '' ||
-      this.direction == '' ||
-      this.numero_matricule == 0
-    ) {
-      this.showError('Vérifier bien tous les informations');
-    } else {
-      const val = {
-        employee_name: this.employee_name,
-        numero_matricule: this.numero_matricule,
-        function: this.function,
-        department_name: this.direction,
-        photoName: this.photoName,
-        pointed_at: 'not pointed',
-      };
-      this.authServ.updateEmployeeEntity(val).subscribe((res) => {
-        if (res.toString() == 'Updated Successfully!!') {
-          this.reinitialisationDonnee();
-          this.showSuccess('Employée modifié avec succès');
-        }
-      });
-      this.refreshEmployeeList();
-    }
-  }
-
   reinitialisationDonnee() {
-    this.isEdit = false;
     this.employee_name = this.direction = this.function = '';
     this.numero_matricule = 0;
     this.photoName = 'anonymous.png';
@@ -204,16 +179,15 @@ export class EmployeeComponent implements OnInit {
     }, 1000);
   }
 
-  editEmployee(emp: any) {
-    this.isEdit = true;
-    this.employee_name = emp.employee_name;
-    this.function = emp.function;
-    this.direction = emp.department_name;
-    this.numero_matricule = emp.numero_matricule;
-    this.photoName = emp.photoName;
-    this.photoPath = this.authServ.PhotoUrl + this.photoName;
-    this.showInfo('Verifier bien les informations');
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
   }
+  closeModal() {
+    this.modalService.dismissAll()
+    this.reinitialisationDonnee()
+  }
+
   //Les messages
   showSuccess(msg: string) {
     this.toast.success({
