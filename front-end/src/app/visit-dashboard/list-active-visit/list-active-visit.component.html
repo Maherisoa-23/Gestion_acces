@@ -5,7 +5,7 @@
   </button>
 </div>
 
-<!--modal-->
+<!--modal add visit-->
 <ng-template #content let-modal>
   <div class="modal-header">
     <h1>Ajout visiteur</h1>
@@ -62,6 +62,34 @@
   </div>
 </ng-template>
 
+<!--modal confirm-->
+<ng-template #exit let-modal>
+  <div class="modal-header">
+    <h1>Sortie visiteur</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Êtes vous sûr? </b></label>
+      <button
+        type="submit"
+        class="btn-modif"
+        (click)="exitVisit()"
+      >
+        confirmer
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        (click) = "closeModal()"
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
+</ng-template>
+
 <!--Tableau-->
 <div class="section animation1 animation fade01">
   <div class="titre animation1 animation fade01">
@@ -91,7 +119,7 @@
         </td>
         <td data-label="Motif" *ngIf="item.lieu == lieu">{{ item.motif }}</td>
         <td data-label="#" *ngIf="item.lieu == lieu">
-          <button class="bouton" (click)="exit(item)">
+          <button class="bouton" (click)="exitModal(exit, item)">
             <span>Sortir</span>
           </button>
         </td>

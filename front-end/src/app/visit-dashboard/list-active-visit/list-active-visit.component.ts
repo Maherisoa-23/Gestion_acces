@@ -30,6 +30,7 @@ export class ListActiveVisitComponent implements OnInit {
   @Input() CIN: any = 0;
   @Input() comment: any = null;
   @Input() description: any = null;
+  visit: any; //pour supression avec modal de confirmation
 
   constructor(
     private visitServ: VisitService,
@@ -119,6 +120,10 @@ export class ListActiveVisitComponent implements OnInit {
     this.modalService.dismissAll()
     this.initialisationDonnee()
   }
+  exitModal(content: any, visit: any) {
+    this.modalService.open(content, { centered: true });
+    this.visit = visit
+  }
 
   //Au cas ou le visiteur n'as pas de CIN
   NoCIN() {
@@ -138,7 +143,7 @@ export class ListActiveVisitComponent implements OnInit {
         visitor_name: this.visitor_name,
         motif: this.motif,
         CIN: this.CIN,
-        comment : this.comment,
+        comment: this.comment,
         lieu: this.lieu,
         date: this.date.toString(),
         entry_time: this.entry_time.toString(),
@@ -157,7 +162,8 @@ export class ListActiveVisitComponent implements OnInit {
     }
   }
 
-  exit(item: any) {
+  exitVisit() {
+    const item = this.visit
     this.Date = new Date();
     this.date = this.datePipe.transform(this.Date, 'h:mm:ss');
     var val = {
@@ -169,19 +175,18 @@ export class ListActiveVisitComponent implements OnInit {
       entry_time: item.entry_time,
       exit_time: this.date.toString(),
     };
-    if (confirm('Vous êtes sûs?')) {
-      this.visitServ.deleteVisit(item.visitor_name).subscribe((data) => { });
-      this.visitServ.addVisitsRegister(val).subscribe((data) => {
-        if (data.toString() == 'Added successfully to visit register') {
-          this.showSuccess('Sortie du visiteur');
-          //animation sortie
-          this.visitsList = this.visitsList.filter((f: any) => {
-            return f.CIN != item.CIN;
-          });
-        }
-        // console.log(data.toString() + ' to the visit register ');
-      });
-    }
+    this.visitServ.deleteVisit(item.visitor_name).subscribe((data) => { });
+    this.visitServ.addVisitsRegister(val).subscribe((data) => {
+      if (data.toString() == 'Added successfully to visit register') {
+        this.showSuccess('Sortie du visiteur');
+        //animation sortie
+        this.visitsList = this.visitsList.filter((f: any) => {
+          return f.CIN != item.CIN;
+        });
+      }
+      // console.log(data.toString() + ' to the visit register ');
+    });
+
   }
 
   checkValidInput() {
