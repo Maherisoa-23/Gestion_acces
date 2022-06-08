@@ -37,7 +37,7 @@
       >
         Modifier
       </button>
-      <button class="supprimer" (click)="deleteStagiaire()" >Supprimer</button>
+      <button class="supprimer" (click)="showModal(delete)" >Supprimer</button>
     </div>
   </div>
   <div class="pointage animation3 animation fade03">
@@ -58,7 +58,7 @@
 </div>
 <!-- profil security body -->
 
-<!--modal-->
+<!--modal edit-->
 <ng-template #edit let-modal>
   <div class="modal-header">
     <h1>Modification stagiaire</h1>
@@ -103,6 +103,34 @@
         (click) = "closeModal()"
       >
         Cancel
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!--modal confirm-->
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h1>Supression stagiaire</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Êtes vous sûr de supprimer le stagiaire : {{ stagiaire_name }} ?</b></label>
+      <button
+        type="submit"
+        class="btn-modif"
+        (click)="deleteStagiaire()"
+      >
+        Supprimer stagiaire
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        (click) = "closeModal()"
+      >
+        Annuler
       </button>
     </div>
   </div>
