@@ -58,9 +58,9 @@ import { StagiaireProfileComponent } from './admin-dashboard/stagiaire/stagiaire
 import { EmployeeProfileComponent } from './admin-dashboard/employee/employee-profile/employee-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendrierVisiteComponent } from './admin-dashboard/visite/visiteur/visiteur-profile/calendrier-visite/calendrier-visite.component';
+import { VehiculeComponent } from './admin-dashboard/vehicule/vehicule.component';
 
 registerLocaleData(localeFr, 'fr');
-
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
@@ -86,6 +86,7 @@ const appRoutes: Routes = [
       { path: 'stagiaire-register', component: StagiaireRegisterComponent },
       { path: 'stagiaire-list', component: StagiaireListComponent },
       { path: 'stagiaire-profile', component: StagiaireProfileComponent },
+      { path: 'vehicule', component: VehiculeComponent },
     ],
   },
   {
@@ -137,7 +138,8 @@ const appRoutes: Routes = [
     StagiaireListComponent,
     StagiaireProfileComponent,
     EmployeeProfileComponent,
-    CalendrierVisiteComponent
+    CalendrierVisiteComponent,
+    VehiculeComponent,
   ],
   imports: [
     BrowserModule,
@@ -150,7 +152,7 @@ const appRoutes: Routes = [
     NgToastModule,
     FullCalendarModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     VisitService,

@@ -71,9 +71,17 @@ export class LieuDetailsComponent implements OnInit {
   }
 
   refreshVisitsList() {
+    let tmp : any = []
     this.visitServ.getVisitsList().subscribe((data) => {
-      this.visits = data;
+      tmp = data;
     });
+    setTimeout(() => {
+      for (let index = 0; index < tmp.length; index++) {
+        const element = tmp[index];
+        if (element.lieu == this.lieu)
+          this.visits.push(element)
+      }
+    }, 500);
   }
 
   getLieuId(lieu: string) {

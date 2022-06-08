@@ -174,17 +174,16 @@ export class ListActiveVisitComponent implements OnInit {
       entry_time: item.entry_time,
       exit_time: this.date.toString(),
     };
-    this.visitServ.deleteVisit(item.visitor_name).subscribe((data) => { });
+    this.visitServ.deleteVisit(this.visit.visit_id).subscribe((data) => { });
     this.visitServ.addVisitsRegister(val).subscribe((data) => {
       if (data.toString() == 'Added successfully to visit register') {
         this.showSuccess('Sortie du visiteur');
         this.closeModal();
         //animation sortie
         this.visitsList = this.visitsList.filter((f: any) => {
-          return f.CIN != item.CIN;
+          return f.visit_id != this.visit.visit_id;
         });
       }
-      // console.log(data.toString() + ' to the visit register ');
     });
 
   }

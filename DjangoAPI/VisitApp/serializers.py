@@ -15,7 +15,9 @@ class Visitor_serializer(serializers.ModelSerializer):
 class Visit_serializer(serializers.ModelSerializer):
     class Meta:
         model = Visits_actif
-        fields = ('visitor_name',
+        fields = (
+                  'visit_id',
+                  'visitor_name',
                   'motif',
                   'CIN',
                   'comment',

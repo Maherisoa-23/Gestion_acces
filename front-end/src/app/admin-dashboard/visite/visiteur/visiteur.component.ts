@@ -11,7 +11,7 @@ import { VisitService } from 'src/app/services/visit.service';
 export class VisiteurComponent implements OnInit {
   visitors: any = [];
 
-  visits : any = [];
+  visits: any = [];
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -47,38 +47,38 @@ export class VisiteurComponent implements OnInit {
   }
 
   ShowSecurityProfile(visitor: any) {
-    this.visitServ.comment = visitor.comment
-    this.visitServ.lastVisit = this.getLastVisite(visitor.visitor_name)
-    this.visitServ.visitor_name = visitor.visitor_name
-    this.visitServ.CIN = visitor.CIN
-    this.visitServ.description = visitor.description
-    this.visitServ.Nbvisit = this.countNbVisit(visitor.visitor_name)
+    this.visitServ.comment = visitor.comment;
+    this.visitServ.lastVisit = this.getLastVisite(visitor.visitor_name);
+    this.visitServ.visitor_name = visitor.visitor_name;
+    this.visitServ.CIN = visitor.CIN;
+    this.visitServ.description = visitor.description;
+    this.visitServ.Nbvisit = this.countNbVisit(visitor.visitor_name);
     setTimeout(() => {
-      this.visitServ
+      this.visitServ;
       this.route.navigate(['admin/visiteur-profile']);
     }, 1000);
   }
 
-  countNbVisit(visitor_name : string) {
+  countNbVisit(visitor_name: string) {
     let cpt = 0;
     for (let index = 0; index < this.visits.length; index++) {
       const element = this.visits[index];
       if (element.visitor_name == visitor_name) {
-        cpt++
+        cpt++;
       }
     }
     return cpt;
   }
 
-  getLastVisite(visitor : string) {
+  getLastVisite(visitor: string) {
     let lastVisit;
     for (let index = 0; index < this.visits.length; index++) {
       const element = this.visits[index];
       if (element.visitor_name == visitor) {
-        lastVisit = element.lieu + ", le " + element.date
+        lastVisit = element.lieu + ', le ' + element.date;
       }
     }
-    return lastVisit
+    return lastVisit;
   }
 
   setUpDatePicker() {
@@ -89,6 +89,9 @@ export class VisiteurComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
+        language: {
+          url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json',
+        },
       };
     }, 600);
 
