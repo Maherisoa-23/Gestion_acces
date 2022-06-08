@@ -16,7 +16,7 @@
         (click)="ShowEmployeeProfile(item)"
       >
         <div class="logo">
-          <img [src]="photoPath" alt="pdp" srcset="" height="150px" />
+          <img [src]="getPhotoPath(item.employee_name)" alt="pdp" srcset="" height="150px" />
         </div>
         <div class="info">
           <div class="nom">

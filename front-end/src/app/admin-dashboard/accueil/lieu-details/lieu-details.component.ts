@@ -144,6 +144,9 @@ export class LieuDetailsComponent implements OnInit {
     return null;
   }
 
+  getPhotoPath(employee_name :string){
+    return this.authServ.PhotoUrl + this.getSecurity(employee_name).photoName
+  }
   getLastSevenDay() {
     this.today = new Date();
     for (let index = 1; index < 8; index++) {

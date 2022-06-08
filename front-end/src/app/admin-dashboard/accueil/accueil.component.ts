@@ -57,7 +57,6 @@ export class AccueilComponent implements OnInit {
     this.refresh();
   }
   getPhotoPath(name :string){
-    console.log(this.authServ.PhotoUrl + name)
     return this.authServ.PhotoUrl + name
   }
 
