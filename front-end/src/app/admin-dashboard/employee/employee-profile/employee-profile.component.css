@@ -486,7 +486,7 @@ textarea {
 
 .container label {
   color: var(--color-blue);
-  text-transform: capitalize;
+  text-transform: none;
   letter-spacing: 2px;
 }
 .modal form h1 {

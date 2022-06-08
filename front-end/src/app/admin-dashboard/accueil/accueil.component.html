@@ -46,6 +46,7 @@
           *ngFor="let item of activeSecurityList"
           (click)="ShowEmployeeProfile(item)"
         >
+          <img [src]="photoPath" alt="pdp" srcset="" height="150px" />
           {{ item.employee_name }}
         </li>
       </ul>

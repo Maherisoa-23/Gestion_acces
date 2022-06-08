@@ -2,7 +2,12 @@
 <ng-template #edit let-modal>
   <div class="modal-header">
     <h1>Modifier Employee</h1>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeModal()"
+    ></button>
   </div>
 
   <div class="modal-body">
@@ -38,23 +43,36 @@
         <img [src]="photoPath" alt="pdp" height="150px" />
       </div>
       <br />
-      <button
-        type="submit"
-        class="btn-modif"
-        (click)="updateEmployee()"
-      >
+      <button type="submit" class="btn-modif" (click)="updateEmployee()">
         Modifier
       </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        (click)="closeModal()"
-      >
+      <button class="btn-cancel" type="button" (click)="closeModal()">
         Cancel
       </button>
     </div>
   </div>
-</ng-template> 
+</ng-template>
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h1>Supression employee</h1>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label
+        ><b
+          >Êtes vous sûr de supprimer l'employee : {{ employee_name }} ?</b
+        ></label
+      ><br /><br />
+      <button type="submit" class="btn-modif" (click)="deleteEmployee()">
+        Supprimer employee
+      </button>
+      <button class="btn-cancel" type="button" (click)="closeModal()">
+        Annuler
+      </button>
+    </div>
+  </div>
+</ng-template>
 
 <button (click)="goBack()">Retour</button
 ><!-- profil security body -->
@@ -84,16 +102,11 @@
         <div class="apropos-list-value">
           {{ last_pointage_date }} {{ last_pointage_lieu }}
         </div>
-      </div> 
+      </div>
     </div>
     <div class="edit">
-      <button
-        class="modifier"
-        (click)="showModal(edit)"
-      >
-        Modifier
-      </button>
-      <button class="supprimer" (click)="deleteEmployee()">Supprimer</button>
+      <button class="modifier" (click)="showModal(edit)">Modifier</button>
+      <button class="supprimer" (click)="showModal(delete)">Supprimer</button>
     </div>
   </div>
 

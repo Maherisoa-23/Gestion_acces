@@ -7,6 +7,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -41,8 +42,11 @@ export class StagiaireListComponent implements OnInit {
     private stgServ: StagiaireService,
     private securityServ : SecurityAgentService,
     private route: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) {}
+
+
 
   ngOnInit(): void {   
     this.photoPath = this.authServ.PhotoUrl + this.photoName
@@ -90,29 +94,53 @@ export class StagiaireListComponent implements OnInit {
     }
   }
 
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+    this.reinitialisationDonnee()
+  }
+
   addStagiaire() {
     if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.date_debut == "" || this.date_fin == "") {
       this.showError("Vérifier bien tous les informations")
     }
     else {
-      const val = {
-        stagiaire_name : this.stagiaire_name,
-        description : this.description,
-        start_date : this.date_debut.toString(),
-        end_date : this.date_fin.toString(),
-        department_name : this.direction.toString(),
-        photoName : this.photoName,
-      }
-      this.authServ.addStagiaire(val).subscribe((res) => {
-        if (res.toString() == "Added successfully") {
-          this.reinitialisationDonnee()
-          this.showSuccess("Stagiaire ajouté avec succès")
+      if (!this.checkValidDate(this.date_debut, this.date_fin)) {
+        this.showError("Veuillez entrer une date de fin valide")
+      } 
+      else {
+        const val = {
+          stagiaire_name : this.stagiaire_name,
+          description : this.description,
+          start_date : this.date_debut.toString(),
+          end_date : this.date_fin.toString(),
+          department_name : this.direction.toString(),
+          photoName : this.photoName,
         }
-      })
-      setTimeout(() => {
-        this.refreshStagiaireList()
-      }, 500);
+        this.authServ.addStagiaire(val).subscribe((res) => {
+          if (res.toString() == "Added successfully") {
+            this.closeModal()
+            this.showSuccess("Stagiaire ajouté avec succès")
+          }
+        })
+        setTimeout(() => {
+          this.refreshStagiaireList()
+        }, 500);
+      }
     }
+  }
+
+  //Pour les stagiaires
+  checkValidDate(startDate: string, endDate : string) {
+    const start_date = new Date(startDate);
+    const end_date = new Date(endDate);
+    if (start_date.getTime() < end_date.getTime()) {
+      return true
+    }
+    return false
   }
 
   EditStagiaire(stagiaire : any) {

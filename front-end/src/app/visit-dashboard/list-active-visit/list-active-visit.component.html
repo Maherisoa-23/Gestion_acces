@@ -66,24 +66,22 @@
 <ng-template #exit let-modal>
   <div class="modal-header">
     <h1>Sortie visiteur</h1>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeModal()"
+    ></button>
   </div>
 
   <div class="modal-body">
     <div class="container">
       <label><b>Êtes vous sûr? </b></label>
-      <button
-        type="submit"
-        class="btn-modif"
-        (click)="exitVisit()"
-      >
+      <br /><br />
+      <button type="submit" class="btn-modif" (click)="exitVisit()">
         confirmer
       </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        (click) = "closeModal()"
-      >
+      <button class="btn-cancel" type="button" (click)="closeModal()">
         Annuler
       </button>
     </div>

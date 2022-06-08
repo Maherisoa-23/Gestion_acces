@@ -15,7 +15,9 @@
         *ngFor="let item of securities"
         (click)="ShowEmployeeProfile(item)"
       >
-        <div class="logo"><i class="fas fa-user-alt"></i></div>
+        <div class="logo">
+          <img [src]="photoPath" alt="pdp" srcset="" height="150px" />
+        </div>
         <div class="info">
           <div class="nom">
             Nom: <span>{{ item.employee_name }}</span>

@@ -98,10 +98,10 @@ export class StagiaireProfileComponent implements OnInit {
     }
   }
 
-  uploadPhoto(event : any) {
+  uploadPhoto(event: any) {
     var file = event.target.files[0];
-    const formData : FormData = new FormData()
-    formData.append('uploadedFile',file,file.name); 
+    const formData: FormData = new FormData()
+    formData.append('uploadedFile', file, file.name);
 
     this.authServ.UploadPhoto(formData).subscribe((data) => {
       this.photoName = data.toString();
@@ -110,15 +110,15 @@ export class StagiaireProfileComponent implements OnInit {
   }
 
   deleteStagiaire() {
-    if(confirm("vous êtes sûr? cette action est irréversible!!")) {
-      this.authServ.deleteStagiaire(this.stagiaire_id).subscribe((res) => {
-        if (res.toString() == "deleted successfully")
-          this.showSuccess(res.toString())
-      })
-      setTimeout(() => {
-        this.route.navigate(['/admin/stagiaire-list']);
-      }, 1000);
-    }
+    this.authServ.deleteStagiaire(this.stagiaire_id).subscribe((res) => {
+      if (res.toString() == "deleted successfully")
+        this.showSuccess(res.toString())
+        this.closeModal()
+    })
+    setTimeout(() => {
+      this.route.navigate(['/admin/stagiaire-list']);
+    }, 1000);
+
   }
 
   //Les messages

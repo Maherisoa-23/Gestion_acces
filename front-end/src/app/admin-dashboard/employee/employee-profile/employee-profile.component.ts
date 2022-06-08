@@ -55,7 +55,7 @@ export class EmployeeProfileComponent implements OnInit {
     private location: Location,
     private toast: NgToastService,
     private modalService: NgbModal
-  ) {} 
+  ) { }
 
   ngOnInit(): void {
     this.reinitialisationDonnee();
@@ -81,7 +81,7 @@ export class EmployeeProfileComponent implements OnInit {
     this.fonction = this.SecurityServ.fonction;
     this.photoPath = this.authServ.PhotoUrl + this.photoName;
   }
-  
+
   reinitialisationDonnee() {
     this.isEdit = false;
     this.employee_name = this.direction = this.function = '';
@@ -183,14 +183,13 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   deleteEmployee() {
-    if(confirm("vous êtes sûr? cette action est irréversible!!")) {
-      this.authServ.deleteEmployee(this.SecurityServ.matricule_security).subscribe((res) => {
-        this.showSuccess(res.toString())
-      })
-      setTimeout(() => {
-        this.route.navigate(['/admin/employee-list']);
-      }, 1000);
-    }
+    this.authServ.deleteEmployee(this.SecurityServ.matricule_security).subscribe((res) => {
+      this.showSuccess(res.toString())
+      this.closeModal()
+    })
+    setTimeout(() => {
+      this.route.navigate(['/admin/employee-list']);
+    }, 1000);
   }
 
   CheckDailyPointage(item: any) {

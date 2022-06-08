@@ -92,13 +92,22 @@
   transform: translateY(4px);
 }
 
+.img-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-upload-photo {
+  width: auto;
+  height: 50px;
+}
 /*modal*/
 
 /* Full-width input fields */
 input[type="text"],
 input[type="number"],
 input[type="date"],
-input[type="file"],
 textarea,
 select {
   width: 100%;
@@ -124,7 +133,7 @@ textarea {
 .container {
   padding: 16px;
 }
-.modal form .container .btn-cancel {
+.btn-cancel {
   background-color: var(--color-red);
   border: none;
   color: white;
@@ -133,10 +142,10 @@ textarea {
   font-size: 16px;
   margin: 4px 2px;
 }
-.modal form .container .btn-cancel:hover {
+.btn-cancel:hover {
   box-shadow: 2px 2px 2px rgb(52, 14, 14);
 }
-.modal form .container .btn-ajout {
+.btn-ajout {
   background-color: var(--color-green);
   border: none;
   color: white;
@@ -147,11 +156,11 @@ textarea {
   opacity: 1;
   transition: 0.3s;
 }
-.modal form .container .btn-ajout:hover {
+.btn-ajout:hover {
   box-shadow: 2px 2px 2px rgb(19, 64, 32);
 }
-.modal form .container .btn-modif {
-  background-color: #33678F;
+.btn-modif {
+  background-color: #33678f;
   border: none;
   color: white;
   padding: 16px 32px;
@@ -162,9 +171,9 @@ textarea {
   transition: 0.3s;
 }
 
-.modal form .container label {
+.container label {
   color: var(--color-blue);
-  text-transform: capitalize;
+  text-transform: none;
   letter-spacing: 2px;
 }
 .modal form h1 {
@@ -220,6 +229,15 @@ span.psw {
 .close:focus {
   color: red;
   cursor: pointer;
+}
+.modal-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
 }
 
 /* Add Zoom Animation */
@@ -281,7 +299,7 @@ span.psw {
   background-color: #fff;
   color: var(--color-blue);
 }
-.section .tbl tbody tr #option{
+.section .tbl tbody tr #option {
   padding: 15px 30px;
 }
 .section .tbl tbody tr td .voirprofil {

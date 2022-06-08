@@ -19,7 +19,7 @@ export class LieuDetailsComponent implements OnInit {
   nb_pointage: any;
   nb_employee: any;
   id_lieu = 0;
-  tabSecurity : any = []
+  tabSecurity: any = [];
 
   //Pour le chart.js
   today: any;
@@ -27,6 +27,8 @@ export class LieuDetailsComponent implements OnInit {
   dateTab: any = [];
   data: any = [];
   myChartPointage: any;
+  photoPath = '';
+  photoName = 'anonymous.png';
 
   constructor(
     private elementRef: ElementRef,
@@ -34,7 +36,7 @@ export class LieuDetailsComponent implements OnInit {
     private datePipe: DatePipe,
     private route: Router,
     private SecurityServ: SecurityAgentService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.id_lieu = this.getLieuId(this.lieu);
@@ -48,6 +50,7 @@ export class LieuDetailsComponent implements OnInit {
     setTimeout(() => {
       this.chartit();
     }, 1000);
+    this.photoPath = this.authServ.PhotoUrl + this.photoName;
   }
 
   getLieuId(lieu: string) {
@@ -98,17 +101,17 @@ export class LieuDetailsComponent implements OnInit {
   }
 
   chartit() {
-    this.dateTab.unshift("date : ")
+    this.dateTab.unshift('date : ');
     const data_pointage = {
       labels: this.dateTab,
       datasets: [
         {
-          label: "pointage " + this.lieu,
+          label: 'pointage ' + this.lieu,
           //data: this.data, version finale mais pour démonstration sans donnéeon va initialiser d'abord les données
           data: [0, 71, 84, 62, 57, 73, 77, 68],
           backgroundColor: '#ca212680',
         },
-      ]
+      ],
     };
     let htmlRefPointage =
       this.elementRef.nativeElement.querySelector(`#myChartPointage`);
@@ -119,28 +122,26 @@ export class LieuDetailsComponent implements OnInit {
   }
 
   refreshSecurityList() {
-    let tmp : any;
-    this.authServ
-      .getEmployeeList()
-      .subscribe((data) => {
-        tmp = data;
-      });
+    let tmp: any;
+    this.authServ.getEmployeeList().subscribe((data) => {
+      tmp = data;
+    });
     setTimeout(() => {
       for (let index = 0; index < tmp.length; index++) {
         const element = tmp[index];
-        if (element.function == "AGENT DE SECURITE") {
-          this.tabSecurity.push(element)
+        if (element.function == 'AGENT DE SECURITE') {
+          this.tabSecurity.push(element);
         }
       }
     }, 500);
   }
 
-  getSecurity(name : string) {
+  getSecurity(name: string) {
     for (let index = 0; index < this.tabSecurity.length; index++) {
       const element = this.tabSecurity[index];
-      if (element.employee_name == name) return element
+      if (element.employee_name == name) return element;
     }
-    return null
+    return null;
   }
 
   getLastSevenDay() {
@@ -158,7 +159,7 @@ export class LieuDetailsComponent implements OnInit {
 
   ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
-    const security = this.getSecurity(emp.employee_name)
+    const security = this.getSecurity(emp.employee_name);
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
