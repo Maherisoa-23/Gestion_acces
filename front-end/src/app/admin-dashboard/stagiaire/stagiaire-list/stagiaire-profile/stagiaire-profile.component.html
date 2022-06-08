@@ -31,13 +31,8 @@
       </div>
     </div>
     <div class="edit">
-      <button
-        class="modifier"
-        (click)="showModal(edit)"
-      >
-        Modifier
-      </button>
-      <button class="supprimer" (click)="showModal(delete)" >Supprimer</button>
+      <button class="modifier" (click)="showModal(edit)">Modifier</button>
+      <button class="supprimer" (click)="showModal(delete)">Supprimer</button>
     </div>
   </div>
   <div class="pointage animation3 animation fade03">
@@ -62,7 +57,6 @@
 <ng-template #edit let-modal>
   <div class="modal-header">
     <h1>Modification stagiaire</h1>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
   </div>
 
   <div class="modal-body">
@@ -77,31 +71,37 @@
       <input type="text" name="description" [(ngModel)]="description" /><br />
       <label for="select"><b>Direction</b></label>
       <select name="pets" id="select" [(ngModel)]="direction">
-        <option *ngIf="direction">{{direction}}</option>
-        <option *ngFor="let item of depTab">{{item.department_short_name}}</option>
+        <option *ngIf="direction">{{ direction }}</option>
+        <option *ngFor="let item of depTab">
+          {{ item.department_short_name }}
+        </option>
       </select>
       <br />
-      <label><b>Date fin : {{start_date}} </b></label>
-      <input type="date" name="start_date" [(ngModel)]="start_date" /><br /><br />
-      <label><b>Date fin : {{end_date}} </b></label>
-      <input type="date" name="end_date" [(ngModel)]="end_date" /><br /><br />
-      <label><b> Photo de profil :  </b></label>
-      <div class="img-card">
-        <input class="btn-upload-photo" type="file" (change)="uploadPhoto($event)">
-        <img [src] = photoPath alt="pdp" height="180px">
-      </div>
-      <button
-        type="submit"
-        class="btn-modif"
-        (click)="updateStagiaire()"
+      <label
+        ><b>Date fin : {{ start_date }} </b></label
       >
+      <input
+        type="date"
+        name="start_date"
+        [(ngModel)]="start_date"
+      /><br /><br />
+      <label
+        ><b>Date fin : {{ end_date }} </b></label
+      >
+      <input type="date" name="end_date" [(ngModel)]="end_date" /><br /><br />
+      <label><b> Photo de profil : </b></label>
+      <div class="img-card">
+        <input
+          class="btn-upload-photo"
+          type="file"
+          (change)="uploadPhoto($event)"
+        />
+        <img [src]="photoPath" alt="pdp" height="180px" />
+      </div>
+      <button type="submit" class="btn-modif" (click)="updateStagiaire()">
         Modifier stagiaire
       </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        (click) = "closeModal()"
-      >
+      <button class="btn-cancel" type="button" (click)="closeModal()">
         Cancel
       </button>
     </div>
@@ -112,24 +112,19 @@
 <ng-template #delete let-modal>
   <div class="modal-header">
     <h1>Supression stagiaire</h1>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
   </div>
 
   <div class="modal-body">
     <div class="container">
-      <label><b>Êtes vous sûr de supprimer le stagiaire : {{ stagiaire_name }} ?</b></label>
-      <button
-        type="submit"
-        class="btn-modif"
-        (click)="deleteStagiaire()"
-      >
+      <label
+        ><b
+          >Êtes vous sûr de supprimer le stagiaire : {{ stagiaire_name }} ?</b
+        ></label
+      ><br /><br />
+      <button type="submit" class="btn-modif" (click)="deleteStagiaire()">
         Supprimer stagiaire
       </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        (click) = "closeModal()"
-      >
+      <button class="btn-cancel" type="button" (click)="closeModal()">
         Annuler
       </button>
     </div>

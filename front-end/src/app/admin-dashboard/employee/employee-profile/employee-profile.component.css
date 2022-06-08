@@ -543,6 +543,15 @@ span.psw {
   color: red;
   cursor: pointer;
 }
+.modal-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
+}
 
 /* Add Zoom Animation */
 .animate {

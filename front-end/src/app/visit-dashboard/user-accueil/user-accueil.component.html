@@ -4,7 +4,7 @@
 <div class="section animation1 animation fade01">
   <!-- bienvenue -->
   <div class="bienvenue">
-    <h1>Tableau de bord</h1>
+    <h1>Bienvenue agent</h1>
     <div class="img">
       <img src="assets/img/undraw_hello_re_3evm.svg" />
     </div>
@@ -29,30 +29,30 @@
 
   <!-- btn*2 -->
   <div class="button">
-    <div class="card c1">
+    <div class="card c1" (click)="showPointage()">
       <div class="imgBx">
-        <button class="btn-effet i1" (click)="showPointage()">
+        <button class="btn-effet i1" >
           Gerer Pointage
         </button>
       </div>
       <div class="content">
-        <h2>Comment faire ?</h2>
+        <h2>Comment faire?</h2>
         <p>
           pour gerer le pointage des employees il faut cliquer sur le bouton
           'gerer pointage' ou sur le lien sur le cote 'Pointage' | etape deux
           cliquer sur le bouton auquel vous allez faire le pointage soit
           l'entree soit la sortie | etape trois completer le champs (Nom de
-          l'employee) | etape trois cliquer sur le bouton ajouter et vous aurez
-          une liste contenat le pointage de cet employee
+          l'employee) | etape trois cliquer sur le bouton ajouter et ce pointage s'ajoutera
+          à la liste
         </p>
       </div>
       <div class="aide">
         <h1>Aide<i class="fas fa-hand-point-up"></i></h1>
       </div>
     </div>
-    <div class="card c2">
+    <div class="card c2" (click)="showVisit()">
       <div class="imgBx">
-        <button class="btn-effet i2" (click)="showVisit()">Gerer Visite</button>
+        <button class="btn-effet i2">Gerer Visite</button>
 
         <!-- <img src="images/02.jpg" alt="01" /> -->
       </div>

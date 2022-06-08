@@ -13,8 +13,10 @@ export class PointageComponent implements OnInit {
   constructor(private authServ: AuthService) { }
 
   ngOnInit(): void {
-    this.lieu = "Ambohijatovo"
-    this.authServ.lieu = this.lieu
+    setTimeout(() => {
+      const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}')
+      this.lieu = Lieu.lieu_name
+    }, 1000);
     this.refreshPointageList();
   }
 
@@ -24,17 +26,17 @@ export class PointageComponent implements OnInit {
     });
   }
 
-  switchAndraharo() {
+  switchAndraharo(){
     this.authServ.lieu = "Andraharo"
     this.lieu = this.authServ.lieu
     this.refreshPointageList()
   }
-  switchAmbohijatovo() {
+  switchAmbohijatovo(){
     this.authServ.lieu = "Ambohijatovo"
     this.lieu = this.authServ.lieu
     this.refreshPointageList()
   }
-  switchMangasoavina() {
+  switchMangasoavina(){
     this.authServ.lieu = "Mangasoavina"
     this.lieu = this.authServ.lieu
     this.refreshPointageList()

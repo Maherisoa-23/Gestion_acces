@@ -328,6 +328,7 @@
   border: 3px solid var(--color-red);
 }
 .button .card:hover {
+  cursor: pointer;
   height: auto;
 }
 .button .card .imgBx {
@@ -401,53 +402,6 @@
   font-size: 2.5rem;
   margin-left: 10px;
 }
-
-/* help */
-/* .help {
-  grid-area: help;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "help1 help2";
-  padding: 20px;
-}
-.help .help1 {
-  grid-area: help1;
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  color: var(--color-bg);
-  border-top: 5px solid var(--color-fond);
-  box-shadow: 2px 2px 3px rgb(198, 195, 195);
-  background: var(--color-green);
-}
-.help .help2 {
-  grid-area: help2;
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  color: var(--color-bg);
-  border-top: 5px solid var(--color-fond);
-  box-shadow: 2px 2px 3px rgb(198, 195, 195);
-  background: var(--color-red);
-}
-.help h1 {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin: 5px;
-  color: var(--color-fond);
-}
-.help p {
-  margin: 15px 5px 5px 5px;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: lighter;
-  text-align: justify;
-  letter-spacing: 1px;
-} */
 
 /* media */
 @media screen and (max-width: 1300px) {
@@ -551,5 +505,3 @@
     border-radius: 3px;
   }
 }
-
-/* kk */
