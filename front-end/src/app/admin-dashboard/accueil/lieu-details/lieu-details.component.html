@@ -1,18 +1,22 @@
 <div class="titre animation1 animation fade01">
-  <button (click)="showAccueil()">Precedent</button>
+  <button (click)="showAccueil()">Retour</button>
   <h1>
     Lieu : <span>{{ lieu }}</span>
   </h1>
 </div>
-<div class="section animation1 animation fade01">
+<div class="section1 animation1 animation fade01">
   <div class="security animation1 animation fade01">
-    <div class="title">
+    <div class="title1">
       <h1>Securites actifs</h1>
     </div>
     <div class="security-content">
-      <div class="card" *ngFor="let item of securities" (click)="ShowEmployeeProfile(item)">
-        <div class="logo" ><i class="fas fa-user-alt"></i></div>
-        <div class="info" >
+      <div
+        class="card"
+        *ngFor="let item of securities"
+        (click)="ShowEmployeeProfile(item)"
+      >
+        <div class="logo"><i class="fas fa-user-alt"></i></div>
+        <div class="info">
           <div class="nom">
             Nom: <span>{{ item.employee_name }}</span>
           </div>
@@ -25,7 +29,7 @@
   </div>
   <div class="chart animation1 animation fade01">
     <div class="legend">
-      <div class="chart-title">
+      <div class="chart-title1">
         <h1>Charte Graphique</h1>
       </div>
       <div class="legend-content">

@@ -1,12 +1,12 @@
 <div
-  class="card card{{ id_lieu }} anim{{ id_lieu }} animate fade{{ id_lieu }}"
+  class="card1 card1{{ id_lieu }} anim{{ id_lieu }} animate fade{{ id_lieu }}"
   (click)="showLieuDetails()"
 >
-  <div class="card-header">
+  <div class="card1-header">
     <h3>{{ lieu }}</h3>
   </div>
-  <div class="card-body">
-    <div class="card-container">
+  <div class="card1-body">
+    <div class="card1-container">
       <h4>Heure d'entree : {{ entry_time }}</h4>
       <h4>Nombre de visite : {{ nb_visite }}</h4>
       <h4>Nombre de pointage : {{ nb_pointage }}</h4>
@@ -14,7 +14,7 @@
     </div>
     <div class="sary"><i class="fas fa-home"></i></div>
   </div>
-  <div class="card-footer">
+  <div class="card1-footer">
     <canvas id="lieu-chart" width="auto" height="125px"> {{ myChart }}</canvas>
   </div>
 </div>

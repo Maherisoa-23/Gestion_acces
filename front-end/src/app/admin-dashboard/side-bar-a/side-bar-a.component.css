@@ -130,6 +130,7 @@ ul li .dropdown1-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
+  border-radius: 5px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -139,16 +140,18 @@ ul li .dropdown1-content {
 ul li .dropdown1-content a {
   float: none;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 800;
   color: var(--color-blue);
-  padding: 1px 16px;
+  padding: 5px 16px;
+  margin: 10px 0;
   text-decoration: none;
   display: block;
   text-align: left;
   /* background: #000; */
 }
 ul li .dropdown1-content a:hover {
-  background-color: #ddd;
+  background-color: rgb(45, 122, 189);
+  color: var(--color-bg);
 }
 ul li .dropdown1:hover .dropdown1-content {
   display: block;
