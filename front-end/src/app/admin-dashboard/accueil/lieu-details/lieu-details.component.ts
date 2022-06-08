@@ -1,10 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
+import { VisitService } from 'src/app/services/visit.service';
+declare var $: any;
+
 
 @Component({
   selector: 'app-lieu-details',
@@ -21,36 +24,56 @@ export class LieuDetailsComponent implements OnInit {
   id_lieu = 0;
   tabSecurity: any = [];
 
-  //Pour le chart.js
-  today: any;
-  date: any;
-  dateTab: any = [];
-  data: any = [];
-  myChartPointage: any;
-  photoPath = '';
-  photoName = 'anonymous.png';
+  pointages : any = []
+  visits : any = []
+
+  isShow = false
+  dtOptions: DataTables.Settings = {};
+  //filtrage personnalisé
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement: any = DataTableDirective;
 
   constructor(
-    private elementRef: ElementRef,
     private authServ: AuthService,
     private datePipe: DatePipe,
     private route: Router,
-    private SecurityServ: SecurityAgentService
+    private SecurityServ: SecurityAgentService,
+    private visitServ : VisitService
   ) {}
 
   ngOnInit(): void {
+    this.refreshVisitsList();
+    this.refreshPointageList();
     this.id_lieu = this.getLieuId(this.lieu);
 
     this.lieu = this.authServ.lieu;
     this.refreshSecurityList();
     this.getActifSecurity();
-    this.getLastSevenDay();
-    this.getPointageByLieuDate(this.lieu);
     this.refreshCounting();
     setTimeout(() => {
-      this.chartit();
-    }, 1000);
-    this.photoPath = this.authServ.PhotoUrl + this.photoName;
+      this.isShow =true
+      this.setUpDatePicker()
+    }, 700);
+  }
+
+  refreshPointageList() {
+    let tmp : any = []
+    this.authServ.getPointageList().subscribe((data) => {
+      tmp = data;
+    });
+    setTimeout(() => {
+      for (let index = 0; index < tmp.length; index++) {
+        const element = tmp[index];
+        if (element.lieu == this.lieu) 
+          this.pointages.push(element)
+      }
+    }, 500);
+  }
+
+  refreshVisitsList() {
+    this.visitServ.getVisitsList().subscribe((data) => {
+      this.visits = data;
+    });
   }
 
   getLieuId(lieu: string) {
@@ -84,43 +107,6 @@ export class LieuDetailsComponent implements OnInit {
     });
   }
 
-  getPointageByLieuDate(lieu: string) {
-    const val = {
-      lieu: lieu,
-      date0: this.dateTab[0],
-      date1: this.dateTab[1],
-      date2: this.dateTab[2],
-      date3: this.dateTab[3],
-      date4: this.dateTab[4],
-      date5: this.dateTab[5],
-      date6: this.dateTab[6],
-    };
-    this.authServ.getAllPointageByLieuAndDate(val).subscribe((data) => {
-      this.data = data;
-    });
-  }
-
-  chartit() {
-    this.dateTab.unshift('date : ');
-    const data_pointage = {
-      labels: this.dateTab,
-      datasets: [
-        {
-          label: 'pointage ' + this.lieu,
-          //data: this.data, version finale mais pour démonstration sans donnéeon va initialiser d'abord les données
-          data: [0, 71, 84, 62, 57, 73, 77, 68],
-          backgroundColor: '#ca212680',
-        },
-      ],
-    };
-    let htmlRefPointage =
-      this.elementRef.nativeElement.querySelector(`#myChartPointage`);
-    this.myChartPointage = new Chart(htmlRefPointage, {
-      type: 'bar',
-      data: data_pointage,
-    });
-  }
-
   refreshSecurityList() {
     let tmp: any;
     this.authServ.getEmployeeList().subscribe((data) => {
@@ -144,17 +130,26 @@ export class LieuDetailsComponent implements OnInit {
     return null;
   }
 
+  setUpDatePicker() {
+      this.isShow = true;
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 5,
+        lengthMenu: [5, 10, 15],
+        processing: true,
+        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
+      };
+
+
+    $('.dateadded').on('change', function (ret: any) {
+      var v = ret.target.value; // getting search input value
+
+      $('#dataTables-example').DataTable().columns(4).search(v).draw();
+    });
+  }
+
   getPhotoPath(employee_name :string){
     return this.authServ.PhotoUrl + this.getSecurity(employee_name).photoName
-  }
-  getLastSevenDay() {
-    this.today = new Date();
-    for (let index = 1; index < 8; index++) {
-      this.date = new Date(this.today.setDate(this.today.getDate() - 1));
-      this.dateTab.push(
-        this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
-      );
-    }
   }
   showAccueil() {
     this.route.navigate(['admin/']);

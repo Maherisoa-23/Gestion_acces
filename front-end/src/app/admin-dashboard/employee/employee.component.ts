@@ -59,7 +59,7 @@ export class EmployeeComponent implements OnInit {
       this.isShow = true;
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 10,
+        pageLength: 5,
         lengthMenu: [10, 15, 25],
         processing: true,
         language: {

@@ -173,6 +173,7 @@
 .section1 .chart {
   grid-area: chart;
   display: grid;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   margin: 30px 0;
   width: 100%;
@@ -195,7 +196,7 @@
   align-items: center;
   /* margin: 10px; */
   padding: 10px;
-  background: var(--color-blue);
+  background: var(--color-text);
 }
 .section1 .chart .legend .chart-title1 h1 {
   font-size: 16px;
@@ -211,7 +212,7 @@
 .section1 .chart .legend-content h1 {
   font-size: 16px;
   font-weight: 800;
-  color: var(--color-blue);
+  color: var(--color-text);
   letter-spacing: 2px;
   margin: 20px;
 }
@@ -220,7 +221,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
-  color: var(--color-blue);
+  color: var(--color-text);
 }
 .section1 .chart .legend-content .legend-item .item {
   font-size: 14px;
@@ -237,7 +238,53 @@
   height: auto;
   margin: 10px 0;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
   /* border: 2px solid var(--color-blue); */
+}
+.section1 .chart .sary h1 {
+  display: block;
+  color: var(--color-text);
+  text-align: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 16px;
+}
+.section1 .tbl {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 10%;
+  margin: 10px auto 40px;
+}
+.section1 .tbl thead {
+  background-color: var(--color-blue);
+}
+.section1 .tbl thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #fff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+.section1 .tbl tbody tr {
+  background-color: #fff;
+  color: var(--color-blue);
+}
+.section1 .tbl tbody tr:hover {
+  background-color: #8c999ea7;
+  color: #fff;
+}
+.section1 .tbl tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: normal;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid var(--color-blue);
 }
 @media screen and (max-width: 768px) {
   .section1 {
@@ -298,6 +345,42 @@
   }
   .section1 .chart .legend-content .legend-item .item {
     margin: 10px;
+  }
+  /*liste tableau*/
+  .section1 .tbl thead {
+    display: none;
+  }
+  .section1 .tbl,
+  .section1 .tbl tbody,
+  .section1 .tbl tr,
+  .section1 .tbl td {
+    display: block;
+    /* width: 100%; */
+  }
+  .section1 .tbl tr {
+    margin-bottom: 15px;
+  }
+  .section1 .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .section1 .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+  }
+  .section1 .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 10px auto 40px;
+    /* border: 2px solid var(--color-blue); */
   }
 }
 @media screen and (max-width: 900px) {

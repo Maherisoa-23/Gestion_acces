@@ -9,14 +9,19 @@
     <div class="title1">
       <h1>Securites actifs</h1>
     </div>
-    <div class="security-content">
+    <div class="security-content" *ngIf="isShow">
       <div
         class="card"
         *ngFor="let item of securities"
         (click)="ShowEmployeeProfile(item)"
       >
         <div class="logo">
-          <img [src]="getPhotoPath(item.employee_name)" alt="pdp" srcset="" height="150px" />
+          <img
+            [src]="getPhotoPath(item.employee_name)"
+            alt="pdp"
+            srcset=""
+            height="150px"
+          />
         </div>
         <div class="info">
           <div class="nom">
@@ -32,7 +37,7 @@
   <div class="chart animation1 animation fade01">
     <div class="legend">
       <div class="chart-title1">
-        <h1>Charte Graphique</h1>
+        <h1>RESUME ACTIVITES</h1>
       </div>
       <div class="legend-content">
         <h1>RESUME:</h1>
@@ -50,9 +55,71 @@
       </div>
     </div>
     <div class="sary">
-      <div width="250" height="300">
-        <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
-      </div>
+      <h1>Visite actuelle</h1>
+      <hr />
+      <!--Liste tableau-->
+      <table *ngIf="isShow" class="tbl">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Heure d'entree</th>
+            <th>Motif</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of visits">
+            <!-- <td data-label="ID" >
+              {{ item.visit_id }}
+            </td> -->
+            <td data-label="Nom" >
+              <strong>{{ item.visitor_name }}</strong>
+            </td>
+            <td data-label="Heure" >
+              {{ item.entry_time }}
+            </td>
+            <td data-label="Motif" >
+              <i> {{ item.motif }}</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>Pointage actuel</h1>
+      <hr />
+      <!--Liste tableau-->
+      <table
+      id="dataTables-example"
+    class="tbl"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
+        <thead>
+          <tr>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Direction</th>
+            <th>Heure d'entree</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pointages">
+            <td data-label="ID" >
+              {{ item.pointage_id }}
+            </td>
+            <td data-label="Nom" >
+              <strong> {{ item.employee_name }}</strong>
+            </td>
+            <td data-label="Direction" >
+              {{ item.employee_dep_name }}
+            </td>
+            <td data-label="Heure" >
+              <strong>
+                <i> {{ item.entry_time }}</i></strong
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

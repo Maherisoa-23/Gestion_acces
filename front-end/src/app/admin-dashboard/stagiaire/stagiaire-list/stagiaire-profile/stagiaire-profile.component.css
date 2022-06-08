@@ -183,7 +183,7 @@ button {
   height: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 150px auto auto auto;
+  grid-template-rows: 180px auto auto auto;
   grid-template-areas:
     "img"
     "nom"
@@ -196,13 +196,17 @@ button {
 
 .chart .img {
   grid-area: img;
-  /* border: 2px solid var(--color-text); */
+  /* border: 2px solid var(--color-red); */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* margin: 10px; */
 }
-.chart .img i {
-  font-size: 100px;
+.chart .img img {
+  /* width: 100%; */
+  width: 150px;
+  height: 150px;
+  clip-path: circle();
 }
 
 .chart .nom {
@@ -211,7 +215,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  /* padding: 10px; */
 }
 .chart .nom h1 {
   font-size: 16px;
