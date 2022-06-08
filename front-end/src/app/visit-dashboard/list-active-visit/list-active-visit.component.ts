@@ -114,7 +114,7 @@ export class ListActiveVisitComponent implements OnInit {
 
   //Methode pour les modals
   showModal(content: any) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content,  { centered: true });
   }
   closeModal() {
     this.modalService.dismissAll()
@@ -138,7 +138,7 @@ export class ListActiveVisitComponent implements OnInit {
       if (this.isNewVisitor(this.visitor_name)) this.addNewVisitor();
       this.Date = new Date();
       this.date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
-      this.entry_time = this.datePipe.transform(this.Date, ' h:mm:ss');
+      this.entry_time = this.datePipe.transform(this.Date, 'h:mm:ss a');
       var val = {
         visitor_name: this.visitor_name,
         motif: this.motif,
@@ -165,7 +165,7 @@ export class ListActiveVisitComponent implements OnInit {
   exitVisit() {
     const item = this.visit
     this.Date = new Date();
-    this.date = this.datePipe.transform(this.Date, 'h:mm:ss');
+    this.date = this.datePipe.transform(this.Date, 'h:mm:ss a');
     var val = {
       visitor_name: item.visitor_name,
       motif: item.motif,
@@ -179,6 +179,7 @@ export class ListActiveVisitComponent implements OnInit {
     this.visitServ.addVisitsRegister(val).subscribe((data) => {
       if (data.toString() == 'Added successfully to visit register') {
         this.showSuccess('Sortie du visiteur');
+        this.closeModal();
         //animation sortie
         this.visitsList = this.visitsList.filter((f: any) => {
           return f.CIN != item.CIN;

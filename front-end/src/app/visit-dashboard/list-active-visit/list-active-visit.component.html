@@ -65,7 +65,7 @@
 <!--modal confirm-->
 <ng-template #exit let-modal>
   <div class="modal-header">
-    <h1>Sortie visiteur</h1>
+    <h1>Sortie</h1>
     <button
       type="button"
       class="btn-close"
@@ -76,7 +76,7 @@
 
   <div class="modal-body">
     <div class="container">
-      <label><b>Êtes vous sûr? </b></label>
+      <label><b>sortie du  visiteur {{visit.visitor_name}}, êtes vous sûr? </b></label>
       <br /><br />
       <button type="submit" class="btn-modif" (click)="exitVisit()">
         confirmer

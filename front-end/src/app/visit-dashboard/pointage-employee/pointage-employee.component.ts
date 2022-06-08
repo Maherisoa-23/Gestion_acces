@@ -163,7 +163,7 @@ export class PointageEmployeeComponent implements OnInit {
         this.showError('Employé déjà présent à ' + this.pointed_at)
       }
       else {
-        this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+        this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
         this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
         //Pour animation d'ajout
@@ -383,7 +383,7 @@ export class PointageEmployeeComponent implements OnInit {
           element.employee_name == employee_name
         ) {
           this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss');
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
           var val1 = {
             function: "stagiaire",
             date: element.date,
@@ -409,7 +409,7 @@ export class PointageEmployeeComponent implements OnInit {
           element.employee_name == employee_name
         ) {
           this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss');
+          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
           var val = {
             numero_matricule: this.getNumeroMatricule(employee_name),
             date: element.date,

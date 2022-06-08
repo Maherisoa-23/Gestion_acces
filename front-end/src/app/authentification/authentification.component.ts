@@ -113,7 +113,7 @@ export class AuthentificationComponent implements OnInit {
           setTimeout(() => {
             this.date = new Date();
             this.heure = new Date();
-            this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+            this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
             this.Lieu.isActive = true;
             this.Lieu.entry_time = this.heure.toString()
               this.authService.putLieu(this.Lieu).subscribe((res) => {
@@ -140,7 +140,7 @@ export class AuthentificationComponent implements OnInit {
   saveConnection() {
     this.date = new Date();
     this.heure = new Date();
-    this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+    this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
     this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
     var val = {
