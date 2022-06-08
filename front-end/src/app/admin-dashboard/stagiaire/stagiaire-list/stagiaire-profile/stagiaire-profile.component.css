@@ -300,122 +300,161 @@ button {
   letter-spacing: 2px;
 }
 /* table */
+/* 
 
-@media screen and (max-width: 1300px) {
+/* responsive */
+@media screen and (max-width: 460px) {
+  .tbl tbody tr td .bouton {
+    width: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
   /* page-profil */
   .page-profil {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 40% 60%;
-    grid-template-rows: 80px 1fr;
-    grid-template-areas:
-      "card-profil pointage"
-      "chart pointage";
-    padding-right: 0px;
-    /* margin: 5px; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
   }
   /* page-profil */
   .card-profil {
     grid-area: card-profil;
-    background: var(--color-blue);
-    border-radius: 5px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-bg);
-    margin: 10px;
-  }
-  .chart {
-    grid-area: chart;
-    box-sizing: border-box;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 5px;
+    /* border-radius: 10px; */
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px auto 1fr;
-    grid-template-areas:
-      "img"
-      "nom"
-      "apropos";
-    margin: 0px auto 10px;
+    grid-template-rows: auto auto 1fr;
+    border: 2px solid var(--color-text);
+  }
+  .card-profil .img-card {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 10px 20px 10px 20px; */
+    /* border: 2px solid red; */
+  }
+  .card-profil .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--color-blue);
-    border-top: 4px solid var(--color-blue);
-    margin: 10px;
+  }
+  .card-profil .content-card {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    /* border: 5px solid yellow; */
+  }
+  .chart {
+    margin: 20px auto;
   }
   .pointage {
     grid-area: pointage;
-    box-sizing: border-box;
+    width: 100%;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 10px;
-    width: 92%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* margin: 10px auto; */
     margin: 10px auto;
-    padding: 10px;
-    color: var(--color-blue);
+    border-radius: 10px;
+    height: max-content;
+  }
+  /*liste tableau*/
+
+  .tbl thead {
+    display: none;
+  }
+  .tbl,
+  .tbl tbody,
+  .tbl tr,
+  .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .tbl tr {
+    margin-bottom: 15px;
+  }
+  .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
     font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 14px;
+    text-align: left;
   }
 }
-
 @media screen and (max-width: 900px) {
   /* page-profil */
   .page-profil {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 80px auto 1fr;
-    grid-template-areas:
-      "card-profil "
-      "chart "
-      "pointage";
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
     padding-right: 0px;
-    /* margin: 5px; */
-    padding: 10px;
+    padding: 5px;
   }
   /* page-profil */
   .card-profil {
     grid-area: card-profil;
-    background: var(--color-blue);
-    border-radius: 0px;
+    background: var(--color-bg);
+    box-shadow: 1px 2px 3px rgb(198, 195, 195);
+    /* border-radius: 10px; */
     width: 100%;
+    /* display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--color-blue);
+  margin: 10px auto; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    border: 2px solid var(--color-text);
+    padding: 5px;
+  }
+  .card-profil .img-card {
+    width: 100%;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color-bg);
-    margin: 0px;
+    /* margin: 10px 20px 10px 20px; */
+    /* border: 2px solid red; */
   }
-  .chart {
-    grid-area: chart;
-    box-sizing: border-box;
-    background: var(--color-bg);
-    box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 0px;
+  .card-profil .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    /* border: 2px solid red; */
+  }
+  .card-profil .content-card {
     width: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px auto 1fr;
-    grid-template-areas:
-      "img"
-      "nom"
-      "apropos";
-    margin: 0px auto 10px;
-    color: var(--color-blue);
-    border-top: 0px;
-    margin: 0px;
-    padding: 10px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    /* border: 5px solid yellow; */
   }
-  .chart .apropos .apropos-list {
+  .card-profil .content-card .range {
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-size: 16px;
@@ -423,23 +462,50 @@ button {
     text-transform: capitalize;
     letter-spacing: 2px;
     color: var(--color-text);
-    margin: 15px 50px;
+    margin: 5px 10px;
+    padding-top: 7px;
+    border-top: 2px solid var(--color-text);
+  }
+  .chart {
+    margin: 20px auto;
   }
   .pointage {
     grid-area: pointage;
-    box-sizing: border-box;
+    width: 100%;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    border-radius: 0px;
-    width: 100%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* margin: 10px auto; */
     margin: 10px auto;
-    padding: 10px;
-    color: var(--color-blue);
+    border-radius: 0px;
+    height: max-content;
+  }
+  /*liste tableau*/
+
+  .tbl thead {
+    display: none;
+  }
+  .tbl,
+  .tbl tbody,
+  .tbl tr,
+  .tbl td {
+    display: block;
+    width: 100%;
+  }
+  .tbl tr {
+    margin-bottom: 15px;
+  }
+  .tbl tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .tbl td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
     font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 14px;
+    text-align: left;
   }
 }

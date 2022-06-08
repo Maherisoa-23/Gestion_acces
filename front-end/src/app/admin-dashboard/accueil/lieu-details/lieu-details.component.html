@@ -10,7 +10,7 @@
       <h1>Securites actifs</h1>
     </div>
     <div class="security-content">
-      <div class="card" *ngFor="let item of securities" (click)="ShowSecurityProfile(item)">
+      <div class="card" *ngFor="let item of securities" (click)="ShowEmployeeProfile(item)">
         <div class="logo" ><i class="fas fa-user-alt"></i></div>
         <div class="info" >
           <div class="nom">
@@ -49,16 +49,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="chart">
-    <div class="chart-title">
-      <h1>Charte Graphique</h1>
-    </div>
-
-    <div class="sary">
-      <div width="250" height="300">
-        <canvas id="myChartPointage"> {{ myChartPointage }}</canvas>
-      </div>
-    </div>
-  </div> -->
 </div>

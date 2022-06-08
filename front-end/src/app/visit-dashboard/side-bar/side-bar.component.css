@@ -126,6 +126,7 @@ ul {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
+  padding-left: 0px;
 }
 ul li {
   height: 70px;

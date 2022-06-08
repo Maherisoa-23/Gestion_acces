@@ -115,34 +115,6 @@ export class StagiaireListComponent implements OnInit {
     }
   }
 
-  updateStagiaire() {
-    if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.date_debut == "" || this.date_fin == "") {
-      this.showError("Vérifier bien tous les informations")
-    }
-    else {
-      const val = {
-        stagiaire_id : this.stagiaire_id,
-        stagiaire_name : this.stagiaire_name,
-        description : this.description,
-        pointed_at : this.pointed_at,
-        start_date : this.date_debut.toString(),
-        end_date : this.date_fin.toString(),
-        department_name : this.direction.toString(),
-        function : "stagiaire",
-        photoName : this.photoName,
-      }
-      this.authServ.updateStagiaireEntity(val).subscribe((res) => {
-        if (res.toString() == "Updated Successfully!!") {
-          this.reinitialisationDonnee()
-          this.showSuccess("Stagiaire modifié avec succès")
-        }
-      })
-      setTimeout(() => {
-        this.refreshStagiaireList()
-      }, 500);
-    }
-  }
-
   EditStagiaire(stagiaire : any) {
     this.isEdit = true
     this.stagiaire_name = stagiaire.stagiaire_name;
@@ -174,6 +146,7 @@ export class StagiaireListComponent implements OnInit {
   }
 
   showStagiaireProfile(item : any) {
+    this.stgServ.stagiaire_id = item.stagiaire_id
     this.stgServ.stagiaire_name = item.stagiaire_name;
     this.stgServ.departement = item.department_name;
     this.stgServ.description = item.description;

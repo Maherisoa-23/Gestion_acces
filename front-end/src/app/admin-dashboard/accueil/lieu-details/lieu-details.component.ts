@@ -19,6 +19,7 @@ export class LieuDetailsComponent implements OnInit {
   nb_pointage: any;
   nb_employee: any;
   id_lieu = 0;
+  tabSecurity : any = []
 
   //Pour le chart.js
   today: any;
@@ -39,6 +40,7 @@ export class LieuDetailsComponent implements OnInit {
     this.id_lieu = this.getLieuId(this.lieu);
 
     this.lieu = this.authServ.lieu;
+    this.refreshSecurityList();
     this.getActifSecurity();
     this.getLastSevenDay();
     this.getPointageByLieuDate(this.lieu);
@@ -47,6 +49,7 @@ export class LieuDetailsComponent implements OnInit {
       this.chartit();
     }, 1000);
   }
+
   getLieuId(lieu: string) {
     if (lieu == 'Ambohijatovo') return 1;
     else {
@@ -106,35 +109,64 @@ export class LieuDetailsComponent implements OnInit {
           backgroundColor: '#ca212680',
         },
       ]
-};
-let htmlRefPointage =
-  this.elementRef.nativeElement.querySelector(`#myChartPointage`);
-this.myChartPointage = new Chart(htmlRefPointage, {
-  type: 'bar',
-  data: data_pointage,
-});
+    };
+    let htmlRefPointage =
+      this.elementRef.nativeElement.querySelector(`#myChartPointage`);
+    this.myChartPointage = new Chart(htmlRefPointage, {
+      type: 'bar',
+      data: data_pointage,
+    });
   }
 
-getLastSevenDay() {
-  this.today = new Date();
-  for (let index = 1; index < 8; index++) {
-    this.date = new Date(this.today.setDate(this.today.getDate() - 1));
-    this.dateTab.push(
-      this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
-    );
+  refreshSecurityList() {
+    let tmp : any;
+    this.authServ
+      .getEmployeeList()
+      .subscribe((data) => {
+        tmp = data;
+      });
+    setTimeout(() => {
+      for (let index = 0; index < tmp.length; index++) {
+        const element = tmp[index];
+        if (element.function == "AGENT DE SECURITE") {
+          this.tabSecurity.push(element)
+        }
+      }
+    }, 500);
   }
-}
-showAccueil() {
-  this.route.navigate(['admin/']);
-}
 
-ShowSecurityProfile(security: any) {
-  this.authServ.refreshPointageList();
-  setTimeout(() => {
-    this.SecurityServ.matricule_security = security.numero_matricule;
-    this.SecurityServ.security_name = security.employee_name;
-    this.SecurityServ.pointed_at = security.lieu;
-    this.route.navigate(['admin/security-profile']);
-  }, 500);
-}
+  getSecurity(name : string) {
+    for (let index = 0; index < this.tabSecurity.length; index++) {
+      const element = this.tabSecurity[index];
+      if (element.employee_name == name) return element
+    }
+    return null
+  }
+
+  getLastSevenDay() {
+    this.today = new Date();
+    for (let index = 1; index < 8; index++) {
+      this.date = new Date(this.today.setDate(this.today.getDate() - 1));
+      this.dateTab.push(
+        this.datePipe.transform(this.date, 'yyyy-MM-dd')?.toString()
+      );
+    }
+  }
+  showAccueil() {
+    this.route.navigate(['admin/']);
+  }
+
+  ShowEmployeeProfile(emp: any) {
+    this.authServ.refreshPointageList();
+    const security = this.getSecurity(emp.employee_name)
+    setTimeout(() => {
+      this.SecurityServ.matricule_security = security.numero_matricule;
+      this.SecurityServ.security_name = security.employee_name;
+      this.SecurityServ.pointed_at = security.pointed_at;
+      this.SecurityServ.photoName = security.photoName;
+      this.SecurityServ.fonction = security.function;
+      this.SecurityServ.direction = security.department_name;
+      this.route.navigate(['admin/employee-profile']);
+    }, 500);
+  }
 }

@@ -245,7 +245,15 @@
 }
 
 /*modal*/
-
+.modal-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-titre);
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
+}
 /* Full-width input fields */
 input[type="text"],
 input[type="number"],
@@ -288,13 +296,17 @@ button:hover {
   text-align: center;
   margin: 24px 0 12px 0;
   position: relative;
+  cursor: pointer;
+}
+.imgcontainer :hover {
+  color: var(--color-red);
 }
 
 .container-perso {
   padding: 16px;
 }
 .container-perso ul {
-  display: flex;
+  display: block;
   justify-content: flex-end;
   padding-right: 20px;
   list-style-type: none;
@@ -307,7 +319,7 @@ button:hover {
 .container-perso ul li {
   margin: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.1s;
   /* color: var(--color-titre); */
 }
 
@@ -383,7 +395,7 @@ span.psw {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
-  top: 0;
+  top: 30px;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */

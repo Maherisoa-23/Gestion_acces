@@ -54,6 +54,34 @@
       </button>
     </div>
   </div>
+</ng-template> 
+
+<!--modal confirm-->
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h1>Supression Employée</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Êtes vous sûr de supprimer l'employée : {{ employee_name }} ?</b></label>
+      <button
+        type="submit"
+        class="btn-modif"
+        (click)="deleteEmployee()"
+      >
+        Supprimer Employée
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        (click) = "closeModal()"
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
 </ng-template>
 
 <button (click)="goBack()">Retour</button
@@ -84,7 +112,7 @@
         <div class="apropos-list-value">
           {{ last_pointage_date }} {{ last_pointage_lieu }}
         </div>
-      </div>
+      </div> 
     </div>
     <div class="edit">
       <button
@@ -93,7 +121,7 @@
       >
         Modifier
       </button>
-      <button class="supprimer" (click)="deleteEmployee()">Supprimer</button>
+      <button class="supprimer" (click)="showModal(delete)">Supprimer</button>
     </div>
   </div>
 

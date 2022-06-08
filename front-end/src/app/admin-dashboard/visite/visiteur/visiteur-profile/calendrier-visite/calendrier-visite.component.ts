@@ -28,7 +28,6 @@ export class CalendrierVisiteComponent implements OnInit {
   ngOnInit(): void {
     this.refreshVisitsRegisterList();
     setTimeout(() => {
-      console.log(this.visits_register)
       this.getPresentDate()
     }, 1000);
     setTimeout(() => {

@@ -26,7 +26,6 @@ export class UniquePointageComponent implements OnInit {
     if (this.authServ.employee_name == "") this.location.back();
     this.employee_name = this.authServ.employee_name;
     this.date = this.authServ.dateDailyPointage;
-    console.log("name : " + this.employee_name + +" date : " + this.date)
     this.getDailyPointage();
     setTimeout(() => {
       this.isShow = true
@@ -42,9 +41,6 @@ export class UniquePointageComponent implements OnInit {
     this.authServ.getPointageByLieuAndDate(val).subscribe((data) => {
       this.dailyPointages = data;
     });
-    setTimeout(() => {
-      console.log(this.dailyPointages)
-    }, 1000);
   }
   showAccueil() {
     this.route.navigate(['../'], { relativeTo: this.activatedRoute });
