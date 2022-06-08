@@ -45,7 +45,7 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshSecurityList();
-    this.photoPath = this.authServ.PhotoUrl + this.photoName;
+    
     if (localStorage.getItem('admin1') != null) {
       this.admin = JSON.parse(localStorage.getItem('admin1') || '{}');
     }
@@ -55,6 +55,10 @@ export class AccueilComponent implements OnInit {
     }, 1000);
     this.day = this.daysArray[this.date.getDay()];
     this.refresh();
+  }
+  getPhotoPath(name :string){
+    console.log(this.authServ.PhotoUrl + name)
+    return this.authServ.PhotoUrl + name
   }
 
   //Methode de l'horloge
