@@ -64,6 +64,9 @@ export class StagiaireListComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
+        language: {
+          url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json',
+        }
       };
     }, 600);
 

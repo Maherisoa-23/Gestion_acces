@@ -154,6 +154,7 @@
 .section1 .card .logo img {
   width: 80px;
   height: 80px;
+  clip-path: circle();
 }
 .section1 .card .info {
   display: grid;

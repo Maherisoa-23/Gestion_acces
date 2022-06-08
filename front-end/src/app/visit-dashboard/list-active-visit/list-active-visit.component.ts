@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
 import {
