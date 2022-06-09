@@ -181,6 +181,7 @@ def pointage_register_API(request: HttpRequest, id=0):
             return JsonResponse("Added successfully",safe=False)
         return JsonResponse("failded to add", safe= False)
     elif request.method == 'PUT':
+        #Delete pointage actif ito
         pointage_data = JSONParser().parse(request)
         pointage=Pointage.objects.get(employee_name =pointage_data["employee_name"])
         pointage.delete()

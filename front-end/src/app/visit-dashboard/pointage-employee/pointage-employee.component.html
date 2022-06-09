@@ -65,7 +65,7 @@
                 .toLowerCase()
                 .includes(enteredValue.toLowerCase()) && enteredValue
             "
-            (click)="suggestedVehicule(item.numero_matricule)" 
+            (click)="suggestedVehicule(item)" 
           >
             {{ item.numero_matricule   }}- {{ item.vehicule_name}}
             <span>{{ item.department_name }} Vehicule</span>
@@ -108,9 +108,9 @@
                 .toLowerCase()
                 .includes(enteredValue.toLowerCase()) && enteredValue
             "
-            (click)="suggestedExit(item.employee_name)"
+            (click)="suggestedExit(item.employee_name, item)"
           >
-            {{ item.employee_name }} <span>{{ item.employee_dep_name }}</span>
+          {{ item.numero_matricule }} : {{ item.employee_name }} <span>{{ item.employee_dep_name }}</span>
             <span *ngIf="item.function == 'stagiaire'"> Stagiaire</span>
           </li>
         </ul>

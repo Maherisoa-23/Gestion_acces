@@ -39,6 +39,7 @@ export class PointageEmployeeComponent implements OnInit {
 
   vehicules: any = []
   isVehicule = false
+  matricule_vhc: any ;
 
   pointed_at: any; // si l"employée est déjà pointé à un autre locaux
 
@@ -205,7 +206,7 @@ export class PointageEmployeeComponent implements OnInit {
   }
   pointageVehicule() {
     const val = {
-      numero_matricule: this.enteredValue,
+      numero_matricule: this.matricule_vhc,
       date: this.date.toString(),
       lieu: this.lieu,
       entry_time: this.heure.toString()
@@ -221,7 +222,7 @@ export class PointageEmployeeComponent implements OnInit {
     })
     //Pour modifier le pointed_at
     const stg = {
-      numero_matricule: this.enteredValue,
+      numero_matricule: this.matricule_vhc,
       pointed_at: this.lieu,
     }
     this.authServ.putVehicule(stg).subscribe((res) => { });
@@ -294,12 +295,14 @@ export class PointageEmployeeComponent implements OnInit {
         this.sortieStg()
       }
       else {
-        this.sortieEmployee()
+        if (this.isVehicule) {
+          this.sortieVehicule()
+        }
+        else this.sortieEmployee()
       }
 
       //animation sortie
       this.pointages = this.pointages.filter((f: any) => { return f.employee_name != this.enteredValue })
-
     }
   }
 sortieEmployee() {
@@ -310,9 +313,7 @@ sortieEmployee() {
   };
   this.authServ.putEmployee(emp).subscribe((res) => {
   });
-  this.authServ
-    .deletePointage(emp)
-    .subscribe((data) => {
+  this.authServ.deletePointage(emp).subscribe((data) => {
       if (data.toString() == 'Delete successfully') {
         this.showSuccess('Pointage de sortie bien reussi');
         this.closeModal();
@@ -343,6 +344,25 @@ sortieStg() {
         this.showError("Erreur interne")
       }
     });
+}
+sortieVehicule() {
+  console.log("Ato am sorite vehicule tsika zao ohhh")
+  //Pour modifier le pointed_at
+  const stg = {
+    numero_matricule: this.matricule_vhc,
+    employee_name : this.enteredValue,
+    pointed_at: "non actif"
+  }
+  this.authServ.putVehicule(stg).subscribe((res) => { });
+  this.authServ.deletePointage(stg).subscribe((data) => {
+    if (data.toString() == 'Delete successfully') {
+      this.showSuccess('Pointage de sortie bien reussi');
+      this.closeModal();
+      this.enteredValue = '';
+    } else {
+      this.showError("Erreur interne")
+    }
+  });
 }
 
   //Pour les stagiaires
@@ -397,24 +417,39 @@ sortieStg() {
     this.isStagiaire = true
     this.enteredValue = employee_name;
   }
-  suggestedVehicule(employee_name: string) {
+  suggestedVehicule(item: any) {
     this.isStagiaire = false
     this.isVehicule = true
-    this.enteredValue = employee_name;
+    this.enteredValue = item.vehicule_name;
+    this.matricule_vhc = item.numero_matricule
   }
-  suggestedExit(name: any) {
+  suggestedExit(name : string,item: any) {
     this.enteredValue = name;
-    if (this.isStg(name)) {
+    if (this.isStg(item)) {
+      this.isVehicule = false
       this.isStagiaire = true
-      console.log(this.isStagiaire)
     }
-    else this.isStagiaire = false
+    else if (this.isVhc(item)) {
+      this.matricule_vhc = item.numero_matricule
+      this.isVehicule = true
+      this.isStagiaire = false
+    }
+    else {
+      this.isVehicule = this.isStagiaire = false
+    }
   }
 
-  isStg(name: string) {
+  isStg(item: any) {
     for (let index = 0; index < this.stagiaires.length; index++) {
       const element = this.stagiaires[index];
-      if (element.stagiaire_name == name) return true
+      if (element.stagiaire_name == item.employee_name) return true
+    }
+    return false
+  }
+  isVhc(item: any) {
+    for (let index = 0; index < this.vehicules.length; index++) {
+      const element = this.vehicules[index];
+      if (element.vehicule_name == item.employee_name) return true
     }
     return false
   }
@@ -423,7 +458,7 @@ sortieStg() {
     //Pour animation d'ajout
     const matricule = this.getNumeroMatricule(this.enteredValue)
     var val1 = {
-      numero_matricule: matricule,
+      numero_matricule: this.matricule_vhc,
       employee_name: this.enteredValue,
       date: this.date.toString(),
       employee_dep_name: this.getDep(this.enteredValue),
