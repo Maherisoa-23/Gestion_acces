@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
-import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';

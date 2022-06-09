@@ -4,8 +4,8 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
-from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire
-from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer
+from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire, Vehicule
+from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer, Vehicule_serializer
 from VisitApp.models import Lieu
 
 from django.core.files.storage import default_storage
@@ -106,6 +106,33 @@ def stagiaire_API(request: HttpRequest, id=0):
         stagiaire=Stagiaire.objects.get(pk = id)
         stagiaire.delete()
         return JsonResponse("deleted successfully", safe = False) 
+    return JsonResponse("Failded to delete", safe = False)
+
+@csrf_exempt
+def vehicule_API(request: HttpRequest, id=0):
+    if request.method == 'GET':
+        vehicule = Vehicule.objects.all()
+        vehicule_serializer = Vehicule_serializer(vehicule, many=True)
+        return JsonResponse(vehicule_serializer.data, safe=False)
+    elif request.method== 'POST':
+        vehicule_data = JSONParser().parse(request)
+        vehicule_serializer = Vehicule_serializer(data=vehicule_data)
+        if vehicule_serializer.is_valid():
+            vehicule_serializer.save()
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    elif request.method == 'PUT':
+        vehicule_data = JSONParser().parse(request)
+        vehicule=Vehicule.objects.get(pk=vehicule_data['vehicule_id'])
+        vehicule_serializer=Vehicule_serializer(vehicule,data=vehicule_data)
+        if vehicule_serializer.is_valid():
+            vehicule_serializer.save()
+            return JsonResponse("Updated Successfully!!", safe=False)
+        return JsonResponse("Failed to Update.", safe=False)
+    elif request.method == 'DELETE':
+        vehicule=Vehicule.objects.get(pk = id)
+        vehicule.delete()
+        return JsonResponse("deleted successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt 
@@ -254,4 +281,10 @@ def pointageEmp(request):
     employee.save()
     return JsonResponse("Update successfully",safe=False)
 
-
+@csrf_exempt
+def pointageVehicule(request):
+    vehicule_data = JSONParser().parse(request)
+    vehicule= Employee.objects.get(numero_matricule = vehicule_data['numero_matricule'] )
+    vehicule.pointed_at = vehicule_data["pointed_at"]
+    vehicule.save()
+    return JsonResponse("Update successfully",safe=False)

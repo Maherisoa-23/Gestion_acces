@@ -12,6 +12,8 @@ urlpatterns = [
     re_path(r'^pointageEmp/$',views.pointageEmp),
     re_path(r'^stagiaire/$',views.stagiaire_API),
     re_path(r'^stagiaire/([0-9]+)$',views.stagiaire_API),
+    re_path(r'^vehicule/$',views.vehicule_API),
+    re_path(r'^vehicule/([0-9]+)$',views.vehicule_API),
     re_path(r'^pointageStg/$',views.pointageStg),
     re_path(r'^pointage/([0-9]+)$',views.pointage_API),
     re_path(r'^pointage/$',views.pointage_API),
