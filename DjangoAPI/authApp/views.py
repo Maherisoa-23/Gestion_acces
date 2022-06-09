@@ -165,13 +165,7 @@ def pointage_API(request: HttpRequest, id = 0):
         if pointage_serializer.is_valid():
             pointage_serializer.save()
             return JsonResponse("Pointage stagiaire added successfully",safe=False)
-        return JsonResponse("Pointage stagiaire failded to add", safe= False)   
-    ''' elif request.method == 'DELETE': #tsy mandeha
-        pointage_data = JSONParser().parse(request)
-        pointage=Pointage.objects.get(employee_name =pointage_data["employee_name"])
-        pointage.delete()
-        return JsonResponse("Delete successfully", safe = False)
-    return JsonResponse("Failded to delete", safe = False) '''
+        return JsonResponse("Pointage stagiaire failded to add", safe= False)
 
 @csrf_exempt
 def pointage_register_API(request: HttpRequest, id=0):
@@ -264,6 +258,8 @@ def SaveFile(request):
     
     return JsonResponse(file_name,safe=False)
 
+
+#Pour les pointed_at
 @csrf_exempt
 def pointageStg(request):
     stagiaire_data = JSONParser().parse(request)
@@ -283,8 +279,24 @@ def pointageEmp(request):
 
 @csrf_exempt
 def pointageVehicule(request):
-    vehicule_data = JSONParser().parse(request)
-    vehicule= Employee.objects.get(numero_matricule = vehicule_data['numero_matricule'] )
-    vehicule.pointed_at = vehicule_data["pointed_at"]
-    vehicule.save()
-    return JsonResponse("Update successfully",safe=False)
+    if request.method== 'POST':
+        pointage_data = JSONParser().parse(request)
+        vehicule = Vehicule.objects.get(numero_matricule=pointage_data["numero_matricule"])
+        pointage_data["employee_name"] = vehicule.vehicule_name
+        pointage_data["employee_dep_name"] = vehicule.department_name         
+        pointage_data["function"] = "vehicule"   
+        pointage_serializer = Pointage_serializer(data=pointage_data)
+        if pointage_serializer.is_valid():
+            pointage_serializer.save()
+            return JsonResponse("Pointage vehicule added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)    
+    #changer le pointed_at vehicule
+    elif request.method== 'PUT':
+        vehicule_data = JSONParser().parse(request)
+        vehicule= Vehicule.objects.get(numero_matricule = vehicule_data['numero_matricule'] )
+        vehicule.pointed_at = vehicule_data["pointed_at"]
+        vehicule.save()
+        return JsonResponse("Updated successfully",safe=False)
+        
+    return JsonResponse("Pointage vehicule failded to add", safe= False)
+    

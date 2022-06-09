@@ -43,7 +43,7 @@ class Pointage(models.Model):
     numero_matricule = models.CharField(max_length=30, null=True)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
-    function   = models.CharField(max_length=200)
+    function   = models.CharField(max_length=200, null=True)
     date = models.CharField(max_length=50)
     lieu = models.CharField(max_length=30)
     entry_time = models.CharField(max_length=50) 

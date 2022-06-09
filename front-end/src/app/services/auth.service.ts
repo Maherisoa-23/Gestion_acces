@@ -45,95 +45,99 @@ export class AuthService {
   getUsersList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/user/');
   }
+
   //liste des sécurité présent
   getActiveUsersList(val : any): Observable<any[]> {
     return this.http.post<any[]>(this.APIUrl + '/user/', val);
   }
 
   //Methode pour les employés
-
   getEmployeeList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/employee/');
   }
-
   addEmployee(val: any) {
     return this.http.post(this.APIUrl + '/employee/', val);
   }
-
   updateEmployeeEntity(val: any) {
     return this.http.put(this.APIUrl + '/employee/', val);
   }
-
   deleteEmployee(id: number) {
     return this.http.delete(this.APIUrl + '/employee/' + id);
   }
-
-
   //modifer employee table lors d'un pointage
   putEmployee(val: any) {
     return this.http.put(this.APIUrl + '/pointageEmp/', val);
   }
 
+  //Methode pour les directions
   getDepartmentList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/department/');
   }
 
+  //Methode pour les lieux
   getLieuList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/lieu/');
   }
-
   putLieu(val: any) {
     return this.http.put(this.APIUrl + '/lieu/', val);
   }
 
   //Methode pour les stagiaires
-
   getStagiaireList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/stagiaire/');
   }
-
+  addStagiaire(val: any) {
+    return this.http.post(this.APIUrl + '/stagiaire/', val);
+  }
+  updateStagiaireEntity(val: any) {
+    return this.http.put(this.APIUrl + '/stagiaire/', val);
+  }
+  deleteStagiaire(id : any) {
+    return this.http.delete(this.APIUrl + '/stagiaire/' + id);
+  }
   //modifer stagiaire table lors d'un pointage
   putStagiaire(val: any) {
     return this.http.put(this.APIUrl + '/pointageStg/', val);
   }
 
-  addStagiaire(val: any) {
-    return this.http.post(this.APIUrl + '/stagiaire/', val);
+  //Methode pour les véhicules
+  getVehiculeList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/vehicule/');
   }
-
-  updateStagiaireEntity(val: any) {
-    return this.http.put(this.APIUrl + '/stagiaire/', val);
+  addVehicule(val: any) {
+    return this.http.post(this.APIUrl + '/vehicule/', val);
   }
-
-  deleteStagiaire(id : any) {
-    return this.http.delete(this.APIUrl + '/stagiaire/' + id);
+  updateVehiculeEntity(val: any) {
+    return this.http.put(this.APIUrl + '/vehicule/', val);
   }
-
+  deleteVehicule(id : any) {
+    return this.http.delete(this.APIUrl + '/vehicule/' + id);
+  }
   //Methode pour les pointages
-
   getPointageList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage/');
   }
-
   refreshPointageList() {
     this.getPointageList().subscribe((data) => {
       this.pointages = data;
     });
   }
-
   getPointageRegisterList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage_register/');
   }
-
-  //pour employé
+  //pour pointage employé
   addPointage(val: any) {
     return this.http.post(this.APIUrl + '/pointage/', val);
   }
-  //pour stagiaire
+  //pour pointage stagiaire
   addPointageStg(val: any) {
     return this.http.put(this.APIUrl + '/pointage/', val);
   }
-
+  //pour pointage vehicule
+  addPointageVehicule(val: any) {
+    return this.http.post(this.APIUrl + '/pointageVehicule/', val);
+  }
+  //Pointage register
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
   }
