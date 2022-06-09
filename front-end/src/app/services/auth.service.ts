@@ -113,6 +113,10 @@ export class AuthService {
   deleteVehicule(id : any) {
     return this.http.delete(this.APIUrl + '/vehicule/' + id);
   }
+  //Pour changer le pointed at
+  putVehicule(val : any) {
+    return this.http.put(this.APIUrl + '/pointageVehicule/', val);
+  }
   //Methode pour les pointages
   getPointageList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage/');
@@ -141,7 +145,6 @@ export class AuthService {
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
   }
-
   deletePointage(val: any) {
     return this.http.put(this.APIUrl + '/pointage_register/', val);
   }

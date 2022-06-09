@@ -52,7 +52,7 @@ class Pointage(models.Model):
     end_date = models.CharField(max_length=50, null=True)
     
 class Pointage_register(models.Model):
-    numero_matricule = models.ForeignKey(Employee ,on_delete=models.CASCADE, null = True)
+    numero_matricule = models.CharField(max_length=30,null = True)
     employee_name =  models.CharField(max_length=50, null= True)
     employee_dep_name = models.CharField(max_length=50, null= True)
     function   = models.CharField(max_length=200)

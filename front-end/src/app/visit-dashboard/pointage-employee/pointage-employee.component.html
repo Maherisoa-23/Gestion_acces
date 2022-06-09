@@ -26,8 +26,9 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-        <label><b>Nom : </b></label>
+        <label><b>Nom employée ou la matriculation d'un véhicule: </b></label>
         <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
+        <!-- Suggestion employee -->
         <ul *ngFor="let item of employees">
           <li
             *ngIf="
@@ -40,6 +41,8 @@
             {{ item.employee_name }}- <span>{{ item.department_name }}</span>
           </li>
         </ul>
+
+        <!-- Suggestion stagiaire -->
         <ul *ngFor="let item of stagiaires">
           <li
             *ngIf="
@@ -51,6 +54,21 @@
           >
             {{ item.stagiaire_name }}-
             <span>{{ item.department_name }} Stagiaire</span>
+          </li>
+        </ul>
+
+        <!-- Suggestion vehicule -->
+        <ul *ngFor="let item of vehicules">
+          <li
+            *ngIf="
+              item.numero_matricule
+                .toLowerCase()
+                .includes(enteredValue.toLowerCase()) && enteredValue
+            "
+            (click)="suggestedVehicule(item.numero_matricule)" 
+          >
+            {{ item.numero_matricule   }}- {{ item.vehicule_name}}
+            <span>{{ item.department_name }} Vehicule</span>
           </li>
         </ul>
       </div>
