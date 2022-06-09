@@ -6,7 +6,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 import { DatePipe } from '@angular/common';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -33,8 +33,6 @@ export class StagiaireListComponent implements OnInit {
   photoPath = ""
   stagiaire_id = ""
   pointed_at = ""
-
-  isEdit = false
 
   constructor(
     private authServ: AuthService,
@@ -145,18 +143,6 @@ export class StagiaireListComponent implements OnInit {
     return false
   }
 
-  EditStagiaire(stagiaire : any) {
-    this.isEdit = true
-    this.stagiaire_name = stagiaire.stagiaire_name;
-    this.description = stagiaire.description;
-    this.date_debut = stagiaire.start_date;
-    this.date_fin = stagiaire.end_date;
-    this.direction = stagiaire.department_name;
-    this.photoPath = this.authServ.PhotoUrl + stagiaire.photoName
-    this.stagiaire_id = stagiaire.stagiaire_id;
-    this.pointed_at = stagiaire.pointed_at;
-  }
-
   uploadPhoto(event : any) {
     var file = event.target.files[0];
     const formData : FormData = new FormData()
@@ -169,10 +155,8 @@ export class StagiaireListComponent implements OnInit {
   }
 
   reinitialisationDonnee() {
-    this.isEdit = false
     this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
     this.photoName = "anonymous.png";
-    this.photoPath = this.authServ.PhotoUrl + this.photoName
   }
 
   showStagiaireProfile(item : any) {
