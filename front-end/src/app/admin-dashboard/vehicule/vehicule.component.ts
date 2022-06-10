@@ -149,7 +149,7 @@ export class VehiculeComponent implements OnInit {
     this.stgServ.start_date = item.start_date;
     this.stgServ.end_date = item.end_date;
     this.stgServ.photoPath = this.authServ.PhotoUrl + item.photoName;
-    this.securityServ.security_name = item.stagiaire_name;
+    this.securityServ.security_name = item.numero_matricule;
     this.route.navigate(['admin/vehicule-profile']);
   }
 
