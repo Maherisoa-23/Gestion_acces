@@ -110,7 +110,10 @@
             "
             (click)="suggestedExit(item.employee_name, item)"
           >
-          {{ item.numero_matricule }} : {{ item.employee_name }} <span>{{ item.employee_dep_name }}</span>
+          {{ item.numero_matricule }} : 
+            <span *ngIf="item.function == 'vehicule'">véhicule</span>
+            <span *ngIf="item.function != 'vehicule'">{{ item.employee_name }}</span>
+            <span> {{ item.employee_dep_name }}</span>
             <span *ngIf="item.function == 'stagiaire'"> Stagiaire</span>
           </li>
         </ul>

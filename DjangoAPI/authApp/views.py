@@ -283,7 +283,7 @@ def pointageVehicule(request):
     if request.method== 'POST':
         pointage_data = JSONParser().parse(request)
         vehicule = Vehicule.objects.get(numero_matricule=pointage_data["numero_matricule"])
-        pointage_data["employee_name"] = vehicule.vehicule_name
+        pointage_data["employee_name"] = vehicule.numero_matricule
         pointage_data["employee_dep_name"] = vehicule.department_name         
         pointage_data["function"] = "vehicule"   
         pointage_serializer = Pointage_serializer(data=pointage_data)

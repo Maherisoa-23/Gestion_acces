@@ -1,0 +1,117 @@
+<!-- profil security body -->
+<div class="page-profil animation1 animation fade01">
+  <div class="chart animation2 animation fade02">
+    <div class="img"><img [src]="photoPath" alt="pdp" height="150px" /></div>
+    <div class="nom">
+      <h1>{{ stagiaire_name }}</h1>
+    </div>
+    <div class="apropos">
+      <div class="apropos-list">
+        <div class="apropos-list-item">Numero matricule</div>
+        <div class="apropos-list-value">{{ stagiaire_id }}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Type</div>
+        <div class="apropos-list-value">{{ stagiaire_name }}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Marque</div>
+        <div class="apropos-list-value">{{ description }}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Direction</div>
+        <div class="apropos-list-value">{{ direction }}</div>
+      </div>
+      <div class="apropos-list">
+        <div class="apropos-list-item">Status</div>
+        <div class="apropos-list-value">{{ status }}</div>
+      </div>
+    </div>
+    <div class="edit">
+      <button class="modifier" (click)="showModal(edit)">Modifier</button>
+      <button class="supprimer" (click)="showModal(delete)">Supprimer</button>
+    </div>
+  </div>
+  <div class="pointage animation3 animation fade03">
+    <app-clocking-schedule></app-clocking-schedule>
+    <div class="legende">
+      <h3>Ambohijatovo :</h3>
+      <div class="bar-color rouge"></div>
+    </div>
+    <div class="legende">
+      <h3>Andraharo :</h3>
+      <div class="bar-color vert"></div>
+    </div>
+    <div class="legende">
+      <h3>Mangasoavina :</h3>
+      <div class="bar-color bleu"></div>
+    </div>
+  </div>
+</div>
+<!-- profil security body -->
+
+<!--modal edit-->
+<ng-template #edit let-modal>
+  <div class="modal-header">
+    <h1>Modification vehicule</h1>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Nom vehicule </b></label>
+      <input
+        type="text"
+        name="employee_name"
+        [(ngModel)]="stagiaire_name"
+      /><br />
+
+      <label for="select"><b>Direction</b></label>
+      <select name="pets" id="select" [(ngModel)]="direction">
+        <option *ngIf="direction">{{ direction }}</option>
+        <option *ngFor="let item of depTab">
+          {{ item.department_short_name }}
+        </option>
+      </select>
+      <br />
+
+      <label><b> Photo de profil : </b></label>
+      <div class="img-card">
+        <input
+          class="btn-upload-photo"
+          type="file"
+          (change)="uploadPhoto($event)"
+        />
+        <img [src]="photoPath" alt="pdp" height="180px" />
+      </div>
+      <button type="submit" class="btn-modif" (click)="updateStagiaire()">
+        Modifier vehicule
+      </button>
+      <button class="btn-cancel" type="button" (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!--modal confirm-->
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h1>Supression vehicule</h1>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label
+        ><b
+          >Êtes vous sûr de supprimer le vehicule : {{ stagiaire_name }} ?</b
+        ></label
+      ><br /><br />
+      <button type="submit" class="btn-modif" (click)="deleteStagiaire()">
+        Supprimer vehicule
+      </button>
+      <button class="btn-cancel" type="button" (click)="closeModal()">
+        Annuler
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -107,10 +107,10 @@ export class PointageEmployeeComponent implements OnInit {
     if(this.isVehicule) {
       for (let index = 0; index < this.vehicules.length; index++) {
         const element = this.vehicules[index];
-        if (element.numero_matricule == name) {
+        if (element.numero_matricule == this.matricule_vhc) {
           return element.department_name
         }
-      }
+      } 
     }
     if (this.isStagiaire) {
       for (let index = 0; index < this.stagiaires.length; index++) {
@@ -140,7 +140,7 @@ export class PointageEmployeeComponent implements OnInit {
 
   getNumeroMatricule(name: string) {
     if (this.isVehicule) {
-      return name
+      return this.matricule_vhc
     }
     for (let index = 0; index < this.employees.length; index++) {
       const element = this.employees[index];
@@ -181,12 +181,12 @@ export class PointageEmployeeComponent implements OnInit {
       this.heure = new Date();  
       this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
       this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-      if (this.isVehicule) {
-        this.pointageVehicule()
+      if (this.isPointed()) {
+        this.showError(this.enteredValue + ' déjà présent à ' + this.pointed_at)
       }
       else {
-        if (this.isPointed()) {
-          this.showError('Employé déjà présent à ' + this.pointed_at)
+        if (this.isVehicule) {
+          this.pointageVehicule()
         }
         else {
           //pointage stagiaire
@@ -356,7 +356,7 @@ sortieVehicule() {
   this.authServ.putVehicule(stg).subscribe((res) => { });
   this.authServ.deletePointage(stg).subscribe((data) => {
     if (data.toString() == 'Delete successfully') {
-      this.showSuccess('Pointage de sortie bien reussi');
+      this.showSuccess('Pointage de sortie véhicule bien reussi');
       this.closeModal();
       this.enteredValue = '';
     } else {
@@ -420,7 +420,7 @@ sortieVehicule() {
   suggestedVehicule(item: any) {
     this.isStagiaire = false
     this.isVehicule = true
-    this.enteredValue = item.vehicule_name;
+    this.enteredValue = item.numero_matricule;
     this.matricule_vhc = item.numero_matricule
   }
   suggestedExit(name : string,item: any) {

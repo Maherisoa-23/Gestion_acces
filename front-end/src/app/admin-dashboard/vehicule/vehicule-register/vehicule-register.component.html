@@ -1,0 +1,52 @@
+<div class="titre animation1 animation fade01">
+  <h1>Registre | pointages vehicules</h1>
+</div>
+<div class="topnav animation1 animation fade01">
+  <a class="active"
+    ><i class="fas fa-calendar-alt" style="margin-right: 10px"></i>Date:
+    <input type="date" [(ngModel)]="DateSelected" class="dateadded" />
+  </a>
+</div>
+
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table
+    id="dataTables-example"
+    class="tbl"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
+    <thead>
+      <tr>
+        <th>Numero matricule</th>
+        <th>Type</th>
+        <th>Marque</th>
+        <th>Heure d'entree</th>
+        <th>Heure de sortie</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of vehicules">
+        <td data-label="Nom">
+          <strong>{{ item.numero_matricule }}</strong>
+        </td>
+        <td data-label="Date">
+          <b>{{ item.vehicule_name }}</b>
+        </td>
+        <td data-label="Heure d'entree">
+          <b>{{ item.vehicule_marque }}</b>
+        </td>
+        <td data-label="Heure de sortie">
+          <b>{{ item.date_of_entry }}</b>
+        </td>
+        <td data-label="Lieu">
+          <i>{{ item.date_of_exit }}</i>
+        </td>
+        <td data-label="Depart">{{ item.direction }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>
