@@ -22,12 +22,6 @@ export class ClockingScheduleComponent implements OnInit {
 
   constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) { }
 
-  handleDateClick(arg: any) {
-    this.authServ.employee_name = this.employee_name
-    this.authServ.dateDailyPointage = arg.dateStr;
-    this.route.navigate(['admin/unique-pointage']);
-  }
-
   ngOnInit(): void {
     this.refreshPointageRegisterList();
     if (this.SecurityServ.security_name != "")
@@ -36,17 +30,34 @@ export class ClockingScheduleComponent implements OnInit {
       this.getLastPointageBySec(this.employee_name);
     }, 500)
     setTimeout(() => {
-      this.getPresentDate()
-    }, 1000);
+      this.addEvent()
+    }, 500);
     setTimeout(() => {
       this.calendarOptions = {
-        initialView: 'dayGridMonth',
-        dateClick: this.handleDateClick.bind(this), // bind is important!
-        events: this.post
+        initialView: 'dayGridMonth', // bind is important!
+        events: this.post,
+        dateClick : this.handleDateClick.bind(this),
       };
-    }, 1000);
+    }, 700);
   }
 
+  checkIfEvent(date : string) {
+    for (let index = 0; index < this.post.length; index++) {
+      const element = this.post[index];
+      if (element.date == date) {
+        return true
+      }
+    }
+    return false
+  }
+  
+  handleDateClick(arg: any) {
+    if(this.checkIfEvent(arg.dateStr)){
+      this.authServ.employee_name = this.employee_name
+      this.authServ.dateDailyPointage = arg.dateStr;
+      this.route.navigate(['admin/unique-pointage']);
+    }  
+  }
 
   refreshPointageRegisterList() {
     this.authServ.getPointageRegisterList().subscribe((data) => {
@@ -61,7 +72,7 @@ export class ClockingScheduleComponent implements OnInit {
       }
     }
   }
-  getPresentDate() {
+  addEvent() {
     for (let index = 0; index < this.pointages.length; index++) {
       
       const element = this.pointages[index];
