@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-vehicule-register',
@@ -7,8 +9,9 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./vehicule-register.component.css'],
 })
 export class VehiculeRegisterComponent implements OnInit {
-  vehicules: any;
+  vehicules: any = [];
   DateSelected: any;
+  pointages : any = []
 
   dtOptions: DataTables.Settings = {};
   isShow = false;
@@ -17,21 +20,14 @@ export class VehiculeRegisterComponent implements OnInit {
   //filtrage personnalisé
   @ViewChild(DataTableDirective, { static: false })
   datatableElement: any = DataTableDirective;
-  constructor() {
-    this.vehicules = [
-      {
-        numero_matricule: '12TaB',
-        vehicule_name: 'Mazda',
-        vehicule_marque: '4*4',
-        direction: 'dsi',
-        date_of_entry: '7h',
-        date_of_exit: '7h',
-      },
-    ];
+  constructor(private authServ : AuthService, private route: Router) {
   }
 
   ngOnInit(): void {
-    this.setUpDatePicker();
+    this.refreshPointageVehiculeList()
+    setTimeout(() => {
+      this.setUpDatePicker();
+    }, 500);
   }
   setUpDatePicker() {
     setTimeout(() => {
@@ -52,5 +48,17 @@ export class VehiculeRegisterComponent implements OnInit {
 
       $('#dataTables-example').DataTable().columns(1).search(v).draw();
     });
+  }
+
+  refreshPointageVehiculeList() {
+    this.authServ.getVehiculePointage().subscribe((data) => {
+      this.vehicules = data
+    })
+  }
+
+  CheckDailyPointage(item: any) {
+    this.authServ.dateDailyPointage = item.date;
+    this.authServ.employee_name = item.employee_name;
+    this.route.navigate(['admin/unique-pointage']);
   }
 }

@@ -141,6 +141,7 @@ export class AuthService {
   addPointageVehicule(val: any) {
     return this.http.post(this.APIUrl + '/pointageVehicule/', val);
   }
+
   //Pointage register
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
@@ -148,6 +149,12 @@ export class AuthService {
   deletePointage(val: any) {
     return this.http.put(this.APIUrl + '/pointage_register/', val);
   }
+  //pointage register vehicule
+  getVehiculePointage():  Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/pointageVehicule/');
+  }
+
+
   //filtre des pointages par départements
   getPointageByDep(dep_id: number) {
     return this.http.delete(this.APIUrl + '/security/' + dep_id);

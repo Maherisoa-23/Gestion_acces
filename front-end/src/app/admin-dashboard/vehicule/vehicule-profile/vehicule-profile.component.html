@@ -3,7 +3,7 @@
   <div class="chart animation2 animation fade02">
     <div class="img"><img [src]="photoPath" alt="pdp" height="150px" /></div>
     <div class="nom">
-      <h1>{{ stagiaire_name }}</h1>
+      <h1>{{ vehicule_name }}</h1>
     </div>
     <div class="apropos">
       <div class="apropos-list">
@@ -12,7 +12,7 @@
       </div>
       <div class="apropos-list">
         <div class="apropos-list-item">Type</div>
-        <div class="apropos-list-value">{{ stagiaire_name }}</div>
+        <div class="apropos-list-value">{{ vehicule_name }}</div>
       </div>
       <div class="apropos-list">
         <div class="apropos-list-item">Marque</div>
@@ -61,8 +61,8 @@
       <label><b>Nom vehicule </b></label>
       <input
         type="text"
-        name="employee_name"
-        [(ngModel)]="stagiaire_name"
+        name="vehicule_name"
+        [(ngModel)]="vehicule_name"
       /><br />
 
       <label for="select"><b>Direction</b></label>
@@ -103,7 +103,7 @@
     <div class="container">
       <label
         ><b
-          >Êtes vous sûr de supprimer le vehicule : {{ stagiaire_name }} ?</b
+          >Êtes vous sûr de supprimer le vehicule : {{ vehicule_name }} ?</b
         ></label
       ><br /><br />
       <button type="submit" class="btn-modif" (click)="deleteStagiaire()">

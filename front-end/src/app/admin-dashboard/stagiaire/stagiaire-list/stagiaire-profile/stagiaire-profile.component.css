@@ -130,7 +130,7 @@
   height: auto;
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 30% 70%;
   grid-template-rows: auto;
   grid-template-areas:
     /* "chart pointage" */ "chart pointage";
@@ -178,7 +178,7 @@ button {
   box-sizing: border-box;
   background: var(--color-bg);
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
-  border-radius: 5px;
+  /* border-radius: 5px; */
   width: 100%;
   height: auto;
   display: grid;
@@ -242,7 +242,7 @@ button {
   text-transform: capitalize;
   letter-spacing: 2px;
   color: var(--color-text);
-  margin: 5px 50px;
+  margin: 5px 25px;
   height: auto;
   /* border: 2px solid red; */
 }

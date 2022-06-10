@@ -41,7 +41,7 @@ class Vehicule(models.Model) :
 class Pointage(models.Model):
     pointage_id = models.AutoField(primary_key=True)
     numero_matricule = models.CharField(max_length=30, null=True)
-    employee_name =  models.CharField(max_length=50, null= True)
+    employee_name =  models.CharField(max_length=50, null= True, unique=True)
     employee_dep_name = models.CharField(max_length=50, null= True)
     function   = models.CharField(max_length=200, null=True)
     date = models.CharField(max_length=50)

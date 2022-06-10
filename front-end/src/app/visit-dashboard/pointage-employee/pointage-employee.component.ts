@@ -39,7 +39,7 @@ export class PointageEmployeeComponent implements OnInit {
 
   vehicules: any = []
   isVehicule = false
-  matricule_vhc: any ;
+  matricule_vhc: any;
 
   pointed_at: any; // si l"employée est déjà pointé à un autre locaux
 
@@ -58,7 +58,6 @@ export class PointageEmployeeComponent implements OnInit {
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
-      console.log('pointages = ' + this.pointages.length)
 
       //trie décroissant, ze tonga farany no  eo ambony
       this.pointages.sort((b: any, a: any) => a.entry_time.localeCompare(b.entry_time));
@@ -104,13 +103,13 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   getDep(name: string) {
-    if(this.isVehicule) {
+    if (this.isVehicule) {
       for (let index = 0; index < this.vehicules.length; index++) {
         const element = this.vehicules[index];
         if (element.numero_matricule == this.matricule_vhc) {
           return element.department_name
         }
-      } 
+      }
     }
     if (this.isStagiaire) {
       for (let index = 0; index < this.stagiaires.length; index++) {
@@ -178,7 +177,7 @@ export class PointageEmployeeComponent implements OnInit {
     }
     else {
       this.date = new Date();
-      this.heure = new Date();  
+      this.heure = new Date();
       this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
       this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
       if (this.isPointed()) {
@@ -211,7 +210,7 @@ export class PointageEmployeeComponent implements OnInit {
       lieu: this.lieu,
       entry_time: this.heure.toString()
     }
-    
+
     this.authServ.addPointageVehicule(val).subscribe((res) => {
       if (res.toString() == "Pointage vehicule added successfully") {
         this.showSuccess("Pointage Véhicule réussi")
@@ -237,13 +236,11 @@ export class PointageEmployeeComponent implements OnInit {
       };
       this.authServ.addPointageStg(val2).subscribe((res) => {
         if (res.toString() == 'Pointage stagiaire added successfully') {
-          console.log(val2.stagiaire_name)
           this.showWarning('Stagiaire : fin du période le : ' + this.getStgEndDate(val2.stagiaire_name))
           this.addAnimation()
           this.closeModal()
         } else {
-          alert("erreur interne, cotés serveur django")
-          //this.showError("erreur interne, contacter les developpeurs")
+          this.showError("erreur interne, contacter les developpeurs")
         }
       });
       //Pour modifier le pointed_at
@@ -305,15 +302,15 @@ export class PointageEmployeeComponent implements OnInit {
       this.pointages = this.pointages.filter((f: any) => { return f.employee_name != this.enteredValue })
     }
   }
-sortieEmployee() {
-  const emp = {
-    numero_matricule: this.getNumeroMatricule(this.enteredValue),
-    employee_name: this.enteredValue,
-    pointed_at: 'not pointed',
-  };
-  this.authServ.putEmployee(emp).subscribe((res) => {
-  });
-  this.authServ.deletePointage(emp).subscribe((data) => {
+  sortieEmployee() {
+    const emp = {
+      numero_matricule: this.getNumeroMatricule(this.enteredValue),
+      employee_name: this.enteredValue,
+      pointed_at: 'not pointed',
+    };
+    this.authServ.putEmployee(emp).subscribe((res) => {
+    });
+    this.authServ.deletePointage(emp).subscribe((data) => {
       if (data.toString() == 'Delete successfully') {
         this.showSuccess('Pointage de sortie bien reussi');
         this.closeModal();
@@ -323,47 +320,47 @@ sortieEmployee() {
       }
     });
 
-}
-sortieStg() {
-  const stg = {
-    stagiaire_name: this.enteredValue,
-    employee_name: this.enteredValue,
-    pointed_at: "not pointed",
-    isActif: false
   }
-  this.authServ.putStagiaire(stg).subscribe((res) => {
-  });
-  this.authServ
-    .deletePointage(stg)
-    .subscribe((data) => {
+  sortieStg() {
+    const stg = {
+      stagiaire_name: this.enteredValue,
+      employee_name: this.enteredValue,
+      pointed_at: "not pointed",
+      isActif: false
+    }
+    this.authServ.putStagiaire(stg).subscribe((res) => {
+    });
+    this.authServ
+      .deletePointage(stg)
+      .subscribe((data) => {
+        if (data.toString() == 'Delete successfully') {
+          this.showSuccess('Pointage de sortie bien reussi')
+          this.closeModal()
+          this.enteredValue = '';
+        } else {
+          this.showError("Erreur interne")
+        }
+      });
+  }
+  sortieVehicule() {
+    //Pour modifier le pointed_at
+    const stg = {
+      numero_matricule: this.matricule_vhc,
+      employee_name: this.enteredValue,
+      pointed_at: "non actif"
+    }
+    this.authServ.putVehicule(stg).subscribe((res) => {
+    });
+    this.authServ.deletePointage(stg).subscribe((data) => {
       if (data.toString() == 'Delete successfully') {
-        this.showSuccess('Pointage de sortie bien reussi')
-        this.closeModal()
+        this.showSuccess('Pointage de sortie véhicule bien reussi');
+        this.closeModal();
         this.enteredValue = '';
       } else {
         this.showError("Erreur interne")
       }
     });
-}
-sortieVehicule() {
-  console.log("Ato am sorite vehicule tsika zao ohhh")
-  //Pour modifier le pointed_at
-  const stg = {
-    numero_matricule: this.matricule_vhc,
-    employee_name : this.enteredValue,
-    pointed_at: "non actif"
   }
-  this.authServ.putVehicule(stg).subscribe((res) => { });
-  this.authServ.deletePointage(stg).subscribe((data) => {
-    if (data.toString() == 'Delete successfully') {
-      this.showSuccess('Pointage de sortie véhicule bien reussi');
-      this.closeModal();
-      this.enteredValue = '';
-    } else {
-      this.showError("Erreur interne")
-    }
-  });
-}
 
   //Pour les stagiaires
   checkValidDate(dateStr: string) {
@@ -423,13 +420,13 @@ sortieVehicule() {
     this.enteredValue = item.numero_matricule;
     this.matricule_vhc = item.numero_matricule
   }
-  suggestedExit(name : string,item: any) {
+  suggestedExit(name: string, item: any) {
     this.enteredValue = name;
     if (this.isStg(item)) {
       this.isVehicule = false
       this.isStagiaire = true
     }
-    else if (this.isVhc(item)) {
+    else if (this.isVhc(name)) {
       this.matricule_vhc = item.numero_matricule
       this.isVehicule = true
       this.isStagiaire = false
@@ -446,10 +443,10 @@ sortieVehicule() {
     }
     return false
   }
-  isVhc(item: any) {
+  isVhc(name: string) {
     for (let index = 0; index < this.vehicules.length; index++) {
       const element = this.vehicules[index];
-      if (element.vehicule_name == item.employee_name) return true
+      if (element.numero_matricule == name) return true
     }
     return false
   }
@@ -482,55 +479,26 @@ sortieVehicule() {
   }
 
   addPointageRegister(employee_name: string) {
-    if (this.isStg(employee_name)) {
-      for (let index = 0; index < this.pointages.length; index++) {
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (
+        element.employee_name == employee_name
+      ) {
+        this.heure = new Date();
+        this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
+        var val = {
+          function: element.function,
+          numero_matricule: this.getNumeroMatricule(employee_name),
+          date: element.date,
+          lieu: element.lieu,
+          employee_name: element.employee_name,
+          employee_dep_name: element.employee_dep_name,
+          entry_time: element.entry_time,
+          exit_time: this.heure.toString(),
+        };
+        this.authServ.addPointageRegister(val).subscribe((res) => {
+        });
 
-        const element = this.pointages[index];
-        if (
-          element.employee_name == employee_name
-        ) {
-          this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
-          var val1 = {
-            function: "stagiaire",
-            date: element.date,
-            lieu: element.lieu,
-            employee_name: element.employee_name,
-            employee_dep_name: element.employee_dep_name,
-            entry_time: element.entry_time,
-            exit_time: this.heure.toString(),
-          };
-          this.authServ.addPointageRegister(val1).subscribe((res) => {
-            console.log(res.toString() + ' to the pointage register');
-          });
-
-        }
-      }
-    }
-    else {
-      //ajout dans le registre des pointages des employées
-      for (let index = 0; index < this.pointages.length; index++) {
-
-        const element = this.pointages[index];
-        if (
-          element.employee_name == employee_name
-        ) {
-          this.heure = new Date();
-          this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
-          var val = {
-            numero_matricule: this.getNumeroMatricule(employee_name),
-            date: element.date,
-            lieu: element.lieu,
-            employee_name: element.employee_name,
-            employee_dep_name: element.employee_dep_name,
-            entry_time: element.entry_time,
-            exit_time: this.heure.toString(),
-          };
-          this.authServ.addPointageRegister(val).subscribe((res) => {
-            console.log(res.toString() + ' to the pointage register');
-          });
-
-        }
       }
     }
   }

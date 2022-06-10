@@ -23,7 +23,7 @@
         Direction: <span> {{ dailyPointages[0].employee_dep_name }}</span>
       </h2>
       <h2>
-        Il a fait: <span> {{ dailyPointages.length }}</span> pointages
+        a fait: <span> {{ dailyPointages.length }}</span> pointages
       </h2>
     </div>
   </div>
@@ -37,7 +37,7 @@
       <ul>
         <li *ngFor="let item of dailyPointages">
           <h2>
-            Lieu à : <span>{{ item.lieu }}</span>
+            Lieu : <span>{{ item.lieu }}</span>
           </h2>
           <h2>
             Entré à : <span>{{ item.entry_time }}</span>

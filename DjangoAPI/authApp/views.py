@@ -260,18 +260,25 @@ def SaveFile(request):
     return JsonResponse(file_name,safe=False)
 
 
-#Pour les pointed_at
+
 @csrf_exempt
 def pointageStg(request):
-    stagiaire_data = JSONParser().parse(request)
-    stagiaire= Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'] )
-    stagiaire.pointed_at = stagiaire_data["pointed_at"]
-    stagiaire.isActif = stagiaire_data["isActif"]
-    stagiaire.save()
-    return JsonResponse("Update successfully",safe=False)
+    if request.method== 'GET':
+        pointages = Pointage_register.objects.filter(function="stagiaire") 
+        pointage_serializer = Pointage_register_serializer(pointages, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False) 
+    #Pour le pointed_at
+    elif request.method== 'PUT':
+        stagiaire_data = JSONParser().parse(request)
+        stagiaire= Stagiaire.objects.get(stagiaire_name = stagiaire_data['stagiaire_name'] )
+        stagiaire.pointed_at = stagiaire_data["pointed_at"]
+        stagiaire.isActif = stagiaire_data["isActif"]
+        stagiaire.save()
+        return JsonResponse("Update successfully",safe=False)
 
 @csrf_exempt
 def pointageEmp(request):
+    #Pour le pointed_at
     employee_data = JSONParser().parse(request)
     employee= Employee.objects.get(numero_matricule = employee_data['numero_matricule'] )
     employee.pointed_at = employee_data["pointed_at"]
@@ -280,7 +287,11 @@ def pointageEmp(request):
 
 @csrf_exempt
 def pointageVehicule(request):
-    if request.method== 'POST':
+    if request.method== 'GET':
+        pointages = Pointage_register.objects.filter(function="vehicule") 
+        pointage_serializer = Pointage_register_serializer(pointages, many=True)
+        return JsonResponse(pointage_serializer.data, safe=False) 
+    elif request.method== 'POST':
         pointage_data = JSONParser().parse(request)
         vehicule = Vehicule.objects.get(numero_matricule=pointage_data["numero_matricule"])
         pointage_data["employee_name"] = vehicule.numero_matricule

@@ -19,32 +19,32 @@
   >
     <thead>
       <tr>
-        <th>Numero matricule</th>
-        <th>Type</th>
-        <th>Marque</th>
+        <th>numero matricule</th>
+        <th>Date</th>
         <th>Heure d'entree</th>
         <th>Heure de sortie</th>
-        <th>Direction</th>
+        <th>Lieu</th>
+        <th>Departement</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of vehicules">
+      <tr *ngFor="let item of vehicules" (click)="CheckDailyPointage(item)">
         <td data-label="Nom">
           <strong>{{ item.numero_matricule }}</strong>
         </td>
         <td data-label="Date">
-          <b>{{ item.vehicule_name }}</b>
+          <b>{{ item.date }}</b>
         </td>
         <td data-label="Heure d'entree">
-          <b>{{ item.vehicule_marque }}</b>
+          <b>{{ item.entry_time }}</b>
         </td>
         <td data-label="Heure de sortie">
-          <b>{{ item.date_of_entry }}</b>
+          <b>{{ item.exit_time }}</b>
         </td>
         <td data-label="Lieu">
-          <i>{{ item.date_of_exit }}</i>
+          <i>{{ item.lieu }}</i>
         </td>
-        <td data-label="Depart">{{ item.direction }}</td>
+        <td data-label="Depart">{{ item.employee_dep_name }}</td>
       </tr>
     </tbody>
   </table>

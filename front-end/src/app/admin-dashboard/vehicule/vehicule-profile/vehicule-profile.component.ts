@@ -10,7 +10,7 @@ import { StagiaireService } from 'src/app/services/stagiaire.service';
   styleUrls: ['./vehicule-profile.component.css'],
 })
 export class VehiculeProfileComponent implements OnInit {
-  @Input() stagiaire_name = '';
+  @Input() vehicule_name = '';
   @Input() description = '';
   @Input() start_date = '';
   @Input() end_date = '';
@@ -52,7 +52,7 @@ export class VehiculeProfileComponent implements OnInit {
 
   initialisation() {
     this.stagiaire_id = this.stgServ.stagiaire_id;
-    this.stagiaire_name = this.stgServ.stagiaire_name;
+    this.vehicule_name = this.stgServ.stagiaire_name;
     this.direction = this.stgServ.departement;
     this.description = this.stgServ.description;
     this.start_date = this.stgServ.start_date;
@@ -71,7 +71,7 @@ export class VehiculeProfileComponent implements OnInit {
 
   updateStagiaire() {
     if (
-      this.stagiaire_name == '' ||
+      this.vehicule_name == '' ||
       this.description == '' ||
       this.direction == '' ||
       this.start_date == '' ||
@@ -81,7 +81,7 @@ export class VehiculeProfileComponent implements OnInit {
     } else {
       const val = {
         stagiaire_id: this.stgServ.stagiaire_id,
-        stagiaire_name: this.stagiaire_name,
+        stagiaire_name: this.vehicule_name,
         description: this.description,
         department_name: this.direction.toString(),
         pointed_at: 'not pointed',

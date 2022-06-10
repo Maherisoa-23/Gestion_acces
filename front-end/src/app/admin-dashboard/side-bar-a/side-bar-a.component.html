@@ -65,15 +65,26 @@
     </div>
   </li>
   <li>
+    <div class="dropdown1">
+      <a
+        ><i class="fas fa-car"></i>
+        Vehicule
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown1-content">
+        <a routerLink="vehicule-register"> Pointages vehicules</a>
+
+        <a routerLink="vehicule-list"> Liste vehicules</a>
+      </div>
+    </div>
+  </li>
+  <li>
     <a routerLink="employee-list"><i class="fa fa-users"></i> EmployeS </a>
   </li>
   <li>
     <a routerLink="security-agent"
       ><i class="far fa-address-card"></i>Agents
     </a>
-  </li>
-  <li>
-    <a routerLink="vehicule"><i class="far fa-address-card"></i>Vehicule </a>
   </li>
   <li>
     <a (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
