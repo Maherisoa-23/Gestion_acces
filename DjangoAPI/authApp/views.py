@@ -259,8 +259,6 @@ def SaveFile(request):
     
     return JsonResponse(file_name,safe=False)
 
-
-
 @csrf_exempt
 def pointageStg(request):
     if request.method== 'GET':

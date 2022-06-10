@@ -1,13 +1,6 @@
 <!--bouton ajout + sorti-->
 <div class="btn animation3 animation fade03">
   <button class="btn-content entre" (click)="showModal(enter)">Entree</button>
-  <!-- <button
-    class="btn-content entre"
-    onclick="document.getElementById('id01').style.display='block'"
-    (click)="showInfo()"
-  >
-    Entree
-  </button> -->
   <button class="btn-content exit" (click)="showModal(exit)">Sortie</button>
 </div>
 <!--end-bouton ajout + sorti-->
@@ -26,7 +19,7 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-        <label><b>Nom employée ou la matriculation d'un véhicule: </b></label>
+        <label><b>Nom employé ou la matriculation d'un véhicule: </b></label>
         <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
         <!-- Suggestion employee -->
         <ul *ngFor="let item of employees">
@@ -50,7 +43,7 @@
                 .toLowerCase()
                 .includes(enteredValue.toLowerCase()) && enteredValue
             "
-            (click)="suggestedStg(item.stagiaire_name)" 
+            (click)="suggestedStg(item.stagiaire_name)"
           >
             {{ item.stagiaire_name }}-
             <span>{{ item.department_name }} Stagiaire</span>
@@ -65,12 +58,48 @@
                 .toLowerCase()
                 .includes(enteredValue.toLowerCase()) && enteredValue
             "
-            (click)="suggestedVehicule(item)" 
+            (click)="suggestedVehicule(item)"
           >
-            {{ item.numero_matricule   }}- {{ item.vehicule_name}}
+            {{ item.numero_matricule }}- {{ item.vehicule_name }}
             <span>{{ item.department_name }} Vehicule</span>
           </li>
         </ul>
+
+        <!-- Pour les employées et stagaires venant des véhicules -->
+        <label *ngIf="isVehicule"><b>Entrer le nom des employés </b></label>
+        <input *ngIf="isVehicule" type="text" [(ngModel)]="anarana" name="anarana"/>
+        <ul *ngFor="let item of employees">
+          <li
+            *ngIf="
+              item.employee_name
+                .toLowerCase()
+                .includes(anarana.toLowerCase()) && anarana
+            "
+            (click)="addTag(item.employee_name)"
+          >
+            {{ item.employee_name }}- <span>{{ item.department_name }}</span>
+          </li>
+        </ul>
+        <ul *ngFor="let item of stagiaires">
+          <li
+            *ngIf="
+              item.stagiaire_name
+                .toLowerCase()
+                .includes(anarana.toLowerCase()) && anarana
+            "
+            (click)="addTag(item.stagiaire_name)"
+          >
+            {{ item.stagiaire_name }}- <span>{{ item.department_name }}</span>
+          </li>
+        </ul>
+
+        <label *ngIf="isVehicule"><b>Employé present dans la voiture </b></label>
+        <div *ngIf="isVehicule" class="tag-list">
+          <!-- Suggestion employee -->
+          <ul *ngFor="let tag of tags">
+            <li class="tag" (click)="removeTag(tag)">{{ tag }}</li>
+          </ul>
+        </div>
       </div>
     </form>
   </div>
@@ -110,9 +139,11 @@
             "
             (click)="suggestedExit(item.employee_name, item)"
           >
-          {{ item.numero_matricule }} : 
+            {{ item.numero_matricule }} :
             <span *ngIf="item.function == 'vehicule'">véhicule</span>
-            <span *ngIf="item.function != 'vehicule'">{{ item.employee_name }}</span>
+            <span *ngIf="item.function != 'vehicule'">{{
+              item.employee_name
+            }}</span>
             <span> {{ item.employee_dep_name }}</span>
             <span *ngIf="item.function == 'stagiaire'"> Stagiaire</span>
           </li>
