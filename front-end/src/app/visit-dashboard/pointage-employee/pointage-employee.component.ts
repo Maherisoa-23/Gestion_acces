@@ -185,7 +185,9 @@ export class PointageEmployeeComponent implements OnInit {
       if (this.isVehicule) {
         for (let index = 0; index < this.tags.length; index++) {
           const element = this.tags[index];
-          this.pointage(element)
+          setTimeout(() => {
+            this.pointage(element)
+          }, 1000 + index*2000);
         }
       }
 

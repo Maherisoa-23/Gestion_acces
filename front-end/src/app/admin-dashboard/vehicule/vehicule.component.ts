@@ -142,6 +142,7 @@ export class VehiculeComponent implements OnInit {
   }
 
   showVehiculeProfile(item: any) {
+    this.stgServ.vehicule_id = item.vehicule_id;
     this.stgServ.stagiaire_id = item.numero_matricule;
     this.stgServ.stagiaire_name = item.vehicule_name;
     this.stgServ.departement = item.department_name;

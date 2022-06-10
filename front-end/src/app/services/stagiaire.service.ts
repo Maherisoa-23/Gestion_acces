@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StagiaireService {
+  vehicule_id = 0
   stagiaire_id = 0
   stagiaire_name = ""
   departement = ""

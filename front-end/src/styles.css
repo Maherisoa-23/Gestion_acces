@@ -1,6 +1,32 @@
 .modal-content {
   margin: 50px auto;
 }
+/* .dataTables_wrapper label {
+  margin: 10px 0;
+} */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  margin: 15px 0;
+  color: var(--color-blue);
+}
+.dataTables_wrapper th,
+.dataTables_wrapper td,
+.dataTables_wrapper label,
+.dataTables_wrapper input,
+.dataTables_wrapper select {
+  color: var(--color-blue);
+}
+.dataTables_wrapper label {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.dataTables_wrapper input {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
 * {
   margin: 0;
   padding: 0;

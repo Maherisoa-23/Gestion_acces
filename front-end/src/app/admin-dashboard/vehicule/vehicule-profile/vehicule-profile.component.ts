@@ -15,6 +15,7 @@ export class VehiculeProfileComponent implements OnInit {
   @Input() start_date = '';
   @Input() end_date = '';
   @Input() direction = '';
+  vehicule_id = 0
 
   status = 'Encore actif';
   photoPath = '';
@@ -38,6 +39,7 @@ export class VehiculeProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.vehicule_id = this.stgServ.vehicule_id
     if (this.stgServ.stagiaire_name == '')
       this.route.navigate(['/admin/vehicule-list']);
     this.initialisation();
@@ -80,25 +82,19 @@ export class VehiculeProfileComponent implements OnInit {
       this.showError('Vérifier bien tous les informations');
     } else {
       const val = {
-        stagiaire_id: this.stgServ.stagiaire_id,
-        stagiaire_name: this.vehicule_name,
-        description: this.description,
+        vehicule_id : this.stgServ.vehicule_id,
+        numero_matricule: this.stgServ.stagiaire_id,
+        vehicule_name: this.vehicule_name,
+        vehicule_marque: this.stgServ.description,
         department_name: this.direction.toString(),
-        pointed_at: 'not pointed',
-        start_date: this.start_date.toString(),
-        end_date: this.end_date.toString(),
-        function: 'stagiaire',
+        pointed_at: 'non actif',
         photoName: this.photoName,
       };
-      this.authServ.updateStagiaireEntity(val).subscribe((res) => {
-        if (res.toString() == 'Updated Successfully!!') {
-          this.showSuccess('Stagiaire modifié avec succès');
+      this.authServ.updateVehiculeEntity(val).subscribe((res) => {
+          this.showSuccess(res.toString());
           setTimeout(() => {
             this.closeModal();
           }, 500);
-        } else {
-          this.showError(res.toString());
-        }
       });
     }
   }
@@ -114,14 +110,14 @@ export class VehiculeProfileComponent implements OnInit {
     });
   }
 
-  deleteStagiaire() {
-    this.authServ.deleteStagiaire(this.stagiaire_id).subscribe((res) => {
+  deleteVehicule() {
+    this.authServ.deleteVehicule(this.vehicule_id).subscribe((res) => {
       if (res.toString() == 'deleted successfully')
         this.showSuccess(res.toString());
       this.closeModal();
     });
     setTimeout(() => {
-      this.route.navigate(['/admin/stagiaire-list']);
+      this.route.navigate(['/admin/vehicule-list']);
     }, 1000);
   }
 
