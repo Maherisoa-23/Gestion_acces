@@ -15,7 +15,7 @@ export class AuthentificationComponent implements OnInit {
   authStatus!: boolean;
   authName!: string;
   @Input() numero_matricule: any;
-  readonly adminMatricule = 1087;
+  readonly adminMatricule = 1236;
   @Input() password: string = '';
   @Input() selected_lieu = '';
   Lieu: any; // Objet

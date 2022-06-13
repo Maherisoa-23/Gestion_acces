@@ -328,7 +328,8 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   //Methode de pointage sortie
-  onExit() {   
+  onExit() { 
+    this.sortie(this.enteredValue);  
     if (this.isVehicule) {
       for (let index = 0; index < this.tags.length; index++) {
         const element = this.tags[index];
@@ -337,7 +338,6 @@ export class PointageEmployeeComponent implements OnInit {
         }, 1000 + index * 500);
       }
     }
-    this.sortie(this.enteredValue);
   }
 
   sortie(name : string) {
