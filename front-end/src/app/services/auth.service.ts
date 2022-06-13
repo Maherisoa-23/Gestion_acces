@@ -146,8 +146,8 @@ export class AuthService {
   addPointageRegister(val: any) {
     return this.http.post(this.APIUrl + '/pointage_register/', val);
   }
-  deletePointage(val: any) {
-    return this.http.put(this.APIUrl + '/pointage_register/', val);
+  deletePointage(id: any) {
+    return this.http.delete(this.APIUrl + '/pointage/' + id);
   }
   //pointage register vehicule
   getVehiculePointage():  Observable<any[]>{

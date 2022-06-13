@@ -65,7 +65,7 @@
           </li>
         </ul>
 
-        <!-- Pour les employées et stagaires venant des véhicules -->
+        <!-- start :  Pour les employées et stagaires venant des véhicules -->
         <label *ngIf="isVehicule"><b>Entrer le nom des employés </b></label>
         <input *ngIf="isVehicule" type="text" [(ngModel)]="anarana" name="anarana"/>
         <ul *ngFor="let item of employees">
@@ -89,17 +89,18 @@
             "
             (click)="addTag(item.stagiaire_name)"
           >
-            {{ item.stagiaire_name }}- <span>{{ item.department_name }}</span>
+            {{ item.stagiaire_name }}- <span>{{ item.department_name }} stagiaire</span>
           </li>
         </ul>
 
-        <label *ngIf="isVehicule"><b>Employé present dans la voiture </b></label>
+        <label *ngIf="isVehicule"><b>Les employés present dans la voiture </b></label>
         <div *ngIf="isVehicule" class="tag-list">
           <!-- Suggestion employee -->
           <ul *ngFor="let tag of tags">
             <li class="tag" (click)="removeTag(tag)">{{ tag }}</li>
           </ul>
         </div>
+        <!-- end :  Pour les employées et stagaires venant des véhicules -->
       </div>
     </form>
   </div>
@@ -128,7 +129,7 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-        <label><b>Nom : </b></label>
+        <label><b>Nom employé ou la matriculation d'un véhicule: </b></label>
         <input type="text" [(ngModel)]="enteredValue" name="numero_matricule" />
         <ul *ngFor="let item of pointagesbyLieu">
           <li
@@ -148,6 +149,27 @@
             <span *ngIf="item.function == 'stagiaire'"> Stagiaire</span>
           </li>
         </ul>
+        <label *ngIf="isVehicule"><b>Entrer le nom des employés </b></label>
+        <input *ngIf="isVehicule" type="text" [(ngModel)]="anarana" name="anarana"/>
+        <ul *ngFor="let item of pointagesbyLieu">
+          <li
+            *ngIf="
+              item.employee_name
+                .toLowerCase()
+                .includes(anarana.toLowerCase()) && anarana
+            "
+            (click)="addTag(item.employee_name)"
+          >
+            {{ item.employee_name }}- <span>{{ item.department_name }}</span>
+          </li>
+        </ul>
+        <label *ngIf="isVehicule"><b>Les employés dans la voiture </b></label>
+        <div *ngIf="isVehicule" class="tag-list">
+          <!-- Suggestion employee -->
+          <ul *ngFor="let tag of tags">
+            <li class="tag" (click)="removeTag(tag)">{{ tag }}</li>
+          </ul>
+        </div>
       </div>
     </form>
   </div>

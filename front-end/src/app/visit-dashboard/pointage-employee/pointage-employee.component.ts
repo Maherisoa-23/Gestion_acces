@@ -140,16 +140,16 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   getNumeroMatricule(name: string) {
-    if (this.isVehicule) {
-      return this.matricule_vhc;
-    }
     for (let index = 0; index < this.employees.length; index++) {
       const element = this.employees[index];
       if (element.employee_name == name) {
         return element.numero_matricule;
       }
     }
-    return 'stagiaire';
+    if (this.isStg(name)) {
+      return 'stagiaire';
+    }
+    return this.matricule_vhc;
   }
 
   getStgEndDate(name: string) {
@@ -162,6 +162,15 @@ export class PointageEmployeeComponent implements OnInit {
     return 'erreur ';
   }
 
+  getPointageId(name : string) {
+    for (let index = 0; index < this.pointages.length; index++) {
+      const element = this.pointages[index];
+      if (element.employee_name == name) {
+        return element.pointage_id
+      }
+    }
+  }
+
   //Methode pour les modals
   showModal(content: any) {
     this.enteredValue = '';
@@ -170,27 +179,33 @@ export class PointageEmployeeComponent implements OnInit {
   }
   closeModal() {
     this.modalService.dismissAll();
-    this.reinitialisation()
+    if (this.isVehicule) {
+      setTimeout(() => {
+        this.reinitialisation()
+      }, 3000);
+    }
+    else {
+      this.reinitialisation()
+    }
   }
   reinitialisation() {
     this.isStagiaire = false;
     this.isVehicule = false;
     this.enteredValue = "";
-    this.tags = ""
+    this.tags = []
   }
 
   //Methode de pointage entré
   onEnter() {
-    this.pointage(this.enteredValue);
-      if (this.isVehicule) {
-        for (let index = 0; index < this.tags.length; index++) {
-          const element = this.tags[index];
-          setTimeout(() => {
-            this.pointage(element)
-          }, 1000 + index*2000);
-        }
+    if (this.isVehicule) {
+      for (let index = 0; index < this.tags.length; index++) {
+        const element = this.tags[index];
+        setTimeout(() => {
+          this.pointage(element)
+        }, 1000 + index * 500);
       }
-
+    }
+    this.pointage(this.enteredValue);
   }
   pointage(entiteName: string) {
     if (!this.isEmployee(entiteName) && !this.isVehicule) {
@@ -212,10 +227,10 @@ export class PointageEmployeeComponent implements OnInit {
           //pointage stagiaire
           if (this.isStg(entiteName)) {
             console.log("pointage stagiaire")
-            this.pointageStagiaire();
+            this.pointageStagiaire(entiteName);
           } else {
             console.log("pointage employee")
-            this.pointageEmployee();
+            this.pointageEmployee(entiteName);
           }
         }
         setTimeout(() => {
@@ -236,7 +251,7 @@ export class PointageEmployeeComponent implements OnInit {
     this.authServ.addPointageVehicule(val).subscribe((res) => {
       if (res.toString() == 'Pointage vehicule added successfully') {
         this.showSuccess('Pointage Véhicule réussi');
-        this.addAnimation();
+        this.addAnimation(this.enteredValue);
         this.closeModal();
       } else this.showError('Erreur interne');
     });
@@ -247,21 +262,24 @@ export class PointageEmployeeComponent implements OnInit {
     };
     this.authServ.putVehicule(stg).subscribe((res) => { });
   }
-  pointageStagiaire() {
-    if (this.checkValidDate(this.getStgEndDate(this.enteredValue))) {
+  pointageStagiaire(name : string) {
+    if (this.checkValidDate(this.getStgEndDate(name))) {
       var val2 = {
-        stagiaire_name: this.enteredValue,
+        numero_matricule : "stagiaire",
+        stagiaire_name: name,
         date: this.date.toString(),
         lieu: this.lieu,
         entry_time: this.heure.toString(),
       };
       this.authServ.addPointageStg(val2).subscribe((res) => {
         if (res.toString() == 'Pointage stagiaire added successfully') {
-          this.showWarning(
-            'Stagiaire : fin du période le : ' +
-            this.getStgEndDate(val2.stagiaire_name)
-          );
-          this.addAnimation();
+          if (!this.isVehicule) {
+            this.showWarning(
+              'Stagiaire : fin du période le : ' +
+              this.getStgEndDate(val2.stagiaire_name)
+            );
+          }
+          this.addAnimation(name);
           this.closeModal();
         } else {
           this.showError('erreur interne, contacter les developpeurs');
@@ -269,31 +287,33 @@ export class PointageEmployeeComponent implements OnInit {
       });
       //Pour modifier le pointed_at
       const stg = {
-        stagiaire_name: this.enteredValue,
+        stagiaire_name: name,
         pointed_at: this.lieu,
         isActif: false,
       };
       this.authServ.putStagiaire(stg).subscribe((res) => { });
     } else {
       this.showError(
-        'Période de stage déjà terminé, pointer le dans la visite'
+        'Période de stage déjà terminé pour' + name
       );
     }
   }
-  pointageEmployee() {
-    const matricule = this.getNumeroMatricule(this.enteredValue);
+  pointageEmployee(name : string) {
+    const matricule = this.getNumeroMatricule(name);
     var val1 = {
       numero_matricule: matricule,
-      employee_name: this.enteredValue,
+      employee_name: name,
       date: this.date.toString(),
-      employee_dep_name: this.getDep(this.enteredValue),
+      employee_dep_name: this.getDep(name),
       lieu: this.lieu,
       entry_time: this.heure.toString(),
     };
     this.authServ.addPointage(val1).subscribe((res) => {
       if (res.toString() == 'Added successfully') {
-        this.showSuccess("Pointage d'entrée reussi");
-        this.addAnimation();
+        if (!this.isVehicule) {
+          this.showSuccess("Pointage d'entrée reussi");
+        }
+        this.addAnimation(name);
         this.closeModal();
       } else {
         this.showError('Il y a une erreur interne');
@@ -301,67 +321,62 @@ export class PointageEmployeeComponent implements OnInit {
     });
     //Pour modifier le pointed_at
     const emp = {
-      numero_matricule: this.getNumeroMatricule(this.enteredValue),
+      numero_matricule: this.getNumeroMatricule(name),
       pointed_at: this.lieu,
     };
     this.authServ.putEmployee(emp).subscribe((res) => { });
   }
 
   //Methode de pointage sortie
-  onExit() {
-    if (!this.isPointed(this.enteredValue)) {
+  onExit() {   
+    if (this.isVehicule) {
+      for (let index = 0; index < this.tags.length; index++) {
+        const element = this.tags[index];
+        setTimeout(() => {
+          this.sortie(element)
+        }, 1000 + index * 500);
+      }
+    }
+    this.sortie(this.enteredValue);
+  }
+
+  sortie(name : string) {
+    if (!this.isPointed(name)) {
       this.showError('Vérifier bien le nom');
     } else {
-      //enregistrement dans pointage register
-      this.addPointageRegister(this.enteredValue);
-      if (this.isStagiaire) {
-        this.sortieStg();
+      //enregistrement dans pointage_register
+      this.addPointageRegister(name);
+      if (this.isStg(name)) {
+        this.sortieStg(name);
       } else {
-        if (this.isVehicule) {
+        if (this.isVhc(name)) {
           this.sortieVehicule();
-        } else this.sortieEmployee();
+        } else this.sortieEmployee(name);
       }
-
       //animation sortie
       this.pointages = this.pointages.filter((f: any) => {
-        return f.employee_name != this.enteredValue;
+        return f.employee_name != name;
       });
     }
   }
-  sortieEmployee() {
+  sortieEmployee(name : string) {
     const emp = {
-      numero_matricule: this.getNumeroMatricule(this.enteredValue),
-      employee_name: this.enteredValue,
+      numero_matricule: this.getNumeroMatricule(name),
+      employee_name: name,
       pointed_at: 'non actif',
     };
     this.authServ.putEmployee(emp).subscribe((res) => { });
-    this.authServ.deletePointage(emp).subscribe((data) => {
-      if (data.toString() == 'Delete successfully') {
-        this.showSuccess('Pointage de sortie bien reussi');
-        this.closeModal();
-        this.enteredValue = '';
-      } else {
-        this.showError('Erreur interne');
-      }
-    });
+    this.deletePointage(name)
   }
-  sortieStg() {
+  sortieStg(name: string) {
     const stg = {
-      stagiaire_name: this.enteredValue,
-      employee_name: this.enteredValue,
+      stagiaire_name: name,
+      employee_name: name,
       pointed_at: 'non actif',
       isActif: false,
     };
     this.authServ.putStagiaire(stg).subscribe((res) => { });
-    this.authServ.deletePointage(stg).subscribe((data) => {
-      if (data.toString() == 'Delete successfully') {
-        this.showSuccess('Pointage de sortie bien reussi');
-        this.closeModal();
-        this.enteredValue = '';
-      } else {
-        this.showError('Erreur interne');
-      }
-    });
+    this.deletePointage(name)
   }
   sortieVehicule() {
     //Pour modifier le pointed_at
@@ -371,15 +386,20 @@ export class PointageEmployeeComponent implements OnInit {
       pointed_at: 'non actif',
     };
     this.authServ.putVehicule(stg).subscribe((res) => { });
-    this.authServ.deletePointage(stg).subscribe((data) => {
-      if (data.toString() == 'Delete successfully') {
-        this.showSuccess('Pointage de sortie véhicule bien reussi');
+    this.deletePointage(this.enteredValue)
+  }
+
+  deletePointage(name : string) {
+    const id = this.getPointageId(name)
+    this.authServ.deletePointage(id).subscribe((data) => {
+      if (data.toString() == 'deleted successfully') {
+        this.showSuccess('Pointage de sortie bien reussi');
         this.closeModal();
         this.enteredValue = '';
       } else {
         this.showError('Erreur interne');
       }
-    });
+    }); 
   }
 
   //Pour les stagiaires
@@ -408,7 +428,7 @@ export class PointageEmployeeComponent implements OnInit {
   isEmployee(name: string): boolean {
     for (let index = 0; index < this.employees.length; index++) {
       const element = this.employees[index];
-      if (element.employee_name == this.enteredValue) {
+      if (element.employee_name == name) {
         return true;
       }
     }
@@ -466,14 +486,14 @@ export class PointageEmployeeComponent implements OnInit {
     return false;
   }
 
-  addAnimation() {
+  addAnimation(name : string) {
     //Pour animation d'ajout
-    const matricule = this.getNumeroMatricule(this.enteredValue);
+    const matricule = this.getNumeroMatricule(name);
     var val1 = {
-      numero_matricule: this.matricule_vhc,
-      employee_name: this.enteredValue,
+      numero_matricule: matricule,
+      employee_name: name,
       date: this.date.toString(),
-      employee_dep_name: this.getDep(this.enteredValue),
+      employee_dep_name: this.getDep(name),
       lieu: this.lieu,
       entry_time: this.heure.toString(),
     };
@@ -543,6 +563,8 @@ export class PointageEmployeeComponent implements OnInit {
       duration: 5000,
     });
   }
+
+  //pour la liste des employéesdans un véhicule
   addTag(item: string) {
     this.tags.push(item);
     setTimeout(() => {

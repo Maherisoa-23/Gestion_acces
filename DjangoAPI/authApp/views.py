@@ -166,6 +166,11 @@ def pointage_API(request: HttpRequest, id = 0):
             pointage_serializer.save()
             return JsonResponse("Pointage stagiaire added successfully",safe=False)
         return JsonResponse("Pointage stagiaire failded to add", safe= False)
+    elif request.method == 'DELETE':
+        pointage = Pointage.objects.get(pk=id)
+        pointage.delete()
+        return JsonResponse("deleted successfully", safe = False)
+    return JsonResponse("Failded to delete", safe = False)
 
 @csrf_exempt
 def pointage_register_API(request: HttpRequest, id=0):
