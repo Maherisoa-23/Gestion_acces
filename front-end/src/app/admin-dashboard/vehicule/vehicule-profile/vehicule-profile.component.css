@@ -196,22 +196,13 @@ button {
 
 .chart .img {
   grid-area: img;
-  /* border: 2px solid var(--color-red); */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 10px; */
-}
-.chart .img img {
-  /* width: 100%; */
-  width: 150px;
-  height: 150px;
-  clip-path: circle();
 }
 
 .chart .nom {
   grid-area: nom;
-  /* border: 2px solid var(--color-text); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -493,13 +484,10 @@ span.psw {
     border: 2px solid var(--color-text);
   }
   .card-profil .img-card {
-    width: 100%;
     height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: 10px 20px 10px 20px; */
-    /* border: 2px solid red; */
   }
   .card-profil .profile {
     display: flex;

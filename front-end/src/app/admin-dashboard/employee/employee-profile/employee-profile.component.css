@@ -197,9 +197,7 @@ button {
   align-items: center;
   /* margin: 10px; */
 }
-.chart .img img {
-  /* width: 100%; */
-  width: 150px;
+.chart .img img { 
   height: 150px;
   clip-path: circle();
 }

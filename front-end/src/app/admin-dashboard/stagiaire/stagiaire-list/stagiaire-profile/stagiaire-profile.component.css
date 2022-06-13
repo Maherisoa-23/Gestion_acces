@@ -179,7 +179,6 @@ button {
   background: var(--color-bg);
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
   /* border-radius: 5px; */
-  width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -203,8 +202,6 @@ button {
   /* margin: 10px; */
 }
 .chart .img img {
-  /* width: 100%; */
-  width: 150px;
   height: 150px;
   clip-path: circle();
 }
@@ -493,13 +490,9 @@ span.psw {
     border: 2px solid var(--color-text);
   }
   .card-profil .img-card {
-    width: 100%;
-    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: 10px 20px 10px 20px; */
-    /* border: 2px solid red; */
   }
   .card-profil .profile {
     display: flex;
@@ -577,13 +570,7 @@ span.psw {
     grid-area: card-profil;
     background: var(--color-bg);
     box-shadow: 1px 2px 3px rgb(198, 195, 195);
-    /* border-radius: 10px; */
     width: 100%;
-    /* display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: var(--color-blue);
-  margin: 10px auto; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
@@ -591,13 +578,9 @@ span.psw {
     padding: 5px;
   }
   .card-profil .img-card {
-    width: 100%;
-    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: 10px 20px 10px 20px; */
-    /* border: 2px solid red; */
   }
   .card-profil .profile {
     display: flex;
