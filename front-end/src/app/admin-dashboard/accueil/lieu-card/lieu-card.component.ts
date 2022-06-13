@@ -25,7 +25,6 @@ export class LieuCardComponent implements OnInit {
     this.id_lieu = this.getLieuId(this.lieu);
     this.setColor(this.id_lieu);
     this.refreshCounting();
-
     setTimeout(() => {
       this.chartit();
     }, 1700);
@@ -38,11 +37,10 @@ export class LieuCardComponent implements OnInit {
       else return 3;
     }
   }
-
   setColor(id_lieu: number) {
     if (id_lieu == 1) this.couleur = '#c92128';
     else {
-      if (id_lieu == 2) this.couleur = '#37ab4b';
+      if (id_lieu == 2) this.couleur = '#41a62a';
       else this.couleur = '#20566d';
     }
   }

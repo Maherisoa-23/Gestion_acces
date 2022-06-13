@@ -9,115 +9,29 @@
   </div>
   <div class="barre animation1 animation fade01">
     <button
-      class="onglet actif"
-      onclick="ouvrirOnglet(event,'Javascript')"
+      [ngClass]="{actif: lieu == 'Ambohijatovo', onglet:true}"
       (click)="switchAmbohijatovo()"
     >
       Ambohijatovo
     </button>
     <button
-      class="onglet"
-      onclick="ouvrirOnglet(event,'Css')"
+      [ngClass]="{actif: lieu == 'Andraharo', onglet:true}"
       (click)="switchAndraharo()"
     >
       Andraharo
     </button>
     <button
-      class="onglet"
-      onclick="ouvrirOnglet(event,'Php')"
+    [ngClass]="{actif: lieu == 'Mangasoavina', onglet:true}"
       (click)="switchMangasoavina()"
     >
       Mangasoavina
     </button>
   </div>
 
-  <div id="Css" class="rubrique" style="display: none">
-    <!--On garde rubrique pour reconnaître par code Javascript-->
-    <!--Tableau-->
-    <div class="section animation2 animation fade02">
-      <!-- <h1>Liste pointage Andraharo</h1> -->
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Direction</th>
-            <th>Date debut</th>
-            <th>Date fin</th>
-            <th>Heure d'entree</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of pointages">
-            <td data-label="ID" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              {{ item.employee_name }}
-            </td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong> {{ item.employee_dep_name }}</strong>
-            </td>
-            <td data-label="Direction" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              {{ item.start_date}}
-            </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong>
-                <i> {{ item.end_date }}</i></strong
-              >
-            </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong>
-                <i> {{ item.entry_time }}</i></strong
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div id="Javascript" class="rubrique">
+  <div class="rubrique">
     <!--Tableau-->
     <div class="section animation2 animation fade02">
       <!-- <h1>Liste pointage Ambohijatovo</h1> -->
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Direction</th>
-            <th>Date debut</th>
-            <th>Date fin</th>
-            <th>Heure d'entree</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of pointages">
-            <td data-label="ID" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              {{ item.employee_name }}
-            </td>
-            <td data-label="Nom" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong> {{ item.employee_dep_name }}</strong>
-            </td>
-            <td data-label="Direction" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              {{ item.start_date}}
-            </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong>
-                <i> {{ item.end_date }}</i></strong
-              >
-            </td>
-            <td data-label="Heure" *ngIf="item.lieu == lieu && item.function == 'stagiaire'">
-              <strong>
-                <i> {{ item.entry_time }}</i></strong
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div id="Php" class="rubrique" style="display: none">
-    <!--Tableau-->
-    <div class="section animation2 animation fade02">
-      <!-- <h1>Liste pointage Mangasoavina</h1> -->
       <table class="tbl">
         <thead>
           <tr>

@@ -109,11 +109,10 @@ input {
   background-color: #cdcdcdca;
   overflow: hidden;
 }
-/* .actif {
+ .actif {
   color: #edeeee;
-  background-color: var(--color-green);
-  height: 100%;
-} */
+  background-color: var(--color-blue);
+} 
 
 /*TABLE*/
 .rubrique .section {

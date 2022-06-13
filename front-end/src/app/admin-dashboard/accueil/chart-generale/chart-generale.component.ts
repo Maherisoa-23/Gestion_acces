@@ -28,6 +28,13 @@ export class ChartGeneraleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLastSevenDay();
+    this.refreshCounting();
+    setTimeout(() => {
+      this.chartit();
+    }, 1500);
+  }
+
+  refreshPointageLieu() {
     this.getPointageByLieuDate("Ambohijatovo");
     setTimeout(() => {
       this.getPointageByLieuDate("Andraharo");
@@ -35,12 +42,8 @@ export class ChartGeneraleComponent implements OnInit {
     setTimeout(() => {
       this.getPointageByLieuDate("Mangasoavina");
     }, 1000);
-    this.refreshCounting();
-    setTimeout(() => {
-      this.chartit();
-    }, 1500);
   }
-
+  
   refreshCounting() {
     this.authServ.getTabVisitCounting().subscribe((data) => {
       this.tab_visit_counting = data;
@@ -48,6 +51,7 @@ export class ChartGeneraleComponent implements OnInit {
     this.authServ.getTabPointageCounting().subscribe((data) => {
       this.tab_pointage_counting = data;
     });
+    this.refreshPointageLieu()
   }
 
   getLastSevenDay() {

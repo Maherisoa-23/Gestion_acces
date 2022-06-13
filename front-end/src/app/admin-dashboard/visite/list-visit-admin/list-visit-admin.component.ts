@@ -9,13 +9,7 @@ import { VisitService } from 'src/app/services/visit.service';
 })
 export class ListVisitAdminComponent implements OnInit {
 
-  monOngletScriptElemet!: HTMLScriptElement;
   constructor(private service: VisitService, private authServ: AuthService) {
-    this.monOngletScriptElemet = document.createElement('script');
-
-    this.monOngletScriptElemet.src = 'assets/javascript/onglet.js';
-    this.monOngletScriptElemet.type = 'text/javascript';
-    document.body.appendChild(this.monOngletScriptElemet);
   }
   lieu = "Ambohijatovo"
   visitsList: any = [];

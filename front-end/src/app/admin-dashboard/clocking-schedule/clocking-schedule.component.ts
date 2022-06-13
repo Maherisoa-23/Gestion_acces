@@ -74,7 +74,6 @@ export class ClockingScheduleComponent implements OnInit {
   }
   addEvent() {
     for (let index = 0; index < this.pointages.length; index++) {
-      console.log("atoooooo")
       const element = this.pointages[index];
       let entry_time = this.convertTime(element.entry_time);
       if (element.lieu == "Ambohijatovo") {
