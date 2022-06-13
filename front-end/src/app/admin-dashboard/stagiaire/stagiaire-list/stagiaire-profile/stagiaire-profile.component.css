@@ -179,7 +179,7 @@ button {
   background: var(--color-bg);
   box-shadow: 1px 2px 3px rgb(198, 195, 195);
   /* border-radius: 5px; */
-  height: auto;
+  height: 85%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 180px auto auto auto;
