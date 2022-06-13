@@ -166,7 +166,7 @@ export class PointageEmployeeComponent implements OnInit {
   showModal(content: any) {
     this.enteredValue = '';
     this.refreshPointagesThisLieuList();
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, { centered: true, size: 'xl' });
   }
   closeModal() {
     this.modalService.dismissAll();
