@@ -28,7 +28,7 @@ export class VehiculeComponent implements OnInit {
   datatableElement: any = DataTableDirective;
 
   depTab: any = [];
-  photoName = 'anonymous.png';
+  photoName = 'anonymous_car.png';
   photoPath = '';
   stagiaire_id = '';
   pointed_at = '';
@@ -138,7 +138,7 @@ export class VehiculeComponent implements OnInit {
 
   reinitialisationDonnee() {
     this.vehicule_name = this.direction = this.vehicule_marque = '';
-    this.photoName = 'anonymous.png';
+    this.photoName = 'anonymous_car.png';
   }
 
   showVehiculeProfile(item: any) {

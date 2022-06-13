@@ -36,7 +36,7 @@ class Vehicule(models.Model) :
     vehicule_name = models.CharField(max_length=100)
     vehicule_marque = models.CharField(max_length=100)
     pointed_at = models.CharField(max_length=30, default="Pas encore actif") 
-    photoName = models.CharField(max_length=30, default="anonymous.png")
+    photoName = models.CharField(max_length=30, default="anonymous_car.png")
     
 class Pointage(models.Model):
     pointage_id = models.AutoField(primary_key=True)

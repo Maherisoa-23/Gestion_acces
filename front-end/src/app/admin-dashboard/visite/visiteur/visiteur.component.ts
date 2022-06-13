@@ -21,9 +21,7 @@ export class VisiteurComponent implements OnInit {
 
   constructor(
     private visitServ: VisitService,
-    // private SecurityServ: SecurityAgentService,
     private route: Router,
-    private SecurityServ: SecurityAgentService
   ) {}
 
   ngOnInit(): void {

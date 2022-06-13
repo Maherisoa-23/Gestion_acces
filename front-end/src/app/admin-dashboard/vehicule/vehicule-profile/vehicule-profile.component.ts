@@ -25,7 +25,7 @@ export class VehiculeProfileComponent implements OnInit {
   isShow = false;
 
   depTab: any = [];
-  photoName = 'anonymous.png';
+  photoName = 'anonymous_car.png';
   stagiaire_id = 0;
   pointed_at = '';
 
