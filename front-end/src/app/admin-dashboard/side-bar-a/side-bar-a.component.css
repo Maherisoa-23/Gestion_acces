@@ -57,8 +57,9 @@
 .entete .logo-text h1 {
   font-size: 25px;
   text-align: center;
+  font-weight: 800;
   margin: 20px 20px 5px 20px;
-  color: var(--color-fond);
+  color: var(--color-bg);
   letter-spacing: 3px;
 }
 .users1 {

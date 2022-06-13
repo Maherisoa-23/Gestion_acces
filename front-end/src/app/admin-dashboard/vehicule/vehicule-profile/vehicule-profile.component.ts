@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-vehicule-profile',
   templateUrl: './vehicule-profile.component.html',
@@ -15,7 +16,7 @@ export class VehiculeProfileComponent implements OnInit {
   @Input() start_date = '';
   @Input() end_date = '';
   @Input() direction = '';
-  vehicule_id = 0
+  vehicule_id = 0;
 
   status = 'Encore actif';
   photoPath = '';
@@ -35,11 +36,12 @@ export class VehiculeProfileComponent implements OnInit {
     private route: Router,
     private modalService: NgbModal,
     private authServ: AuthService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.vehicule_id = this.stgServ.vehicule_id
+    this.vehicule_id = this.stgServ.vehicule_id;
     if (this.stgServ.stagiaire_name == '')
       this.route.navigate(['/admin/vehicule-list']);
     this.initialisation();
@@ -82,7 +84,7 @@ export class VehiculeProfileComponent implements OnInit {
       this.showError('Vérifier bien tous les informations');
     } else {
       const val = {
-        vehicule_id : this.stgServ.vehicule_id,
+        vehicule_id: this.stgServ.vehicule_id,
         numero_matricule: this.stgServ.stagiaire_id,
         vehicule_name: this.vehicule_name,
         vehicule_marque: this.stgServ.description,
@@ -91,10 +93,10 @@ export class VehiculeProfileComponent implements OnInit {
         photoName: this.photoName,
       };
       this.authServ.updateVehiculeEntity(val).subscribe((res) => {
-          this.showSuccess(res.toString());
-          setTimeout(() => {
-            this.closeModal();
-          }, 500);
+        this.showSuccess(res.toString());
+        setTimeout(() => {
+          this.closeModal();
+        }, 500);
       });
     }
   }
@@ -136,5 +138,8 @@ export class VehiculeProfileComponent implements OnInit {
       summary: msg,
       duration: 3000,
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }

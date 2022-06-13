@@ -180,11 +180,11 @@ input[type="text"] {
 .modal-body ul {
   display: block;
   justify-content: flex-end;
-  padding-right: 50px;
+  /* padding-right: 50px; */
   list-style-type: none;
   font-size: 14px;
   font-weight: 800px;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   color: var(--color-green);
 }
 .modal-body ul li {
@@ -206,15 +206,14 @@ input[type="text"] {
   background: var(--color-bg);
   border: 2px solid var(--color-fond);
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   margin-top: 5px;
   padding: 10px;
 }
 
 .modal-body .tag-list .tag {
-  display: block;
+  display: inline;
   margin: 2px;
   font-size: 10px;
   color: var(--color-green);

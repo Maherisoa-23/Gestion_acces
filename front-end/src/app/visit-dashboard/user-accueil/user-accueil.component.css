@@ -238,9 +238,9 @@
   background: var(--color-red);
 }
 
-/*.button  */
+/*.buttons  */
 
-/* .button {
+/* .buttons {
   grid-area: button;
   height: auto;
   width: 100%;
@@ -249,7 +249,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.button .btn-content {
+.buttons .btn-content {
   margin: 20px auto 40px;
   height: 100px;
   width: 300px;
@@ -263,32 +263,32 @@
   transition: 0.3s;
   box-shadow: 0 9px #999;
 }
-.button .visite {
+.buttons .visite {
   background: var(--color-red);
 }
-.button .pointage {
+.buttons .pointage {
   background: var(--color-green);
 }
-.button .visite:hover {
+.buttons .visite:hover {
   background-color: #a64043;
   font-size: 20px;
 }
-.button .pointage:hover {
+.buttons .pointage:hover {
   background-color: #3e8e41;
   font-size: 20px;
 }
-.button .visite:active {
+.buttons .visite:active {
   background-color: #a64043;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.button .pointage:active {
+.buttons .pointage:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 } */
 /* effet */
-.button {
+.buttons {
   grid-area: button;
 
   width: 100%;
@@ -303,7 +303,7 @@
   /* margin: 20px;
   padding: 30px; */
 }
-.button .card {
+.buttons .card {
   position: relative;
   max-width: 300px;
   height: 150px;
@@ -313,25 +313,25 @@
   display: flex;
   flex-direction: column;
 }
-.button .c1 {
+.buttons .c1 {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 
   transition: 0.3s ease-in-out;
   border: 3px solid var(--color-green);
 }
-.button .c2 {
+.buttons .c2 {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 
   transition: 0.3s ease-in-out;
   border: 3px solid var(--color-red);
 }
-.button .card:hover {
+.buttons .card:hover {
   cursor: pointer;
-  height: auto;
+  height: 600px;
 }
-.button .card .imgBx {
+.buttons .card .imgBx {
   position: absolute;
   width: 260px;
   height: 100px;
@@ -341,7 +341,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.button .card .imgBx .btn-effet {
+.buttons .card .imgBx .btn-effet {
   width: 100%;
   height: 100%;
   font-size: 1.2rem;
@@ -352,41 +352,41 @@
   border-radius: 10px;
 }
 
-.button .card .imgBx .i1 {
+.buttons .card .imgBx .i1 {
   background: var(--color-green);
 }
-.button .card .imgBx .i2 {
+.buttons .card .imgBx .i2 {
   background: var(--color-red);
 }
-/* .button .card .imgBx img {
+/* .buttons .card .imgBx img {
   max-width: 100%;
   border-radius: 8px;
 } */
-.button .card .content {
+.buttons .card .content {
   position: relative;
-  margin-top: -80px;
+  margin-top: -50px; /*nanova*/
   padding: 10px 15px;
-  text-align: center;
+  /* text-align: center; */
   color: var(--color-blue);
   visibility: hidden;
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
-.button .card:hover .content {
+.buttons .card:hover .content {
   visibility: visible;
   opacity: 1;
   margin-top: 80px;
   transition-delay: 0.3s;
   overflow: hidden;
 }
-.button .card .aide {
+.buttons .card .aide {
   position: absolute;
   bottom: 0;
   margin-left: 45%;
   margin-bottom: 30px;
   transform: translateX(-50%);
 }
-.button .card .aide h1 {
+.buttons .card .aide h1 {
   color: var(--color-blue);
   text-align: center;
   font-weight: 800;
@@ -395,10 +395,10 @@
   letter-spacing: 2px;
   font-size: 1.5em;
 }
-.button .card:hover .aide {
+.buttons .card:hover .aide {
   display: none;
 }
-.button .card .aide i {
+.buttons .card .aide i {
   font-size: 2.5rem;
   margin-left: 10px;
 }
