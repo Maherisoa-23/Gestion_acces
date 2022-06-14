@@ -57,8 +57,9 @@
 .entete .logo-text h1 {
   font-size: 25px;
   text-align: center;
+  font-weight: 800;
   margin: 20px 20px 5px 20px;
-  color: var(--color-fond);
+  color: var(--color-bg);
   letter-spacing: 3px;
 }
 .users1 {
@@ -85,11 +86,11 @@ ul {
   max-height: 650px;
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   padding-left: 0;
 }
 ul li {
-  height: 60px;
+  height: 50px;
   display: block;
   cursor: pointer;
 }
@@ -130,6 +131,7 @@ ul li .dropdown1-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
+  border-radius: 5px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -139,21 +141,23 @@ ul li .dropdown1-content {
 ul li .dropdown1-content a {
   float: none;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 800;
   color: var(--color-blue);
-  padding: 1px 16px;
+  padding: 5px 16px;
+  margin: 10px 0;
   text-decoration: none;
   display: block;
   text-align: left;
   /* background: #000; */
 }
 ul li .dropdown1-content a:hover {
-  background-color: #ddd;
+  background-color: rgb(45, 122, 189);
+  color: var(--color-bg);
 }
 ul li .dropdown1:hover .dropdown1-content {
   display: block;
   margin-left: 30%;
-  margin-top: -10px;
+  margin-top: -18px;
 }
 
 /*media*/

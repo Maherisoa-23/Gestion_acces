@@ -174,23 +174,23 @@ input[type="text"] {
 }
 .modal-body label {
   color: var(--color-blue);
-  text-transform: capitalize;
+  text-transform: none;
   letter-spacing: 2px;
 }
 .modal-body ul {
   display: block;
   justify-content: flex-end;
-  padding-right: 20px;
+  /* padding-right: 50px; */
   list-style-type: none;
   font-size: 14px;
   font-weight: 800px;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   color: var(--color-green);
 }
 .modal-body ul li {
   margin: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 .modal-body ul li span {
   color: var(--color-red);
@@ -198,9 +198,38 @@ input[type="text"] {
 .modal-body ul li:hover {
   color: var(--color-green);
   border: 2px solid var(--color-green);
-  padding: 3px;
+  padding: 1px;
   border-radius: 3px;
-  font-size: 12px;
+  /* font-size: 12px; */
+}
+.modal-body .tag-list {
+  background: var(--color-bg);
+  border: 2px solid var(--color-fond);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.modal-body .tag-list .tag {
+  display: inline;
+  margin: 2px;
+  font-size: 10px;
+  color: var(--color-green);
+  border: 2px solid var(--color-green);
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.tag-list ul .tag:hover {
+  color: var(--color-red);
+  border: 2px solid var(--color-red);
+
+  /* border: 2px solid var(--color-green); */
+  /* padding: 3px; */
+  /* border-radius: 3px; */
+  /* font-size: 12px; */
 }
 /* Center the image and position the close button */
 .imgcontainer {

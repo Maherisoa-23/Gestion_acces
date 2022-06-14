@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
@@ -185,11 +185,11 @@ export class EmployeeProfileComponent implements OnInit {
   deleteEmployee() {
     this.authServ.deleteEmployee(this.SecurityServ.matricule_security).subscribe((res) => {
       this.showSuccess(res.toString())
+      this.closeModal()
     })
     setTimeout(() => {
       this.route.navigate(['/admin/employee-list']);
     }, 1000);
-
   }
 
   CheckDailyPointage(item: any) {
@@ -209,7 +209,6 @@ export class EmployeeProfileComponent implements OnInit {
       duration: 3000,
     });
   }
-
   showError(msg: string) {
     this.toast.error({
       detail: 'ERROR',
@@ -217,19 +216,10 @@ export class EmployeeProfileComponent implements OnInit {
       duration: 3000,
     });
   }
-
   showInfo(msg: string) {
     this.toast.info({
       detail: 'ATTENTION',
       summary: msg,
-      duration: 3000,
-    });
-  }
-
-  showWarn() {
-    this.toast.warning({
-      detail: 'ANNULER',
-      summary: 'Ajout annulé',
       duration: 3000,
     });
   }

@@ -1,0 +1,112 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03">
+  <button class="btn-content" (click)="showModal(add)">
+    Ajout Nouvelle véhicule
+  </button>
+</div>
+
+<!--modal-->
+<ng-template #add let-modal>
+  <div class="modal-contenu">
+    <div class="modal-header">
+      <h1 class="h1-titre">Ajout véhicule</h1>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="closeModal()"
+      ></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="container">
+        <label><b>Numero matricule : </b></label>
+        <input
+          type="text"
+          name="numero_matricule"
+          [(ngModel)]="numero_matricule"
+        /><br />
+        <label><b>Type véhicule</b></label>
+        <input
+          type="text"
+          name="vehicule_name"
+          [(ngModel)]="vehicule_name"
+        /><br />
+        <label><b>Marque : </b></label>
+        <input
+          type="text"
+          name="vehicule_marque"
+          [(ngModel)]="vehicule_marque"
+        /><br />
+        <label for="select"><b>Direction</b></label>
+        <select name="pets" id="select" [(ngModel)]="direction">
+          <option *ngIf="direction">{{ direction }}</option>
+          <option *ngFor="let item of depTab">
+            {{ item.department_short_name }}
+          </option>
+        </select>
+        <br />
+        <label><b> Photo de profil : </b></label>
+        <div class="img-card">
+          <input
+            class="btn-upload-photo"
+            type="file"
+            (change)="uploadPhoto($event)"
+          />
+          <img [src]="photoPath" alt="pdp" height="120px" />
+        </div>
+        <button type="submit" class="btn-ajout" (click)="addVehicule()">
+          Ajouter
+        </button>
+        <button class="btn-cancel" type="button" (click)="closeModal()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="titre animation1 animation fade01">
+  <h1><i class="fas fa-car"></i>Liste des Véhicules</h1>
+</div>
+<div class="section animation1 animation fade01">
+  <!--Liste tableau-->
+  <table
+    class="tbl animation1 animation fade01"
+    datatable
+    [dtOptions]="dtOptions"
+    *ngIf="isShow"
+  >
+    <thead>
+      <tr>
+        <th class="th">Matricule</th>
+        <th class="th">Type</th>
+        <th>Marque</th>
+        <th>direction</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of vehicules">
+        <td data-label="ID">
+          <strong>{{ item.numero_matricule }}</strong>
+        </td>
+        <td data-label="Nom">
+          <strong>{{ item.vehicule_name }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.vehicule_marque }}</strong>
+        </td>
+        <td data-label="Pointage">
+          <strong>{{ item.department_name }}</strong>
+        </td>
+        <td class="options">
+          <button class="voirprofil" (click)="showVehiculeProfile(item)">
+            Voir profile
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Liste tableau-end-->
+</div>

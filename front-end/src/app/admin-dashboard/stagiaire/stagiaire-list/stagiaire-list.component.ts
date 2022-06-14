@@ -2,11 +2,11 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
-import { VisitService } from 'src/app/services/visit.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { StagiaireService } from 'src/app/services/stagiaire.service';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -34,15 +34,16 @@ export class StagiaireListComponent implements OnInit {
   stagiaire_id = ""
   pointed_at = ""
 
-  isEdit = false
-
   constructor(
     private authServ: AuthService,
     private stgServ: StagiaireService,
     private securityServ : SecurityAgentService,
     private route: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) {}
+
+
 
   ngOnInit(): void {   
     this.photoPath = this.authServ.PhotoUrl + this.photoName
@@ -60,6 +61,9 @@ export class StagiaireListComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
+        language: {
+          url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json',
+        }
       };
     }, 600);
 
@@ -90,41 +94,53 @@ export class StagiaireListComponent implements OnInit {
     }
   }
 
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+    this.reinitialisationDonnee()
+  }
+
   addStagiaire() {
     if (this.stagiaire_name == "" || this.description == "" || this.direction == "" || this.date_debut == "" || this.date_fin == "") {
       this.showError("Vérifier bien tous les informations")
     }
     else {
-      const val = {
-        stagiaire_name : this.stagiaire_name,
-        description : this.description,
-        start_date : this.date_debut.toString(),
-        end_date : this.date_fin.toString(),
-        department_name : this.direction.toString(),
-        photoName : this.photoName,
-      }
-      this.authServ.addStagiaire(val).subscribe((res) => {
-        if (res.toString() == "Added successfully") {
-          this.reinitialisationDonnee()
-          this.showSuccess("Stagiaire ajouté avec succès")
+      if (!this.checkValidDate(this.date_debut, this.date_fin)) {
+        this.showError("Veuillez entrer une date de fin valide")
+      } 
+      else {
+        const val = {
+          stagiaire_name : this.stagiaire_name,
+          description : this.description,
+          start_date : this.date_debut.toString(),
+          end_date : this.date_fin.toString(),
+          department_name : this.direction.toString(),
+          photoName : this.photoName,
         }
-      })
-      setTimeout(() => {
-        this.refreshStagiaireList()
-      }, 500);
+        this.authServ.addStagiaire(val).subscribe((res) => {
+          if (res.toString() == "Added successfully") {
+            this.closeModal()
+            this.showSuccess("Stagiaire ajouté avec succès")
+          }
+        })
+        setTimeout(() => {
+          this.refreshStagiaireList()
+        }, 500);
+      }
     }
   }
 
-  EditStagiaire(stagiaire : any) {
-    this.isEdit = true
-    this.stagiaire_name = stagiaire.stagiaire_name;
-    this.description = stagiaire.description;
-    this.date_debut = stagiaire.start_date;
-    this.date_fin = stagiaire.end_date;
-    this.direction = stagiaire.department_name;
-    this.photoPath = this.authServ.PhotoUrl + stagiaire.photoName
-    this.stagiaire_id = stagiaire.stagiaire_id;
-    this.pointed_at = stagiaire.pointed_at;
+  //Pour les stagiaires
+  checkValidDate(startDate: string, endDate : string) {
+    const start_date = new Date(startDate);
+    const end_date = new Date(endDate);
+    if (start_date.getTime() < end_date.getTime()) {
+      return true
+    }
+    return false
   }
 
   uploadPhoto(event : any) {
@@ -139,10 +155,8 @@ export class StagiaireListComponent implements OnInit {
   }
 
   reinitialisationDonnee() {
-    this.isEdit = false
     this.stagiaire_name = this.direction = this.date_debut = this.date_fin = this.description = ""
     this.photoName = "anonymous.png";
-    this.photoPath = this.authServ.PhotoUrl + this.photoName
   }
 
   showStagiaireProfile(item : any) {
@@ -151,9 +165,9 @@ export class StagiaireListComponent implements OnInit {
     this.stgServ.departement = item.department_name;
     this.stgServ.description = item.description;
     this.stgServ.start_date = item.start_date;
-    this.stgServ.end_date = item.end_date;
+    this.stgServ.end_date = item.end_date; 
     this.stgServ.photoPath = this.authServ.PhotoUrl + item.photoName
-    this.securityServ.security_name = item.stagiaire_name
+    this.securityServ.security_name = item.stagiaire_name //pour le calendrier de pointage
     this.route.navigate(['admin/stagiaire-profile']);
   }
 

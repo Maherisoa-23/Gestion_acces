@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Pointage
-from authApp.models import User,Employee,Department,Pointage,Pointage_register,Stagiaire
+from authApp.models import User,Employee,Department,Pointage,Pointage_register,Stagiaire,Vehicule
 
 class User_serializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +38,19 @@ class Stagiaire_serializer(serializers.ModelSerializer):
                   'photoName'
                   )
 
+class Vehicule_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vehicule
+        fields = (
+                  'vehicule_id',
+                  'numero_matricule',
+                  'vehicule_name',
+                  'vehicule_marque',
+                  'department_name',
+                  'pointed_at',
+                  'photoName'
+                  )
+
 class Department_serializer(serializers.ModelSerializer):
     class Meta:
         model = Department
@@ -69,6 +82,7 @@ class Pointage_register_serializer(serializers.ModelSerializer):
                   'employee_name',
                   'employee_dep_name',
                   'date',
+                  'function',
                   'lieu',
                   'entry_time',
                   'exit_time',

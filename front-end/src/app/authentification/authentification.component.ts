@@ -36,7 +36,7 @@ export class AuthentificationComponent implements OnInit {
     private route: Router,
     private datePipe: DatePipe,
     private toast: NgToastService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) this.route.navigate(['/agent/accueil']);
@@ -68,14 +68,17 @@ export class AuthentificationComponent implements OnInit {
   onSignIn() {
     for (let index = 0; index < this.usersList.length; index++) {
       const element = this.usersList[index];
-      console.log(element.numero_matricule == this.numero_matricule && this.selected_lieu != '')
+      console.log(
+        element.numero_matricule == this.numero_matricule &&
+          this.selected_lieu != ''
+      );
 
       //admnin
       if (
         this.numero_matricule == this.adminMatricule &&
         this.numero_matricule == element.numero_matricule
       ) {
-        this.ok = true
+        this.ok = true;
         const md5 = new Md5();
         const pass = md5.appendStr(this.password).end().toString();
         if (element.password == pass) {
@@ -89,11 +92,15 @@ export class AuthentificationComponent implements OnInit {
           });
           this.showSuccess();
           break;
-        } else this.showError("Vérifier votre numéro matricule et votre mot de passe");
+        } else
+          this.showError(
+            'Vérifier votre numéro matricule et votre mot de passe'
+          );
         break;
       } else {
         if (
-          element.numero_matricule == this.numero_matricule && this.selected_lieu != ''
+          element.numero_matricule == this.numero_matricule &&
+          this.selected_lieu != ''
         ) {
           this.authService.lieu = this.selected_lieu;
           //si agent de sécurité
@@ -113,23 +120,22 @@ export class AuthentificationComponent implements OnInit {
           setTimeout(() => {
             this.date = new Date();
             this.heure = new Date();
-            this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+            this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
             this.Lieu.isActive = true;
-            this.Lieu.entry_time = this.heure.toString()
-              this.authService.putLieu(this.Lieu).subscribe((res) => {
-                console.log(res.toString());
-              });
+            this.Lieu.entry_time = this.heure.toString();
+            this.authService.putLieu(this.Lieu).subscribe((res) => {
+              console.log(res.toString());
+            });
             localStorage.setItem('lieu', JSON.stringify(this.Lieu));
           }, 500);
-          this.saveConnection()
+          this.saveConnection();
           break;
         }
       }
       setTimeout(() => {
         if (!this.ok)
-          this.showError("Vérifier votre numéro matricule et le choix du lieu");
+          this.showError('Vérifier votre numéro matricule et le choix du lieu');
       }, 500);
-
     }
   }
 
@@ -140,7 +146,7 @@ export class AuthentificationComponent implements OnInit {
   saveConnection() {
     this.date = new Date();
     this.heure = new Date();
-    this.heure = this.datePipe.transform(this.date, 'h:mm:ss');
+    this.heure = this.datePipe.transform(this.date, 'h:mm:ss a');
     this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
     var val = {
@@ -154,7 +160,6 @@ export class AuthentificationComponent implements OnInit {
       console.log(res.toString() + ' to the pointage list');
     });
   }
-
 
   //Les messages de notification, de succes et d"erreur
   showSuccess() {
@@ -182,7 +187,6 @@ export class AuthentificationComponent implements OnInit {
     }
   }
 
-
   //animation du formulaire d'euthentification
   ClickOnInput1() {
     this.input1 = true;
@@ -190,5 +194,4 @@ export class AuthentificationComponent implements OnInit {
   ClickOnInput2() {
     this.input2 = true;
   }
-
 }

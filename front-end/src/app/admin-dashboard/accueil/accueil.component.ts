@@ -7,17 +7,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.css']
+  styleUrls: ['./accueil.component.css'],
 })
 export class AccueilComponent implements OnInit {
-
   pointages: any;
   activeSecurityList: any = [];
   myChart: any;
   admin: any;
 
-  lieux : any
-
+  lieux: any;
 
   // Clock
   Date: Date = new Date();
@@ -36,13 +34,18 @@ export class AccueilComponent implements OnInit {
   public second!: string;
   public ampm!: string;
   public day!: string;
-  tabSecurity : any = []
-
-  constructor(private authServ: AuthService, private SecurityServ: SecurityAgentService, private route: Router) {
-  }
+  tabSecurity: any = [];
+  photoPath = '';
+  photoName = 'anonymous.png';
+  constructor(
+    private authServ: AuthService,
+    private SecurityServ: SecurityAgentService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.refreshSecurityList();
+    
     if (localStorage.getItem('admin1') != null) {
       this.admin = JSON.parse(localStorage.getItem('admin1') || '{}');
     }
@@ -52,6 +55,9 @@ export class AccueilComponent implements OnInit {
     }, 1000);
     this.day = this.daysArray[this.date.getDay()];
     this.refresh();
+  }
+  getPhotoPath(name :string){
+    return this.authServ.PhotoUrl + name
   }
 
   //Methode de l'horloge
@@ -74,25 +80,23 @@ export class AccueilComponent implements OnInit {
   }
 
   refresh() {
-    const val = "";
-    this.refreshLieuxList()
+    const val = '';
+    this.refreshLieuxList();
     this.refreshPointageList();
     setTimeout(() => {
-      this.getActiveSecurity()
+      this.getActiveSecurity();
     }, 500);
   }
   refreshSecurityList() {
-    let tmp : any;
-    this.authServ
-      .getEmployeeList()
-      .subscribe((data) => {
-        tmp = data;
-      });
+    let tmp: any;
+    this.authServ.getEmployeeList().subscribe((data) => {
+      tmp = data;
+    });
     setTimeout(() => {
       for (let index = 0; index < tmp.length; index++) {
         const element = tmp[index];
-        if (element.function == "AGENT DE SECURITE") {
-          this.tabSecurity.push(element)
+        if (element.function == 'AGENT DE SECURITE') {
+          this.tabSecurity.push(element);
         }
       }
     }, 500);
@@ -101,29 +105,29 @@ export class AccueilComponent implements OnInit {
   getActiveSecurity() {
     for (let index = 0; index < this.pointages.length; index++) {
       const element = this.pointages[index];
-      if (element.function == "AGENT DE SECURITE") {
-        this.activeSecurityList.push(element)
+      if (element.function == 'AGENT DE SECURITE') {
+        this.activeSecurityList.push(element);
       }
     }
   }
 
-  getSecurity(name : string) {
+  getSecurity(name: string) {
     for (let index = 0; index < this.tabSecurity.length; index++) {
       const element = this.tabSecurity[index];
-      if (element.employee_name == name) return element
+      if (element.employee_name == name) return element;
     }
-    return null
+    return null;
   }
 
-  refreshLieuxList(){
+  refreshLieuxList() {
     this.authServ.getLieuList().subscribe((data) => {
-      this.lieux = data
+      this.lieux = data;
     });
   }
 
   ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
-    const security = this.getSecurity(emp.employee_name)
+    const security = this.getSecurity(emp.employee_name);
     setTimeout(() => {
       this.SecurityServ.matricule_security = security.numero_matricule;
       this.SecurityServ.security_name = security.employee_name;
@@ -134,6 +138,4 @@ export class AccueilComponent implements OnInit {
       this.route.navigate(['admin/employee-profile']);
     }, 500);
   }
-
-
 }

@@ -38,7 +38,7 @@
       <input type="number" [(ngModel)]="CIN" name="CIN" /> <br />
     </span>
     <span *ngIf="!haveCIN">
-      <label><b>Autre Piéce justificative</b></label
+      <label><b>commentaire</b></label
       ><br />
       <input type="text" name="comment" [(ngModel)]="comment" /> <br />
     </span>
@@ -65,25 +65,23 @@
 <!--modal confirm-->
 <ng-template #exit let-modal>
   <div class="modal-header">
-    <h1>Sortie visiteur</h1>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    <h1>Sortie</h1>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeModal()"
+    ></button>
   </div>
 
   <div class="modal-body">
     <div class="container">
-      <label><b>Êtes vous sûr? </b></label>
-      <button
-        type="submit"
-        class="btn-modif"
-        (click)="exitVisit()"
-      >
+      <label><b>sortie du  visiteur {{visit.visitor_name}}, êtes vous sûr? </b></label>
+      <br /><br />
+      <button type="submit" class="btn-modif" (click)="exitVisit()">
         confirmer
       </button>
-      <button
-        class="btn-cancel"
-        type="button"
-        (click) = "closeModal()"
-      >
+      <button class="btn-cancel" type="button" (click)="closeModal()">
         Annuler
       </button>
     </div>

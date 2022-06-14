@@ -229,7 +229,7 @@ select {
   padding: 0 0.5em;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-green);
   font-family: "poppins", sans-serif;
@@ -267,7 +267,7 @@ select::-ms-expand {
 .select option {
   color: var(--color-green);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: lighter;
 }
 
 @media screen and (max-width: 900px) {

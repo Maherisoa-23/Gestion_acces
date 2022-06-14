@@ -1,7 +1,6 @@
 html {
   overflow-x: hidden;
 }
-
 select,
 input {
   font-size: 18px;
@@ -52,18 +51,6 @@ input {
   background: var(--color-bg);
   /* border: 2px solid red; */
 }
-
-/* h1 {
-  color: var(--color-fond);
-  font-size: 22px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  border: 1px solid var(--color-blue);
-  background: var(--color-blue);
-
-  text-align: center;
-} */
 .barre {
   display: flex;
   justify-content: center;
@@ -83,10 +70,8 @@ input {
 }
 .rubrique {
   padding: 20px;
-  /* border: 1px solid var(--color-blue); */
   text-align: justify;
   color: #333;
-  /* border-radius: 0px 0px 10px 10px; */
   width: 80%;
   margin: auto;
   font-size: 15px;
@@ -109,11 +94,10 @@ input {
   background-color: #cdcdcdca;
   overflow: hidden;
 }
-/* .actif {
+ .actif {
   color: #edeeee;
-  background-color: var(--color-green);
-  height: 100%;
-} */
+  background-color: var(--color-blue);
+} 
 
 /*TABLE*/
 .rubrique .section {
@@ -222,25 +206,17 @@ input {
 @-webkit-keyframes fade01 {
   from {
     opacity: 0;
-    /* -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0); */
   }
   to {
     opacity: 1;
-    /* -webkit-transform: none;
-    transform: none; */
   }
 }
 @keyframes fade01 {
   from {
     opacity: 0;
-    /* -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0); */
   }
   to {
     opacity: 1;
-    /* -webkit-transform: none;
-    transform: none; */
   }
 }
 .fade01 {

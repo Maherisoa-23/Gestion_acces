@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -21,12 +22,7 @@ export class EmployeeComponent implements OnInit {
   pointage_register: any;
   pointages: any;
   last_pointage: any;
-  trie_nom = false;
-  trie_matricule = false;
-  nom_croissant = false;
-  matricule_croissant = false;
   departments: any;
-  // depTab : any = []
 
   photoName = 'anonymous.png';
   photoPath = '';
@@ -39,7 +35,6 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private authServ: AuthService,
-    // private SecurityServ: SecurityAgentService,
     private route: Router,
     private SecurityServ: SecurityAgentService,
     private toast: NgToastService,
@@ -196,7 +191,6 @@ export class EmployeeComponent implements OnInit {
       duration: 3000,
     });
   }
-
   showError(msg: string) {
     this.toast.error({
       detail: 'ERROR',
@@ -204,7 +198,6 @@ export class EmployeeComponent implements OnInit {
       duration: 3000,
     });
   }
-
   showInfo(msg: string) {
     this.toast.info({
       detail: 'ATTENTION',
@@ -212,7 +205,6 @@ export class EmployeeComponent implements OnInit {
       duration: 3000,
     });
   }
-
   showWarn() {
     this.toast.warning({
       detail: 'ANNULER',

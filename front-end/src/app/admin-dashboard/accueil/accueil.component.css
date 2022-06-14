@@ -33,12 +33,12 @@
   justify-content: flex-start;
 }
 .clocks1 .bienvenue h1 {
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 800;
   /* margin: 20px; */
   margin: 0px 20px 20px 20px;
   text-transform: capitalize;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   color: var(--color-text);
 }
 .clocks1 .bienvenue h1 span {
@@ -236,7 +236,7 @@ h2 {
 .accueil1-sidebar {
   grid-area: sidebar;
   background: var(--color-fond);
-  margin: 10px 30px;
+  margin: 10px 20px;
   height: auto;
 }
 
@@ -286,14 +286,23 @@ h2 {
   border-bottom: 2px solid var(--color-fond);
   margin: 2px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: lighter;
   transition: 0.3s ease;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
 }
-
+.accueil1-sidebar .security ul li img {
+  width: 50px;
+  height: 50px;
+  clip-path: circle();
+}
 .accueil1-sidebar .security ul li:hover {
-  font-size: 18.5px;
-  margin-left: 4px;
+  font-size: 15px;
+  margin-left: 3px;
 }
 
 /*header*/
@@ -303,6 +312,7 @@ h2 {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-top: 5px;
 }
 
 /*body/diagramme*/
@@ -502,12 +512,15 @@ h2 {
 @media screen and (max-width: 900px) {
   /*accueil1*/
   .accueil1-container {
-    grid-template-rows: 400px 1fr auto auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-      "clock clock"
-      "header  header"
-      "sidebar  sidebar"
-      "contenu  contenu";
+      "header  "
+      "sidebar  "
+      "contenu  ";
+  }
+  .clocks1 {
+    display: none;
   }
   /*header*/
   .accueil1-header {
@@ -585,33 +598,6 @@ h2 {
     height: max-content;
   }
   .clocks1 {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "bienvenue";
-  }
-  .bienvenue {
-    height: 200px;
-    background: var(--color-bg);
-  }
-  .bienvenue h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 20px;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    color: var(--color-text);
-  }
-
-  .bienvenue .img {
-    width: 80%;
-    height: 300px;
-  }
-  .bienvenue .img img {
-    margin-left: 50px;
-    max-width: 100%;
-  }
-
-  .heure {
     display: none;
   }
 }
@@ -645,40 +631,9 @@ h2 {
   } */
 
   .clocks1 {
-    grid-template-columns: 320px;
-    /* border: 2px solid cyan; */
-    grid-template-rows: 1fr;
-    grid-template-areas: "bienvenue";
-    width: 100%;
-    margin: 15px 10px;
-  }
-  .bienvenue {
-    width: 92%;
-    height: 200px;
-    justify-content: center;
-    background: var(--color-bg);
-  }
-  .bienvenue h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 20px;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    color: var(--color-text);
-  }
-
-  .bienvenue .img {
-    width: 80%;
-    height: 300px;
-  }
-  .bienvenue .img img {
-    margin-left: 50px;
-    max-width: 100%;
-  }
-
-  .heure {
     display: none;
   }
+
   .accueil1-body {
     grid-area: contenu;
     /* display: flex;

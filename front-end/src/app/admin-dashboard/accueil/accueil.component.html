@@ -2,7 +2,7 @@
 <div class="accueil1-container">
   <div class="clocks1 anima3 animate fade03">
     <div class="bienvenue">
-      <h1>Bienvenue <span>Admin</span></h1>
+      <h1>TABLEAU DE BORD <span>Admin</span></h1>
       <div id="clock">
         <h2>{{ Date | date: "fullDate" }}</h2>
       </div>
@@ -46,6 +46,12 @@
           *ngFor="let item of activeSecurityList"
           (click)="ShowEmployeeProfile(item)"
         >
+          <img
+            [src]="getPhotoPath(getSecurity(item.employee_name).photoName)"
+            alt="pdp"
+            srcset=""
+            height="150px"
+          />
           {{ item.employee_name }}
         </li>
       </ul>

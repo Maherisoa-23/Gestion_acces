@@ -54,17 +54,6 @@ input {
   /* border: 2px solid red; */
 }
 
-/* h1 {
-  color: var(--color-fond);
-  font-size: 22px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  border: 1px solid var(--color-blue);
-  background: var(--color-blue);
-
-  text-align: center;
-} */
 .barre {
   display: flex;
   justify-content: center;
@@ -110,13 +99,15 @@ input {
   background-color: #cdcdcdca;
   overflow: hidden;
 }
-/* .actif {
+.actif {
   color: #edeeee;
-  background-color: var(--color-green);
-  height: 100%;
-} */
+  background-color: var(--color-blue);
+} 
 
 /*TABLE*/
+.color-vehicule{
+  background-color: var(--color-green);
+}
 .rubrique .section {
   width: 100%;
   grid-column: 1 / -1;
