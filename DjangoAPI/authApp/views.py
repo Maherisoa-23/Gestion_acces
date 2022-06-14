@@ -6,7 +6,8 @@ from django.http.request import HttpRequest
 
 from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire, Vehicule
 from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer, Vehicule_serializer
-from VisitApp.models import Lieu
+from VisitApp.models import Lieu, Visits_register
+from VisitApp.serializers import Visits_register_serializer
 
 from django.core.files.storage import default_storage
 
@@ -255,6 +256,12 @@ def daily_pointage_API(request: HttpRequest, id=0):
         pointage_tab = Pointage_register.objects.filter(employee_name = request_data["employee_name"], date = request_data["date"])      
         pointage_serializer = Pointage_register_serializer(pointage_tab, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
+    #visite details
+    elif request.method == 'PUT':
+        request_data = JSONParser().parse(request)
+        visit = Visits_register.objects.filter(visitor_name = request_data["visitor_name"], date = request_data["date"])      
+        visit_serializer = Visits_register_serializer(visit, many=True)
+        return JsonResponse(visit_serializer.data, safe=False)
     return JsonResponse("wrong ", safe = False)
 
 @csrf_exempt

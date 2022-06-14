@@ -169,6 +169,7 @@ export class ListActiveVisitComponent implements OnInit {
       visitor_name: item.visitor_name,
       motif: item.motif,
       CIN: item.CIN,
+      comment: item.comment,
       lieu: this.lieu,
       date: item.date,
       entry_time: item.entry_time,

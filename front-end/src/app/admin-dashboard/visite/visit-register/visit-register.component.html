@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of visitsRegister">
+      <tr *ngFor="let item of visitsRegister" (click)="checkVisitDetails(item)">
         <td data-label="Nom">
           <strong>{{ item.visitor_name }}</strong>
         </td>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VisitService } from 'src/app/services/visit.service';
 import { DataTableDirective } from 'angular-datatables';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -25,7 +27,7 @@ export class VisitRegisterComponent implements OnInit {
 
   depSelected: any;
 
-  constructor(private visitServ: VisitService) {}
+  constructor(private visitServ: VisitService, private authServ: AuthService, private route : Router) { }
 
   ngOnInit(): void {
     this.refreshVisitRegisterList();
@@ -39,7 +41,7 @@ export class VisitRegisterComponent implements OnInit {
         pageLength: 10,
         lengthMenu: [10, 15, 25],
         processing: true,
-        language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
+        language: { url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json" }
       };
     }, 600);
 
@@ -54,5 +56,11 @@ export class VisitRegisterComponent implements OnInit {
     this.visitServ.getVisitsRegister().subscribe((data) => {
       this.visitsRegister = data;
     });
+  }
+
+  checkVisitDetails(item: any) {
+    this.authServ.employee_name = item.visitor_name
+    this.authServ.dateDailyPointage = item.date;
+    this.route.navigate(['admin/visit-details']);
   }
 }

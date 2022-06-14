@@ -1,0 +1,49 @@
+<span *ngIf="isShow">
+    <div class="titre">
+      <button (click)="goBack()">Retour</button>
+  
+      <h1>VISIT DETAILS</h1>
+    </div>
+    <div class="section">
+      <div class="date">
+        <h1>
+          Visit du : <span>{{ dailyPointages[0].date }}</span>
+        </h1>
+      </div>
+    </div>
+    <div class="section">
+      <div class="nom">
+        <h2>
+          Nom: <span>{{ dailyPointages[0].visitor_name }}</span>
+        </h2>
+        <h2 *ngIf="dailyPointages[0].CIN">
+          CIN: <span> {{ dailyPointages[0].CIN }}</span>
+        </h2>
+        <h2 *ngIf="dailyPointages[0].comment">
+            commentaire : <span> {{ dailyPointages[0].comment }}</span>
+          </h2>
+        <h2>
+          Motif: <span> {{ dailyPointages[0].motif }}</span>
+        </h2>
+      </div>
+    </div>
+    <div class="section">
+      <div class="liste">
+        <ul>
+          <li *ngFor="let item of dailyPointages">
+            <h2>
+              Lieu : <span>{{ item.lieu }}</span>
+            </h2>
+            <h2>
+              Entré à : <span>{{ item.entry_time }}</span>
+            </h2>
+            <h2>
+              Sorti à <span>{{ item.exit_time }}</span>
+            </h2>
+            <!-- reponsive??? -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+  </span>

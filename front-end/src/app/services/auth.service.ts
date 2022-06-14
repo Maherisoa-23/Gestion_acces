@@ -168,6 +168,9 @@ export class AuthService {
   getVisitCountingFilterByPlace(lieu_id: number): Observable<any> {
     return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
   }
+  getVisitByLieuAndDate(val: any) {
+    return this.http.put(this.APIUrl + '/daily_pointage/', val);
+  }
   //pour les pointages
   getTabPointageCounting(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/pointage_counter/');

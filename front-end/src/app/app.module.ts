@@ -61,6 +61,7 @@ import { CalendrierVisiteComponent } from './admin-dashboard/visite/visiteur/vis
 import { VehiculeComponent } from './admin-dashboard/vehicule/vehicule.component';
 import { VehiculeRegisterComponent } from './admin-dashboard/vehicule/vehicule-register/vehicule-register.component';
 import { VehiculeProfileComponent } from './admin-dashboard/vehicule/vehicule-profile/vehicule-profile.component';
+import { VisitDetailsComponent } from './admin-dashboard/visite/visit-details/visit-details.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
       { path: 'employee-profile', component: EmployeeProfileComponent },
       { path: 'visiteur-list', component: VisiteurComponent },
       { path: 'visiteur-profile', component: VisiteurProfileComponent },
+      { path: 'visit-details', component: VisitDetailsComponent },
       { path: 'security-agent', component: SecurityAgentComponent },
       { path: 'visit-admin', component: ListVisitAdminComponent },
       { path: 'visit-register', component: VisitRegisterComponent },
@@ -146,6 +148,7 @@ const appRoutes: Routes = [
     VehiculeComponent,
     VehiculeRegisterComponent,
     VehiculeProfileComponent,
+    VisitDetailsComponent,
   ],
   imports: [
     BrowserModule,
