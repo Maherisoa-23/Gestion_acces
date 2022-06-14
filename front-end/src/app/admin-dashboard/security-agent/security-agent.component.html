@@ -1,3 +1,13 @@
+<!--btn ajout-->
+<div class="btn animation3 animation fade03 center">
+  <button
+    class="btn-content"
+    (click)="showModal(add)"
+  >
+    Ajout nouvel utilisateur
+  </button>
+</div>
+
 <div class="titre animation1 animation fade01">
   <h1><i class="fas fa-id-card"></i>Les agents de securite</h1>
 </div>
@@ -18,13 +28,13 @@
           <strong>{{ item.numero_matricule }}</strong>
         </td>
         <td data-label="Name">
-          <strong>{{ item.employee_name }}</strong>
+          <strong>{{ item.user_name }}</strong>
         </td>
         <td data-label="Pointage">
           <i> {{ getLastPointageBySec(item.numero_matricule) }}</i>
         </td>
         <td>
-          <button class="voirprofil" (click)="ShowEmployeeProfile(item)">
+          <button class="voirprofil" (click)="ShowEmployeeProfile(getSecurity(item.user_name))">
             Voir profile
           </button>
         </td>
@@ -33,3 +43,39 @@
   </table>
   <!--Liste tableau-end-->
 </div>
+
+
+<!--modal-->
+<ng-template #add let-modal>
+  <div class="modal-header">
+    <h1>Ajout nouvel utilisateur</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <label><b>Nom agent </b></label>
+      <input
+        type="text"
+        name="user_name"
+        [(ngModel)]="user_name"
+      /><br />
+      <label><b>Numero matricule </b></label>
+      <input type="number" name="numero_matricule" [(ngModel)]="numero_matricule" /><br />
+      <button
+        type="submit"
+        class="btn-modif"
+        (click)="addUser()"
+      >
+        ajouter
+      </button>
+      <button
+        class="btn-cancel"
+        type="button"
+        (click)="closeModal()"
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
+</ng-template>

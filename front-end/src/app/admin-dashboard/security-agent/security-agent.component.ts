@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 
@@ -9,22 +11,23 @@ import { SecurityAgentService } from 'src/app/services/security-agent.service';
   styleUrls: ['./security-agent.component.css'],
 })
 export class SecurityAgentComponent implements OnInit {
-  securities: any;
+  employees: any;
   pointage_register: any;
   pointages: any;
   last_pointage: any;
-  trie_nom = false;
-  trie_matricule = false;
-  nom_croissant = false;
-  matricule_croissant = false;
   tab : any = []
+
+  @Input() numero_matricule = 0;
+  @Input() user_name = ""
 
   readonly direction_security = 3;
 
   constructor(
     private authServ: AuthService,
     private SecurityServ: SecurityAgentService,
-    private route: Router
+    private route: Router,
+    private toast: NgToastService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -36,22 +39,52 @@ export class SecurityAgentComponent implements OnInit {
     this.authServ
       .getEmployeeList()
       .subscribe((data) => {
-        this.securities = data;
+        this.employees = data;
       });
-    setTimeout(() => {
-      for (let index = 0; index < this.securities.length; index++) {
-        const element = this.securities[index];
+    /* setTimeout(() => {
+      for (let index = 0; index < this.employees.length; index++) {
+        const element = this.employees[index];
         if (element.function == "AGENT DE SECURITE") {
           this.tab.push(element)
         }
       }
-    }, 500);
+    }, 500); */
+    this.authServ.getUsersList().subscribe((data) => {
+      this.tab = data
+    })
   }
 
   refreshPointageList() {
     this.authServ.getPointageList().subscribe((data) => {
       this.pointages = data;
     });
+  }
+
+  //Methode pour les modals
+  showModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+  closeModal() {
+    this.modalService.dismissAll()
+    this.reinitialisationDonnee()
+  }
+
+  reinitialisationDonnee() {
+    this.user_name = '';
+    this.numero_matricule = 0;
+  }
+
+  addUser() {
+    const val = {
+      user_name : this.user_name,
+      numero_matricule : this.numero_matricule
+    }
+    this.authServ.addUser(val).subscribe((res) => {
+      this.showSuccess(res.toString())
+    })
+    setTimeout(() => {
+      this.refreshSecurityList()
+    }, 500);
   }
 
   refreshPointageRegisterList() {
@@ -78,6 +111,15 @@ export class SecurityAgentComponent implements OnInit {
     return " - "
   }
 
+  getSecurity(name : string) {
+    for (let index = 0; index < this.employees.length; index++) {
+      const element = this.employees[index];
+      if (element.employee_name == name) {
+        return element
+      }
+    }
+  }
+
   ShowEmployeeProfile(emp: any) {
     this.authServ.refreshPointageList();
     setTimeout(() => {
@@ -89,5 +131,21 @@ export class SecurityAgentComponent implements OnInit {
       this.SecurityServ.direction = emp.department_name;
       this.route.navigate(['admin/employee-profile']);
     }, 500);
+  }
+
+  //Les messages
+  showSuccess(msg: string) {
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: msg,
+      duration: 3000,
+    });
+  }
+  showError(msg: string) {
+    this.toast.error({
+      detail: 'ERROR',
+      summary: msg,
+      duration: 3000,
+    });
   }
 }

@@ -18,20 +18,20 @@ def user_API(request: HttpRequest, id=0):
         user = User.objects.all()
         user_serializer = User_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
-    elif request.method== 'POST':
+    elif request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        user_serializer = User_serializer(data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save() 
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    #liste des sécurité présent
+    elif request.method== 'PUT':
         user = Pointage.objects.filter(function = "AGENT DE SECURITE")
         user_serializer = Pointage_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
-    elif request.method == 'PUT':
-        user_data = JSONParser().parse(request)
-        user= User.objects.get(user_id = user_data['user_id'] )
-        user_serializer = User_serializer(user,data=user_data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        user=User.objects.get(user_id =id)
+        user=User.objects.get(pk =id)
         user.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
