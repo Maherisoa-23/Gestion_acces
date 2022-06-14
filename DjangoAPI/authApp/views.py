@@ -259,10 +259,12 @@ def daily_pointage_API(request: HttpRequest, id=0):
 
 @csrf_exempt
 def SaveFile(request):
-    file = request.FILES["uploadedFile"]
-    file_name = default_storage.save(file.name , file)
-    
-    return JsonResponse(file_name,safe=False)
+    if request.method== 'POST':
+        file = request.FILES["uploadedFile"]
+        file_name = default_storage.save(file.name , file)
+        return JsonResponse(file_name,safe=False)
+    elif request.method== 'DELETE':
+        print("photo effacé")
 
 @csrf_exempt
 def pointageStg(request):
