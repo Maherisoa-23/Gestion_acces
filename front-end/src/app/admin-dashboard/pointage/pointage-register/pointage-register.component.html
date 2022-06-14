@@ -19,8 +19,8 @@
   >
     <thead>
       <tr>
-        <th>Nom</th>
         <th>Date</th>
+        <th>Nom</th>
         <th>Heure d'entree</th>
         <th>Heure de sortie</th>
         <th>Lieu</th>
@@ -29,11 +29,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of pointages" (click)="CheckDailyPointage(item)">
-        <td data-label="Nom">
-          <strong>{{ item.employee_name }}</strong>
-        </td>
         <td data-label="Date">
           <b>{{ item.date }}</b>
+        </td>
+        <td data-label="Nom">
+          <strong>{{ item.employee_name }}</strong>
         </td>
         <td data-label="Heure d'entree">
           <b>{{ item.entry_time }}</b>

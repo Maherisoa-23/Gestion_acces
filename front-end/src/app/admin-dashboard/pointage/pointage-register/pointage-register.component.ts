@@ -46,7 +46,7 @@ export class PointageRegisterComponent implements OnInit {
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
-      $('#dataTables-example').DataTable().columns(1).search(v).draw();
+      $('#dataTables-example').DataTable().columns(0).search(v).draw();
     });
   }
 
