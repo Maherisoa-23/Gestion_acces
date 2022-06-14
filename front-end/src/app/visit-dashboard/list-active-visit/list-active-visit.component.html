@@ -29,8 +29,8 @@
         {{ item.visitor_name }}
       </li>
     </ul>
-    <label class="spanina" for="cin"><b>Pas de CIN</b></label>
-    <input type="checkbox" (click)="NoCIN()" id="cin" />
+    <label class="spanina" for="cin" *ngIf="isNewVisitor(visitor_name)"><b>Pas de CIN</b></label>
+    <input type="checkbox" (click)="NoCIN()" id="cin" *ngIf="isNewVisitor(visitor_name)"/>
     <!-- <span class="spanina"></span> -->
     <br /><br />
     <span *ngIf="haveCIN">
