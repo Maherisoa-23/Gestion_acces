@@ -137,10 +137,23 @@ export class EmployeeComponent implements OnInit {
           this.ShowEmployeeProfile(val);
         } else this.showError('Erreur vérifier bien les informations');
       });
-      setTimeout(() => {
-        this.refreshEmployeeList();
-      }, 500);
+      //Si agent de sécurité, ajout dans les utilisateurs
+      if (this.function.toUpperCase() == "AGENT DE SECURITE") {
+        this.addUser();
+      }
     }
+  }
+
+  addUser() {
+    const val = {
+      user_name : this.employee_name,
+      numero_matricule : this.numero_matricule
+    }
+    this.authServ.addUser(val).subscribe((res) => {
+      setTimeout(() => {
+        this.showSuccess("ajouté aussi en tant que utilisateur")
+      }, 4000); 
+    })
   }
 
   uploadPhoto(event: any) {

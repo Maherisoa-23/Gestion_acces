@@ -41,14 +41,6 @@ export class SecurityAgentComponent implements OnInit {
       .subscribe((data) => {
         this.employees = data;
       });
-    /* setTimeout(() => {
-      for (let index = 0; index < this.employees.length; index++) {
-        const element = this.employees[index];
-        if (element.function == "AGENT DE SECURITE") {
-          this.tab.push(element)
-        }
-      }
-    }, 500); */
     this.authServ.getUsersList().subscribe((data) => {
       this.tab = data
     })
@@ -58,33 +50,6 @@ export class SecurityAgentComponent implements OnInit {
     this.authServ.getPointageList().subscribe((data) => {
       this.pointages = data;
     });
-  }
-
-  //Methode pour les modals
-  showModal(content: any) {
-    this.modalService.open(content, { centered: true });
-  }
-  closeModal() {
-    this.modalService.dismissAll()
-    this.reinitialisationDonnee()
-  }
-
-  reinitialisationDonnee() {
-    this.user_name = '';
-    this.numero_matricule = 0;
-  }
-
-  addUser() {
-    const val = {
-      user_name : this.user_name,
-      numero_matricule : this.numero_matricule
-    }
-    this.authServ.addUser(val).subscribe((res) => {
-      this.showSuccess(res.toString())
-    })
-    setTimeout(() => {
-      this.refreshSecurityList()
-    }, 500);
   }
 
   refreshPointageRegisterList() {
@@ -133,19 +98,4 @@ export class SecurityAgentComponent implements OnInit {
     }, 500);
   }
 
-  //Les messages
-  showSuccess(msg: string) {
-    this.toast.success({
-      detail: 'SUCCESS',
-      summary: msg,
-      duration: 3000,
-    });
-  }
-  showError(msg: string) {
-    this.toast.error({
-      detail: 'ERROR',
-      summary: msg,
-      duration: 3000,
-    });
-  }
 }
