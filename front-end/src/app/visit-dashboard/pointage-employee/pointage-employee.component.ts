@@ -27,6 +27,7 @@ export class PointageEmployeeComponent implements OnInit {
   @Input() anarana = '';
 
   lieu = '';
+  tmp : any = []
   pointages: any = [];
   pointagesbyLieu: any = [];
   employees: any = [];
@@ -65,6 +66,9 @@ export class PointageEmployeeComponent implements OnInit {
       );
     }, 700);
     this.refreshPointageList();
+    setTimeout(() => {
+      this.pointages = this.tmp;
+    }, 500);
     this.getEmployeeList();
     this.getStagiaireList();
     this.refreshVehiculeList();
@@ -72,7 +76,7 @@ export class PointageEmployeeComponent implements OnInit {
 
   refreshPointageList() {
     this.authServ.getPointageList().subscribe((data) => {
-      this.pointages = data;
+      this.tmp = data;
     });
   }
 
@@ -163,8 +167,8 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   getPointageId(name : string) {
-    for (let index = 0; index < this.pointages.length; index++) {
-      const element = this.pointages[index];
+    for (let index = 0; index < this.tmp.length; index++) {
+      const element = this.tmp[index];
       if (element.employee_name == name) {
         return element.pointage_id
       }
@@ -206,6 +210,9 @@ export class PointageEmployeeComponent implements OnInit {
       }
     }
     this.pointage(this.enteredValue);
+    setTimeout(() => {
+      this.refreshPointageList();
+    }, 500);
   }
   pointage(entiteName: string) {
     if (!this.isEmployee(entiteName) && !this.isVehicule) {
@@ -514,8 +521,8 @@ export class PointageEmployeeComponent implements OnInit {
   }
 
   addPointageRegister(employee_name: string) {
-    for (let index = 0; index < this.pointages.length; index++) {
-      const element = this.pointages[index];
+    for (let index = 0; index < this.tmp.length; index++) {
+      const element = this.tmp[index];
       if (element.employee_name == employee_name) {
         this.heure = new Date();
         this.heure = this.datePipe.transform(this.heure, 'h:mm:ss a');
@@ -529,7 +536,10 @@ export class PointageEmployeeComponent implements OnInit {
           entry_time: element.entry_time,
           exit_time: this.heure.toString(),
         };
-        this.authServ.addPointageRegister(val).subscribe((res) => { });
+        console.log(val)
+        this.authServ.addPointageRegister(val).subscribe((res) => { 
+          console.log(res.toString())
+        });
       }
     }
   }
