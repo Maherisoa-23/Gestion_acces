@@ -22,7 +22,7 @@ export class ChartGeneraleComponent implements OnInit {
 
   ambohijatovo_tab: any
   andraharo_tab: any
-  mangasoavin_tab: any
+  mangasoavina_tab: any
 
   constructor(private elementRef: ElementRef, private authServ: AuthService, private datePipe: DatePipe) { }
 
@@ -31,7 +31,7 @@ export class ChartGeneraleComponent implements OnInit {
     this.refreshCounting();
     setTimeout(() => {
       this.chartit();
-    }, 1500);
+    }, 2000);
   }
 
   refreshPointageLieu() {
@@ -45,13 +45,13 @@ export class ChartGeneraleComponent implements OnInit {
   }
   
   refreshCounting() {
+    this.refreshPointageLieu()
     this.authServ.getTabVisitCounting().subscribe((data) => {
       this.tab_visit_counting = data;
     });
     this.authServ.getTabPointageCounting().subscribe((data) => {
       this.tab_pointage_counting = data;
     });
-    this.refreshPointageLieu()
   }
 
   getLastSevenDay() {
@@ -80,19 +80,19 @@ export class ChartGeneraleComponent implements OnInit {
       if (lieu == "Ambohijatovo") {
         this.ambohijatovo_tab = this.tmp
       } else if (lieu == "Andraharo") this.andraharo_tab = this.tmp
-      else this.mangasoavin_tab = this.tmp
+      else this.mangasoavina_tab = this.tmp
     }, 500)
   }
 
   chartit() {
     //pointage actif chart pie
     const data_pointage = {
-      labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
+      labels: ["",'Ambohijatovo', 'Andraharo', 'Mangasoavina'],
       datasets: [
         {
           label: 'Dataset 1',
           data: this.tab_pointage_counting,
-          backgroundColor: ["#ca212680","#37a94a80","#1e546b80"],
+          backgroundColor: ["#ca212680","#41a62aad","#1e546b80"],
         }
       ]
     };
@@ -118,22 +118,28 @@ export class ChartGeneraleComponent implements OnInit {
       labels: this.dateTab,
       datasets: [
         {
+          label: '',
+          data: [0,0,0,0,0,0,0],
+          backgroundColor: '#ca212680',
+          maxBarThickness: 0,
+        },
+        {
           label: 'Ambohijatovo',
           data: this.ambohijatovo_tab,
           backgroundColor: '#ca212680',
-          maxBarThickness: 12,
+          maxBarThickness: 14,
         },
         {
           label: 'Andraharo',
           data: this.andraharo_tab,
-          backgroundColor: '#37a94a80',
-          maxBarThickness: 12,
+          backgroundColor: '#41a62aad',
+          maxBarThickness: 14,
         },
         {
           label: 'Mangasoavina',
-          data: this.mangasoavin_tab,
+          data: this.mangasoavina_tab,
           backgroundColor: '#1e546b80',
-          maxBarThickness: 12,
+          maxBarThickness: 14,
         },
       ],
     };

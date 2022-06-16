@@ -23,6 +23,7 @@ class Visits_register(models.Model) :
     visitor_name = models.CharField(max_length=50)
     motif = models.CharField(max_length=200)
     CIN = models.CharField(null=True, max_length=12)
+    comment = models.CharField(max_length=200, null = True) #Au cas ou le visiteur n'as pas de CIN
     lieu = models.CharField(max_length=30, null=True)
     date = models.CharField(max_length=30)
     entry_time = models.CharField(max_length=30)

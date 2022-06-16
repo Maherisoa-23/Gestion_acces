@@ -18,9 +18,9 @@ export class AuthService {
   dateDailyPointage = '';
   employee_name = "";
 
-  //readonly APIUrl = "http://192.168.1.55:8000"
+  readonly APIUrl = "http://192.168.1.55:8000"
 
-  readonly APIUrl = 'http://localhost:8000';
+  //readonly APIUrl = 'http://localhost:8000';
   readonly PhotoUrl = this.APIUrl +  "/media/";
 
   constructor(private http: HttpClient) {}
@@ -45,10 +45,16 @@ export class AuthService {
   getUsersList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/user/');
   }
+  addUser(val : any) {
+    return this.http.post(this.APIUrl + '/user/', val);
+  }
+  deleteUser(id : any) {
+    return this.http.delete(this.APIUrl + '/user/' + id);
+  }
 
   //liste des sécurité présent
   getActiveUsersList(val : any): Observable<any[]> {
-    return this.http.post<any[]>(this.APIUrl + '/user/', val);
+    return this.http.put<any[]>(this.APIUrl + '/user/', val);
   }
 
   //Methode pour les employés
@@ -167,6 +173,9 @@ export class AuthService {
   }
   getVisitCountingFilterByPlace(lieu_id: number): Observable<any> {
     return this.http.delete<any>(this.APIUrl + '/visit_counter/' + lieu_id);
+  }
+  getVisitByLieuAndDate(val: any) {
+    return this.http.put(this.APIUrl + '/daily_pointage/', val);
   }
   //pour les pointages
   getTabPointageCounting(): Observable<any[]> {

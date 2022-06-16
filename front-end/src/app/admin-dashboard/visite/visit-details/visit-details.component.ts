@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-unique-pointage',
-  templateUrl: './unique-pointage.component.html',
-  styleUrls: ['./unique-pointage.component.css'],
+  selector: 'app-visit-details',
+  templateUrl: './visit-details.component.html',
+  styleUrls: ['./visit-details.component.css']
 })
-export class UniquePointageComponent implements OnInit {
-  employee_name = "";
-  date = '2022-05-10';
+export class VisitDetailsComponent implements OnInit {
+  visitor_name = "";
+  date = '';
   dailyPointages: any;
 
   isShow = false
@@ -23,26 +23,23 @@ export class UniquePointageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authServ.employee_name == "") this.location.back();
-    this.employee_name = this.authServ.employee_name;
+    this.visitor_name = this.authServ.employee_name;
     this.date = this.authServ.dateDailyPointage;
-    this.getDailyPointage();
+    this.getDailyVisit();
     setTimeout(() => {
       this.isShow = true
     }, 700);
   }
 
-  getDailyPointage() {
+  getDailyVisit() {
     const val = {
-      employee_name: this.employee_name,
+      visitor_name: this.visitor_name,
       date: this.date,
     };
 
-    this.authServ.getPointageByLieuAndDate(val).subscribe((data) => {
+    this.authServ.getVisitByLieuAndDate(val).subscribe((data) => {
       this.dailyPointages = data;
     });
-  }
-  showAccueil() {
-    this.route.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 
   goBack() {

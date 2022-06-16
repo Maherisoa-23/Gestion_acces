@@ -174,3 +174,23 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/*Button print*/
+button.dt-button.buttons-print {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  background-color: #41a62a;
+  border-radius: 12px;
+  margin-bottom: 0px;
+}
+button.dt-button.buttons-excel.buttons-html5  {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  background-color: #c92229;
+  border-radius: 12px;
+  margin-bottom: 0px;
+}

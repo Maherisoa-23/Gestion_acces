@@ -48,22 +48,23 @@ export class ListActiveVisitComponent implements OnInit {
   date: any;
   Date: any;
   entry_time: any;
+  tmp : any
 
   haveCIN = true;
 
   ngOnInit(): void {
     this.initialisationDonnee()
+    this.refreshVisitsList();
+    this.refreshVisitorList();
     setTimeout(() => {
       const Lieu = JSON.parse(localStorage.getItem('lieu') || '{}');
       this.lieu = Lieu.lieu_name;
-
+      this.visitsList = this.tmp
       //trie décroissant, ze tonga farany no eo ambony
       this.visitsList.sort((b: any, a: any) =>
         a.entry_time.localeCompare(b.entry_time)
       );
     }, 1000);
-    this.refreshVisitsList();
-    this.refreshVisitorList();
   }
 
   refreshVisitorList() {
@@ -74,7 +75,7 @@ export class ListActiveVisitComponent implements OnInit {
 
   refreshVisitsList() {
     this.visitServ.getVisitsList().subscribe((data) => {
-      this.visitsList = data;
+      this.tmp = data;
     });
   }
 
@@ -109,6 +110,7 @@ export class ListActiveVisitComponent implements OnInit {
     this.visitor_name = this.description = this.motif = ""
     this.CIN = 0
     this.comment = null
+    this.haveCIN = true
   }
 
   //Methode pour les modals
@@ -155,26 +157,29 @@ export class ListActiveVisitComponent implements OnInit {
           //animation d'entré
           this.visitsList.unshift(val);
         } else {
-          this.showError('Erreur interne');
+          this.showError('visteur déjà présents dans un autre site');
         }
       });
+      setTimeout(() => {
+        this.refreshVisitsList();
+      }, 700);
     }
   }
 
   exitVisit() {
-    const item = this.visit
     this.Date = new Date();
     this.date = this.datePipe.transform(this.Date, 'h:mm:ss a');
     var val = {
-      visitor_name: item.visitor_name,
-      motif: item.motif,
-      CIN: item.CIN,
+      visitor_name: this.visit.visitor_name,
+      motif: this.visit.motif,
+      CIN: this.visit.CIN,
+      comment: this.visit.comment,
       lieu: this.lieu,
-      date: item.date,
-      entry_time: item.entry_time,
+      date: this.visit.date,
+      entry_time: this.visit.entry_time,
       exit_time: this.date.toString(),
     };
-    this.visitServ.deleteVisit(this.visit.visit_id).subscribe((data) => { });
+    this.visitServ.deleteVisit(this.getVisitId(this.visit)).subscribe((data) => { });
     this.visitServ.addVisitsRegister(val).subscribe((data) => {
       if (data.toString() == 'Added successfully to visit register') {
         this.showSuccess('Sortie du visiteur');
@@ -185,7 +190,15 @@ export class ListActiveVisitComponent implements OnInit {
         });
       }
     });
+  }
 
+  getVisitId(visit : any) {
+    for (let index = 0; index < this.tmp.length; index++) {
+      const element = this.tmp[index];
+      if (element.visitor_name == visit.visitor_name) {
+        return element.visit_id
+      }
+    }
   }
 
   checkValidInput() {

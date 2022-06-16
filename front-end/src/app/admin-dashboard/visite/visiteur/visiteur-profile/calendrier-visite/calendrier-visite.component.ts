@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { SecurityAgentService } from 'src/app/services/security-agent.service';
 import { VisitService } from 'src/app/services/visit.service';
 
@@ -18,18 +19,16 @@ export class CalendrierVisiteComponent implements OnInit {
   calendarOptions: CalendarOptions | any;
   val: any;
 
-  constructor(private visitServ: VisitService, private SecurityServ: SecurityAgentService, private route: Router) { }
+  visitor_name = ""
 
-  handleDateClick(arg: any) {
-    //this.visitServ.dateDailyPointage = arg.dateStr;
-    //this.route.navigate(['admin/unique-pointage']);
-  }
+  constructor(private visitServ: VisitService, private authServ: AuthService, private route: Router) { }
 
   ngOnInit(): void {
+    this.visitor_name = this.visitServ.visitor_name; 
     this.refreshVisitsRegisterList();
     setTimeout(() => {
       this.getPresentDate()
-    }, 1000);
+    }, 700);
     setTimeout(() => {
       this.calendarOptions = {
         initialView: 'dayGridMonth',
@@ -37,6 +36,25 @@ export class CalendrierVisiteComponent implements OnInit {
         events: this.post
       };
     }, 1000);
+  }
+
+  
+  checkIfEvent(date : string) {
+    for (let index = 0; index < this.post.length; index++) {
+      const element = this.post[index];
+      if (element.date == date) {
+        return true
+      }
+    }
+    return false
+  }
+  
+  handleDateClick(arg: any) {
+    if(this.checkIfEvent(arg.dateStr)){
+      this.authServ.employee_name = this.visitor_name
+      this.authServ.dateDailyPointage = arg.dateStr;
+      this.route.navigate(['admin/visit-details']);
+    }  
   }
 
   refreshVisitsRegisterList() {

@@ -33,6 +33,7 @@ class Visits_register_serializer(serializers.ModelSerializer):
                   'visitor_name',
                   'motif',
                   'CIN',
+                  'comment',
                   'lieu',
                   'date',
                   'entry_time',

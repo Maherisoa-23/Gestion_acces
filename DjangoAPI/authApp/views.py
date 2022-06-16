@@ -6,7 +6,8 @@ from django.http.request import HttpRequest
 
 from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire, Vehicule
 from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer, Vehicule_serializer
-from VisitApp.models import Lieu
+from VisitApp.models import Lieu, Visits_register
+from VisitApp.serializers import Visits_register_serializer
 
 from django.core.files.storage import default_storage
 
@@ -17,20 +18,20 @@ def user_API(request: HttpRequest, id=0):
         user = User.objects.all()
         user_serializer = User_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
-    elif request.method== 'POST':
+    elif request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        user_serializer = User_serializer(data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save() 
+            return JsonResponse("Added successfully",safe=False)
+        return JsonResponse("failded to add", safe= False)
+    #liste des sécurité présent
+    elif request.method== 'PUT':
         user = Pointage.objects.filter(function = "AGENT DE SECURITE")
         user_serializer = Pointage_serializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
-    elif request.method == 'PUT':
-        user_data = JSONParser().parse(request)
-        user= User.objects.get(user_id = user_data['user_id'] )
-        user_serializer = User_serializer(user,data=user_data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JsonResponse("Update successfully",safe=False)
-        return JsonResponse("failded to Update", safe= False)
     elif request.method == 'DELETE':
-        user=User.objects.get(user_id =id)
+        user=User.objects.get(pk =id)
         user.delete()
         return JsonResponse("Delete successfully", safe = False)
     return JsonResponse("Failded to delete", safe = False)
@@ -255,6 +256,12 @@ def daily_pointage_API(request: HttpRequest, id=0):
         pointage_tab = Pointage_register.objects.filter(employee_name = request_data["employee_name"], date = request_data["date"])      
         pointage_serializer = Pointage_register_serializer(pointage_tab, many=True)
         return JsonResponse(pointage_serializer.data, safe=False)
+    #visite details
+    elif request.method == 'PUT':
+        request_data = JSONParser().parse(request)
+        visit = Visits_register.objects.filter(visitor_name = request_data["visitor_name"], date = request_data["date"])      
+        visit_serializer = Visits_register_serializer(visit, many=True)
+        return JsonResponse(visit_serializer.data, safe=False)
     return JsonResponse("wrong ", safe = False)
 
 @csrf_exempt

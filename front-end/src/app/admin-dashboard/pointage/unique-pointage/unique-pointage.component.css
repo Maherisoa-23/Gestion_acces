@@ -6,13 +6,6 @@
   grid-template-columns: auto 1fr;
   margin: 0 0px 10px;
   padding: 0 0px 5px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  padding: 5px; */
-  /* background: var(--color-bg);
-    box-shadow: 2px 2px 5px var(--color-titre); */
 }
 .titre button {
   padding: 10px;

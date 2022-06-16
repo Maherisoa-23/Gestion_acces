@@ -1,3 +1,4 @@
+
 <div class="titre animation1 animation fade01">
   <h1><i class="fas fa-id-card"></i>Les agents de securite</h1>
 </div>
@@ -18,13 +19,13 @@
           <strong>{{ item.numero_matricule }}</strong>
         </td>
         <td data-label="Name">
-          <strong>{{ item.employee_name }}</strong>
+          <strong>{{ item.user_name }}</strong>
         </td>
         <td data-label="Pointage">
           <i> {{ getLastPointageBySec(item.numero_matricule) }}</i>
         </td>
         <td>
-          <button class="voirprofil" (click)="ShowEmployeeProfile(item)">
+          <button class="voirprofil" (click)="ShowEmployeeProfile(getSecurity(item.user_name))">
             Voir profile
           </button>
         </td>

@@ -187,9 +187,22 @@ export class EmployeeProfileComponent implements OnInit {
       this.showSuccess(res.toString())
       this.closeModal()
     })
+    //Si agent de sécurité, ajout dans les utilisateurs
+    if (this.function.toUpperCase() == "AGENT DE SECURITE") {
+      this.deleteUser();
+    }
     setTimeout(() => {
       this.route.navigate(['/admin/employee-list']);
     }, 1000);
+  }
+
+  //Au cas d'un agent de securite
+  deleteUser() {
+    this.authServ.deleteUser(this.numero_matricule).subscribe((res) => {
+      setTimeout(() => {
+        this.showSuccess("Effacé aussi dans la liste des utilisateurs")
+      }, 4000);
+    })
   }
 
   CheckDailyPointage(item: any) {

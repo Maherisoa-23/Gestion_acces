@@ -14,7 +14,7 @@ export class PointageRegisterComponent implements OnInit {
   departments: any;
   DateSelected: any;
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   isShow = false;
   table: any;
 
@@ -37,8 +37,11 @@ export class PointageRegisterComponent implements OnInit {
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10,
-        lengthMenu: [10, 15, 25],
         processing: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'print'
+        ],
         language: {url:"http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"}
       };
     }, 600);
@@ -46,7 +49,7 @@ export class PointageRegisterComponent implements OnInit {
     $('.dateadded').on('change', function (ret: any) {
       var v = ret.target.value; // getting search input value
 
-      $('#dataTables-example').DataTable().columns(1).search(v).draw();
+      $('#dataTables-example').DataTable().columns(0).search(v).draw();
     });
   }
 
