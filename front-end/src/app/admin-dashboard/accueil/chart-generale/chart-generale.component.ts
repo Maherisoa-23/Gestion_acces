@@ -87,7 +87,7 @@ export class ChartGeneraleComponent implements OnInit {
   chartit() {
     //pointage actif chart pie
     const data_pointage = {
-      labels: ["",'Ambohijatovo', 'Andraharo', 'Mangasoavina'],
+      labels: ['Ambohijatovo', 'Andraharo', 'Mangasoavina'],
       datasets: [
         {
           label: 'Dataset 1',
@@ -120,7 +120,7 @@ export class ChartGeneraleComponent implements OnInit {
         {
           label: '',
           data: [0,0,0,0,0,0,0],
-          backgroundColor: '#ca212680',
+          backgroundColor: '#ffffff',
           maxBarThickness: 0,
         },
         {
