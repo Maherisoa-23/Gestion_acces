@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitDashboardComponent } from './visit-dashboard/visit-dashboard.component';
@@ -62,6 +62,7 @@ import { VehiculeComponent } from './admin-dashboard/vehicule/vehicule.component
 import { VehiculeRegisterComponent } from './admin-dashboard/vehicule/vehicule-register/vehicule-register.component';
 import { VehiculeProfileComponent } from './admin-dashboard/vehicule/vehicule-profile/vehicule-profile.component';
 import { VisitDetailsComponent } from './admin-dashboard/visite/visit-details/visit-details.component';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -169,6 +170,7 @@ const appRoutes: Routes = [
     AuthGuard,
     AdminGuard,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+	{ provide : HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 })
