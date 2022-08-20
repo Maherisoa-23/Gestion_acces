@@ -32,6 +32,15 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
+# REST API CONFIG
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,11 +52,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+	'rest_framework.authtoken',
     'VisitApp.apps.VisitappConfig',
     'authApp.apps.AuthappConfig'
 ]
 
+
+# CSRF config for Angular
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_HTTPONLY = False
+
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_METHODS = [
+    'PUT',
+    'GET',
+    'POST',
+    'DELETE',
+	'PATCH',
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -80,6 +102,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjangoAPI.wsgi.application'
 
+# Model used for authentication
+AUTH_USER_MODEL = 'authApp.XUser'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
