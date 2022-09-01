@@ -1,5 +1,18 @@
 from django.db import models
 
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
+
+
+
+class XUser(AbstractUser):
+	USERNAME_FIELD = "username"
+	EMAIL_FIELD = "email"
+	#! Warning null = True, default = None, blank = True are for testing purpose only
+	numero_matricule = models.CharField(verbose_name=_('Identifiant'), max_length=30, null=True, default=None, blank=True)
+
+
+
 class User(models.Model) :
     user_name = models.CharField(max_length=100)
     numero_matricule = models.IntegerField(primary_key=True)

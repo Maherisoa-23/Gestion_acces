@@ -1,10 +1,12 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from authApp import views
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 urlpatterns = [
+	path('user/login', views.login, name='login'),
+	
     re_path(r'^user/$',views.user_API),
     re_path(r'^user/([0-9]+)$',views.user_API),
     re_path(r'^employee/$',views.employee_API),

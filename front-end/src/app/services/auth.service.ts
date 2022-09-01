@@ -18,8 +18,6 @@ export class AuthService {
   dateDailyPointage = '';
   employee_name = "";
 
-  //readonly APIUrl = "http://192.168.1.55:8000"
-
   readonly APIUrl = 'http://localhost:8000';
   readonly PhotoUrl = this.APIUrl +  "/media/";
 

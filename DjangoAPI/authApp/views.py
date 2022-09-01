@@ -4,12 +4,76 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.http.request import HttpRequest
 
-from authApp.models import User,Pointage,Employee,Department,Pointage_register, Stagiaire, Vehicule
-from authApp.serializers import User_serializer,Pointage_serializer,Employee_serializer,Department_serializer,Pointage_register_serializer,Stagiaire_serializer, Vehicule_serializer
+from authApp.models import (
+	XUser,
+	User,
+	Pointage,
+	Employee,
+	Department,
+	Pointage_register, 
+	Stagiaire, 
+	Vehicule
+)
+from authApp.serializers import (
+	User_serializer,
+	Pointage_serializer,
+	Employee_serializer,
+	Department_serializer,
+	Pointage_register_serializer,
+	Stagiaire_serializer, 
+	Vehicule_serializer
+)
 from VisitApp.models import Lieu, Visits_register
 from VisitApp.serializers import Visits_register_serializer
 
+
 from django.core.files.storage import default_storage
+from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework.decorators import authentication_classes, api_view, permission_classes
+from rest_framework import status
+from django.contrib.auth import authenticate, login
+
+
+
+
+
+
+@ensure_csrf_cookie
+@api_view(['POST'])
+def login(request):
+	username: str = request.data.get('username', None)
+	password: str = request.data.get('password', None)
+
+	if not (username and password):
+		return JsonResponse({
+			'errors': {
+				'PasswordError': password is None,
+				'UsernameError': username is None,
+			},
+			'details': 'failure',
+			
+		}, status=status.HTTP_401_UNAUTHORIZED)
+
+	user : XUser = authenticate(username=username, password=password)
+	
+	if user is not None: 
+		return JsonResponse({
+			'details'    :'success',
+			'username'   : user.username,
+			'token'      : user.auth_token.key,
+		}, status=status.HTTP_200_OK)
+
+	# Username  does not exists or invalid password 
+	return JsonResponse({
+		'details'  : 'failure',
+		'password' : password,
+		'username' : username,
+	}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+
+
 
 # Create your views here.
 @csrf_exempt

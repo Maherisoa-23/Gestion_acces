@@ -1,3 +1,7 @@
 from django.contrib import admin
+from authApp.models import XUser
 
-# Register your models here.
+@admin.register(XUser)
+class XUserAdmin(admin.ModelAdmin):
+	list_display = ('pk', 'username', 'numero_matricule')
+
